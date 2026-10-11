@@ -80,7 +80,7 @@ class TestCryptoOracleVectors(unittest.TestCase):
         self.check_curve_file("nist_p256_vectors.json", "NIST_P256")
 
     def test_vector_count_dod(self):
-        # PR 1 DoD: >= 500 standardised vectors across all files
+        # At least 500 standardised vectors across all files
         total = sum(len(load(f)) for f in os.listdir(VECTORS_DIR) if f.endswith(".json"))
         self.assertGreaterEqual(total, 500)
 
