@@ -115,6 +115,7 @@ object CryptoOracleJvmTest:
       else assert(v("modpow_65537").isNull, v)
       assert(v("b_is_prime").bool == b.isProbablePrime(64), s"Primality flag wrong: $v")
       if !v("sqrt").isNull then
+        assert(v("b_is_prime").bool, s"Square root reported for a composite modulus: $v")
         val r = dec(v("sqrt").str)
         assert(r.multiply(r).subtract(a).mod(b).signum == 0, s"Tonelli-Shanks root wrong: $v")
       else if v("b_is_prime").bool then
