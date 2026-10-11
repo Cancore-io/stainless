@@ -22,18 +22,20 @@ Constraints this module is built around:
   non-negative residue.
 * **JVM only.** GenC is unsuitable for 256-bit arithmetic; the runtime is `java.math.BigInteger`.
 
-## 2. Three independent layers
+## 2. Two independent layers
 
 | Layer | What it does | What it catches |
 | :--- | :--- | :--- |
-| `scripts/oracle_gen.py` | Generates the vectors and checks the implementation against published KATs (`[2]G`, `[3]G` on both curves; RFC 6979 A.2.5 `k/r/s/U`; RFC 7748 §6.1; RFC 8032 §7.1). `--check` compares the committed vectors with a fresh run. | Errors in an oracle formula or algorithm; hand-edited JSON. |
-| `tests/test_oracle.py` | Checks the committed data against invariants without importing the generator: every point (inputs and results) is on the curve, `[1]G = G`, independent primality of the modulus, Bezout and witnesses, `gcd`, inverse, `modpow`, square root or Euler's criterion, the ECDSA equation `s·k ≡ e + d·r (mod n)`. | Corrupted or off-curve points, wrong number-theoretic answers. |
-| `tests/CryptoOracleJvmTest.scala` | Its own affine arithmetic on `BigInteger`: left-to-right double-and-add (the oracle is right-to-left), recomputes every `mul`/`add` vector and edge case, checks ECDSA (`r = ([k]G).x mod n` plus full verification). | A point that is on the curve but computed incorrectly, and any disagreement between the two implementations. |
+| `scripts/oracle_gen.py` (Python, developer tool) | Generates the vectors and checks the implementation against published KATs (`[2]G`, `[3]G` on both curves; RFC 6979 A.2.5 `k/r/s/U`; RFC 7748 §6.1; RFC 8032 §7.1). `--check` compares the committed vectors with a fresh run. | Errors in an oracle formula or algorithm; hand-edited JSON. |
+| `tests/CryptoOracleSuite.scala` (sbt project `stainless-crypto-oracle`, part of `sbt test`) | Its own affine arithmetic on `BigInteger`: left-to-right double-and-add (the oracle is right-to-left), recomputes every `mul`/`add` vector and edge case, checks every input point is on the curve, ECDSA (`r = ([k]G).x mod n` plus full verification, message hashes), gcd witnesses, inverses, `modpow`, square roots or Euler's criterion, primality, the RFC 7748/8032 KATs. | A point that is on the curve but computed incorrectly, any disagreement between the two implementations, corrupted or inconsistent vectors. |
+
+The suite reads only the committed vectors and needs no Python, so it runs in the regular CI
+(`stainless-ci.sh` → `sbt test`, the project is aggregated by `root`). The drift check needs
+Python and is run locally by `run_all.sh`.
 
 Each layer is backed by mutants: a broken doubling formula, a skipped Tonelli–Shanks loop, a bug in
-the JVM addition, corrupted JSON points, off-curve edge-case inputs, a hidden primality flag, and a
-`cswap` mask reduced mod p are all killed. A substituted on-curve point `-[k]G` is caught only by the
-JVM layer and `--check`; this is by design.
+the recomputation, corrupted JSON points (including an on-curve `-[k]G`), off-curve edge-case
+inputs, a hidden primality flag, and a `cswap` mask reduced mod p are all killed.
 
 ## 3. Test vectors (`vectors/`)
 
@@ -57,15 +59,15 @@ parses losslessly with `BigInt(str, radix)`.
 ## 4. Running
 
 ```bash
-./verification/crypto-oracle/run_all.sh                       # drift check, Python, JVM
+sbt "stainless-crypto-oracle / test"                          # JVM cross-validation (also part of `sbt test`)
+python3 verification/crypto-oracle/scripts/oracle_gen.py --check   # drift check
 python3 verification/crypto-oracle/scripts/oracle_gen.py      # regenerate after changing the oracle
-python3 verification/crypto-oracle/tests/test_oracle.py
-scala verification/crypto-oracle/tests/CryptoOracleJvmTest.scala -- verification/crypto-oracle/vectors
+./verification/crypto-oracle/run_all.sh                       # both of the above checks
 ```
 
 `run_all.sh` works from any directory and never overwrites the vectors: on a mismatch it fails and
-asks for an explicit regeneration, so every change to the vectors shows up in the diff. The JVM
-runner takes the vectors directory as an argument and never guesses it from the current directory.
+asks for an explicit regeneration, so every change to the vectors shows up in the diff. The vectors
+directory is a test resource of the sbt project, so the suite does not depend on the current directory.
 
 ## 5. Known limits
 

@@ -374,6 +374,16 @@ lazy val `check-files-util` = (project in file("check-files-utils"))
 //  .settings(run / javaOptions += "-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5006")
   .dependsOn(`stainless-core`, `stainless-dotty`)
 
+// Cross-validation of the committed crypto test vectors; test-only, nothing is published.
+lazy val `stainless-crypto-oracle` = (project in file("verification") / "crypto-oracle")
+  .disablePlugins(AssemblyPlugin)
+  .settings(commonSettings, noPublishSettings)
+  .settings(
+    name := "stainless-crypto-oracle",
+    Test / scalaSource := baseDirectory.value / "tests",
+    Test / unmanagedResourceDirectories += baseDirectory.value / "vectors",
+  )
+
 lazy val root = (project in file("."))
   .disablePlugins(AssemblyPlugin)
   .settings(artifactSettings, noPublishSettings)
@@ -381,7 +391,7 @@ lazy val root = (project in file("."))
     Compile / sourcesInBase := false,
   )
   .dependsOn(`stainless-library`, `stainless-dotty`, `sbt-stainless`)
-  .aggregate(`stainless-core`, `stainless-library`, `stainless-dotty`, `sbt-stainless`, `stainless-dotty-plugin`)
+  .aggregate(`stainless-core`, `stainless-library`, `stainless-dotty`, `sbt-stainless`, `stainless-dotty-plugin`, `stainless-crypto-oracle`)
 
 def commonPublishSettings = Seq(
   bintrayOrganization := Some("epfl-lara")
