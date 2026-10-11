@@ -1,0 +1,10 @@
+[
+  {
+    "curve": "secp256k1",
+    "private_key_hex": "0xc9afa9d845ba75166b5c215767b1d6934e50c3db36e89b127b8a622b120f6721",
+    "message": "sample",
+    "message_hash_hex": "af2bdbe1aa9b6ec1e2ade1d694f41fc71a831d0268e9891562113d8a62add1bf",
+    "expected_nonce_k_hex": "0xa6e3c57dd01abe90086538398355dd4c3b17aa873382b0f24d6129493d8aad60",
+    "expected_nonce_k_dec": "75486370184466523516702714224272210659255809472406410223340475427961162083680"
+  }
+]

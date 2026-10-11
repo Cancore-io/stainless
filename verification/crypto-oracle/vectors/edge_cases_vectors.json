@@ -1,0 +1,68 @@
+[
+  {
+    "curve": "secp256k1",
+    "tests": [
+      {
+        "name": "identity_P_plus_O",
+        "passed": true
+      },
+      {
+        "name": "inverse_P_plus_negP",
+        "passed": true
+      },
+      {
+        "name": "order_mult_nG",
+        "passed": true
+      },
+      {
+        "name": "order_mult_n_plus_1_G",
+        "passed": true
+      },
+      {
+        "name": "order_mult_zero",
+        "passed": true
+      },
+      {
+        "name": "order_mult_n_minus_1_G_eq_negG",
+        "passed": true
+      },
+      {
+        "name": "doubling_consistency_G_plus_G",
+        "passed": true
+      }
+    ]
+  },
+  {
+    "curve": "NIST_P256",
+    "tests": [
+      {
+        "name": "identity_P_plus_O",
+        "passed": true
+      },
+      {
+        "name": "inverse_P_plus_negP",
+        "passed": true
+      },
+      {
+        "name": "order_mult_nG",
+        "passed": true
+      },
+      {
+        "name": "order_mult_n_plus_1_G",
+        "passed": true
+      },
+      {
+        "name": "order_mult_zero",
+        "passed": true
+      },
+      {
+        "name": "order_mult_n_minus_1_G_eq_negG",
+        "passed": true
+      },
+      {
+        "name": "doubling_consistency_G_plus_G",
+        "passed": true
+      }
+    ]
+  }
+]
