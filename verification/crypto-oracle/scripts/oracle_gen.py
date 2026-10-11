@@ -22,7 +22,6 @@ import hashlib
 import hmac
 import json
 import os
-import random
 import sys
 
 # -----------------------------------------------------------------------------
@@ -55,6 +54,31 @@ def mod_inverse(a: int, m: int) -> int:
     if gcd_val != 1:
         raise ValueError(f"Inverse does not exist: gcd({a}, {m}) = {gcd_val}")
     return x % m
+
+def is_prime(n: int) -> bool:
+    """Miller-Rabin with the first 12 prime bases (deterministic below 3.3e24)."""
+    bases = (2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37)
+    if n < 2:
+        return False
+    if n in bases:
+        return True
+    if any(n % b == 0 for b in bases):
+        return False
+    d, s = n - 1, 0
+    while d % 2 == 0:
+        d //= 2
+        s += 1
+    for b in bases:
+        x = pow(b, d, n)
+        if x in (1, n - 1):
+            continue
+        for _ in range(s - 1):
+            x = pow(x, 2, n)
+            if x == n - 1:
+                break
+        else:
+            return False
+    return True
 
 def tonelli_shanks(n: int, p: int):
     """Solves r^2 = n (mod p) for prime p. Returns None if n is a non-residue."""
@@ -287,9 +311,10 @@ P25519 = 2**255 - 19
 A24 = (486662 - 2) // 4
 
 def cswap(swap: int, x_2: int, x_3: int) -> tuple:
-    dummy = swap * ((x_2 ^ x_3) % P25519)
-    x_2 = (x_2 ^ dummy) % P25519
-    x_3 = (x_3 ^ dummy) % P25519
+    # No reduction here: x_2 ^ x_3 can exceed p, and reducing the mask breaks the swap.
+    dummy = swap * (x_2 ^ x_3)
+    x_2 ^= dummy
+    x_3 ^= dummy
     return x_2, x_3
 
 def decode_u(u_bytes: bytes) -> int:
@@ -334,15 +359,19 @@ def x25519(k_scalar: int, u_coord: int) -> int:
 # 5. Generator Orchestration
 # -----------------------------------------------------------------------------
 
-def generate_curve_vectors(curve: WeierstrassCurve, count: int, seed: int):
+def derived_scalar(seed: str, i: int, n: int) -> int:
+    """Scalar in [1, n-1] from SHA-256: stable across Python versions, unlike random.randrange."""
+    digest = hashlib.sha256(f"{seed}/{i}".encode()).digest()
+    return int.from_bytes(digest, "big") % (n - 1) + 1
+
+def generate_curve_vectors(curve: WeierstrassCurve, count: int, seed: str):
     g = curve.g
     for k, expected in KAT_POINTS[curve.name].items():
         assert curve.scalar_mult(k, g) == expected, f"{curve.name}: [{k}]G differs from the published KAT"
 
-    rng = random.Random(seed)
     scalars = [1, 2, 3, 4, 5, 7, 16, 31, 64, 127, 256, 1000, 65537,
                curve.n - 1, curve.n // 2, 0xDEADBEEF]
-    scalars += [rng.randrange(1, curve.n) for _ in range(count)]
+    scalars += [derived_scalar(seed, i, curve.n) for i in range(count)]
 
     vectors = []
     for k in scalars:
@@ -351,7 +380,8 @@ def generate_curve_vectors(curve: WeierstrassCurve, count: int, seed: int):
         vectors.append({"curve": curve.name, "op": "mul", "k": format(k, "x"), "result": pt_json(pt)})
 
     # Point additions P + Q, cross-checked against [k1 + k2]G
-    pairs = [(13, 37)] + [(rng.randrange(1, curve.n), rng.randrange(1, curve.n)) for _ in range(9)]
+    pairs = [(13, 37)] + [(derived_scalar(seed + "/add-p", i, curve.n), derived_scalar(seed + "/add-q", i, curve.n))
+                          for i in range(9)]
     for k1, k2 in pairs:
         p1, p2 = curve.scalar_mult(k1, g), curve.scalar_mult(k2, g)
         p_sum = curve.point_add(p1, p2)
@@ -397,12 +427,13 @@ def generate_edge_cases():
 P224 = 2**224 - 2**96 + 1  # p - 1 = Q * 2^96: worst case for the Tonelli-Shanks loop
 
 def generate_modular_vectors():
-    """gcd/Bezout/inverse/modpow for every pair; Tonelli-Shanks when b is a known prime."""
-    primes = {SECP256K1.p, NIST_P256.p, P224, P25519, SECP256K1.n}
+    """gcd/Bezout/inverse/modpow for every pair; Tonelli-Shanks when b is an odd prime.
+    inv is present iff gcd == 1 and b > 1; modpow iff b > 0."""
     test_cases = [
         (17, 31), (256, 1009), (123456789, 987654321),
         (0xDEADBEEF, 0x100000007),
         (12, 18),  # non-coprime: no inverse
+        (0, 5), (5, 0), (5, 1),  # extended_gcd base cases; inverse needs b > 1, modpow needs b > 0
         (SECP256K1.p - 1, SECP256K1.p),
         (3, SECP256K1.p),
         (12345, SECP256K1.n),
@@ -419,7 +450,8 @@ def generate_modular_vectors():
         gcd_val, ka, kb, x, y = extended_gcd(a, b)
         assert a * x + b * y == gcd_val and a == ka * gcd_val and b == kb * gcd_val
         inv_val = mod_inverse(a, b) if gcd_val == 1 and b > 1 else None
-        sqrt_val = tonelli_shanks(a, b) if b in primes else None
+        b_is_prime = is_prime(b)
+        sqrt_val = tonelli_shanks(a, b) if b_is_prime and b > 2 else None
         if sqrt_val is not None:
             assert (sqrt_val * sqrt_val - a) % b == 0
         vectors.append({
@@ -431,8 +463,8 @@ def generate_modular_vectors():
             "x": str(x),
             "y": str(y),
             "inv": None if inv_val is None else str(inv_val),
-            "modpow_65537": str(pow(a, 65537, b)),
-            "b_is_prime": b in primes,
+            "modpow_65537": str(pow(a, 65537, b)) if b > 0 else None,
+            "b_is_prime": b_is_prime,
             "sqrt": None if sqrt_val is None else str(sqrt_val),
         })
     # Both Tonelli-Shanks outcomes on the p = 1 mod 4 branch must be covered.
@@ -471,6 +503,9 @@ def generate_rfc7748_vectors():
     s_int &= ~7
     s_int &= ~(128 << (8 * 31))
     s_int |= 64 << (8 * 31)
+
+    # The ladder never hits x_2 ^ x_3 >= p on this KAT, so pin the swap directly.
+    assert cswap(1, P25519 - 1, 19) == (19, P25519 - 1) and cswap(0, 5, 7) == (5, 7)
 
     bob_u = decode_u(bob_pub)
     out_int = x25519(s_int, bob_u)
@@ -540,8 +575,8 @@ def generate_rfc8032_vectors():
 def generate_all():
     """File name -> JSON text, fully deterministic."""
     suites = {
-        "secp256k1_vectors.json": generate_curve_vectors(SECP256K1, count=240, seed=0x5ECB256),
-        "nist_p256_vectors.json": generate_curve_vectors(NIST_P256, count=240, seed=0x9256),
+        "secp256k1_vectors.json": generate_curve_vectors(SECP256K1, count=240, seed="secp256k1"),
+        "nist_p256_vectors.json": generate_curve_vectors(NIST_P256, count=240, seed="NIST_P256"),
         "edge_cases_vectors.json": generate_edge_cases(),
         "modular_arithmetic_vectors.json": generate_modular_vectors(),
         "rfc6979_vectors.json": generate_rfc6979_vectors(),

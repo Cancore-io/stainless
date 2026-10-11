@@ -10,7 +10,7 @@ echo "=== 2/3: Executing Python Oracle Test Suite ==="
 python3 "$SCRIPT_DIR/tests/test_oracle.py"
 
 echo "=== 3/3: Executing JVM / Scala Cross-Validation Suite ==="
-scala "$SCRIPT_DIR/tests/CryptoOracleJvmTest.scala"
+scala "$SCRIPT_DIR/tests/CryptoOracleJvmTest.scala" -- "$SCRIPT_DIR/vectors"
 
 echo "=========================================================="
 echo ">>> SUCCESS: All Cryptographic Test Vectors Verified! <<<"

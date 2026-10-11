@@ -1,10 +1,10 @@
 //> using scala 3.9.0
-//> using dep com.lihaoyi::ujson:4.0.2
+//> using dep com.lihaoyi::ujson:4.4.3
 
 package verification.oracle
 
 import java.math.BigInteger
-import java.nio.file.{Files, Path, Paths}
+import java.nio.file.{Files, Paths}
 
 /**
  * JVM Cross-Validation Runner for Cryptographic Test Vectors.
@@ -69,9 +69,9 @@ object CryptoOracleJvmTest:
 
   def main(args: Array[String]): Unit =
     println("=== Starting Crypto Oracle JVM Test Suite ===")
-    val baseDir = Paths.get(System.getProperty("user.dir"))
-    val dir = Seq("verification/crypto-oracle/vectors", "vectors").map(baseDir.resolve).find(Files.exists(_))
-      .getOrElse(throw new AssertionError(s"Vectors directory not found under $baseDir"))
+    // The vectors directory is passed explicitly (run_all.sh does); never guessed from the cwd.
+    val dir = Paths.get(args.headOption.getOrElse(throw new IllegalArgumentException("usage: <vectors-dir>")))
+    assert(Files.isDirectory(dir), s"Vectors directory not found: $dir")
     def load(name: String) = ujson.read(Files.readString(dir.resolve(name))).arr.toSeq
 
     val curveVectors = load("secp256k1_vectors.json") ++ load("nist_p256_vectors.json")
@@ -86,6 +86,7 @@ object CryptoOracleJvmTest:
     for v <- vs do
       val c = Curves(v("curve").str)
       val expected = point(v("result"))
+      for key <- Seq("p", "q") if v.obj.contains(key) do assert(c.onCurve(point(v(key))), s"Input not on curve: $v")
       val got = v("op").str match
         case "mul" => c.mul(hex(v("k").str), c.g)
         case "add" => c.add(point(v("p")), point(v("q")))
@@ -106,9 +107,13 @@ object CryptoOracleJvmTest:
       assert(a.gcd(b) == g, s"GCD mismatch: $v")
       assert(ka.multiply(g) == a && kb.multiply(g) == b, s"Divisibility witness failed: $v")
       assert(a.multiply(x).add(b.multiply(y)) == g, s"Bezout identity failed: $v")
-      if g == BigInteger.ONE then assert(a.modInverse(b) == dec(v("inv").str), s"Inverse mismatch: $v")
+      if g == BigInteger.ONE && b.compareTo(BigInteger.ONE) > 0 then
+        assert(a.modInverse(b) == dec(v("inv").str), s"Inverse mismatch: $v")
       else assert(v("inv").isNull, v)
-      assert(a.modPow(BigInteger.valueOf(65537), b) == dec(v("modpow_65537").str), s"modPow mismatch: $v")
+      if b.signum > 0 then
+        assert(a.modPow(BigInteger.valueOf(65537), b) == dec(v("modpow_65537").str), s"modPow mismatch: $v")
+      else assert(v("modpow_65537").isNull, v)
+      assert(v("b_is_prime").bool == b.isProbablePrime(64), s"Primality flag wrong: $v")
       if !v("sqrt").isNull then
         val r = dec(v("sqrt").str)
         assert(r.multiply(r).subtract(a).mod(b).signum == 0, s"Tonelli-Shanks root wrong: $v")

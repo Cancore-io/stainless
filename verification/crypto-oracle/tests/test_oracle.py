@@ -45,6 +45,11 @@ def load(name):
 def point(js):
     return None if js is None else (int(js["x"], 16), int(js["y"], 16))
 
+def probably_prime(n):
+    """Fermat test on small bases: independent of the generator's b_is_prime flag."""
+    bases = (2, 3, 5, 7, 11)
+    return n in bases or (n > 11 and all(pow(base, n - 1, n) == 1 for base in bases))
+
 def on_curve(curve, pt):
     if pt is None:
         return True
@@ -94,15 +99,19 @@ class TestCryptoOracleVectors(unittest.TestCase):
             self.assertEqual(ka * x + kb * y, 1)
             self.assertEqual(a * x + b * y, gcd_val)
 
-            if gcd_val == 1:
+            if gcd_val == 1 and b > 1:
                 inv_val = int(entry["inv"])
                 self.assertTrue(0 <= inv_val < b)
                 self.assertEqual((a * inv_val) % b, 1)
             else:
                 self.assertIsNone(entry["inv"])
 
-            self.assertEqual(pow(a, 65537, b), int(entry["modpow_65537"]))
+            if b > 0:
+                self.assertEqual(pow(a, 65537, b), int(entry["modpow_65537"]))
+            else:
+                self.assertIsNone(entry["modpow_65537"])
 
+            self.assertEqual(entry["b_is_prime"], probably_prime(b), entry)
             if entry["b_is_prime"]:
                 if entry["sqrt"] is None:
                     # Euler's criterion: a is a non-residue
@@ -129,7 +138,9 @@ class TestCryptoOracleVectors(unittest.TestCase):
             p, n = CURVES[curve][0], CURVES[curve][5]
             g = CURVES[curve][3:5]
             res = point(e["result"])
-            self.assertTrue(on_curve(curve, res), e)
+            for key in ("p", "q", "result"):
+                if key in e:
+                    self.assertTrue(on_curve(curve, point(e[key])), e)
             if e["op"] == "add":
                 lhs, rhs = point(e["p"]), point(e["q"])
                 if lhs is None or rhs is None:
@@ -172,6 +183,14 @@ class TestCryptoOracleVectors(unittest.TestCase):
         data = load("rfc8032_vectors.json")
         self.assertEqual(len(data), 1)
         self.assertEqual(data[0]["public_key_hex"], "d75a980182b10ab7d54bfed3c964073a0ee172f3daa62325af021a68f707511a")
+        # Decoded coordinates must match the encoding and lie on -x^2 + y^2 = 1 + d x^2 y^2
+        p = 2**255 - 19
+        d = (-121665 * pow(121666, -1, p)) % p
+        x, y = int(data[0]["public_key_x"], 16), int(data[0]["public_key_y"], 16)
+        enc = int.from_bytes(bytes.fromhex(data[0]["public_key_hex"]), "little")
+        self.assertEqual(y, enc & ((1 << 255) - 1))
+        self.assertEqual(x & 1, enc >> 255)
+        self.assertEqual((-x * x + y * y - 1 - d * x * x * y * y) % p, 0)
 
 if __name__ == "__main__":
     unittest.main()
