@@ -1,10 +1,41 @@
 [
   {
-    "curve": "secp256k1",
-    "private_key_hex": "0xc9afa9d845ba75166b5c215767b1d6934e50c3db36e89b127b8a622b120f6721",
+    "curve": "NIST_P256",
+    "private_key": "c9afa9d845ba75166b5c215767b1d6934e50c3db36e89b127b8a622b120f6721",
+    "public_key": {
+      "x": "60fed4ba255a9d31c961eb74c6356d68c049b8923b61fa6ce669622e60f29fb6",
+      "y": "7903fe1008b8bc99a41ae9e95628bc64f2f1b20c2d7e9f5177a3c294d4462299"
+    },
     "message": "sample",
-    "message_hash_hex": "af2bdbe1aa9b6ec1e2ade1d694f41fc71a831d0268e9891562113d8a62add1bf",
-    "expected_nonce_k_hex": "0xa6e3c57dd01abe90086538398355dd4c3b17aa873382b0f24d6129493d8aad60",
-    "expected_nonce_k_dec": "75486370184466523516702714224272210659255809472406410223340475427961162083680"
+    "message_hash": "af2bdbe1aa9b6ec1e2ade1d694f41fc71a831d0268e9891562113d8a62add1bf",
+    "k": "a6e3c57dd01abe90086538398355dd4c3b17aa873382b0f24d6129493d8aad60",
+    "r": "efd48b2aacb6a8fd1140dd9cd45e81d69d2c877b56aaf991c34d0ea84eaf3716",
+    "s": "f7cb1c942d657c41d436c7a1b6e29f65f3e900dbb9aff4064dc4ab2f843acda8"
+  },
+  {
+    "curve": "NIST_P256",
+    "private_key": "c9afa9d845ba75166b5c215767b1d6934e50c3db36e89b127b8a622b120f6721",
+    "public_key": {
+      "x": "60fed4ba255a9d31c961eb74c6356d68c049b8923b61fa6ce669622e60f29fb6",
+      "y": "7903fe1008b8bc99a41ae9e95628bc64f2f1b20c2d7e9f5177a3c294d4462299"
+    },
+    "message": "test",
+    "message_hash": "9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08",
+    "k": "d16b6ae827f17175e040871a1c7ec3500192c4c92677336ec2537acaee0008e0",
+    "r": "f1abb023518351cd71d881567b1ea663ed3efcf6c5132b354f28d3b0b7d38367",
+    "s": "19f4113742a2b14bd25926b49c649155f267e60d3814b4c0cc84250e46f0083"
+  },
+  {
+    "curve": "secp256k1",
+    "private_key": "1",
+    "public_key": {
+      "x": "79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798",
+      "y": "483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8"
+    },
+    "message": "Satoshi Nakamoto",
+    "message_hash": "a0dc65ffca799873cbea0ac274015b9526505daaaed385155425f7337704883e",
+    "k": "8f8a276c19f4149656b280621e358cce24f5f52542772691ee69063b74f15d15",
+    "r": "934b1ea10a4b3c1757e2b0c017d0b6143ce3c9a7e6a4a49860d7a6ab210ee3d8",
+    "s": "dbbd3162d46e9f9bef7feb87c16dc13b4f6568a87f4e83f728e2443ba586675c"
   }
 ]

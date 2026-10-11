@@ -1,72 +1,79 @@
 # Cryptographic Reference Oracle & Test-Vector Architecture for Stainless
 
-> **Test-Driven Verification Framework for Pure Scala & SMT Solvers**
+> **Test-Driven Verification: внешний контур проверки спецификаций до SMT**
 
 ---
 
-## 1. Концепция и архитектура
+## 1. Зачем это нужно
 
-Данный модуль реализует внешний контур верификации (**Test-Driven Verification**) для расширения фреймворка Stainless криптографическими примитивами.
+Stainless доказывает, что код соответствует *написанной* спецификации. Если сама спецификация
+ошибочна (перепутан знак в формуле сложения точек, взят не тот модуль), верификатор докажет
+неверный алгоритм. Оракул закрывает эту дыру: каждая формула и каждый алгоритм, которые позже
+пойдут в Stainless, сначала сверяются с опубликованными эталонами (SEC 2, FIPS 186-4, RFC).
 
-### Проблема формальной верификации
-Анализатор Stainless и лежащие в его основе SMT-решатели (Z3, CVC5) сталкиваются с неразрешимостью нелинейной целочисленной арифметики (NIA):
-$$(a \cdot b) \pmod m \equiv ((a \pmod m) \cdot (b \pmod m)) \pmod m$$
-при символьном $m$ приводит к зависанию Z3 (>90 секунд).
+Ограничения, из которых исходит модуль (подробно — в эпик-спеке):
 
-### Архитектурное решение (по материалам исследований EPFL-LARA):
-1. **Разделение контуров (Two-Contour Strategy):**
-   * **Внешний оракул (Python / SageMath):** генерирует строго выверенные тестовые векторы по международным стандартам (NIST, RFC).
-   * **JVM Cross-Validation:** тестирует исполняемые алгоритмы на `java.math.BigInteger` перед отправкой в SMT.
-   * **Stainless Formal Layer:** верифицирует инварианты кода с опорой на леммы.
-2. **Абсолютный отказ от GenC (PR #1778, Issue #1779):**
-   GenC компилирует `BigInt` как 32-битный `int`, что фатально для 256-битной криптографии. Весь рантайм строится строго на **JVM (Scala 3 / Java BigInteger)**.
-3. **Паттерн свидетелей без кванторов (из `epfl-lara/bolts`):**
-   Исключение кванторов ($\forall, \exists$) в пользу явных структур-свидетелей (witnesses), как в `MoreExtendedEuclidGCD.scala`:
-   ```scala
-   case class BezoutResult(gcd: BigInt, ka: BigInt, kb: BigInt, x: BigInt, y: BigInt)
-   ```
-4. **Изоляция лемм через `@opaque @inlineOnce` (PR #1749):**
-   Предотвращение разворачивания тел доказательств в месте вызова, разгрузка SMT-солвера.
+* **NIA неразрешима для SMT.** `((a % m) * (b % m)) % m == (a * b) % m` при символьном `m`
+  уходит в timeout (проверено на Stainless 0.10.2 / nativez3, `--timeout=30`). Поэтому
+  нелинейные факты в формальном контуре будут закрываться леммами `@opaque @inlineOnce`
+  (конвенция `ListSpecs.scala`, PR #1749) и witness-структурами (`bolts/MoreExtendedEuclidGCD.scala`).
+* **`%` в Stainless — остаток со знаком делимого** (контрпример Z3: `a = -19, m = 9`). Для
+  `a = -3` (P-256) нормализация обязательна; неотрицательный вычет даёт `BigInt.mod`.
+* **Только JVM.** GenC не годится для 256-битной арифметики, рантайм — `java.math.BigInteger`.
 
----
+## 2. Три независимых слоя
 
-## 2. Структура тестовых векторов (`vectors/`)
-
-Все числовые значения продублированы строками `_dec` для детерминированного парсинга в Scala `BigInt(str)`:
-
-| Файл | Стандарт | Описание |
+| Слой | Что делает | Что ловит |
 | :--- | :--- | :--- |
-| [`secp256k1_vectors.json`](vectors/secp256k1_vectors.json) | SECG secp256k1 | Точки $k \cdot G$, скалярное умножение, сложение, удвоение, инвариант кривой $y^2 \equiv x^3 + 7 \pmod p$. |
-| [`nist_p256_vectors.json`](vectors/nist_p256_vectors.json) | FIPS 186-4 (P-256) | Скалярные произведения на secp256r1 ($y^2 \equiv x^3 - 3x + b \pmod p$). |
-| [`edge_cases_vectors.json`](vectors/edge_cases_vectors.json) | Вырожденные точки | Нейтральный элемент $\mathcal{O}$, взаимно обратные $P + (-P) = \mathcal{O}$, удвоение при $y = 0$, $[n]G = \mathcal{O}$, $[n+1]G = G$, $[n-1]G = -G$. |
-| [`modular_arithmetic_vectors.json`](vectors/modular_arithmetic_vectors.json) | Теория чисел | Тождество Безу ($a \cdot x + b \cdot y = \gcd$), обратный элемент по модулю, 256-битный Тонелли-Шенкс, `modpow` ($e=65537$). |
-| [`rfc6979_vectors.json`](vectors/rfc6979_vectors.json) | RFC 6979 | Детерминированная генерация nonce $k$ через HMAC-SHA256 (ECDSA). |
-| [`rfc7748_vectors.json`](vectors/rfc7748_vectors.json) | RFC 7748 Sec. 6.1 | Лестница Монтгомери Curve25519 (X25519 Diffie-Hellman). |
-| [`rfc8032_vectors.json`](vectors/rfc8032_vectors.json) | RFC 8032 Sec. 7.1 | Twisted Edwards Ed25519 (сжатие точек, генерация открытого ключа). |
+| `scripts/oracle_gen.py` | Генерирует векторы и сверяет реализацию с опубликованными KAT (`[2]G`, `[3]G` обеих кривых; RFC 6979 A.2.5 `k/r/s/U`; RFC 7748 §6.1; RFC 8032 §7.1). `--check` сравнивает закоммиченные векторы со свежим прогоном. | Ошибку в формуле или алгоритме оракула; ручную правку JSON. |
+| `tests/test_oracle.py` | Проверяет закоммиченные данные инвариантами, не импортируя генератор: точка на кривой, `[1]G = G`, Безу и witness-ы, `gcd`, обратный, `modpow`, корень или критерий Эйлера, уравнение ECDSA `s·k ≡ e + d·r (mod n)`. | Битые и не лежащие на кривой точки, неверные теоретико-числовые ответы. |
+| `tests/CryptoOracleJvmTest.scala` | Своя аффинная арифметика на `BigInteger`: double-and-add идёт слева направо (в оракуле — справа налево), заново считаются все `mul`/`add` и edge cases, проверяется ECDSA (`r = ([k]G).x mod n` плюс полная верификация). | Точку, которая лежит на кривой, но посчитана неверно, и любое расхождение двух реализаций. |
 
----
+Каждый слой подтверждён мутантами: порча формулы удвоения, пропуск цикла Тонелли–Шенкса, ошибка
+в JVM-сложении, порча точек в JSON — все убиты. Подменённую точку `-[k]G`, которая лежит на кривой,
+ловят только JVM-слой и `--check`; так и задумано.
 
-## 3. Запуск и интеграция
+## 3. Тестовые векторы (`vectors/`)
 
-### Единый скрипт валидации:
+Точки записаны как `{"x": hex, "y": hex}` (hex в нижнем регистре, без `0x`), `null` означает
+бесконечно удалённую точку $\mathcal{O}$. Скаляры — hex, теоретико-числовые величины — десятичные
+строки. Всё парсится через `BigInt(str, radix)` без потери точности.
+
+| Файл | Векторов | Источник истины | Содержимое |
+| :--- | ---: | :--- | :--- |
+| [`secp256k1_vectors.json`](vectors/secp256k1_vectors.json) | 266 | SEC 2 и KAT `[2]G`, `[3]G` | 16 фиксированных и 240 seeded-случайных `[k]G`; 10 сложений `P + Q`, сверенных с `[k1+k2]G`. |
+| [`nist_p256_vectors.json`](vectors/nist_p256_vectors.json) | 266 | FIPS 186-4 и KAT `[2]G`, `[3]G` | То же для P-256 ($a = -3$). |
+| [`edge_cases_vectors.json`](vectors/edge_cases_vectors.json) | 20 | Групповой закон | $P+\mathcal{O}$, $\mathcal{O}+P$, $\mathcal{O}+\mathcal{O}$, $P+(-P)$, $G+G$, $[0]G$, $[n]G$, $[n+1]G$, $[n-1]G=-G$; удвоение при $y=0$ на игрушечной кривой $y^2=x^3-x$ над $\mathbb{F}_{23}$ (на кривых с кофактором 1 такая точка недостижима). |
+| [`modular_arithmetic_vectors.json`](vectors/modular_arithmetic_vectors.json) | 15 | Инварианты | `gcd` с witness-ами `ka, kb, x, y`, обратный (или `null` при `gcd ≠ 1`), `modpow(65537)`, Тонелли–Шенкс по модулям secp256k1 p/n, P-256 p, P-224 p ($S = 96$) и $2^{255}-19$, включая невычеты. |
+| [`rfc6979_vectors.json`](vectors/rfc6979_vectors.json) | 3 | RFC 6979 A.2.5 | P-256 `sample`/`test` (`k, r, s`); secp256k1 (ключ 1, `Satoshi Nakamoto`, закреплён только `k`). |
+| [`rfc7748_vectors.json`](vectors/rfc7748_vectors.json) | 1 | RFC 7748 §6.1 | Лестница Монтгомери X25519: открытый ключ Alice и общий секрет. |
+| [`rfc8032_vectors.json`](vectors/rfc8032_vectors.json) | 1 | RFC 8032 §7.1 | Ed25519, тест 1: вывод открытого ключа. |
+
+Итого 572 вектора. Seed-ы зафиксированы, генерация детерминирована.
+
+## 4. Запуск
+
 ```bash
-./verification/crypto-oracle/run_all.sh
-```
-
-### Запуск тестов оракула (Python):
-```bash
+./verification/crypto-oracle/run_all.sh                       # проверка дрейфа, Python, JVM
+python3 verification/crypto-oracle/scripts/oracle_gen.py      # перегенерировать после изменения оракула
 python3 verification/crypto-oracle/tests/test_oracle.py
+scala verification/crypto-oracle/tests/CryptoOracleJvmTest.scala   # scala-cli, Scala 3.9.0 и ujson
 ```
 
-### Запуск JVM Cross-Validation на Scala 3:
-```bash
-scala verification/crypto-oracle/tests/CryptoOracleJvmTest.scala
-```
+`run_all.sh` векторы не перезаписывает: при расхождении он падает и просит перегенерировать их явно.
+Тогда изменение векторов видно в диффе.
 
----
+## 5. Известные границы
 
-## 4. Следующие шаги интеграции (Roadmap)
+* В RFC 6979 шаг `bits2octets` (`mod q`) не покрыт ни одним KAT: для этих векторов `H(m) < q`.
+  Мутант без `mod q` выживает. Закрывается вектором P-192/SHA-256 из RFC 6979 A.2.3.
+* Ed25519 и X25519 покрыты одним KAT каждый, и JVM-слой их не пересчитывает. До PR, который
+  возьмёт эти кривые в Stainless, этого достаточно.
+* Хэширование (SHA-256/512, HMAC) берётся из `hashlib` и не верифицируется — это часть доверенной базы.
 
-* **PR 2:** Библиотека модулярных лемм `ModArithLemmas` со свойствами сложения, умножения и дистрибутивности в `stainless.math` (`@opaque @inlineOnce`).
-* **PR 3:** Реализация `MoreExtendedEuclidGCD`, `modInverse`, `modPow` на Scala со спецификациями Stainless.
-* **PR 4:** Реализация типа `FieldElem[P]` ($GF(p)$) и алгоритма Тонелли-Шенкса для сжатия точек кривой.
+## 6. Дальше
+
+* **PR 2:** `ModArithLemmas` (`@opaque @inlineOnce`) — `modAdd`, `modMul`, `modAssoc` по witness-шаблону.
+* **PR 3:** `extendedGcd` с witness-ами `ka, kb`, `modInverse`, `modPow`, CRT; векторы из
+  `modular_arithmetic_vectors.json` становятся их KAT.
+* **PR 4:** `FieldElem` над $GF(p)$ и Тонелли–Шенкс (корень проверяется перед возвратом).

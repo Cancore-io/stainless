@@ -1,68 +1,225 @@
 [
   {
     "curve": "secp256k1",
-    "tests": [
-      {
-        "name": "identity_P_plus_O",
-        "passed": true
-      },
-      {
-        "name": "inverse_P_plus_negP",
-        "passed": true
-      },
-      {
-        "name": "order_mult_nG",
-        "passed": true
-      },
-      {
-        "name": "order_mult_n_plus_1_G",
-        "passed": true
-      },
-      {
-        "name": "order_mult_zero",
-        "passed": true
-      },
-      {
-        "name": "order_mult_n_minus_1_G_eq_negG",
-        "passed": true
-      },
-      {
-        "name": "doubling_consistency_G_plus_G",
-        "passed": true
-      }
-    ]
+    "name": "identity_P_plus_O",
+    "op": "add",
+    "p": {
+      "x": "79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798",
+      "y": "483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8"
+    },
+    "q": null,
+    "result": {
+      "x": "79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798",
+      "y": "483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8"
+    }
+  },
+  {
+    "curve": "secp256k1",
+    "name": "identity_O_plus_P",
+    "op": "add",
+    "p": null,
+    "q": {
+      "x": "79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798",
+      "y": "483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8"
+    },
+    "result": {
+      "x": "79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798",
+      "y": "483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8"
+    }
+  },
+  {
+    "curve": "secp256k1",
+    "name": "identity_O_plus_O",
+    "op": "add",
+    "p": null,
+    "q": null,
+    "result": null
+  },
+  {
+    "curve": "secp256k1",
+    "name": "inverse_P_plus_negP",
+    "op": "add",
+    "p": {
+      "x": "79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798",
+      "y": "483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8"
+    },
+    "q": {
+      "x": "79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798",
+      "y": "b7c52588d95c3b9aa25b0403f1eef75702e84bb7597aabe663b82f6f04ef2777"
+    },
+    "result": null
+  },
+  {
+    "curve": "secp256k1",
+    "name": "doubling_G_plus_G",
+    "op": "add",
+    "p": {
+      "x": "79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798",
+      "y": "483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8"
+    },
+    "q": {
+      "x": "79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798",
+      "y": "483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8"
+    },
+    "result": {
+      "x": "c6047f9441ed7d6d3045406e95c07cd85c778e4b8cef3ca7abac09b95c709ee5",
+      "y": "1ae168fea63dc339a3c58419466ceaeef7f632653266d0e1236431a950cfe52a"
+    }
+  },
+  {
+    "curve": "secp256k1",
+    "name": "order_mult_zero",
+    "op": "mul",
+    "k": "0",
+    "result": null
+  },
+  {
+    "curve": "secp256k1",
+    "name": "order_mult_nG",
+    "op": "mul",
+    "k": "fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364141",
+    "result": null
+  },
+  {
+    "curve": "secp256k1",
+    "name": "order_mult_n_plus_1_G",
+    "op": "mul",
+    "k": "fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364142",
+    "result": {
+      "x": "79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798",
+      "y": "483ada7726a3c4655da4fbfc0e1108a8fd17b448a68554199c47d08ffb10d4b8"
+    }
+  },
+  {
+    "curve": "secp256k1",
+    "name": "order_mult_n_minus_1_G_eq_negG",
+    "op": "mul",
+    "k": "fffffffffffffffffffffffffffffffebaaedce6af48a03bbfd25e8cd0364140",
+    "result": {
+      "x": "79be667ef9dcbbac55a06295ce870b07029bfcdb2dce28d959f2815b16f81798",
+      "y": "b7c52588d95c3b9aa25b0403f1eef75702e84bb7597aabe663b82f6f04ef2777"
+    }
   },
   {
     "curve": "NIST_P256",
-    "tests": [
-      {
-        "name": "identity_P_plus_O",
-        "passed": true
-      },
-      {
-        "name": "inverse_P_plus_negP",
-        "passed": true
-      },
-      {
-        "name": "order_mult_nG",
-        "passed": true
-      },
-      {
-        "name": "order_mult_n_plus_1_G",
-        "passed": true
-      },
-      {
-        "name": "order_mult_zero",
-        "passed": true
-      },
-      {
-        "name": "order_mult_n_minus_1_G_eq_negG",
-        "passed": true
-      },
-      {
-        "name": "doubling_consistency_G_plus_G",
-        "passed": true
-      }
-    ]
+    "name": "identity_P_plus_O",
+    "op": "add",
+    "p": {
+      "x": "6b17d1f2e12c4247f8bce6e563a440f277037d812deb33a0f4a13945d898c296",
+      "y": "4fe342e2fe1a7f9b8ee7eb4a7c0f9e162bce33576b315ececbb6406837bf51f5"
+    },
+    "q": null,
+    "result": {
+      "x": "6b17d1f2e12c4247f8bce6e563a440f277037d812deb33a0f4a13945d898c296",
+      "y": "4fe342e2fe1a7f9b8ee7eb4a7c0f9e162bce33576b315ececbb6406837bf51f5"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "name": "identity_O_plus_P",
+    "op": "add",
+    "p": null,
+    "q": {
+      "x": "6b17d1f2e12c4247f8bce6e563a440f277037d812deb33a0f4a13945d898c296",
+      "y": "4fe342e2fe1a7f9b8ee7eb4a7c0f9e162bce33576b315ececbb6406837bf51f5"
+    },
+    "result": {
+      "x": "6b17d1f2e12c4247f8bce6e563a440f277037d812deb33a0f4a13945d898c296",
+      "y": "4fe342e2fe1a7f9b8ee7eb4a7c0f9e162bce33576b315ececbb6406837bf51f5"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "name": "identity_O_plus_O",
+    "op": "add",
+    "p": null,
+    "q": null,
+    "result": null
+  },
+  {
+    "curve": "NIST_P256",
+    "name": "inverse_P_plus_negP",
+    "op": "add",
+    "p": {
+      "x": "6b17d1f2e12c4247f8bce6e563a440f277037d812deb33a0f4a13945d898c296",
+      "y": "4fe342e2fe1a7f9b8ee7eb4a7c0f9e162bce33576b315ececbb6406837bf51f5"
+    },
+    "q": {
+      "x": "6b17d1f2e12c4247f8bce6e563a440f277037d812deb33a0f4a13945d898c296",
+      "y": "b01cbd1c01e58065711814b583f061e9d431cca994cea1313449bf97c840ae0a"
+    },
+    "result": null
+  },
+  {
+    "curve": "NIST_P256",
+    "name": "doubling_G_plus_G",
+    "op": "add",
+    "p": {
+      "x": "6b17d1f2e12c4247f8bce6e563a440f277037d812deb33a0f4a13945d898c296",
+      "y": "4fe342e2fe1a7f9b8ee7eb4a7c0f9e162bce33576b315ececbb6406837bf51f5"
+    },
+    "q": {
+      "x": "6b17d1f2e12c4247f8bce6e563a440f277037d812deb33a0f4a13945d898c296",
+      "y": "4fe342e2fe1a7f9b8ee7eb4a7c0f9e162bce33576b315ececbb6406837bf51f5"
+    },
+    "result": {
+      "x": "7cf27b188d034f7e8a52380304b51ac3c08969e277f21b35a60b48fc47669978",
+      "y": "7775510db8ed040293d9ac69f7430dbba7dade63ce982299e04b79d227873d1"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "name": "order_mult_zero",
+    "op": "mul",
+    "k": "0",
+    "result": null
+  },
+  {
+    "curve": "NIST_P256",
+    "name": "order_mult_nG",
+    "op": "mul",
+    "k": "ffffffff00000000ffffffffffffffffbce6faada7179e84f3b9cac2fc632551",
+    "result": null
+  },
+  {
+    "curve": "NIST_P256",
+    "name": "order_mult_n_plus_1_G",
+    "op": "mul",
+    "k": "ffffffff00000000ffffffffffffffffbce6faada7179e84f3b9cac2fc632552",
+    "result": {
+      "x": "6b17d1f2e12c4247f8bce6e563a440f277037d812deb33a0f4a13945d898c296",
+      "y": "4fe342e2fe1a7f9b8ee7eb4a7c0f9e162bce33576b315ececbb6406837bf51f5"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "name": "order_mult_n_minus_1_G_eq_negG",
+    "op": "mul",
+    "k": "ffffffff00000000ffffffffffffffffbce6faada7179e84f3b9cac2fc632550",
+    "result": {
+      "x": "6b17d1f2e12c4247f8bce6e563a440f277037d812deb33a0f4a13945d898c296",
+      "y": "b01cbd1c01e58065711814b583f061e9d431cca994cea1313449bf97c840ae0a"
+    }
+  },
+  {
+    "curve": "toy_p23",
+    "name": "doubling_y_zero",
+    "op": "add",
+    "p": {
+      "x": "1",
+      "y": "0"
+    },
+    "q": {
+      "x": "1",
+      "y": "0"
+    },
+    "result": null
+  },
+  {
+    "curve": "toy_p23",
+    "name": "order_two_point",
+    "op": "mul",
+    "k": "2",
+    "result": null
   }
 ]

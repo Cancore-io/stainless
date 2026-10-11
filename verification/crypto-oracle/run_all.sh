@@ -3,8 +3,8 @@ set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-echo "=== 1/3: Generating reference test vectors with Python Oracle ==="
-python3 "$SCRIPT_DIR/scripts/oracle_gen.py"
+echo "=== 1/3: Checking committed vectors against the Python Oracle ==="
+python3 "$SCRIPT_DIR/scripts/oracle_gen.py" --check
 
 echo "=== 2/3: Executing Python Oracle Test Suite ==="
 python3 "$SCRIPT_DIR/tests/test_oracle.py"
