@@ -2,3 +2,6 @@
 	path = inox
 	url = https://github.com/epfl-lara/inox.git
 	branch = main
+[submodule "damlaudit/bolts"]
+	path = damlaudit/bolts
+	url = https://github.com/epfl-lara/bolts
