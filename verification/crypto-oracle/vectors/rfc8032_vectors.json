@@ -1,0 +1,11 @@
+[
+  {
+    "curve": "ed25519",
+    "rfc": "RFC 8032 Section 7.1",
+    "secret_key_hex": "9d61b19deffd5a60ba844af492ec2cc44449c5697b326919703bac031cae7f60",
+    "public_key_hex": "d75a980182b10ab7d54bfed3c964073a0ee172f3daa62325af021a68f707511a",
+    "public_key_x": "55d0e09a2b9d34292297e08d60d0f620c513d47253187c24b12786bd777645ce",
+    "public_key_y": "1a5107f7681a02af2523a6daf372e10e3a0764c9d3fe4bd5b70ab18201985ad7",
+    "scalar": "4fe94d9006f020a5a3c080d96827fffd3c010ac0f12e7a42cb33284f86837c30"
+  }
+]

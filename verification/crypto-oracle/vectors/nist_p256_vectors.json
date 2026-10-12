@@ -1,0 +1,2466 @@
+[
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "1",
+    "result": {
+      "x": "6b17d1f2e12c4247f8bce6e563a440f277037d812deb33a0f4a13945d898c296",
+      "y": "4fe342e2fe1a7f9b8ee7eb4a7c0f9e162bce33576b315ececbb6406837bf51f5"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "2",
+    "result": {
+      "x": "7cf27b188d034f7e8a52380304b51ac3c08969e277f21b35a60b48fc47669978",
+      "y": "7775510db8ed040293d9ac69f7430dbba7dade63ce982299e04b79d227873d1"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "3",
+    "result": {
+      "x": "5ecbe4d1a6330a44c8f7ef951d4bf165e6c6b721efada985fb41661bc6e7fd6c",
+      "y": "8734640c4998ff7e374b06ce1a64a2ecd82ab036384fb83d9a79b127a27d5032"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "4",
+    "result": {
+      "x": "e2534a3532d08fbba02dde659ee62bd0031fe2db785596ef509302446b030852",
+      "y": "e0f1575a4c633cc719dfee5fda862d764efc96c3f30ee0055c42c23f184ed8c6"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "5",
+    "result": {
+      "x": "51590b7a515140d2d784c85608668fdfef8c82fd1f5be52421554a0dc3d033ed",
+      "y": "e0c17da8904a727d8ae1bf36bf8a79260d012f00d4d80888d1d0bb44fda16da4"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "7",
+    "result": {
+      "x": "8e533b6fa0bf7b4625bb30667c01fb607ef9f8b8a80fef5b300628703187b2a3",
+      "y": "73eb1dbde03318366d069f83a6f5900053c73633cb041b21c55e1a86c1f400b4"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "10",
+    "result": {
+      "x": "76a94d138a6b41858b821c629836315fcd28392eff6ca038a5eb4787e1277c6e",
+      "y": "a985fe61341f260e6cb0a1b5e11e87208599a0040fc78baa0e9ddd724b8c5110"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "1f",
+    "result": {
+      "x": "301d9e502dc7e05da85da026a7ae9aa0fac9db7d52a95b3e3e3f9aa0a1b45b8b",
+      "y": "6551b6f6b3061223e0d23c026b017d72298d9ae46887ca61d58db6aea17ee267"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "40",
+    "result": {
+      "x": "a0643fb8fcc14def67a6a5eb1bf8e9125b35edc7338d816aa4110a6b90ee785",
+      "y": "553438324a9e7955c520dacda2920e700da10d00e7012ed7bac0d100861f9cc2"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "7f",
+    "result": {
+      "x": "534d45db6baca8e2d2a5d0a765f16013a8d4eb58c6aaad3567cebdfac42d623c",
+      "y": "fad669c89a2a54e44154357f992ccec8eef093e0f23a631d17fdf664419e500c"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "100",
+    "result": {
+      "x": "34a2d4a3b009165987ffd1528603ed61190d0b710d6a564c2db2e35f12d0441b",
+      "y": "beaaed6a53a1e3c22bca71046e777fc0e7d766b9deddd81db424e7845e93b146"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "3e8",
+    "result": {
+      "x": "b8fa1a4acbd900b788ff1f8524ccfff1dd2a3d6c917e4009af604fbd406db702",
+      "y": "9a5cc32d14fc837266844527481f7f06cb4fb34733b24ca92e861f72cc7cae37"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "10001",
+    "result": {
+      "x": "1a32b7207dface203fdee0ce2a4c7e1d33d4003d227b23a5404751a0106a9bb7",
+      "y": "5b09abf820d0206b43e965bfc80eaed843f80e06c545a705f400133a6c55bce4"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "ffffffff00000000ffffffffffffffffbce6faada7179e84f3b9cac2fc632550",
+    "result": {
+      "x": "6b17d1f2e12c4247f8bce6e563a440f277037d812deb33a0f4a13945d898c296",
+      "y": "b01cbd1c01e58065711814b583f061e9d431cca994cea1313449bf97c840ae0a"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "7fffffff800000007fffffffffffffffde737d56d38bcf4279dce5617e3192a8",
+    "result": {
+      "x": "2afa386b3f2bdcdb83f4d83f8fa3874d7b74dcb454bd644fdd6bf3d1f2da8db6",
+      "y": "72184be1caa8563462b536f10852d665ae8a64fdf1eb8d4c946ad589796f729c"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "deadbeef",
+    "result": {
+      "x": "b487d183dc4806058eb31a29bedefd7bcca987b77a381a3684871d8449c18394",
+      "y": "2a122cc711a80453678c3032de4b6fff2c86342e82d1e7adb617c4165c43ce5e"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "67b3fa63d0c62ae1bc44b8d36c3bff73e3c988a94cec810201bc1b67c9620000",
+    "result": {
+      "x": "f31d7fff2e40f8c4e413d9c0412f4dbb6a77f6d858adeeb9b4fd7fdfe38a1de8",
+      "y": "45b68fe91b21b0302be00965e12a2ac1fe1afeb72742bee182ec3889ec4609a7"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "ba3f5a03420bf753caaa415df7f2a7444914564433544a89c0ac84dc35d8406d",
+    "result": {
+      "x": "4f8ed9494951dca14b36ff0edcc59133705de96ddaa58b625b05707c5a51685e",
+      "y": "19e61230f364ad01a3822fbc98309a3534b8b20e88b264c792d499dd7c458cce"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "b7e00fa015518c18c26256098cdf027d56834797d03fb825c6de5449ae757d24",
+    "result": {
+      "x": "f3306ca5443d5d0e09002e6c6ff4d5fd61e5bff94667270b93434e380b60dd77",
+      "y": "ff15163b00b7ec128c5d7ffa69007a04e756ecc7322f02f62ed2247d1ed399a9"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "611b93c7a8c5e99198fc95232fe36ccd8338cc731a1797d6bf1b1ecfa35e5e83",
+    "result": {
+      "x": "cd3ed64f4236c8c4c3d16a5ed3d40a8fc6c21d056112d2ca8f9dae567653e45b",
+      "y": "1cb620639a98f29a27f74df7cfb62654897b87d10e7fc366a991ff0b2dd9de72"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "c0fd9d794c1c651c1d85082238893f5b2664a741bb3891a5c3197eef01ac16b5",
+    "result": {
+      "x": "16ad1ea2b02e381cc4257023ccda2b1190cb359b0b3185237c69a2265fd5b8e9",
+      "y": "405f0261b0a742759c482f514b87f2366b2bab95f2d36c1e53c059b5bf769a95"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "864bf0db9e0cdc27c207b581e314c5f5e4c39b21f14b93b334d027765e8d1a88",
+    "result": {
+      "x": "a2120fb7cc0570fcf78fc443032b9e6903224695e855eb7f824fdfdc6f16d99c",
+      "y": "6232ce2d9c6f51bb22977bb0ceabb93bd153f07de58332d0a3e60397af4ba398"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "3d57c9221ed688c8997942b7cecded4343d3e4e1612a3cba2020254faea9f731",
+    "result": {
+      "x": "3fcde28bfac9e7f17dea91a1b9d028c720f69866e21efa5b7d4660db881726ea",
+      "y": "c73b58f07c9c6523d0568fbf30a42ec28acb8fba49305a62c934a8dd039ea108"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "fe16960e0f944978fa02dbd19c10d0dc805796c6c9ec680ef53e8a1e9f80ef4a",
+    "result": {
+      "x": "123c7bfa5bd4457244ba27b0a177f3cd2c882b69d6b400b223d27c9191ebe585",
+      "y": "9837eefb2b3d7b0967faf35d21b01f63c791663ad43f4c34c383ed3c44229c60"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "5d5c00c5d86f4b719a4af2aa2958565e3d2be58d887221febb52c38e5062cc82",
+    "result": {
+      "x": "a2a30d0abf3ada9534d1bc7c412c9897b638b141fd38e3dab283bef6bf6556fc",
+      "y": "c9bc68c1d5e51bcfd7b7848f668cf00ac9ee82916e256f8fcf3dabef0b6818aa"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "71f221cf8aad0d130ac35554e37ddc4e5820a1ae6c6d3bb31a25031d8cf2c2b8",
+    "result": {
+      "x": "842a8368ad8c201df45640c89e2eeb43895c7ad840e1f7a04bf810f474a2abdb",
+      "y": "dfb974879c8bad3ba9fc0fcd8dc288b1b90fc8b0b136b9e16a605b05ce39a3a8"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "d88ca1b049b8f59045385212cdc3b0326286429cbf3755d51dc3bca66861f4f9",
+    "result": {
+      "x": "da3b912f551848845f8eb6c38df7c584a4c2881b1c293cd3fa8369c34991d70f",
+      "y": "e5e70e4c9f11d4d1746125a27509c498d43825a2c9fafdae7ad46faf3e5826e7"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "edd57365aa400a75e61a154bd218dc5c6cc9b314443f0057f21f29a02eb005fd",
+    "result": {
+      "x": "e0a6bed86a9138dce237c7363f23d76170f09d7f16298a523b27a951d798b73b",
+      "y": "4a68ebf861bb2be0d52c7582f080806525e32d571777fe28dbc86afcb2ba8059"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "11ccdae7a6bb3b71795d96d0984d52e7681091cc9348278139fe6f1ac3d54ea1",
+    "result": {
+      "x": "65a4af6dead1d6ba071d16e3bf80c4ecd75f5953b72040b9a06ab52d8eba5eb2",
+      "y": "43be18c5fdcdfad8b58d527f9b618a904bcbf73fc02013ae39d30926060035c2"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "d8997ba9cce60b98dfe7fea08d7ac1f4c45270dbf360f20f0112d8bb24168cee",
+    "result": {
+      "x": "3d8349f24fb76fd60bafd748baa027bbacb7dc5f52aecd38e43555f787158967",
+      "y": "6b986595bdddc5b8c89b345904492cf2d360950a7809513388fc397155eead0d"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "66583f1d79fd71209c7139e40ab7d2cc6b3b7b90f8543369f7b5cff728ccfaa1",
+    "result": {
+      "x": "c537513c62f79bcca6a4793053650950e50799cf35062af68272332689b247b4",
+      "y": "5d04c1394c12069d778783becdff0db96737a32904f1276720985fba1a278984"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "6e19ff48fa49637f7831fbe07950e498b5e7c50af69ba23897cccf767532bb18",
+    "result": {
+      "x": "dab8c0d63b85a38025d1ad95f9856803cdd254b3f463cc3f78fdc9dff596a743",
+      "y": "c294cfa27c862c1798813c8fef6fde57acb46d6eff57669dbca5527b82b87fe7"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "fd92b7744712f189de5503d4f93ab0acf6d879a35cad648ac5730f769acb4425",
+    "result": {
+      "x": "7a06156f0cd2ce21e56c11cf1aedb6377a0a448e6bd314ea4a0d9674f342c6c6",
+      "y": "c44153c8b8db1bab32d134baa8105a189e1ed7629d2c0e69a058e6876ef00fc5"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "65282972303d0e9342af8d7df561dc718e156484e141713da1d11ba114b8a523",
+    "result": {
+      "x": "4565fb73801be7d7eaa1046154b75b5f6e36314d294be5bed52aa5649e7ff5cf",
+      "y": "baee9f458baa43827e41d589415cd5fb40ba44215cc7e23121a4b6c99810e3a"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "473a14eefc1e793cfae1661223cd9dae685f8d5790c8fe42568bb70363199916",
+    "result": {
+      "x": "2ecc0409e9d76e871a6a9cad2413ad272d64902aeb7aa556e0332ee6af196527",
+      "y": "db52e8303247ae75ef1f694737919e37d9ee2333099c6653fb6eee50f4c3fde1"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "95a8f7e5d51991b770e1e274bb90052150b0b1752f82030d3bd666b4f5e41d0c",
+    "result": {
+      "x": "6d7f01dd85a13ae2081c792c97bd1e0ce61cf2f819a19ac42bbd711ee44d05cb",
+      "y": "b0ab3fca9f3312820d6be8820ca315dc6a3cd7b3baebb2544c77e6cdd929e594"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "ce101454aa8b871e583589520182c3596dcb91d6e9fff8a03c2e026600ce1652",
+    "result": {
+      "x": "60a8481e63ce4ac0c03df21590ee93195dc40abbfe5c3b31f2378d6478a54bcb",
+      "y": "23e3057027675ed5612374b53573368e82a635a4ff5b8553b712fe50aec311a7"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "73161316b6efc9bba04aeccd89f587fc113e7e1aebe0027a64c347ce014f6321",
+    "result": {
+      "x": "86373241bb9933d964f73fd7f8e7b9c20ea91f8e01be831bd75bc6257c4fa952",
+      "y": "dcfccaa6b77ecf5af9b19acfa31924dc6b7d5ebe3ddfb84e5d4f3eb3bf89ee23"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "4f37560a89355fa58284054a01d29e5970dbdf27fb35244aafa0466beae23ac3",
+    "result": {
+      "x": "7a0d0b212762235a226d4afbfbf913f65b897721eeb78106c17a47c98d94ef2b",
+      "y": "12c7a406ac1f1a8157cb01963e3c9518e0e5c08c48d32a51686dbec9da1533d4"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "fde93ca98447fc02325c6b443b5bb369557f47a100fbf17d4632d565cdf4e691",
+    "result": {
+      "x": "fb37712f29b7c7b02f9d02ab11ee03905ed30e0d8c6dd72805b6e120ac06fb9e",
+      "y": "5605b9218248c098abafc1df9477782d1c68fe9f7db8cbd4b78e542a3609e818"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "a7567ef50b5608942b7040504e299f957cdab5ce309df013497dd183eae94603",
+    "result": {
+      "x": "3da8df19e51434d42598b123c9c54103df8ca4cace35d36927d5fbe211a95d4d",
+      "y": "3ff924cd24c62ba262668a401ac27c2d676f6aec8ce3da54c3250c424bf13b9c"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "ddeb704a0da79293354018510fa3c1182beafa0c8bf43f1745758e85b3804057",
+    "result": {
+      "x": "fb335ffed0a47b5c70948b23fd41aa4798a4f0df667c2e5a22e0d77d781363a0",
+      "y": "427ce3156368355d49bf35c56ef91cba51ad6b720be88c1ae934375dd2b2e006"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "2f350e5e40798038d597e3d28f2e4d2769d5025a5e16b8b44bef17e1576019db",
+    "result": {
+      "x": "2f48f75396f25eab23a346953b2a0ed16b4afc3859cc6f41d55d4bf7ea4766c5",
+      "y": "77bba66bcb4c9916915aaa93615b9f69f264679e539c34918018b1b174bb82d9"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "869aeda76bfc79c48634a4f704bf458ada9facfc057337606fccf29751e4dd",
+    "result": {
+      "x": "2a78d31205bbfe1f20ea3e10469b50d344c9fc868024fbe9e767f12fa701326a",
+      "y": "2964518d25308e642ab81c474dc4a9db72d5533297b248333a94a1287768006c"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "b14d302dcd77e9d127f830f9a26ea0050fe7cf851c6e9bf19df534430e977eb3",
+    "result": {
+      "x": "b154528c8c817d8901551a3b43bbcfcb7f9dcd688eea8d46941c951d37937a45",
+      "y": "43d9692afcd9b4923f90d7b847c9df02f4a13bda8568f8319c69177929c2a7b0"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "5991c638ff7c48a312575a69cb7520b48bb1b04836077a8b8749e0112a83297e",
+    "result": {
+      "x": "7e1f057b053f5b73eebe3ab51ed15d55f2bd5990b1bcc09315ba67b8aa9f0050",
+      "y": "84ab1ee8eab21d216d866b31777464ee08caaf6bb3231d8ffe6c4551089ce043"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "56893a1e3cb310b268538850e2fa006d3742a1197d1e9691f079e3e7175e0cf",
+    "result": {
+      "x": "305e9c70cd111fe1c789d8a2f723b43781882dffbecbb1ee9c1939ede1208a7c",
+      "y": "2f543cd03b8ba54082d5b4efcc1ce4c6a6a652c4b9ee1929c5b22df1c426d2bc"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "a0a04a61f4fd263b2b4232b79804d1d9603adbee9d6dd3b66043a86ba0d0be19",
+    "result": {
+      "x": "edf9dbfaf64453b6232ee0a2562d8729469cd64f8ec3637c6cdc6d2851e12134",
+      "y": "3e61ef7a5825cc75fa907429768b21564c30371403d26842b30c2d326b7d1dcb"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "eafd857f728dff77cfca4debbc45c571902ef295080d73864981f60fab09ce15",
+    "result": {
+      "x": "8405fdc1ea4d7ca2c9e277a490b2cda875366898515798cfa4d8609ea1890093",
+      "y": "e2faa8d1e28f6f94bac2fa545dd894751a70794f7a88b037663b481e65e84eaa"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "e08687d455419a530ad2c8f9f7c7c59e7a04c99c9ff8beaafcf5b6bcd6ca03f9",
+    "result": {
+      "x": "1225e9fd4f366f603cd1491009bd67c1143a0f775ff56881c5fa7cd2210b01c1",
+      "y": "e581db7f371821594b5e264ac0fee2d84e2cd72a6642dffb4e498c762cc4cbd3"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "6bcb7beca138c608ad14e342012492418943aff1fc2fea6be71797d11c8996d1",
+    "result": {
+      "x": "f3cfd5469b60b98587f55f96ee9d3d5f4ea2fee0513215e01c107d0b617ecb1a",
+      "y": "d5e705c4f472d5495c849b884cdcff72e7520c843c7f24c3f5097ed7255d38c"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "553b5509cffa15b48e7bcf3860f6e8e8141e543e3149e891c309c643ea053396",
+    "result": {
+      "x": "a4e4df6cfb398b8de4666c76565a7e8fd199b48d4ec9bda8573c1e948a44d6ae",
+      "y": "1c7f25e8540facfb68397530953795aee4340deb0673f136a631ca01d9d7becb"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "f0cd2974bf212dca29334825cc888d3df20de27f55bf13788166d61588dc2901",
+    "result": {
+      "x": "5f855b357f955bc51c31e47a2206b28476c668dda0a6914fab9f9b8f89fd2b13",
+      "y": "3ebabf7876dc024ebdd42f4d2129e4644480b14e8e45bf69991f58264a2db0c5"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "d3eb2c3cd5fb03121ab5412f0e040f75a8f8f97fcc2694f6be798acb63a7bfaf",
+    "result": {
+      "x": "68818b1d286179acd7bc1cc22cfb212251d34be34e869bbcacbb5ed8aec62fe0",
+      "y": "93071cf79bbdea5e2b337335b6e84296e1ff037d769ab19336354188e50762dd"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "e69f19ba041fb18b48258c06a2995643e969d52d1da80b1ee99c7f406c70156a",
+    "result": {
+      "x": "73421dbd1a48e072647877e01c214f5f80d31faef2dedebf1a849a4b1f47539f",
+      "y": "92b9c87749ff2669a945a6adc7664ece9eddd0e2c5f58194d1eb8bafd35f47f1"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "b24510bdcec5577402a1a9a832d2f4a5d40e90200f71f408031e8f9605bb7720",
+    "result": {
+      "x": "200102bc784c407465b3c452a7addbbb4d130600eef8d97bc5433e12a845f288",
+      "y": "dfefbe14345ad51e59a08db9e12920938ac01265a32ba026206ea7d570c2df61"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "6d92c03e8844aeab165901624fb2feed8b906c7d29fe33853052052dd1a0d94b",
+    "result": {
+      "x": "843f662bc10ac493c197656cd47b8ca16dc74c84b4146c50b9c59fcc48d909a7",
+      "y": "a9694e09b4ee89c93a16e3c1b09fc7735354e6e199ec5f86c56147f3f009675a"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "e9257b2d8a6bfe41e2c4c7238c253395977ed8a8ac2534676feacdc38a04a544",
+    "result": {
+      "x": "e6d85c2f217549d3faace66058ef94f8b6881daaf373208663304ffa309cbce7",
+      "y": "83d8acddd2db345fbb7768f00614d1ed3a1d887c0d3e5f2d7e83d131ee43319f"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "239f616b1baf141312b2ef72d59e5a68fcc10622ff42e4583e8d0e979ccbf8d2",
+    "result": {
+      "x": "be2f890d352d88e1f59d06f3aa6afbdc52f99de24699d29a9b0097e27b830742",
+      "y": "cc44b964c850bf2ae32e2777dd37a99adc9a00e4238bd60bf30e3ccf948bbb5f"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "cc90e3601453f99fcc672ba97de4f45b7056796794bab3df60f99d580017357e",
+    "result": {
+      "x": "aee8f6eb5b0611a6bcbbc1e4b5b9d3b3b875068ea260f16241bfed5235bad57f",
+      "y": "62c763a119cabe88afff2c3cf3c798bf99e8596269b22d7572360ed8e9252f1"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "4dfcdb18d642f6f5a7840bc84155196ae3725863f610175e3dc8d180fc2c235a",
+    "result": {
+      "x": "4b2a2763d02022c589d86ab8d4819c1e3eae7ec2e81f98f13de53312939a720d",
+      "y": "3d107f6e12700ee835c373f5eee876f66967ffe05e8e7343b1195974b76f8dd2"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "f5a3d6625457d923710e8ee727688c2369f9653ccce5b6ac43069b5b1492e531",
+    "result": {
+      "x": "4dc8de6a581894314ee8d83d48f795e3f02ddde8d257a0013993bf1ddd1850d7",
+      "y": "c13b20f2fcc2c8825938b21b21067f9605931d5d6d1940150cabf0739b0f63e7"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "f6361c65865109c2637aee4888b4c775308defedde4597d861dc8305b6f109e8",
+    "result": {
+      "x": "69ca6398249680dac7f7f7896091cd42c4dd7ee317b47f3951e36ae54905b4cd",
+      "y": "e0674329edf0ba0bd8c8270773c08a6c6786c819d310c710148035c79a817b0d"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "7c94684f2d5f6f17e4a02adabf38404adf4659e9755c280e21afb4787cde571a",
+    "result": {
+      "x": "fc520e435663d594fdc9145af2e658581bc432e243d533e5cf7f17337645422a",
+      "y": "d0d914dd8075ffdb74e082fd8d31c9860c4010fa3121914aff7ba5ae8a135f78"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "ec15807cdef4e390c4fda3f134f960314287227a32644103c2bb2ce43f2508e4",
+    "result": {
+      "x": "16971710c167221c5efe47df575325ccf1d597805f0934ee077c2b7cbe25348d",
+      "y": "f61da188d8ca255e93d9307ac9f84f76de27a62c5e05d5c22a36ffcbf0ea0ca2"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "50dc1d66a501b0ed72ad8c199608063eef353b2e7bfeb1b77b989de1522f1fd3",
+    "result": {
+      "x": "b30cc3a53d7fbd6aa8956dc8cb929c80347077a1bb2c50c2c4e3d0449017721",
+      "y": "e9edc6a91037a56905928876460f7a6fb7b047ea039400b3b3b507b0cf9e4ec6"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "2018a45a30ea5e65242cf6d5d01890ab5caa79b96dcd41d99470b0b795b9aaf7",
+    "result": {
+      "x": "91764d84c57c661cc889d1caeb8f3d2e4b09f6bf4c1d3c58fab3f37a040a6e22",
+      "y": "96d45c7ee1eb0884fb292b2f794742d98686674fd469a3a104137ba2ab9a6426"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "1633655b471cbbe2b94d38c7bbcdb4ce6b55cce9c4eea302a91f0e40f628021a",
+    "result": {
+      "x": "4613fc29091511ddf5a287ba084e7865e4d4317b2c121badcae3a1607c877760",
+      "y": "d0b3f22f001a95d03f140b8f11941012c5f10e061c1f7dd3a3c3a616817fdc70"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "23fd3979c58f43522bff05f3accaaf971edb9ecaa6e61070cd61d62d81cfa276",
+    "result": {
+      "x": "b50459e8b28e05c32dca45641423037f06f235ebc73dcb3b144a3a9ddb9c94c9",
+      "y": "e2e07066e04ec0b8aeec18ae3ec70b7aed7bbaff19e2ece77047974ba34f9bd1"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "4a1a6ee35a995eb653d9a41a60d425cc28553ae4fb011eade9a49e7c26355a1d",
+    "result": {
+      "x": "99c939d8cbe8d4f121db43320cb2f498f305c68ba3f4375845d734362b08ee3d",
+      "y": "d5c6d228bcdfbefd80ad9982d24f3305998dff2689abae0686b886ed2e91f638"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "a4b9b834a0d10766c8139bbbe82cd7adfa057c2075615b7274afdb08c6b91dc9",
+    "result": {
+      "x": "4002eb7124521a55d981d2d86a0b8fe58c7b8a3ebbd74ef01e6d0cf8e032843a",
+      "y": "b4144ac7338854371a43ed48216dd5c31e5058d55a92b47e0ca63c689b93fe98"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "972209274f28c35fcf2edc4832880080c2c6e9c0d35950130f845a0dc8656895",
+    "result": {
+      "x": "b1bbdb830a4fdd84551bcf60f1920317b12e74a5c51e95a6347cd6bf8bb90af0",
+      "y": "f3049aba0eba75eb27efe047f13389d5ed8c64e83fd2627b16baf6f5bef2b8db"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "4a37fe92bf18e929a4e24007f82e47e3293e1d9b6e2c757c0cc94fe14463e67d",
+    "result": {
+      "x": "4b3f83098d54615d24f82fc8b6e39344157f70644e2de67cf8839966bee3a5e7",
+      "y": "97ae228b2af5c566cccc7264ce84958fa1cfef606f2fafaaf395a01ae1dc8c98"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "bfa61bea229f672e01fbbde2efa5aca1a285277c50055579efb5185e89cac7b1",
+    "result": {
+      "x": "c64bddafd7b3d3418c966c162488b455aaa02265f225791231aba4bbf94eab57",
+      "y": "f2f591cc432c6fb173fd45791c49a1e4dc5a1ca79a3847dfbb817f4c266928f"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "7a00b3d7593671c67de87d22357f01907ab0ec6420d07b73ae1cdb1725a648a0",
+    "result": {
+      "x": "1bc2f08858505fc6c3b84fc0f077de4601bc87ca4c8c0d0b8d69ac0fff7f8d4c",
+      "y": "fde49b22d6bab86ecef501b2424e7d770c84334233bf289a4647f8a0767a863d"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "d66a8b7020d7d83609fcf3049554b352a198c25f0733a9db3ab71068ef8e0ec0",
+    "result": {
+      "x": "ed653320e2420a4f7f3303412dfaaeaad5b0dd14af3d6a5bf3a052cff8a0799",
+      "y": "293e1b7760f4095ff831c08263716da95947322b4b0dd367f57b072b290187d1"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "74073b752f613ea612f216956fdc60d9d9cc3ee9d76bd7d935a4f5936caebeb1",
+    "result": {
+      "x": "42f71a18a9440c22d374f8adada8a6cb7cc2721971155526249b59a48e889684",
+      "y": "32432238cd96969502faa6ae9b48dffe1c50802f443f6b7ac82dacfe28017eb9"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "1107e9ab0dab16f9c9ff55cd4377902e1301857fe51d2f2ce4c466beac70d0f6",
+    "result": {
+      "x": "388c86d203ecdeb9ee6c355c69dc77b6f2cbd5c9641f6a78bfdc40954cfa24e6",
+      "y": "9be1d9abae71032cd6390a1e4dc711792ec75c1c7934fc91223061c05315f242"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "64cb1b33629b3a3893dd48435b2cf4079a70bf5780d404919f2d875e31aee583",
+    "result": {
+      "x": "fa17382072facefadb9ab3951bdfc1e76f815a6284623179f90919f6d8ca936c",
+      "y": "ee4c58a931c93d36bbbf09a0c5f06f6b4e349a61e3712d6f168d7b54b2cab441"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "b63106c60b3c4d136bb4aaa2c503741d37101dd173a6b45c1701eb867dcc61fa",
+    "result": {
+      "x": "aae969743ef2ab9c9e2e360386b5348e0ff477c944ee3c5e40694c7320f794c",
+      "y": "2a074d785bbea7e22df7f38619edac956aeb6063e7030148778e586d69ef7267"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "1357ae3b932e29187c5f3ca41b7dd26318c11dd2a4170e48241b8bf8b57fb2aa",
+    "result": {
+      "x": "c8bf1a6ebd0bb8bea64565850a95e891b6e89e77b18be64da4db6df817183988",
+      "y": "22a1f5f91773991407c6185b92c9b9da383286599d55e9941e5dd9e74f2f2c5f"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "61c972ed4d7f271355e613642df1053d68ed7ccfc4ca012f89cf79d4c58f8b3d",
+    "result": {
+      "x": "10580f135a3c0313331c8f3f6631a75fc67af9581c308a74a3b6a76f390764b",
+      "y": "92abc000a7d6155062eba8b571f022b2ef889a038454f5e20aacf27ebc05c30e"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "57da89e02afd8672541924cf7250ccd0fff0c1754d85217a21d3601626225f12",
+    "result": {
+      "x": "f9b96d4bd8f1e42952fb0506d93dfd140b7bc3840124242c3529d0624ce271a5",
+      "y": "a18ca8184d45a34d605ffe9c1f0bd0f07dddb13654ac69bc0f94f17f84da8c0c"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "84460fe0716b5235afebc9847eb093cb93a46128e74457eea130532549aee02",
+    "result": {
+      "x": "b70b21d7e872cda36ef079e70b450cd41805005478eb6a826622ef5a8e860523",
+      "y": "3f921dfcb618ffad5bd26d0d0e7a7afacaccd5e8f4b914b2dae8551185f0cd18"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "66c084c6c4d5546f2f268a7ff48a4dc752404bfdca2ffb656b7a43d39b8a7c3c",
+    "result": {
+      "x": "77621f5db476cd3cc36384bee49a7c1c9599996750b74df5ed39f7288b76542a",
+      "y": "23808d3399609b78dd5422781e8406d52a4e5c26cb75b755bce41bba2328adb0"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "dab76f504b420b8e466e4dd9a766a91cc299b1dc0ed951fe7891c16bbe50b862",
+    "result": {
+      "x": "abd0816748b623a118a5bd6955780b1b4e11950847ffa25abd871111f86a92b9",
+      "y": "bbea8a5562e6b339a2b6cb670915259823f322c9d8b4cfb92840c88b31b9e2e9"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "467a9ca7753ece5b5ff093aca83ea27fba98bfc05dbb31c4b2deca559462b5c4",
+    "result": {
+      "x": "5e057b7ce3a9b2d93bd921d206b624f292ad446fda5d8d01ff08519767bb538e",
+      "y": "a3ee32cb4aa31a05e43d39c4262696c51f56ebdf9f6b9c1069e888d68ef58546"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "7045e2280aea8da36e3668c7d865b76f0fb2df967ca1e0584330deef6b07df6b",
+    "result": {
+      "x": "95b09428d80b16fc64e5bcf35c6d59196b9fd1c7526c30c3a1b63ceb71fc6c75",
+      "y": "ec14df575790de69201af06c008281724f10f7b1f632f9938445302a59cc4016"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "1e80e1bc4aae716846807f5beb9029d2a950e446f260bb205321e4787423ad5",
+    "result": {
+      "x": "6d01242da0ad5770a1281dc0a88cd16010035c95e4a810062f90a95753b878d5",
+      "y": "74f3b6b9886ea878d24398234adc7ba4675e91fbfb101965914dce34e84702d6"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "849012faf57bac39b2f0768b0d03ec42270d293c88db94bc06f5bc5ff0126fef",
+    "result": {
+      "x": "fd3abcd1890f5ad02cac9c8bfd429fb81c0495d5e02e1faeee3103f16a1a7914",
+      "y": "6459a9df80f740a43c09322ab3ae231fe1f7f15a3198a36707e9bc3f26c9e37a"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "8e76db4a428b2d65985102a88380931961931c1f122286ae1f35e7f22f761150",
+    "result": {
+      "x": "b184dfdc9deb70f6f34d619b722023357caa6d8cef8fb797effb0cd524027e35",
+      "y": "b4738d7907a41e9ee70f3bee99124dd0ea4bcfaefab5dc464f8c2d222db9d1f5"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "48a2c99987bc14f99dd1c75f1dd150b74d48fdde0919e2d64f19ab95f977600e",
+    "result": {
+      "x": "cee9ee0d6414a0242828039dc6c5a0406bf91ec277ba5583d733240799de8fc8",
+      "y": "98af27da624830c82b183bf03c524e1531b949e942774e83a86d9a9ad6d7fece"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "5f64bd55bcded31d11350446561cf6e12d7456a6fc388610a4ecc438b929c768",
+    "result": {
+      "x": "6c311bb2b39b885a7d81fa52025d44b3c5a63a9e37d861c697b002e723e6637",
+      "y": "1577c952e0f66c78655a01463d350368d8141caf5b87f6c97ad89cfc012c95f1"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "ea2a7619291bfa5ebed37f20e7921dae0c13008a2d75b1c0b70d2c2df51cc91b",
+    "result": {
+      "x": "8f754ceaa8c46a6de7a62fdfd3b886bc994a4bd3e424fb6dc94d382dd97d4fb3",
+      "y": "715220d82ad64caff4123ca79bb9aac8d46361fcf5ff0063c54b93b22d524668"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "bb87d53fe4d94d93fb0557cb307a57c241145d4070f6539b1fe57e5020912964",
+    "result": {
+      "x": "3c976e169c69939215ac24b2b81b18eb0536aab9bbffefe6916eb91ebd887ddd",
+      "y": "a11670139239b63a6243d5705a61e286e65d4e39cc21581e19c11721fb997333"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "81541aa240dc09f621829bdc1628b245caee6d6fbcea6bfc39b6d67374242f02",
+    "result": {
+      "x": "75b3b921d2d403a3dadf277d52224af98a67177b00df3ba8a28476f5c7064d77",
+      "y": "d46261ac932a6fc625e974a11b189b135c337e8a231c3a0d3f0a6f4fee54469e"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "97000d4ee084be529cef9e8ab12e679ba1f85973f6039ce05f3e1292387f6d4d",
+    "result": {
+      "x": "f08b9cac6917788e5c5a3866284c576cbde533032aaf5988deab4cefa1d5e87b",
+      "y": "d4c65a263392adf3137416ce90dabfa77f93058246366ce727cec44f2a12427a"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "7efc17703b9e27049dd21023995b538277f1056b676f16e2724968bab4206195",
+    "result": {
+      "x": "b67296bec424403ba5664b4e68116266b41a7e6f658fe17d8b624223a1cc642b",
+      "y": "8b0c218046a1830c789e679e8ad944d2fed5a314500a7cd0d83a2632e6fa55f8"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "e20529069ca821f10d2dce9fb9b2c4db66c01ca3c6d97619b142286a5e502c4b",
+    "result": {
+      "x": "b991386c1b83d58f671c6c8b4503eb863c23ab4637adb7bc4bf1dbfa757214b",
+      "y": "2f2385a005ad14176d600a1898dcb7e26347d451e6618212257a342badfddd06"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "920ca09c44f0f926858532d72487a3d5c73f42f4b5284a9f9a87efe206aeacd4",
+    "result": {
+      "x": "286e0d5c03448a26abb010efcbab8218f43c8cb6424fc9b418f375e86c10a7e4",
+      "y": "6b9308ab25d059e7b984f03aa1ee6a3b661c6bfe953ba9505389b38de0d740a"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "efaf0cf51ddaa88fb31c0c7c83cf7e4752424c49122dca2efd09867ce91c2337",
+    "result": {
+      "x": "cf930d43c6510714fa0a4f9923c58491ad66dfa3bf8a9ac09402bd920861ba64",
+      "y": "b4f4e3151b92c4f230e3bbc0e7d9a33fae878d1045b73e226b47ebb5a3a08c7"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "12fcb9c68c91268d1e27ae4129bb306ecb3596733a20a7e1f4fdb963fb2471f2",
+    "result": {
+      "x": "420547b782d2640be2d13af2bf6c79861bac947335a35ed7c519866b67ba9bc1",
+      "y": "bb094f4fd71e61c7e29bd7343f2be49badf6b4cecfc096bcaefd32c76aace319"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "26728b0786b9fa590e60feaf42a667699d166ce7da690e53eea265a566011ef0",
+    "result": {
+      "x": "9feb032533d1305a902784b512e732f9794538dab8e5939eceb5ae3ca40a1bc6",
+      "y": "29688c4c1cd2c06b5e8d24f89d94c30f79b75a47e2e21d4523ff38b4105e6cea"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "b62c15927d0e16b03ffaeff646e883bd53145b48aeade7f92dbd4862377fc833",
+    "result": {
+      "x": "b42a7c81ab5566980baba89dbeaa5a782c728e1a75357a75a1ab55ce21b6981e",
+      "y": "dd3ab63ac63b06ece22de69a57f27eb532c72e778d47fad3da69a1cb996a508"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "feead01bfd4e1e176219c634b6db3e357fec64ffc14ec1e4fce8e10471896c41",
+    "result": {
+      "x": "ba73acad6b81f721f1467fd1106c67e4a1780146af97a3f5913dbb7c6c4b2e89",
+      "y": "115157789efd1dc0596f2104a723696e79bebada0ab4b93f662b5cbaa48d9a3c"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "6a2ff42d3fa1d16f312e913a4ca8dcddbd71aad3244814ffd8bad1d55015840b",
+    "result": {
+      "x": "a64d56bad24ced1db2603ee0161303dfe1911b216e070c6ef98f227b6482f4f6",
+      "y": "1dd45c7d59cc7990ee71cbbcc7cc5eaed79163f95c27eab93d63c2c6060d8d6f"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "4ef1c14029979f2e8793ab8f1f1691b1d07d8201647ac0694d47d3b5c7b095b2",
+    "result": {
+      "x": "103865105700cb03438249b05917812bb615eaa19beec66596caa84247948744",
+      "y": "e31b42a2536f40a933d64c68705039206364bc660be846fe8588ac11b0ce30b5"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "a6fb36ef593ba33d558ad1c678f5dc6f4528487cd83830cabd315ee672eab54b",
+    "result": {
+      "x": "3a79d9f8bf603cc3456b69266a8df9de5a2dec28ac4c4f50808055ebd664fa1e",
+      "y": "158773d9342184691292804169b41da86bd25b0ca40f6517ce62234b7948f79d"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "f164ed8ad8c78a088713f1c9ad5dd37659dcfab9cb113d9a726958fad9a7b1ba",
+    "result": {
+      "x": "369f59dd94dc7bcea070bdbe9f0d581071906d4fe77bc681722a78fdcfead7b8",
+      "y": "c1aa2edc424208cc8edce8d9be7ee4c1ba9a62abfd006873818350009e6ad14"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "4542618c8a3c58f90fb0be40598cd4dfcd0fbf40695ddc8a1e88f9458252b8e7",
+    "result": {
+      "x": "2e274a84b2ff5011b5cd90835fa275dd1441e6a5aad55ef5c4df1e71b66fc201",
+      "y": "43acb585aa66c6f3217fe4507ecbf9e261b0a581dba7b532598921509d0a2465"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "fada59b959ff9e7fc4da5d20b0879abc241f057d88536df4e76eee15143c1777",
+    "result": {
+      "x": "7b067d9cc4b66a5be19636ae6d1f83995ce4e28d0d181a0861b317e2a1a9f85a",
+      "y": "c1d4f24e20c6b82d5103bf808f7c210682ecbcd1449fe5f291905715fa8b7554"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "9581cad82ef0dbe6506c3d01bd266719e6a784812c3faf346ee13112b8b7ceae",
+    "result": {
+      "x": "411c8f1301eb8c51742e443459902fc287661bbbe71fa89c1aeb1cc22888513f",
+      "y": "801002067aac338d28131b306ea7e9a3398b90acf32071f1445a5a4b0bbd3599"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "95a80ce8d75320de87b65dcbc99e4323c3231d55f99efd975e672d0762b7b4ec",
+    "result": {
+      "x": "e387f87e6e2277b2eaac133ffd73506f65fc2ff2dd21aa60ca33dc9548ed9977",
+      "y": "4df3e983ad05a280b318dcb304cb8f408a7a5cecda9b1b6cd532cde2598a3309"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "ea87cc2b38b445c5399f35260be6773a511745e5a3af32453e3fae26def3803d",
+    "result": {
+      "x": "23d41c85cb15ef98851ca48ca712bd6a4ea3c12b1bd35a64d616db6d44a1b3a4",
+      "y": "738ee300c3b534a0ece6f3ad6ef203a3eedbee089c879d7048e4ba185a7ecdfa"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "79085c92762bbab233cf4b0d898d9fcdd0d82be110ed11d0148221173d163afa",
+    "result": {
+      "x": "20dd4dbc0cb7153e66d18ad564ccd69097c9b820e48ba588f15142a63d0b2ec6",
+      "y": "f5f40e8ad2c8422dba228ae7beb62bd9402a29e1fdc5717a50986e62bc002149"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "e15267a051586c405ff8e14937041d737abfd95967b57e43a236e3d5b5f95f00",
+    "result": {
+      "x": "adefa6d166de9301e7afa3ee5d7f2874752a0999362164ed8d3a96efe2801a3b",
+      "y": "3cf9dd220882971fc7437588b6651719c857639d53526f9c9216fb73538258a"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "f2af038d58cff159784bb23b2f080662cd656a3de3b23d94ab68f2c27aa3f78e",
+    "result": {
+      "x": "9a0ea2e0c8a706b29440098a7c616875f1fd1f2ec81ebcb960c8272756ace43d",
+      "y": "a5d3720f7bb6a1964097c7eea24c2250c64f4cd92e3a5cdc10196399aeb29a61"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "e9e8164336f5e9605816235a27f45d80556295d9dbd1dd13a2d019983b8d727c",
+    "result": {
+      "x": "4e681d8dccb92bee80992798297e569facd619d7446908cfd73224fe92ef4c1f",
+      "y": "6fe2e866367fedb8916fc73cd56cc78b925dec90f1be34e9355a41592e306499"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "52e2b01bc5ec83245e21d80230ef3edd5f26a2bab78159b3d3ee88f64ae0cdc8",
+    "result": {
+      "x": "888d48901cf5b1e946cd11de6ad66d6965a49fc39bb3cc5d105b053eb4030e2d",
+      "y": "b7f31596ada07260a07b63b88129bb8faca4012a0cf55b42096510ed0779986f"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "9f8db90867853c77c949b3d7caae0f11f871457dcac041747f1addd80e31de9",
+    "result": {
+      "x": "e440054af7d640df67de38937996153499a33b3964e42b9e25112a03a902f016",
+      "y": "7c266eca519d01270f59996a0a84eca40c71ec00c0255f6177eab58899df9495"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "2f21e5da49a22262d90b658b151c3d0aa21d7e451026c7844e45533dc6078910",
+    "result": {
+      "x": "864bdeb01b3c574b0c3ec9c62fbe06b0d70d89f8cd2b266fce5a724a55fb8ce7",
+      "y": "b935a280542fc0b01851967c28f6644e80abac1fd0cb4385bec22fc1558b278b"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "3bf2d0a9af4053ebc88e91fdad0eede95b4607e8f9a038ce6384b580f52aa52",
+    "result": {
+      "x": "74e4805e649bdc26825c218fcbe05c18e8e5257c7c7cc8391b14e2ba390e3249",
+      "y": "3827897bb10d8ca94d22ac87da09dcf7d11ec96f6e129b3adae572b29f0a2711"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "4e41456eb4807542725f10cb836b47dfd19401ff0b8ea14bfb3b76ba938157e4",
+    "result": {
+      "x": "8f4e9977f2732f7af0d5d7ad4ab2bc2641a75b14e01e1908ec34914f489eb7fb",
+      "y": "45401b15c7e1df776b56a74cb6cdc875544c3c9975aa98b6d0df87cb7e33b935"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "3ac2081468b1d248d014956a0d021fe89f876a37debe4eb3a69397c104fcda4",
+    "result": {
+      "x": "cf17acea1745c92221220364d23b8014860613cb50efd4b70e79f0e5e3e9d152",
+      "y": "7766f1fb3def05a79a8661abdfd77bdadda8615d7c65c9fe83e930d42888ad08"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "d47dab29afa8eb8ecb7e05c995fdb72409a13a8c9a0875ddb0e8c45e9bbf8ed9",
+    "result": {
+      "x": "3fc2b53c439136d96975bdfe65090deda4ba0101bbb8c24b60b8e58dd4546986",
+      "y": "9fe72fe43805976d6d6eb0c161cf9b7f0491b61fde8076c55bf5b818f78343b3"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "78ed2bd7e93cc998ead523e6ec61107fda65f0239c2644c2e36a7c8f51d756d2",
+    "result": {
+      "x": "679db88eb55219ad4e4de8b3787f887a5d4bdd732de46009161225451e78b7cc",
+      "y": "24baf79aba8d6e524bb89a132f2a1cf9fd895603b620edea82a04600e62fee93"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "2583aef2b531a6fc49d9f49a65bd6cd81eef46b0c0c1845a7b3694eab6931797",
+    "result": {
+      "x": "5d0628c2f58655e17af746efdd08a40ddc4e7c5e3647bf17143795a6c4261381",
+      "y": "df757328fb9e6ae22f97c2cc30ae2833a2cdacef75cebb95b1e844843492be71"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "921577cb1c57f4d3aa73827a25f8c74fb05cb30f4874bdd078b0ec26905ed1be",
+    "result": {
+      "x": "5169273887d8a91e4414c8807dee8d992ee9bdd83fc0f4539616562808b9c641",
+      "y": "6c73daa4e95bf12b6359ab4b7ae331af010fe1f5b43a5f88c6be13a5586e833d"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "e27b9f4c15d40b0dcb274b7b2dfb2717c0eba2065e22b8c56d9bb4703ae23183",
+    "result": {
+      "x": "3f9c5d29d8574ae49b029d3c5c48acd34e9c8573b847fd05e4c02f74b65243be",
+      "y": "f702bfeacd9f5397f2216e3346c2ad1457026dbaa1492b0994a10026a0943439"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "ea5a71198f810bacbfd4a9255539ec65f34a3288ac0191e9fb0125cbb53626b8",
+    "result": {
+      "x": "cac0a2315db095ce88202dda283a2bcfb2404332c047e645b7545de120be5c92",
+      "y": "ee46e19586e0c44db98ca6a62a77aae9ca7a4c0f91f232fbc5076a520ccd51f9"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "d138492c7e83a09d685e9c9f208ced14767119101feb5c1f0d999080c1484651",
+    "result": {
+      "x": "e43fa5a59f3bc25fbb6c6e0d36462dee361090c111cd5481e8353e77cebb0ec",
+      "y": "ed46031abbf50fb728cd73dbae5d07032bcddec98f8550f0d1077c88069abe06"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "60ad133885fcd8dd92e06911cd8a6bc1183bf1801f224c813b7e23e2fde0c9ba",
+    "result": {
+      "x": "8933b641bb9cf51d0afe55324c0511fb11b56f1fcab93b8c1d683d7784463a81",
+      "y": "76f67aa37415cbbb602bec4e6cdf081f3a9ace6e0e8d553e19d49e834c645a9e"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "57f0492e9aeff7b2aa9feb75c2d79882b8a2b9dba9a2c9183594e5591c88c7b2",
+    "result": {
+      "x": "a19ed45e542e3c10f7c59062741613250b53d7bbf60c14611661aaabf2044eed",
+      "y": "fdaeaaed6cc869f237a8e4545750619584021ef00c366abd123258f7a33f61b"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "57bf513b951eed438c1cee3dc4e8c245f2783a1a2c2eb3bf90e71db7ef8f04c7",
+    "result": {
+      "x": "d3b564f9cda9b1877ba476d64499bb899eb5437b1d833af345e8a2753f40eb5f",
+      "y": "a54c2e93e159e4f97ee67dacf9bca7efb116383243d70abecf9690d7f7897380"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "d31a70bd4f739eaacd13b3e30107f923c6fca40fd4130f7ba982314c76f6b683",
+    "result": {
+      "x": "6030f105626ead387ee663930b05874c8493e828702a0e3f7c2fe64b86b5eb87",
+      "y": "65c23239bfa0acba03a8dc49c6395c5eadcd1202de654d47dd8f90db8bb6dd36"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "b367e77d0283f7afee96393d14e5180ce1a08329267dc731de6efde5839cd133",
+    "result": {
+      "x": "5035542ed39d86d4af9cd348ac40316728e318df3db8b87871ed23af9561f74",
+      "y": "4dc1a20fdb26d27bdbe59f64840281d3875b6026fe3fb01caeae31cd2f5c7525"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "c8c4281288ed318a69d4042f2c82f6a50087525da19c161c427ce606361ba25f",
+    "result": {
+      "x": "56048a4955c0840c0659bd0b47cf629cab2a5b9a4fb5c29cd3d700cb1de1c670",
+      "y": "6f9250cb6c91b8940a7f084ca57acca32c40502ab3f82514e542d693ff21760"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "c3cb7bb7241828969f7ebfa267c3348257fbfe9c035b625a89327b82cf1972b3",
+    "result": {
+      "x": "49674e2df5bb609b0444207c253ffb19f1c9eeb26d30bffaf24af12e48242d28",
+      "y": "3778082a0295d5d7629bb16e45c553cfcfdf42842576b8bc3bb7a9645fdef1b1"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "160640227af9dd3903339d517b2f9297fcd97f93c7fe9db7756a1194b81131bb",
+    "result": {
+      "x": "b98f130a342011b3930c59bd5ac88e0fd4b8e4471490a6fab397060dd17d01d0",
+      "y": "504f0eea159f496ff4ef00c03a8b5f6851c7a699d3f393dffa0f1c8a1505c5ce"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "feecaab2160089f25931e355815f6477cd392ca8f068e42741f1de2f9d286649",
+    "result": {
+      "x": "f9b13d2993fa0bc2742cd8e33b3d614bbe60d2f17c998d36ed8a3da4261a681d",
+      "y": "48980007b978db15d734b7431493934b5ecebb8f29454cdd6d0e85071b802a34"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "a19f5d66b498dfccdf7f67e7727228e777d8ff993959b95bc653d174a6dfa7aa",
+    "result": {
+      "x": "ae815ae73e2fd1b195e9a9afa4fbea72c4ffca4774a62fcabf78731838f549ef",
+      "y": "1fa350e2810f1d6f5d8974e304c7952dc580fd0774943733b2fe7ba58c2fc557"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "6c6625e14857443e6d2b2d622b46caf5731582d93790ddb36bb6c747d3d0f13a",
+    "result": {
+      "x": "29ec39e38a63c9ff8c7b5a55a3e620c5d37af7c56ef1994ce6224a72025c0552",
+      "y": "d543eaea26640c2ee10cca8bd36cc4fee88e9b858a175c8bb81f08ae31ba2bae"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "26cb6871012458e6dc719dd7cdba2385b8dfa19385c5d9214ff02628af6c16b",
+    "result": {
+      "x": "31e0407a97a925abccb5982fa7afe449de4e92f2fc4730cc4b457328c5e820ae",
+      "y": "be432b6623cff1cba262ea5711a12d9941b3c7ca23c2f9d31e00a47ae1019f4"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "c9fcf0990e361476095ae1acff7f26c04f57a21bb72da2f6f013014ece179ec6",
+    "result": {
+      "x": "b4c0ec18f8e256b89128cd77b1d9c999dc0b118c0c8bdca0ff9d07564a4f5758",
+      "y": "c573cd7c32885457fdc964bf3c6c0e8dcd80455a7feac6a0f856593fa9b81846"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "56b9d96c21639503ab122f8e5766bbf6e157479713f64e92556b92c8afc4ad19",
+    "result": {
+      "x": "c015897907dcc6e84b52bb193fa8e5a36753f180949671c5431964a543a8bd5c",
+      "y": "2e81f4094b052bb5dedbda99e72cf8cf38fcb03e568212272da069c05fe2c5fc"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "fdbcb12ab0bb0fe7f5fe7e226c069f8b2a36c11a2d772c061edda70d171fba12",
+    "result": {
+      "x": "8c14748a82d411baaf28a662ab9ed2a9fa16feae2eeeb48ab10bc190e0bcf9d2",
+      "y": "81f0f85c8277b09af90aa19ee090c639ed9939b1d32cc592e3f0c444422bf233"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "52da91eb85721bfba0b7734f5308d54f27d2296529958befc8d1488264676757",
+    "result": {
+      "x": "3733d4ddbe80409e669a6c1127546f5fcb5cb08d2216dc6dd0fc014cb47796cc",
+      "y": "888a57799a927d1259242577fc7201900f28370cae0979bf6d54334b4c72e214"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "e6106717b2951e7264bd5b996e9e0d334ae6bccc9678ecc46e7cbc07737aab2a",
+    "result": {
+      "x": "4def2e3d2b2edcf7c1fbe12277f63113a29a48f3f2f0383ffdeeda2ce07a242a",
+      "y": "2289a1561808eb6f3f0569e6999e55b6b5c0e8aebe54157e9970c2774af0b5c6"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "6abcd051425a3d65f824d891c693389ea2a19111f5be9a555b75e0b57322a8ae",
+    "result": {
+      "x": "b81d50320a8fcb4d5194e9ea0fb953a06bbf7f0f0de0d1412aa546c3bd673f6",
+      "y": "ea01c7f8b813470a3f23673f4c90a0edab019758a92eed211410b943a5270671"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "1b5cae1bb8f1482e5813cf3b27a5b2261c44cda12b818ce3c19d3f62a3660b58",
+    "result": {
+      "x": "fa29f7092ee48de3b88839ccfc59db69085523ff7fca499cc1ecd36bb0e01d8e",
+      "y": "665f7914d35b62b79c0087b7f5c9b7406dd801610a15d09572bc4e5f10423d94"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "112ce182367fec4242cc49af9574b353e9d0865c85689cc52c3bdd8c7c398c86",
+    "result": {
+      "x": "9f45877e88ce0ef6be59b000feceb84d7db10ec2fd24197305353e652379b293",
+      "y": "8af395fde7a1a7f08de39ab341edd00cda1803b91aeffd62004abc9a53933212"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "6fb2b7bb0787a19aa50245d48d575511778636b0c62ead4c29d53892884d7279",
+    "result": {
+      "x": "d6c7108fa8af8b3d065ab4e52897bf3ea59279a513172abdf5722dacf1164780",
+      "y": "2d57a20621631487a61b9cc930e164d27111843f37b7c7d18e604aef145e03b1"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "7480953f3ef96873ae56d26282a8ce9c87cefa0d5f92a7391ce922b67bacd4d0",
+    "result": {
+      "x": "cff869b734471e16d46c754bf14687cd9ea5bc573132d0734419be40fc7a6a5",
+      "y": "7e4f8d42e45295a8e9e2d3c368ed626cf57639cdfbe4f237127473a9ea1842d6"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "bd073501cf84cce587f2aedee95d176976c07890aea6163500ac3d11db954809",
+    "result": {
+      "x": "b07c54dd1230297a61ebf066e77c32653b51850c03ded17272d4bcf59c65d1d5",
+      "y": "4836b309c61f6b80fb8553c981aef9b8bdc8293c25bab1e9fb63d5477b1c2f72"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "1af8f5345c172528b45ba00ae32ac82a4b23fa91a35d428c3e187926592e5728",
+    "result": {
+      "x": "5bd2190e9b22d0c1032220459117adffcbec8f301031a766d655d2132e4ccfc0",
+      "y": "2058f2a448c2340c5bd3e6813f4ce3746c1f702ffee64386660f10428250babb"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "d1cc8492466b5f3d69f3eb5c08be489851f573858e76817acfe3fc6765df0477",
+    "result": {
+      "x": "9a608cd38fa53a73eb67c357d3a9e9410d5f945040bfdc57cfcad85c606f42d",
+      "y": "facbae1e4c1e97937de0ad9541fbc74f2be889d29e796d123493613f89adf29f"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "e03c88ea7ea828cc101e27d87471ec44078d14eec1a6d5ff059485e668779240",
+    "result": {
+      "x": "cccefe37f696881f3ed535c518449245ec024476e85e00c025976b569f9ea694",
+      "y": "bce0b30b7ac2c2a08702df77c042b48edc90d6b99102a502c6ce2db332e962d5"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "17d084bad8fce38356635e7ce7169038e255630165b1386eb389c127363a53f0",
+    "result": {
+      "x": "ad5ba6acabb5f663badffbbcfd49ec5afde24c10ac9e25d7d412f5bcddf3c64a",
+      "y": "512f763a67d8660ad498713218a2509aae9f2879018f5a0849abe3baa01f8c3b"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "1f00a3d1c41245eb6ed077cc5d14971b00990a7ecde3bfbf239745cf86f483bb",
+    "result": {
+      "x": "cae7201e9aabcd5d97a8f65581ec5cc4f1f7c2ef1d47d6315f9a8f14efb02c",
+      "y": "f9cb1c968c68942627805aa12ab55be81aa2d475263d911cb9a62a51ef29c860"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "e31abc8d0906e52a14586f01696d409f7a6b8e8913b97e3ff6f434b042ad3744",
+    "result": {
+      "x": "8b7bf9470779910bacd9d37895ad4ee61c98b192f294f80a94837455660ced12",
+      "y": "6082f7439d29c0038c5bad93c97ffe875d08f7539a1d4a9235965a2e7b03d29e"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "5f3dcc983ff08b0ed4ff0179c5d92e65cce93f5d62d76d3c2ade79328316b755",
+    "result": {
+      "x": "9d354340daad5c5cd1aeb0dfad0bbec58cca61334464461622828f97cb368ee7",
+      "y": "6baed5b98a3af66f1d35331a9b3224e23f393d9618c2e2fab3a670dbfe278eb8"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "8de77323743a7bc9ab8d5e768e17e995b3ec83ce3f96e6afe8dee3bf426caf4b",
+    "result": {
+      "x": "75d11c439ab0abfa362b892bdb51c62d5805f5d01bc6dc5b8b8bb1f7d73d768f",
+      "y": "a97a6db85d173b050202ca38281ce31b1a35bebba38f33d897a7d995002eb0fd"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "e34bd5dcc051501a0cc511f53cf8eb785d72d3dca0c2053e02241476e453778f",
+    "result": {
+      "x": "fb0c07cff39c67f85a25dc6fe7ac59643e9d701154ec055d64dace1bdbfd0ce1",
+      "y": "1fa6e63feceabfaf4903ce981f7f512ab97e9a31d5eda8fd09c9563a9bc6c0b0"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "6410931c0b08574615e898676a514554c37c017c042a70708df5a2c4132d48d3",
+    "result": {
+      "x": "988942da099295eca70af4d74cd036e63c3b6518cd5e85717eba69f3a1b1f8d5",
+      "y": "6655758f61aaf36816f51b49a5899407975a1b2a22b6d988218f27e4a869fd57"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "542d9736a2d4a7bd3ccd2ff7bc9e128c12fde8f3ff59aee60b6e5780c37aecd8",
+    "result": {
+      "x": "edea59189cfb04387da61f39048bccf3f20fabedaeb528fff44d0fb5ed233726",
+      "y": "7a9775d400b0cca9e9a2ac4136335aade4f9aab8deccb7d49a0806a6e20fdd64"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "f7c6b7e6d14954c02fbcea17987d63e4abc3727f9ce0cf9295329105b86ce56b",
+    "result": {
+      "x": "7e8ea9d2b7adb00fff35b1b441d562f83c257e66ae0e7c889973dc7748aba2a3",
+      "y": "4e3f07636f88cdf73e731d80c2e658c56b809220c77885efd55ab05a621897da"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "6eed6a7a9449421a02d468c156da6f1d83bec0741c5d6b3db3020ae1119affd1",
+    "result": {
+      "x": "602bf3459a39ed85eb04d3083af8ef34b60ba3d156a81f79c6fa4657c8b0772d",
+      "y": "a8662c9bfe6fc8b12260a616bad41e737def8ea3d9b28c0d9e284ff98627cc00"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "3abe48441f965120f8d36d1b040703c0167810f671dca62b13aecc03e94b813",
+    "result": {
+      "x": "2c7d241b662137031542b76f41c413491fe0d69094aa92c46a395cf4bb05b1f0",
+      "y": "72f092e4dd9504af1ac68dcb7e88af215db36fcb97e84b01e9922be8377ba7e7"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "a145471ae9afb4722bd0f25d860b633aff24e999d758cdfc0e96271167ed6bd6",
+    "result": {
+      "x": "5af26c0ceea01207110d97dc90e5fc3154b5505249fecbfb8af4aea3cb367b0a",
+      "y": "1905a7f149abc319bf7975056de91aa2badc579869b352c4c47f3f07180312a1"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "cbe2d51f3294699e27af03cd3515a544a2b0105bf20566bec393f9b53f2c5828",
+    "result": {
+      "x": "7d767a5e9713fa0d40c1c5a4fe0b79fcb5532ee667d2b36821d7c892e2cb025f",
+      "y": "69315f2704feb473f2ec16abb153f1378f03d03ccea3f5e7b323d130c5e408e4"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "7e23487217b2c0f75a717360d3932c1b1b5bcf82c1f0eb1ea1c2e279349ee28b",
+    "result": {
+      "x": "c47d788d9df5333132e26cbb242062fc1156c02b267e16bd55d7ccbe90ba56e9",
+      "y": "d8934538d741e1b28b925b772d399b5d7f70bd59110f80476e75ad28ef5974af"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "92e6022507c2522cdab693ff88a6b2ba72b5f80aea4dd53f854741dac2548166",
+    "result": {
+      "x": "a533b35671cdbf82d01a6cab374b2e2cfb39e0f6772c28f21dca77881606da47",
+      "y": "1d9cb69fc5c3ca77914cae3a249a12546c97a176c9e3caae8e810d5591616b8"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "d40af867e0be0badf99120dcf2a9def897d77fade10ccf6b1d12e01ce3fa7e37",
+    "result": {
+      "x": "33e037c3a45a3e3caacec123fdf7879420b024e265a028d791d27cdabb060bd5",
+      "y": "8886f2b0f41802ff4631055f7343d1892dbf3aa5d58ce577bdb8eee41b84762a"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "d15c0bb271a8aaa5f0e5a5225d495b92daaa531836229adaf0a25fafc14a33c1",
+    "result": {
+      "x": "3899ffaa8a9781e49eed0fe0459be376ff0350909eec5d4710db6f7a5a2be4c1",
+      "y": "2893dea96af0da33eaa8cf404f2ffc857856ba25ec7e4f20d63170170b20fb0d"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "e0a20a9a4eaa553b865149366f121769a328d21ecc3ba2ec29fc56201de4c5d5",
+    "result": {
+      "x": "95f9abb7aa67791e3bed5b1129e5677b33306865ecfb224d8da614b6904d09c8",
+      "y": "c3339f4d5eac082ae661cbdb176e560334ee8b7561aed40e0d62aaf805a7a385"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "599da74dedc039e875c918b4d8be0244f8c7e081db105c8e5eb43ecffc0dc487",
+    "result": {
+      "x": "a00315c1c1466c793e5546cd44196cc4d439c4adff0c5dc7293a613ee7a547ad",
+      "y": "b137fa0086c45370703892857e14eee1703007ca4b3340f6a5778e103e54efe"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "b171266663b1139414e93f31afc68ae060a93cf1e5206aa09070eaa474475950",
+    "result": {
+      "x": "9de71a8597a53ea797b0e0f44248f789ff816ea209c9fe702e531c0b4f810d7f",
+      "y": "dc2b0661d2f5c3902a7850cffa3cbc36ef503eacc5c7101b551ce96d0771d8"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "bfed09e54f9d09f9e51904bf7106aebd8cc697d8b2a0afbf420a4f94ed19d6d2",
+    "result": {
+      "x": "4e93c255124dd2ea51d19428351d96b0785759d5f68802828ebe480cd4ae86d",
+      "y": "6e0ec168b20e0fd292c05a10ad17d77b0f47ce575c2479ff1a41eca326991a40"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "1d5bef26efa27092e78b4093f1cc9ce46a58d10370a5f70c8503034e8956941",
+    "result": {
+      "x": "e057f2ea39c306d3f793607eafa52fa79b3677505905e8daea0b5a9fc255b0cf",
+      "y": "b9a9f2de3ddb7515607e6db0e9fe5bb91a61e03fb877f7c4347b20697f0888eb"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "2dedcfbb99017d9db2495c5708cb20abc94121b5941a1731362b5ba4032c7ed",
+    "result": {
+      "x": "34b86019a2f42475cd4b231b756f79232eb1d730ce6211bbbee45c05c50e04ad",
+      "y": "f073e1a2e0f61c5a820f199c1146c1417d9c6d812041045b7f4232ed6d940702"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "82b015ba3114a9c1de0d67ae9b55b0d0edd887eff79e65ca8c0a089d2d7035b1",
+    "result": {
+      "x": "2ce2fc7ccfca0dee751846ea1529cf9b7222a6fc2b111714101922f29f0ef70d",
+      "y": "1eb137352f3b1d1f2b17357084bd3759fd57af890d8baf0fe8f9108ddd77b188"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "89461684d6f01f89148767b411fedbfc46b8a620aa5a113fe1b239100f171707",
+    "result": {
+      "x": "67f48abeb6c40c561253ddeddcf3b2ee24dafda91cc6dda41f5502d63c8cbf0a",
+      "y": "58a45b493138ec3d41d1112ba522ae9aea34e32d3c00b128b99977188d1cd04e"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "8ba4f57a8ca79d848275ad752be91157498f6cab67f7e10b3331701af77f41ad",
+    "result": {
+      "x": "2bfed32807deb4ca00a2fd39d1188247975cf7ce801a0f8cd7cc57a759b4abc2",
+      "y": "d3a9c3d6c6851b0594e569596f04170c1ae7c8cefab79a1a9efa8bc989b0c683"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "7938b210809c3739c0056801f6b8fab8cf4b5465467636f2d530b2ceff4e2f8b",
+    "result": {
+      "x": "43943122f700e84ccfc313f4adeb0e667afe3938d3dff810638202858ea891ec",
+      "y": "8cdd46e966861d24ce235eb402d9885a2902deb7c90cfbb6365aa721c946d6cc"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "10574d4396a6041a415e945ace7b335070d596214b6b43d3f1d4e048130fff4d",
+    "result": {
+      "x": "89e4b215ba2540afe6938eba07f7a06b1cbc178f6cc1670443d6f9aa3580a765",
+      "y": "af50e627a5d59a9d8693ffdefde45a938c3a4571065b4a3599a2ec21c011bf18"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "1c238e0a2282fea470e7fc5933411c0de5591f04c7cb6331cfb4ea133af5a4fa",
+    "result": {
+      "x": "e4eacb2ec8d973f67cba6f892bf3e348ebbe21c80cf0e5076d04a2c4a00b8555",
+      "y": "ce813e9163c6ef157bf15ad62da0a437e39d67705feaa2617bfced3e02001d6f"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "d06e1ca0edd65749b6489b1f904c75cf1dc43396c28b3ac66fe97bdab6e72cc",
+    "result": {
+      "x": "6d5392cb0a06d342ce28da37fbcadcbc3377217f143f583a7602d3125b6caee4",
+      "y": "90e9f37966167672bbbf24adac30579cbea2edfc95741af8c865c3a5455f6fcf"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "96d2a4105180b2d65e6f9a2754d200abb7f1e09035e171e0f39f5324c3d159ec",
+    "result": {
+      "x": "185c75bae304bd260fe6bbf03190cef87e9dc07e655136017e9c713334f3401f",
+      "y": "19b60ac66f14fc256110f29df190766c0e76c250ed24ad6bfea58ffc50e0fa3d"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "9d6ca50435bf520f1ce9e0dbb4a59a038f7ff96de51bee04e250265a1d77fc67",
+    "result": {
+      "x": "19eacba4f55ac4554143c8bcb60d552bf9d86571f10b3701110b7b0a8a91c6b4",
+      "y": "3ba45793fdaf310ecffb181f405fca0feb28b01cfa350ca4458876c3a64c59b2"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "dd4005024f8f05ad8ac253f1940a87680c5b508e8656d344f108687ab9d6152a",
+    "result": {
+      "x": "b4a16e05ef0d7a32d68d7923d9b00da8389cf3c9abb57e7869b4b70ddf9255e6",
+      "y": "81525050b505f78c8b2ca80fda9fb4d0a243c60bd6282fcbc0fe1bb355ccfa90"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "a1c981758ff7cf03784063b79732244dee69be44451f4610a76885c3a55bf79b",
+    "result": {
+      "x": "9abfab565cd1aa74229d8bb595fac046d6a441085dbe809ac07d6411d8946414",
+      "y": "9a615e1dc481f8970138c368fc2ada0cefa204b9e54570129e41e773e5208c4e"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "7d4e6f24b99da143bc36eac4afe2fb0ccdec6db02632bb7b5fb494034a3806fa",
+    "result": {
+      "x": "6ce5f293c7d15d2656d90566304ef1d12d01383618b141305285ab1d61cd9d9c",
+      "y": "8ea399738f545051a6432a0228c93cb46bfd382ed521ddb1006401ad003051d0"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "3118a7442530044d8570c2afc2639a692bf720a97fc156f47bfd3b0e165f84ac",
+    "result": {
+      "x": "17d4e7b9bdf12c805d0d8afdc13417dc0d041744d751b5b3cba50c133352f2d8",
+      "y": "c075f38f892e990053174e070fa1cda94b927bf20737a444101d604962f0a510"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "66f2e40682009ae6fd752c563adae69280e21c398c01133d001d975e918899d1",
+    "result": {
+      "x": "b7d7d3529c00ee2506231dc02e45f7e25b525e1f7fdab36b9ea329dc615bfd17",
+      "y": "ee6b99c5a9fc06d93edd0dcdb0aca7928a936554803937926f9fecd291082348"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "f29e83c455f547785b07ebceb025e2d1bbf0511d2826d0566ce2b614ff0ca887",
+    "result": {
+      "x": "88f10dd5863d8d7ca6da88adc4e8e3bed8d0af4f1db0444b808b1e119996a710",
+      "y": "853e0f8018d44fe209029e019ee1a5c791acd5958d4cc357b7c2d2fc5cbf656"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "f107c7fb88c527d5cd6023fa7f7c3dc0eacc8bd0723f4a6fd1ef11adb5c9796e",
+    "result": {
+      "x": "40e130967c1da3ecfbe359f519e1e3980290fcb17363f347294eb81e13dcb127",
+      "y": "f6c68befdba97609ae072c8d567b23fdd059e2857964b752ae0dab4e968a3a1f"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "b24951bc1f9c6de48439fe641c63b8d7527347863e1c1b11d45e9ef0962aea9f",
+    "result": {
+      "x": "14cd0579567d632241c1ffcb3d51f874de9da1ac49ccc1c5f72814e61e8e0f9c",
+      "y": "50af2eab2034fb68664c539a2d77a89a67efeabeee6069d63e8ada92adc23a88"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "916b5df4a3986515a6308b5b9f93d3efc703ab25ce5938fb0652a9d242ab84c0",
+    "result": {
+      "x": "4bf87928fd1fc3d96661e9a4cc894878e6066c5f68d870afc4cd373b06d31d2a",
+      "y": "e24670424bb0ccafdcf671e0db1b7515019e9075b9a5ad04f93583cb6c603f81"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "b86cd9de3aa558979aaa98580302996646917b5ba63127395e719c5ebcd944a4",
+    "result": {
+      "x": "177b6677ad381d6b1d8505f9d7fb05aea50c4791df17474a4c3ed729353fe9ca",
+      "y": "563d915eeff261e340f596136dac0bad1e53af535b5794dbf59e6ca622d15370"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "2b1766b6116e0c114a80419c8828380bc793ef5ac8d0b4efe95de1541bd2fe9b",
+    "result": {
+      "x": "bddf6f267d878f51e2df9644e3acbd0a3bdc76edabc03b8249e597e8455d1e3c",
+      "y": "3b542c852c77be11b4f649e16a4868d90d8de1c1d048f3271fee44d542b74449"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "f4a5854009c6a35c4e9af6aa3d36bf17fc507c99d8eeae1a46041397ed3c8e55",
+    "result": {
+      "x": "bde5d56bce85f7416993c1d4c6f875d1e9f28205592fe98b1b08cd2a9e0502eb",
+      "y": "b636d01d72d87b0ab021952d67b804b4f27540c5b5b9205a0f2a5b21a14647a0"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "d44f0dd608049162c879695c660d3f9471f2f609be68ddc0b37e18a03baaa068",
+    "result": {
+      "x": "466b5e7e0bd04b5920302a13b5a2083fcb9f04ebe1c3ce9e6a3c140149ade0dc",
+      "y": "6ec061d56cade6cef5ea104aa8371dec29890beeb57b0979ea67f491aaae7a69"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "3d8553876fd87fa3cf1aae58e2cc0852595c6786e9cc00d1cfb1f3da15f1f147",
+    "result": {
+      "x": "afdd4ad8883951555693fa1294cd3c204cc89edf3b2db78dc7a13766718c2a91",
+      "y": "eed5725e1af89e2c5712d856b74c3a6dec61aa16fd0134c56c95c5c76964f9c7"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "7abe231401216b9b96895626a70c987ff5da5b723e960cea6d0edd6ae77e50c5",
+    "result": {
+      "x": "f3f29a3930ba0f1527e25fc22b71bfb11bba0b8d1f6156f7b52530fd81e43134",
+      "y": "65f07dc08d240790791dec8c274fcea0183968fe9a6a9a34d2bc56f77d6a25f9"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "828c27e828d0272c4ffd321f7b2992d0ed2b0106db82b4e97701db294d16442f",
+    "result": {
+      "x": "ebf9b49630ea6d479c0069572f1643b7216543490f744905f3fa7b4c054e831c",
+      "y": "2ee8f587aa850af2ec04b4b6ef511be10d4393d24b5f678f02ca98e61547dc15"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "a5ba635e42a5c6d9f66348714056480877b57ea4f98397230011e406d906b16e",
+    "result": {
+      "x": "a4e8adc9ddf93b6227ca4d146678923fcc7bd9ec21de135e305ac573b53e699b",
+      "y": "757b2052572dc3c344a9016bfc2f60bfcc724d45528e514b829e9f0178966968"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "2954ed4146db48edbd924b98613e78c8e163e6dde472466dade149b86026659d",
+    "result": {
+      "x": "6a02b1942d3819c3202190e57ff7c27af25222d5f5c0791c6709f33543cf0b83",
+      "y": "e9d2c61a48cf8fa37b181b070521c4950ed5be7f93522abb6f1e795abb4b7f3"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "146a067ae88f11dc1b5d95bc2b983ec6b9f228a27ef9095a8234a59c17c9ef20",
+    "result": {
+      "x": "be550567ead10fdc0681127099ba6ba9f15966c5dab983e4178752cade929f2c",
+      "y": "1c03f110c55e0cda4baaaa627b21825d0885f6a872d6a29405acd700d5cf8efc"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "74f33f46ad36270f919db27feb155df051599d25ed4cec94d16e4339aec6d34",
+    "result": {
+      "x": "c78c0de18e1b723c8f6bde95f93ddbf4755facaf2bde40a6e8529090e500f6d1",
+      "y": "9279ef4a12a85b69ab01e639ea365f07b71392e93337d119390dc3f940931e9c"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "f94babdd34ff37a4948a6ca5e9975a30eeb2409ad9a7eb653f36697f2246433e",
+    "result": {
+      "x": "86a12f1fa999f16a38ff2839eac83df91292693093ca815505903c0fc2803a91",
+      "y": "e8b8d4f71a6a4b84f463fcc22e56a393a48a32df4fec773966c879675f179252"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "5a241af561dc270a77ee8c337e7d896fdfe2e165a596da334923f68f5cd48f80",
+    "result": {
+      "x": "b53668dd3f18d1cf40d76470975a783da0e15811b9a001092afb680ab1ec7973",
+      "y": "891547523cb669bbe3e24a8d487c6b5bb6a16ea435312ecee2b94905261aad22"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "71d39f75e178e4c0d8579ed23b52583b031c3ca1c2f8925b30e9575681c71cf3",
+    "result": {
+      "x": "fa781a9c777883bad0404b6836bea59c9421469592cd69ea67871eeb6ee53c9f",
+      "y": "c8879f0cb0fb25b66c1e4135a807f3720dca2eb11d44e602f45ec8d252b8262a"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "4754c1bacf1bc7adfc5a7f05a5bd421791800da839ce8531f4ec931a46334e6a",
+    "result": {
+      "x": "648e59799da070f61bce5da62e735661384582ebc9c8d6d00ae2f9f3bf06d2e8",
+      "y": "f92beb1ef3fe029c6527c0f2b59511a0de56eca05e55d533b9695a9b4c220636"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "507034d6a026cec6d9e5187ca076a568191dfc50be5fb4b6e9fa8895d801c3df",
+    "result": {
+      "x": "f2cf8c4e7dff187da5060d06b6329fef335cf1caf6f197274919f71efee1b57c",
+      "y": "6fb4659ee86e808ff78e24f7233522664fa06d21e10035c47dbcccdafc150736"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "dc89adb318db376ba63a124e3f5961f1734437ccf297b5b9b24123d66740892a",
+    "result": {
+      "x": "7910836159742e538e95393bc7a865b34db77365c858c22d4ab44102e45c102a",
+      "y": "f3c1a61b937e11b0c630fece90a0b2f55a7bd697678fde3be11c37f3b13740b9"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "56f25989805a0fa93c125d25eea9d40b66dc849aec80470a7410fe69d8939bb",
+    "result": {
+      "x": "537424e108375a056c54055bf96099eb560214a993b29f9a7a29dc32f2e2e600",
+      "y": "fd38b43a5b664d5a4ddb3418788cd0a8d339d39c9f689f96fdf64f1c80ff5fc"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "c99ad48f7b131a98ed1533cb1973a73eb163378aff810c74957a19dbe411e42a",
+    "result": {
+      "x": "39d5ace876fb3f6131e079e0afa0fc17eca2c4840820a3e4b16a57be2351ec3f",
+      "y": "b6814475dbcd42bcd816c64c62c392e0a1e6d6a04af7f374230a3e37ab5326fd"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "2e1ae7df425ee7eda239de07f93fb571aeb989f68376896ec4551982fbd9a2d1",
+    "result": {
+      "x": "c0f84140e38b85f9655869d835fb74602ed7bb7c42397665d7029409b781a959",
+      "y": "405ebb7d35b877384372b236fafc8ebc52eccf530ea625dbe1fb3f460ff4f82"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "8af339628006ae000de2404cd5d817f0b0ec2f5962637c3569620201691e71d",
+    "result": {
+      "x": "dc6a20defc3570c303304f3ab963b75ddf3abd246e8d84f5ea556dc614f39a53",
+      "y": "1a5d173600146f22d8750df5bb631a062eee480e05caf3d3cc2dd6aed0cd045c"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "dd04b7bd9218ef43490c25a91404ccdc8ebb5812fe970dd3a9fae0b99b2ab756",
+    "result": {
+      "x": "f2ee28140e34ca1657d094a7d6dbaf627007c635103346e1a8862578fd670ab1",
+      "y": "474caff7103c413e1fa0aac701ac2eebc783492e0207c9bc88e152d2c8172589"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "2e5b53d0dfea51d1be06613ed9520fc7d0f9f9c7093c8fc66c22f3f9c5a22d44",
+    "result": {
+      "x": "178973ffb68ec5f6559f18b9036595d8f2c9fe54172c8bf682abdb4e6874af00",
+      "y": "d5a2047806bef3dd9b744ea038cb2646af997baa283d0d24e29385c4a3f7ec21"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "ffc61c87a49ab45e9191d6fb1bb39f500466d21d4426439f854fd90d9657c69c",
+    "result": {
+      "x": "a548e7ecec7c9f15edf7f8cd12a959fb8b8a3665d9dbf85743a2421ebb80d521",
+      "y": "e432092227230814a305f889af533140cb710e85673c6866be73c7d1b7b789ee"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "f566d1337e0f055509388960503feded22e8f1bf95a7046371f0d8b52f6ceffb",
+    "result": {
+      "x": "9f90774c6b9cfa9b3daa169d4d148bf29a70f070635a5268541fe8602807fb93",
+      "y": "dbd290adbf1dde0d19deb2c484fc900759118754c17b03e7c6bad640b1753dcb"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "5f6eea02c88e8dc4b195f5e4949fb55084059f4af7ee92496a31dfa0730d6df4",
+    "result": {
+      "x": "d1efeeedbd376720dcd0cc2e493fe910e0ac7aecd818bb5953e4d9c317001287",
+      "y": "ebb698faff626d16f8d4fa4dfbbbfef3e4093411fdbf16731461193bfe0ec39"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "45c7e39f659329eb3f70625819fe7c35f261ec9eff47ce89207183e78fc4bc8a",
+    "result": {
+      "x": "2300dc637f3e61bf7508355308738a8ef4f2e91861d6e818f0396b3ea4205d08",
+      "y": "48bd21c25c02c0be693478c08bef0ee110d395c2fba4f6b7bfcb91a5871caa23"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "8d769548c5cbbc6fe665875b9a0add105be71ee5849cd14d330ad729fa8149e1",
+    "result": {
+      "x": "8b693f9b72b8393653f3ac6edf96753ee49d7f2ab8a97e5c6e5cc019f8c77b65",
+      "y": "e2b200ec4a3b31714bc5dd6096a41cca8256ee6303ecd79daebf991ac81f35c1"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "2f30d1f18f86cfa1eced94e46ce8070df1c8b6815e0579184055585f3ef4546a",
+    "result": {
+      "x": "5d6d23ed69f53c8f152a8583b165aee13d9f0afa3ccf9f1a2c3a2c53c05697cd",
+      "y": "6adbaf841cca6702c9ef8acb635c2993f7582a05a16d17b153a87b856a8ff66e"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "95d8fcd9d45c4a70919e79cd39e9a77bacc1977578733e2298186d2a84051f32",
+    "result": {
+      "x": "25a6448c6ce419f9b0f58a6f4cf2f4d2b245bae4e23945895c724a0ec62de9fe",
+      "y": "ec75c649bd6ffb5248cc34399637fa426b4254f2235ce0f0dadc20f6f24598a2"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "bc011fb8eb7184ec68abbb5d36223abb1bccc50e4153d07bcad5e68a15450914",
+    "result": {
+      "x": "a6b3dfa63ba3845370fce6ffdd0ec99cb4173349ef367c1ef07f8824bab7fa56",
+      "y": "67e615e3d14aca47126efacc2685ee78d9bed3a41621f23647ab42131eba71c2"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "20626e69611fdc0b9321f941754afe509ba042a778528fa49aaa53236fcde0b0",
+    "result": {
+      "x": "2f3ee88c7c99636a5071c76b5479aa96e9e16bbd3d3ee114324b5be0f7655fcb",
+      "y": "eab478db541f70b064bd092aea64bdc637babbb181fc2bc1f6afb87ad752cdfc"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "3aca9475a2a1bf43c0478b393a658b4193ad75974708874ca355d01a58c575d2",
+    "result": {
+      "x": "fc7884171b1835f91cbe45f52af1eba4f0e218f93db35fefd9ca199b229f4813",
+      "y": "94093191c454dc1f1b7fb7f306747828df38a8dcb997bfd8a0e978d465c91200"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "ccdad7f354bd35b97904dd86d9177a572db44056b082fc4b07328fa1a66a70c",
+    "result": {
+      "x": "b1fe72ff55656e0c1293d61e782902d661dda7c73a2e40faaabb2efdeee52cdb",
+      "y": "5aa58be6639b5dbe2231789c90653163ce857948bb49788fce42d76685b81b8d"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "f9092a5b3dd7beabd622ab7213bbf516a4e20f79d5e8ecd2af05bc1749ac1f71",
+    "result": {
+      "x": "9b8a0c98d6be6b0b051e26f149aba41431284abe3b738801ae9a45f88b2d9466",
+      "y": "e2ba3bf98ef33f046108a01f31cacb676c0cdd1b4eefcb5edb2a62c1c096d64d"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "1e79b017f6820c19bc2e80474c9d1179bd7a98792d2cce8c21cd78a176a49bfc",
+    "result": {
+      "x": "ef8e45a7fcc34f48a97d16c5761e5ea17ba98e69c53a84972ae1121663ab0e5",
+      "y": "7f9275cefd943a4d9cabbd1fad217a3b14f7aa3ceb81b6d06bc152fc2ba09499"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "c5004ec3e4bc8737ec272a15e828512dac26fe82ee78617349e99bcb34e393bc",
+    "result": {
+      "x": "4e2ad36ae45bbac06890d0cf5ddec55b676d46bb7e12257cc491c7739fdfdfc0",
+      "y": "1db0561f61d9649f6de6816a28af36f35091c202e9ea00c565e2808598cf312d"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "d8c735fdc60825777b7f9d0d9909e8fad9dde43fe854ad7d8f46cd9b45d15b89",
+    "result": {
+      "x": "6ecffdd4c8562b98c3372ce09eb912333a5bf0afbcdc4a8050e4fc80b10d6c27",
+      "y": "7b785933c54fb771c6c5139cc409be356db550b6c4d69397b24733dbf63944d1"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "bb4c97618b9284497d68b619e1f4f3e53682f85b5f301f857c12a7384e520359",
+    "result": {
+      "x": "d752b38f380e6760428d6c9dc49125b3fa11cf14a7e3819dc7b8cacd63a7f061",
+      "y": "61d5ff94e6e68adeb7267704e99c3a38dcb0f1494e4754730827dfd49c507a37"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "68b7c5af41d644740da7ee879e594fd0b55985ed515f1394f1ce7bedd1e032f7",
+    "result": {
+      "x": "6f27ede44930b8722e1dc76c7952519cfd2dc3a7be42efd86466b30e9b30a58d",
+      "y": "f9428f532821d1a104005ae2db9befaae24c9aac0b99dc2fc2e25242b516dc16"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "db915b64339ffbae4e02f0451d52fc104aacab280f99af613637f7067289a14e",
+    "result": {
+      "x": "2a10a6fc85e074eb10b53b3feaa31faff0569c22708c9ed2dc7efb8ce507eb98",
+      "y": "2c4a395858d8936a55d5f8f8df9a3c8726a6c838620681e2e6ae08b47bc4edbc"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "bc1d22d99313ccf81b68cd07f61861ffd0f4d456e17e465289990bdb10112e1",
+    "result": {
+      "x": "d2eca6a47fa70aa92aace86c0e99a61ba3e3cb7a68ec4ee980016dc695c2bf01",
+      "y": "75320f9f9411f55dd3e722fd58d8cb803fe5223f1816388df32939ac1af443e7"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "12f152da90e9422428cf7a188bca2f669bafc7ff573d8287ae4ac42caf2e2a04",
+    "result": {
+      "x": "782171a9286e5664350286bb78a42c353328d18282bf7612b3650e89f949ecbe",
+      "y": "3d41c52bf1deb132cd0632d1c19f1fceb55f9bac1499772a6748bfbbd93e0eb6"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "73fce2887a9c00f9f07d03de43905f864c521091ecdae6ee8f7a89f51abe51eb",
+    "result": {
+      "x": "350d4bd17e1ab5c887e314beedd95ae8abd0b88a05bc4a583db128c1053c622d",
+      "y": "919cf0130b711f933ec88b7f44c91c1afc682ed59273a9870977fd430efba39d"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "29b9c4ce20793d2770f12ba98d40399b66fe283199e643647eae8a162b240f1a",
+    "result": {
+      "x": "4e79d4cb431e161caa49ede90d92b5477e5cc58bab766b256705f8d8d6dbb04e",
+      "y": "6ec524148ab5cc770af2fc9634811b9ce1241ee2202468fff93a67404c476868"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "531485d76f3d10ee3000f24c2d2527fff173d9872ecac1807097af35d02133c8",
+    "result": {
+      "x": "2f9a4ce488590004ac67b92fedef9336ed943846795b36fc62ae135e74cc8059",
+      "y": "319b0e2f6e2d19c3cc0f58e679f76bd921b9ad5a07cedcb3adab7034674506ec"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "a7c96b3b0faea99794a934e6c9d595387adff4e99ff81cde69ed0faba07f1630",
+    "result": {
+      "x": "19532cd7e0950aaa0e754e852e0866a78beb6faf841413be06d46ce3257862af",
+      "y": "2edbdeec96ab486d704916246415aff720f2eacb909adb07ba66048c5ca7cf62"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "396dcd5b5ca319e4d52659593006a52ab0d01863442a4748d3c8e07564a07df2",
+    "result": {
+      "x": "ea99d850a131ea7ac1820087934933e852fceb90c011e8baaacc9e45a379a77",
+      "y": "ac9caf8901df49d3e96d75a55252c33f26e57afac7f56f66f1553c0ce43556a4"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "424c9034b4a48e8ee30aca707955420b5b3c938c8f626cec7c35400e459927dd",
+    "result": {
+      "x": "2a41c20244512e7956365d9682589f37481ff6dd944b510d8ccb4bc653df72cb",
+      "y": "161eaf3ac15f09419d09983f23f4ee6c9844b6b4e4b5b60fa250ea9516d5d0a6"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "fe6c3b26c2600f723b4ba8284f900f852562763845345ae02fec1aad392a058a",
+    "result": {
+      "x": "41d4bdaa6ec39b4adf21300c42ab8ee4adbe0599dbc89cdbc026b97f479364a9",
+      "y": "29acfcf5b99c0da9a751c2eec1498b472a1c64e3acd022b1caf4292e25173f18"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "6152140848510bdef630f444036049b8e8338c9455e3726787beb58b26bde115",
+    "result": {
+      "x": "7d10013998d23c83d26276ff2c7df6909d8edd82567396841eadbfac545ab75c",
+      "y": "76c1a120e5773c70534310611b1d1e3321edef1d7e232db74985583d544bc1aa"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "8746ae1eef0bea1b9bc00c36f7561120282aedd6038925d112df34b27a4f8212",
+    "result": {
+      "x": "972c05a35b24a500b8843e4d194c750a28e7cbd68d35a9c775f5b08cb5c4c556",
+      "y": "fcc2443cd44055e00fb3037c4ad320b4a60f4a9e33547663de6e7b52cd44e023"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "11261ed32704b28947f19d20e5b5d9f06d50493dbafbc17c58a0fd4f99de8295",
+    "result": {
+      "x": "61b68e7f00dfd5d7dbe22668a1a24b27ccb3204157938bbcf1334b194349ab66",
+      "y": "63308ff2910129678ffb8dc2b296253b267267866f7490537e245101b63dabe"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "5eb493687e6133a6a67d07e1605c411f5aad789a12b601322622ea44ec4fa41f",
+    "result": {
+      "x": "dd2c67d3b935c1381cc9db44562c8e40cf1fb25cff9b11be29a1eb453e8ba9f9",
+      "y": "1ef714e1cb0e367783158171fd7df7ea53cf8b46ce82258be71bcd2e46a6449"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "b1b601c23ef93461fa3aa75d39c721c454a00144f69334722da932b9f399b4e8",
+    "result": {
+      "x": "b8c0a62992409209cb48fa36e229759cfdfbae56a02cef334029c5dc91216359",
+      "y": "e8929244104b8fb5d3af31540e7c658aa4dc8166a57a56f4b365bbb52717551c"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "cc2d7e352fc954851433b1464b037b10a9a3d913ef595c0cb220e60760eaba60",
+    "result": {
+      "x": "651d76b481433586d7097aa3adce28d2645de6d49e24f470c32533aa1e2794cf",
+      "y": "bae0bca6df014abeb695df44a1c1a24d1eac702180d883c1f80bad14d12966b2"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "cd901f6126fea7acaded276a8ba7708942e937e92a38ca4c1a32a599fb1b4366",
+    "result": {
+      "x": "4829ab90a56a454393317f099c1eec1d7f58bb0855228f211b57165f070cbba7",
+      "y": "f5b7f732384e2c9d88059fd2057f1c1fb58e58c37587d8f47161d6e0f9d1af3c"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "mul",
+    "k": "29cadcdaded6533b72c84b054a2e230324b1ba1f72594f76bd9f7dfff33388fa",
+    "result": {
+      "x": "de1cdd9c7bf49351479108419e2e5b2a2d8d2289397259f747febf0a15c1f5d1",
+      "y": "af4c75d32691ca07607c62a20fcd93a618b06c234b0124ced665f02b8b9a02ee"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "add",
+    "p": {
+      "x": "177c837ae0ac495a61805df2d85ee2fc792e284b65ead58a98e15d9d46072c01",
+      "y": "63bb58cd4ebea558a24091adb40f4e7226ee14c3a1fb4df39c43bbe2efc7bfd8"
+    },
+    "q": {
+      "x": "419a6a646ddb817dd6b0978611a826aae0d21379246bfd4473a92894502b3348",
+      "y": "332544cf1102f584545c9fb1954c2fd513c6d072f3dee1e2db1d6c81b09214b2"
+    },
+    "result": {
+      "x": "ba6821cba9bab3ba57a98127482a5de00c108a6ac3241ebb508c58a24d9edba2",
+      "y": "8841c5de60c4af3b87375ec78cbd21e7e70a85292d77eb4f8f218b036784e120"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "add",
+    "p": {
+      "x": "743de74fe9c4e941101d3076403b39f8dfe811d9706b2c1a2ef0351da4610cc8",
+      "y": "c409e1e85e01584e76d792587bc1633693a682bebe6e473b5c25708fdba01b72"
+    },
+    "q": {
+      "x": "de6fc66584f4cc6f5fbdddf012db3e199fe36139ceb05dfa1698feca8943cd07",
+      "y": "5731a8345f07347626774bb44d4074bf2ff7833cec9b36fd4af833c03335f18c"
+    },
+    "result": {
+      "x": "41729b92ac20a9d5270b83f231e32160cba6f7af4dcabb7172f7aa3ae436b86a",
+      "y": "61573575e791393e738bf618615495f489a23e93de04c7925badd2639702d64c"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "add",
+    "p": {
+      "x": "e5aebc485db4926f1d9053ed5b3d2b2896b9ecb86b6bfcd2b5393114f733f1fd",
+      "y": "a812f30c0f2ccfdd94260264f613103ce96e7c25802fe8f8418866476970c060"
+    },
+    "q": {
+      "x": "3c20d4980972a54324b2a646edec43502e886ce3850841e3d82f1b982903a473",
+      "y": "ba90c32e1b381329cba65564e0de918ff1e5c19dcdbd5b50d74a31c4a2816f28"
+    },
+    "result": {
+      "x": "f162cb7295962346c0b79fd50126e22983ddedbd77e0bb349d9ea5a152e4f2d6",
+      "y": "c5d5a139f0c561dfd98618d561dcb6f410a724b8c2e6a0f6192f89a72eda5e22"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "add",
+    "p": {
+      "x": "b93b4be6a15db653006414f0e68a1dc4bf6e2f709c5bc4997f4abcb0d3915ead",
+      "y": "ba02d0a7d5be6a9daf58a30a2a979a15c6ef6eb2ad50eb9ca00fc7e29ac54779"
+    },
+    "q": {
+      "x": "eda4ca445ac8ec1e1715c31fc39bfce78a16baf625a5ad0c2e90b8da19c29050",
+      "y": "c140a40754974b3831c7593f2bf9e0ea6448ad06926a3ad74a7bc8ac9bbeeb36"
+    },
+    "result": {
+      "x": "2b6a0484137ffd145263affa1ff63e615cb816d297732ddf45164f00fb9c3b7c",
+      "y": "991231fd54cfdc310640a7e9afefd81eb4008d5f094bf4d8a2554074f65b927d"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "add",
+    "p": {
+      "x": "ced872a2900810f7fc5fd96ff3fe49aba2936d7303ce452e60a7bd4e6bf324dd",
+      "y": "51889010f183238e656a33f1c31ce8e15c432a5e61ae4cc458fb140dc5cc0e59"
+    },
+    "q": {
+      "x": "a2c5b6960204ecb64ed7c2de2c3f4295d30236dc6a665c768658e6be62a13d6a",
+      "y": "d2bdd095aebec16015ded1220fe001bc7ba920bc3d594872fb7d420d37b8a2cf"
+    },
+    "result": {
+      "x": "f3205354383229c47fbaa62d74bd6e173f6b056259f816983d500aa73316489d",
+      "y": "9173ecdf020eead361e9991cbd83633583cc312099b50ba87ebbd8acc7dd1db6"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "add",
+    "p": {
+      "x": "ffaf82d58839d454a425dc5114ac992297090ca9afed4e1a1078a56ebf2319a7",
+      "y": "9f666209561a1a649dd54e0352d7b685cdcd83b3ade9bfda76c5f8790d8c60a8"
+    },
+    "q": {
+      "x": "285733b88fe4267d94de42dc1c98b75bf348a1dc4cfabaa9b3862a2923df52b0",
+      "y": "7916248dc9d673890007ea8cb76766b2098c0e005a8734d207f988dc5cddb23c"
+    },
+    "result": {
+      "x": "e0255782a044e9143660f5dbf403dbb152c1e4b3e5a4a795bdb14b8fc4c264de",
+      "y": "36544280322932313e5b06af47ff890165340c905557710c09ce761ac54fb422"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "add",
+    "p": {
+      "x": "5a3cc93c18c5b5ec06f9369fe14f4749db1330ce444b8010f41df88b94f00b1",
+      "y": "ae3de579963524a1082d4cccdaf3d0a0e066d3c3314f2035320d7554fa44c181"
+    },
+    "q": {
+      "x": "8d3c764c18a8193dcfc41f53b803713d7f1e539ff7210437ef601e5b86fa2203",
+      "y": "7c11e39798859be0985797c55d55a9440c3ebe3f8bd458e2751750131871e796"
+    },
+    "result": {
+      "x": "4a234fb2bb19e141e283232515c9fd7f25f6d352179ce7418de6e56331966b9e",
+      "y": "32e8aa8c7a6a41da3c9e03dd31718f41c3609657216371659ff898f4e4049e1"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "add",
+    "p": {
+      "x": "b7d4db0568fc0de5b89fbe1f63bd6aac0e9997f0c95109d4b5ef6dbcd443d58b",
+      "y": "5aa24651fd9c11d58d47b34a12aed692b2a4ccd9267495156707e65fd86dfd97"
+    },
+    "q": {
+      "x": "b4f06b42169d95fc1571cde73dc0b130b9466b640ee960ead560a1f74ce673bd",
+      "y": "d07d57f5fc7938c625d7c6b74f5bff09a4cef914af10e2e4d0d4c0169deae546"
+    },
+    "result": {
+      "x": "6d6757aa3912c42db4459b88900728c24fbb9b646dda3d6d187218422aef96c9",
+      "y": "1de659d123112078d803268c003b438c3d01b8256cfd5904fe927b0fbe85870d"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "add",
+    "p": {
+      "x": "df52a257ab38d4b75698ce64f6724a0541ded2f9db86e2f760481d0478de6de5",
+      "y": "72c8eae0d3d4ce140de42e5b35f2230682b0b6b4ed811c188dc998cd34139ed6"
+    },
+    "q": {
+      "x": "c86b4d7489fcb275120283da7a7a9fa5e90ca81450a3bd61469342ea0e75cb2",
+      "y": "699f3b9ad78d2e5afe45c6b7d34eaead1044e7d1af51333563dcbc97a0480a69"
+    },
+    "result": {
+      "x": "20a17d5ceef3782ef05032d5045a31c0300d74dc91fb320a56ab9febdb979881",
+      "y": "9aed1c88c6344b8cbb99d4f61daf5e5d9533f640af5f07ded0b00875fd9f399a"
+    }
+  },
+  {
+    "curve": "NIST_P256",
+    "op": "add",
+    "p": {
+      "x": "6fbb17ac7ec59667d7676bd6104308cf106c8e959860a1fdf97f1a0e83b59281",
+      "y": "3899ccf454a065cf2245cf94f60792a86a5dc6cc7e8912448a70397c0fc44f00"
+    },
+    "q": {
+      "x": "4c66e6e699f1169403bf3150f7fffc2492986be01d27ac8c07107b8cd77f0f2f",
+      "y": "b08db98459bc0b925ee2befa959eb80eade7557f8afc8b7a78a5acab113dcb72"
+    },
+    "result": {
+      "x": "d876b844331222faa8806e9d34306da170ec3bd178bec9bd74bf892b3bfc7186",
+      "y": "33c8982d7f488632136ac0cb49d33f5d0621fb56288706ee3c058a97ae0745ec"
+    }
+  }
+]
