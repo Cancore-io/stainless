@@ -3,6 +3,9 @@
 `damlaudit` is the Cancore audit branch of Stainless. phd-auditor uses it as its verification
 tool, both in CI and during manual audits of the Scala models behind our Daml contracts.
 
+Home: <https://github.com/Cancore-io/stainless/tree/damlaudit>, a fork of
+`epfl-lara/stainless`. Our upstream PRs are opened from branches of the same fork.
+
 ## Branch policy
 
 * `damlaudit` = upstream `main` + every branch we open as a PR against `epfl-lara/stainless`.
