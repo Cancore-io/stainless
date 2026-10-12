@@ -21,6 +21,7 @@ Merged PR branches:
 | Branch | Upstream PR | Content |
 | :--- | :--- | :--- |
 | `feature/pr1-crypto-oracle` | not opened yet | Crypto reference oracle, test vectors, JVM suite (`verification/crypto-oracle`) |
+| `fix/issue-1657` | [#1795](https://github.com/epfl-lara/stainless/pull/1795) | `@lemma` = `@ghost @pure @inlineOnce @opaque` (fixes #1657) |
 
 ## Pinned versions
 
