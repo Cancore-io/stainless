@@ -39,11 +39,11 @@ object Curve {
   def inField(v: BigInt, p: BigInt): Boolean = 0 <= v && v < p
 
   /** u mod p as an atom: callers see the range only, redDecomp exposes the quotient. */
+  // No precondition, so a call in a postcondition adds no VC of its own (those VCs carry the whole body).
   @opaque
   def red(u: BigInt, p: BigInt): BigInt = {
-    require(p > 0)
-    u.mod(p)
-  }.ensuring(r => 0 <= r && r < p)
+    if (p > 0) u.mod(p) else BigInt(0)
+  }.ensuring(r => p > 0 ==> (0 <= r && r < p))
 
   /** x^3 + A*x + B with A = a mod p, B = b mod p. */
   def rhs(x: BigInt, c: CurveParams): BigInt = fcub(x, coefA(c), coefB(c))
