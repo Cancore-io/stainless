@@ -138,15 +138,24 @@ object FieldLaws {
   def mulAssoc(x: FieldElem, y: FieldElem, z: FieldElem): Unit = {
     require(x.p == y.p && y.p == z.p)
     val (a, b, c, p) = (x.v, y.v, z.v, x.p)
+    val ab = a * b
+    val bc = b * c
     mulNonNeg(a, b); mulNonNeg(b, c)
+    // ((a*b) mod p * c) mod p == (ab*c) mod p, witnessed by ab == q*p + u.
+    val u = (x * y).v
+    val q = floorDiv(ab, p)
+    modUnique(ab, p, q, ab - q * p)
+    mulNonNeg(u, c)
+    val q2 = floorDiv(u * c, p)
+    modUnique(u * c, p, q2, u * c - q2 * p)
+    assert(ab * c == (q * c + q2) * p + (u * c - q2 * p))
+    mulNonNeg(ab, c)
+    modUnique(ab * c, p, q * c + q2, u * c - q2 * p)
+    assert(((x * y) * z).v == (ab * c).mod(p))
     modUnique(a, p, BigInt(0), a)
-    modUnique(c, p, BigInt(0), c)
-    // ((a*b) mod p * c) mod p == (a*b*c) mod p == (a * (b*c) mod p) mod p
-    modMul(a * b, c, p)
-    assert(((x * y) * z).v == ((a * b) * c).mod(p))
-    modMul(a, b * c, p)
-    assert((x * (y * z)).v == (a * (b * c)).mod(p))
-    assert((a * b) * c == a * (b * c))
+    modMul(a, bc, p)
+    assert((x * (y * z)).v == (a * bc).mod(p))
+    assert(ab * c == a * bc)
   }.ensuring(_ => (x * y) * z == x * (y * z))
 
   @ghost @opaque @inlineOnce
