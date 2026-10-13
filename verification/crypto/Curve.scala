@@ -485,26 +485,47 @@ object Curve {
   @ghost @opaque @inlineOnce
   def chordOnCurveCore(x1: BigInt, y1: BigInt, x2: BigInt, y2: BigInt, c: CurveParams): Unit = {
     require(isOnCurve(AffinePoint(x1, y1), c) && isOnCurve(AffinePoint(x2, y2), c) && x1 < x2)
-    val p = c.p
-    val (a, b) = (coefA(c), coefB(c))
-    val l = slope(y2 + p - y1, x2 - x1, p)
-    val h = h4(x1, y1, x2, l, a)
-    val k4 = chordH4(x1, y1, x2, y2, c)
-    val k1 = onCurveWitness(x1, y1, c)
-    // G == H1 + cf*H4 == p*(k1 + cf*k4)
+    val l = slope(y2 + c.p - y1, x2 - x1, c.p)
     val xp = l * l - x1 - x2
-    val yp = l * (x1 - xp) - y1
-    val cf = l * l - 2 * x1 - x2
-    h4Is(x1, y1, x2, l, a)
-    chordCert(x1, y1, x2, l, a, b, xp, yp, h)
-    scale(cf, h, p, k4)
-    sumWitness(gap(xp, yp, a, b), gap(x1, y1, a, b), cf * h, p, k1, cf * k4)
+    val k = chordGapWitness(x1, y1, x2, y2, c)
     mulNonNeg(l, l)
-    reduceOnCurve(xp, yp, l, x1, y1, BigInt(2), k1 + cf * k4, c)
+    reduceOnCurve(xp, l * (x1 - xp) - y1, l, x1, y1, BigInt(2), k, c)
   }.ensuring(_ => {
     val l = slope(y2 + c.p - y1, x2 - x1, c.p)
     val x3 = red(l * l - x1 - x2 + c.p * 2, c.p)
     isOnCurve(AffinePoint(x3, red(l * (x1 + c.p - x3) + c.p - y1, c.p)), c)
+  })
+
+  /** The unreduced chord point (x', y') has gap == p*K; kept apart so reduceOnCurve's caller has a small context. */
+  @ghost @opaque @inlineOnce
+  def chordGapWitness(x1: BigInt, y1: BigInt, x2: BigInt, y2: BigInt, c: CurveParams): BigInt = {
+    require(isOnCurve(AffinePoint(x1, y1), c) && isOnCurve(AffinePoint(x2, y2), c) && x1 < x2)
+    val l = slope(y2 + c.p - y1, x2 - x1, c.p)
+    val k4 = chordH4(x1, y1, x2, y2, c)
+    val k1 = onCurveWitness(x1, y1, c)
+    chordCombine(x1, y1, x2, l, coefA(c), coefB(c), c.p, k1, k4)
+    k1 + (l * l - 2 * x1 - x2) * k4
+  }.ensuring(k => {
+    val l = slope(y2 + c.p - y1, x2 - x1, c.p)
+    val xp = l * l - x1 - x2
+    gap(xp, l * (x1 - xp) - y1, coefA(c), coefB(c)) == c.p * k
+  })
+
+  /** gap(x1, y1) == p*k1 and H4 == p*k4  ==>  gap(x', y') == p*(k1 + (l^2 - 2x1 - x2)*k4); variables only. */
+  @ghost @opaque @inlineOnce
+  def chordCombine(x1: BigInt, y1: BigInt, x2: BigInt, l: BigInt, a: BigInt, b: BigInt, p: BigInt, k1: BigInt, k4: BigInt): Unit = {
+    require(gap(x1, y1, a, b) == p * k1 && h4(x1, y1, x2, l, a) == p * k4)
+    val xp = l * l - x1 - x2
+    val yp = l * (x1 - xp) - y1
+    val cf = l * l - 2 * x1 - x2
+    val h = h4(x1, y1, x2, l, a)
+    h4Is(x1, y1, x2, l, a)
+    chordCert(x1, y1, x2, l, a, b, xp, yp, h)
+    scale(cf, h, p, k4)
+    sumWitness(gap(xp, yp, a, b), gap(x1, y1, a, b), cf * h, p, k1, cf * k4)
+  }.ensuring(_ => {
+    val xp = l * l - x1 - x2
+    gap(xp, l * (x1 - xp) - y1, a, b) == p * (k1 + (l * l - 2 * x1 - x2) * k4)
   })
 
   /** H5 of the tangent at a point with y != 0 is a multiple of p. */
@@ -536,26 +557,48 @@ object Curve {
   @ghost @opaque @inlineOnce
   def tangentOnCurveCore(x: BigInt, y: BigInt, c: CurveParams): Unit = {
     require(isOnCurve(AffinePoint(x, y), c) && y != 0)
-    val p = c.p
-    val (a, b) = (coefA(c), coefB(c))
     val l = tangentSlope(x, y, c)
-    val h = h5(x, y, l, a)
-    val k5 = tangentH5(x, y, c)
-    val k1 = onCurveWitness(x, y, c)
     val xp = l * l - 2 * x
-    val yp = l * (x - xp) - y
-    val cf = l * l - 3 * x
-    h5Is(x, y, l, a)
-    tangentCert(x, y, l, a, b, xp, yp, h)
-    scale(cf, h, p, k5)
-    sumWitness(gap(xp, yp, a, b), gap(x, y, a, b), cf * h, p, k1, cf * k5)
+    val k = tangentGapWitness(x, y, c)
     mulNonNeg(l, l)
-    reduceOnCurve(xp, yp, l, x, y, BigInt(2), k1 + cf * k5, c)
+    reduceOnCurve(xp, l * (x - xp) - y, l, x, y, BigInt(2), k, c)
   }.ensuring(_ => {
     val p = c.p
     val l = tangentSlope(x, y, c)
     val x3 = red(l * l - 2 * x + p * 2, p)
     isOnCurve(AffinePoint(x3, red(l * (x + p - x3) + p - y, p)), c)
+  })
+
+  /** The unreduced tangent point (x', y') has gap == p*K. */
+  @ghost @opaque @inlineOnce
+  def tangentGapWitness(x: BigInt, y: BigInt, c: CurveParams): BigInt = {
+    require(isOnCurve(AffinePoint(x, y), c) && y != 0)
+    val l = tangentSlope(x, y, c)
+    val k5 = tangentH5(x, y, c)
+    val k1 = onCurveWitness(x, y, c)
+    tangentCombine(x, y, l, coefA(c), coefB(c), c.p, k1, k5)
+    k1 + (l * l - 3 * x) * k5
+  }.ensuring(k => {
+    val l = tangentSlope(x, y, c)
+    val xp = l * l - 2 * x
+    gap(xp, l * (x - xp) - y, coefA(c), coefB(c)) == c.p * k
+  })
+
+  /** gap(x, y) == p*k1 and H5 == p*k5  ==>  gap(x', y') == p*(k1 + (l^2 - 3x)*k5); variables only. */
+  @ghost @opaque @inlineOnce
+  def tangentCombine(x: BigInt, y: BigInt, l: BigInt, a: BigInt, b: BigInt, p: BigInt, k1: BigInt, k5: BigInt): Unit = {
+    require(gap(x, y, a, b) == p * k1 && h5(x, y, l, a) == p * k5)
+    val xp = l * l - 2 * x
+    val yp = l * (x - xp) - y
+    val cf = l * l - 3 * x
+    val h = h5(x, y, l, a)
+    h5Is(x, y, l, a)
+    tangentCert(x, y, l, a, b, xp, yp, h)
+    scale(cf, h, p, k5)
+    sumWitness(gap(xp, yp, a, b), gap(x, y, a, b), cf * h, p, k1, cf * k5)
+  }.ensuring(_ => {
+    val xp = l * l - 2 * x
+    gap(xp, l * (x - xp) - y, a, b) == p * (k1 + (l * l - 3 * x) * k5)
   })
 
   // ──────────────────────────────────────────────────────────────────────────
