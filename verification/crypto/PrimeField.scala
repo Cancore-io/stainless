@@ -63,7 +63,8 @@ object Primes {
     d == 1 || (p.mod(d) != 0 && noDivisorUpTo(p, d - 1))
   }
 
-  /** p is prime: p > 1 with no divisor in [2, p - 1]. */
+  /** p is prime: p > 1 with no divisor in [2, p - 1]. Opaque: callers see an atom, the lemmas below unfold it. */
+  @opaque
   def isPrime(p: BigInt): Boolean = p > 1 && noDivisorUpTo(p, p - 1)
 
   /** A factorisation p == g*k with 2 <= g <= d contradicts noDivisorUpTo(p, d). */
@@ -79,6 +80,7 @@ object Primes {
   @ghost @opaque @inlineOnce
   def primeCoprime(p: BigInt, v: BigInt): Unit = {
     require(isPrime(p) && 0 < v && v < p)
+    unfold(isPrime(p))
     val w = extendedGcd(v, p)
     val g = w.gcd
     // p == kb*g and v == ka*g with g > 0, so kb >= 1 and g <= p.
@@ -90,6 +92,14 @@ object Primes {
       else mulMonoLeft(BigInt(1), w.ka, p)
     } else if (g > 1) noFactorBelow(p, p - 1, g, w.kb)
   }.ensuring(_ => extendedGcd(v, p).gcd == BigInt(1))
+
+  /** A prime p > 2 is odd: p != 2*y. */
+  @ghost @opaque @inlineOnce
+  def primeOdd(p: BigInt, y: BigInt): Unit = {
+    require(isPrime(p) && p > 2)
+    unfold(isPrime(p))
+    if (p == 2 * y) noFactorBelow(p, p - 1, BigInt(2), y)
+  }.ensuring(_ => p != 2 * y)
 
   /** ... hence modInverse(v, p) is defined. */
   @ghost @opaque @inlineOnce
