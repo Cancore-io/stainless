@@ -1,0 +1,12 @@
+18:17;extendedGcdZero;postcondition;invalid
+26:5;bezoutOnOperandsIsOne;postcondition;invalid
+30:7;greatestNegativeGcd;postcondition;invalid
+37:7;unitFactorSigned;postcondition;invalid
+47:10;modInverseM1;postcondition;invalid
+51:7;modInverseWrongValue;postcondition;invalid
+56:7;modInverseNone;postcondition;invalid
+61:7;powAddPlus;postcondition;invalid
+69:19;modPowM0;modulo by zero;invalid
+73:7;modPowOddNoMultiply;postcondition;invalid
+82:5;crtResidueOutOfRange;postcondition;invalid
+86:7;crtSwapped;postcondition;invalid
