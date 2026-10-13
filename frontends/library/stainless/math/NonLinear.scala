@@ -137,44 +137,78 @@ object NonLinear {
   }.ensuring(_ => n1 / d1 <= n2 / d2)
 
   // ──────────────────────────────────────────────────────────────────────────
-  // Non-negative modulus (BigInt.mod is always in [0, m) for m > 0)
+  // Modulus. For any sign of the operands the lemmas are stated on floorMod
+  // (the Euclidean remainder, built on floorDiv); BigInt.mod agrees with it and
+  // the bridge is proved for a non-negative dividend. Relating BigInt.mod of a
+  // NEGATIVE dividend to a decomposition needs the solver's hidden div term:
+  // smt-z3 and cvc5 decide it, native Z3 times out, so it is not offered here.
   // ──────────────────────────────────────────────────────────────────────────
 
-  /** y = q*m + r, 0 <= r < m  ==>  y.mod(m) == r (any sign of y and q) */
-  @ghost @pure @opaque @inlineOnce
-  def modUnique(y: BigInt, m: BigInt, q: BigInt, r: BigInt): Unit = {
-    require(m > 0 && 0 <= r && r < m && y == q * m + r)
-    if (y >= 0) modUniqueNonNeg(y, m, q, r) else modUniqueNeg(y, m, q, r)
-  }.ensuring(_ => y.mod(m) == r)
+  /** Euclidean remainder: n - floorDiv(n, m)*m, always in [0, m). */
+  def floorMod(n: BigInt, m: BigInt): BigInt = {
+    require(m > 0)
+    n - floorDiv(n, m) * m
+  }.ensuring(r => 0 <= r && r < m)
 
+  /** y = q*m + r, 0 <= r < m  ==>  q == floorDiv(y, m) and r == floorMod(y, m), any sign of y */
   @ghost @pure @opaque @inlineOnce
-  private def modUniqueNonNeg(y: BigInt, m: BigInt, q: BigInt, r: BigInt): Unit = {
-    require(y >= 0 && m > 0 && 0 <= r && r < m && y == q * m + r)
+  def floorDivUnique(y: BigInt, m: BigInt, q: BigInt, r: BigInt): Unit = {
+    require(m > 0 && 0 <= r && r < m && y == q * m + r)
+    val p = floorDiv(y, m)
+    // p*m <= y < p*m + m and q*m <= y < q*m + m force q == p.
+    if (q > p) mulMonoLeft(p + 1, q, m)
+    if (q < p) mulMonoLeft(q + 1, p, m)
+  }.ensuring(_ => q == floorDiv(y, m) && r == floorMod(y, m))
+
+  /** m > 0  ==>  floorMod(a+b, m) == floorMod(floorMod(a, m) + floorMod(b, m), m) */
+  @ghost @pure @opaque @inlineOnce
+  def floorModSum(a: BigInt, b: BigInt, m: BigInt): Unit = {
+    require(m > 0)
+    val qa = floorDiv(a, m); val ra = floorMod(a, m)
+    val qb = floorDiv(b, m); val rb = floorMod(b, m)
+    val s = ra + rb
+    val qs = floorDiv(s, m); val rs = floorMod(s, m)
+    floorDivUnique(a + b, m, qa + qb + qs, rs)
+  }.ensuring(_ => floorMod(a + b, m) == floorMod(floorMod(a, m) + floorMod(b, m), m))
+
+  /** m > 0  ==>  floorMod(a*b, m) == floorMod(floorMod(a, m) * floorMod(b, m), m) */
+  @ghost @pure @opaque @inlineOnce
+  def floorModMul(a: BigInt, b: BigInt, m: BigInt): Unit = {
+    require(m > 0)
+    val qa = floorDiv(a, m); val ra = a - qa * m
+    val qb = floorDiv(b, m); val rb = b - qb * m
+    assert(ra == floorMod(a, m) && rb == floorMod(b, m))
+    val p = ra * rb
+    val qp = floorDiv(p, m); val rp = p - qp * m
+    assert(rp == floorMod(p, m))
+    // a*b = (qa*m + ra)(qb*m + rb) = (qa*qb*m + qa*rb + ra*qb)*m + ra*rb
+    val k = qa * qb * m + qa * rb + ra * qb
+    assert(a * b == k * m + p)
+    floorDivUnique(a * b, m, k + qp, rp)
+  }.ensuring(_ => floorMod(a * b, m) == floorMod(floorMod(a, m) * floorMod(b, m), m))
+
+  /** y >= 0, m > 0  ==>  y.mod(m) == floorMod(y, m) */
+  @ghost @pure @opaque @inlineOnce
+  def modIsFloorMod(y: BigInt, m: BigInt): Unit = {
+    require(y >= 0 && m > 0)
     // SMT `mod` pairs with the very `div` term y / m encodes to here.
     val k = y / m
     assert(y.mod(m) == y - k * m)
-    // k*m <= y < k*m + m and q*m <= y < q*m + m force q == k.
-    if (q > k) mulMonoLeft(k + 1, q, m)
-    if (q < k) mulMonoLeft(q + 1, k, m)
+    assert(floorDiv(y, m) == k)
+  }.ensuring(_ => y.mod(m) == floorMod(y, m))
+
+  /** y = q*m + r, 0 <= r < m, y >= 0  ==>  y.mod(m) == r */
+  @ghost @pure @opaque @inlineOnce
+  def modUnique(y: BigInt, m: BigInt, q: BigInt, r: BigInt): Unit = {
+    require(y >= 0 && m > 0 && 0 <= r && r < m && y == q * m + r)
+    floorDivUnique(y, m, q, r)
+    modIsFloorMod(y, m)
   }.ensuring(_ => y.mod(m) == r)
 
-  /** Decided directly by the solver's Euclidean mod axioms; kept apart so the query stays bare. */
-  @ghost @pure @opaque @inlineOnce
-  private def modUniqueNeg(y: BigInt, m: BigInt, q: BigInt, r: BigInt): Unit = {
-    require(y < 0 && m > 0 && 0 <= r && r < m && y == q * m + r)
-  }.ensuring(_ => y.mod(m) == r)
-
-  /** m > 0  ==>  y.mod(m) == y - floorDiv(y, m)*m */
-  @ghost @pure @opaque @inlineOnce
-  def modFloorDiv(y: BigInt, m: BigInt): Unit = {
-    require(m > 0)
-    modUnique(y, m, floorDiv(y, m), y - floorDiv(y, m) * m)
-  }.ensuring(_ => y.mod(m) == y - floorDiv(y, m) * m)
-
-  /** m > 0  ==>  (a+b).mod(m) == (a.mod(m) + b.mod(m)).mod(m) */
+  /** a, b >= 0, m > 0  ==>  (a+b).mod(m) == (a.mod(m) + b.mod(m)).mod(m) */
   @ghost @pure @opaque @inlineOnce
   def modSum(a: BigInt, b: BigInt, m: BigInt): Unit = {
-    require(m > 0)
+    require(a >= 0 && b >= 0 && m > 0)
     val qa = floorDiv(a, m); val ra = a - qa * m
     val qb = floorDiv(b, m); val rb = b - qb * m
     modUnique(a, m, qa, ra)
@@ -185,20 +219,22 @@ object NonLinear {
     modUnique(a + b, m, qa + qb + qs, rs)
   }.ensuring(_ => (a + b).mod(m) == (a.mod(m) + b.mod(m)).mod(m))
 
-  /** m > 0  ==>  (a*b).mod(m) == (a.mod(m) * b.mod(m)).mod(m) */
+  /** a, b >= 0, m > 0  ==>  (a*b).mod(m) == (a.mod(m) * b.mod(m)).mod(m) */
   @ghost @pure @opaque @inlineOnce
   def modMul(a: BigInt, b: BigInt, m: BigInt): Unit = {
-    require(m > 0)
+    require(a >= 0 && b >= 0 && m > 0)
     val qa = floorDiv(a, m); val ra = a - qa * m
     val qb = floorDiv(b, m); val rb = b - qb * m
     modUnique(a, m, qa, ra)
     modUnique(b, m, qb, rb)
     val p = ra * rb
+    mulNonNeg(ra, rb)
     val qp = floorDiv(p, m); val rp = p - qp * m
     modUnique(p, m, qp, rp)
     // a*b = (qa*m + ra)(qb*m + rb) = (qa*qb*m + qa*rb + ra*qb)*m + ra*rb
     val k = qa * qb * m + qa * rb + ra * qb
     assert(a * b == k * m + p)
+    mulNonNeg(a, b)
     modUnique(a * b, m, k + qp, rp)
   }.ensuring(_ => (a * b).mod(m) == (a.mod(m) * b.mod(m)).mod(m))
 

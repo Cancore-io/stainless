@@ -43,15 +43,32 @@ object NonLinearUse {
   }.holds
 
   def modular(a: BigInt, b: BigInt, m: BigInt): Boolean = {
-    require(m > 0)
+    require(a >= 0 && b >= 0 && m > 0)
     ghost(modSum(a, b, m))
     ghost(modMul(a, b, m))
     (a + b).mod(m) == (a.mod(m) + b.mod(m)).mod(m) && (a * b).mod(m) == (a.mod(m) * b.mod(m)).mod(m)
   }.holds
 
+  // Any sign: the Euclidean remainder floorMod.
+  def signedModular(a: BigInt, b: BigInt, m: BigInt): Boolean = {
+    require(m > 0)
+    ghost(floorModSum(a, b, m))
+    ghost(floorModMul(a, b, m))
+    floorMod(a + b, m) == floorMod(floorMod(a, m) + floorMod(b, m), m) &&
+    floorMod(a * b, m) == floorMod(floorMod(a, m) * floorMod(b, m), m) &&
+    0 <= floorMod(a, m) && floorMod(a, m) < m
+  }.holds
+
+  def uniqueSigned(q: BigInt, r: BigInt, m: BigInt): Boolean = {
+    require(m > 0 && 0 <= r && r < m)
+    ghost(floorDivUnique(q * m + r, m, q, r))
+    floorDiv(q * m + r, m) == q && floorMod(q * m + r, m) == r
+  }.holds
+
   def modularEdges(): Boolean = {
     (BigInt(-1) + 0).mod(3) == 2 && (BigInt(-4) + 5).mod(3) == 1 && (BigInt(-4) * 5).mod(3) == 1 &&
-    (BigInt(7) + 9).mod(1) == 0 && (BigInt(7) * 9).mod(1) == 0
+    (BigInt(7) + 9).mod(1) == 0 && (BigInt(7) * 9).mod(1) == 0 &&
+    floorMod(-1, 3) == 2 && floorMod(BigInt(-4) + 5, 3) == 1 && floorMod(BigInt(-4) * 5, 3) == 1
   }.holds
 
   // Truncation vs floor on a negative dividend.
