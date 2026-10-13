@@ -60,18 +60,20 @@ object NumberTheory {
     assert(w.gcd * (w.ka * w.x) + w.gcd * (w.kb * w.y) == w.gcd)
   }.ensuring(_ => a * w.x + b * w.y == w.gcd)
 
-  /** The gcd is the greatest common divisor: any d > 0 dividing a and b (witnesses da, db) divides it, so d <= gcd. */
+  /** The gcd is the greatest common divisor: any d dividing a and b (witnesses da, db) divides it, so d <= gcd. */
   @ghost @opaque @inlineOnce
   def gcdIsGreatest(a: BigInt, b: BigInt, w: GcdWitness, d: BigInt, da: BigInt, db: BigInt): Unit = {
     require(w.gcd > 0 && a == w.ka * w.gcd && b == w.kb * w.gcd && w.ka * w.x + w.kb * w.y == BigInt(1) &&
-      d > 0 && a == da * d && b == db * d)
+      a == da * d && b == db * d)
     bezout(a, b, w)
     val k = da * w.x + db * w.y
     assert(a * w.x + b * w.y == k * d)
     assert(w.gcd == k * d)
-    // k*d == gcd > 0 with d > 0 forces k >= 1, hence gcd >= d.
-    if (k <= 0) mulMonoLeft(k, BigInt(0), d)
-    mulMonoLeft(BigInt(1), k, d)
+    if (d > 0) {
+      // k*d == gcd > 0 with d > 0 forces k >= 1, hence gcd >= d.
+      if (k <= 0) mulMonoLeft(k, BigInt(0), d)
+      mulMonoLeft(BigInt(1), k, d)
+    }
   }.ensuring(_ => d <= w.gcd && w.gcd == (da * w.x + db * w.y) * d)
 
   /** g > 0 and g*k == 1 force g == 1. */
