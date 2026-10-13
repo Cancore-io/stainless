@@ -1,0 +1,9 @@
+14:5;inverseOfZero;precond. (call inverse(FieldElem(BigInt("0"), p)));invalid
+20:5;inverseComposite;precond. (call inverse(FieldElem(v, p)));invalid
+26:5;addNoReduce;class invariant: inv;invalid
+30:48;negNoZeroCase;class invariant: inv;invalid
+35:5;ofSignedRem;class invariant: inv;invalid
+39:7;addNegIsOne;postcondition;invalid
+44:7;distribDropX;postcondition;invalid
+52:9;mulInverseAnyModulus;precond. (call inverse(x));invalid
+57:7;sqrtUnchecked;postcondition;invalid
