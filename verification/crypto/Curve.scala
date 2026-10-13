@@ -46,7 +46,14 @@ object Curve {
   }.ensuring(r => 0 <= r && r < p)
 
   /** x^3 + A*x + B with A = a mod p, B = b mod p. */
-  def rhs(x: BigInt, c: CurveParams): BigInt = fcub(x, c.a.mod(c.p), c.b.mod(c.p))
+  def rhs(x: BigInt, c: CurveParams): BigInt = fcub(x, coefA(c), coefB(c))
+
+  /** The coefficients reduced into [0, p) (P-256's a = -3 becomes p - 3); opaque atoms for the solver. */
+  @opaque
+  def coefA(c: CurveParams): BigInt = c.a.mod(c.p).ensuring(r => 0 <= r && r < c.p)
+
+  @opaque
+  def coefB(c: CurveParams): BigInt = c.b.mod(c.p).ensuring(r => 0 <= r && r < c.p)
 
   /** f(x) = x^3 + a*x + b; opaque so that the closure proofs see it as an atom. */
   @opaque
@@ -132,7 +139,7 @@ object Curve {
     require(inField(x, c.p) && 0 < y && y < c.p)
     val p = c.p
     ghostExpr(Primes.primeOdd(p, y))
-    val l = slope(3 * x * x + c.a.mod(p), if (2 * y < p) 2 * y else 2 * y - p, p)
+    val l = slope(3 * x * x + coefA(c), if (2 * y < p) 2 * y else 2 * y - p, p)
     val x3 = red(l * l - 2 * x + p * 2, p)
     AffinePoint(x3, red(l * (x + p - x3) + p - y, p))
   }
@@ -188,28 +195,32 @@ object Curve {
     bigK * w.x + h * w.y
   }.ensuring(k => h == p * k)
 
-  /** (n/d) * d == n (mod p). */
+  /** n*u == n*v for u == v (the caller never rewrites under a product). */
+  @ghost @opaque @inlineOnce
+  def mulEq(n: BigInt, u: BigInt, v: BigInt): Unit = {
+    require(u == v)
+  }.ensuring(_ => n * u == n * v)
+
+  /** (n/d) * d == n (mod p): with d*inv == q1*p + 1 and l == n*inv - q2*p, l*d - n == p*(n*q1 - q2*d). */
   @ghost @opaque @inlineOnce
   def slopeSpec(n: BigInt, d: BigInt, p: BigInt): Unit = {
     require(Primes.isPrime(p) && n >= 0 && 0 < d && d < p)
     Primes.inverseDefined(p, d)
     val inv = modInverse(d, p).get
     assert(isInverse(d, p, inv))
-    assert((d * inv).mod(p) == BigInt(1))
+    mulNonNeg(d, inv)
+    modDecomp(d * inv, p)
+    val q1 = floorDiv(d * inv, p)
+    mulNonNeg(n, inv)
+    modDecomp(n * inv, p)
+    val q2 = floorDiv(n * inv, p)
     val l = slope(n, d, p)
     unfold(slope(n, d, p))
-    assert(l == (n * inv).mod(p))
-    mulNonNeg(n, inv)
-    modUnique(d, p, BigInt(0), d)
-    // (l*d) mod p == ((n*inv)*d) mod p == (n*(inv*d)) mod p == (n mod p * 1) mod p
-    modMul(n * inv, d, p)
-    assert((l * d).mod(p) == ((n * inv) * d).mod(p))
-    mulNonNeg(inv, d)
-    modMul(n, inv * d, p)
-    assert((n * inv) * d == n * (inv * d))
-    assert(((n * inv) * d).mod(p) == (n.mod(p) * (inv * d).mod(p)).mod(p))
-    assert((inv * d).mod(p) == BigInt(1))
-    modUnique(n.mod(p), p, BigInt(0), n.mod(p))
+    assert(l == n * inv - q2 * p)
+    mulEq(n, d * inv, q1 * p + 1)
+    assert(l * d - n == p * (n * q1 - q2 * d))
+    mulNonNeg(l, d)
+    witnessModEq(l * d, n, p, n * q1 - q2 * d)
   }.ensuring(_ => (slope(n, d, p) * d).mod(p) == n.mod(p))
 
   // ──────────────────────────────────────────────────────────────────────────
@@ -340,20 +351,20 @@ object Curve {
   @ghost @opaque @inlineOnce
   def onCurveWitness(x: BigInt, y: BigInt, c: CurveParams): BigInt = {
     require(isOnCurve(AffinePoint(x, y), c))
-    val (a, b) = (c.a.mod(c.p), c.b.mod(c.p))
+    val (a, b) = (coefA(c), coefB(c))
     unfold(sameResidue(x, y, c))
     mulNonNeg(y, y)
     fcubNonNeg(x, a, b)
     val k = modEqWitness(y * y, fcub(x, a, b), c.p)
     unfold(gap(x, y, a, b))
     k
-  }.ensuring(k => gap(x, y, c.a.mod(c.p), c.b.mod(c.p)) == c.p * k)
+  }.ensuring(k => gap(x, y, coefA(c), coefB(c)) == c.p * k)
 
   /** gap == p*k  ==>  the residues of y^2 and f(x) agree, i.e. the reduced point is on the curve. */
   @ghost @opaque @inlineOnce
   def witnessOnCurve(x: BigInt, y: BigInt, k: BigInt, c: CurveParams): Unit = {
-    require(inField(x, c.p) && inField(y, c.p) && gap(x, y, c.a.mod(c.p), c.b.mod(c.p)) == c.p * k)
-    val (a, b) = (c.a.mod(c.p), c.b.mod(c.p))
+    require(inField(x, c.p) && inField(y, c.p) && gap(x, y, coefA(c), coefB(c)) == c.p * k)
+    val (a, b) = (coefA(c), coefB(c))
     unfold(gap(x, y, a, b))
     mulNonNeg(y, y)
     fcubNonNeg(x, a, b)
@@ -388,23 +399,23 @@ object Curve {
   @ghost @opaque @inlineOnce
   def reduceWitness(xp: BigInt, yp: BigInt, l: BigInt, x0: BigInt, y0: BigInt, s: BigInt, k: BigInt, c: CurveParams): BigInt = {
     require(inField(x0, c.p) && inField(y0, c.p) && l >= 0 && xp + c.p * s >= 0 &&
-      yp == l * (x0 - xp) - y0 && gap(xp, yp, c.a.mod(c.p), c.b.mod(c.p)) == c.p * k)
+      yp == l * (x0 - xp) - y0 && gap(xp, yp, coefA(c), coefB(c)) == c.p * k)
     val p = c.p
     val x3 = red(xp + p * s, p)
     val y3 = red(l * (x0 + p - x3) + p - y0, p)
     val (m3, m4) = reduceShift(xp, yp, l, x0, y0, s, p)
-    val e = shiftGap(xp, yp, x3, y3, m3, m4, c.a.mod(p), c.b.mod(p), p)
-    sumWitness(gap(x3, y3, c.a.mod(p), c.b.mod(p)), gap(xp, yp, c.a.mod(p), c.b.mod(p)), p * e, p, k, e)
+    val e = shiftGap(xp, yp, x3, y3, m3, m4, coefA(c), coefB(c), p)
+    sumWitness(gap(x3, y3, coefA(c), coefB(c)), gap(xp, yp, coefA(c), coefB(c)), p * e, p, k, e)
     k + e
   }.ensuring(bigK => {
     val x3 = red(xp + c.p * s, c.p)
-    gap(x3, red(l * (x0 + c.p - x3) + c.p - y0, c.p), c.a.mod(c.p), c.b.mod(c.p)) == c.p * bigK
+    gap(x3, red(l * (x0 + c.p - x3) + c.p - y0, c.p), coefA(c), coefB(c)) == c.p * bigK
   })
 
   @ghost @opaque @inlineOnce
   def reduceOnCurve(xp: BigInt, yp: BigInt, l: BigInt, x0: BigInt, y0: BigInt, s: BigInt, k: BigInt, c: CurveParams): Unit = {
     require(inField(x0, c.p) && inField(y0, c.p) && l >= 0 && xp + c.p * s >= 0 &&
-      yp == l * (x0 - xp) - y0 && gap(xp, yp, c.a.mod(c.p), c.b.mod(c.p)) == c.p * k)
+      yp == l * (x0 - xp) - y0 && gap(xp, yp, coefA(c), coefB(c)) == c.p * k)
     val x3 = red(xp + c.p * s, c.p)
     val y3 = red(l * (x0 + c.p - x3) + c.p - y0, c.p)
     witnessOnCurve(x3, y3, reduceWitness(xp, yp, l, x0, y0, s, k, c), c)
@@ -427,7 +438,7 @@ object Curve {
   def chordH4(x1: BigInt, y1: BigInt, x2: BigInt, y2: BigInt, c: CurveParams): BigInt = {
     require(isOnCurve(AffinePoint(x1, y1), c) && isOnCurve(AffinePoint(x2, y2), c) && x1 < x2)
     val p = c.p
-    val (a, b) = (c.a.mod(p), c.b.mod(p))
+    val (a, b) = (coefA(c), coefB(c))
     val d = x2 - x1
     val l = slope(y2 + p - y1, d, p)
     // H3: t := l*d + y1 == y2 + p*k3
@@ -443,7 +454,7 @@ object Curve {
     h4Is(x1, y1, x2, l, a)
     chordDiff(x1, y1, x2, l, a, b, t, h)
     cancel(p, d, h, k2 + e2 - k1)
-  }.ensuring(k4 => h4(x1, y1, x2, slope(y2 + c.p - y1, x2 - x1, c.p), c.a.mod(c.p)) == c.p * k4)
+  }.ensuring(k4 => h4(x1, y1, x2, slope(y2 + c.p - y1, x2 - x1, c.p), coefA(c)) == c.p * k4)
 
   @ghost @opaque @inlineOnce
   def chordOnCurve(x1: BigInt, y1: BigInt, x2: BigInt, y2: BigInt, c: CurveParams): Unit = {
@@ -455,7 +466,7 @@ object Curve {
   def chordOnCurveCore(x1: BigInt, y1: BigInt, x2: BigInt, y2: BigInt, c: CurveParams): Unit = {
     require(isOnCurve(AffinePoint(x1, y1), c) && isOnCurve(AffinePoint(x2, y2), c) && x1 < x2)
     val p = c.p
-    val (a, b) = (c.a.mod(p), c.b.mod(p))
+    val (a, b) = (coefA(c), coefB(c))
     val l = slope(y2 + p - y1, x2 - x1, p)
     val h = h4(x1, y1, x2, l, a)
     val k4 = chordH4(x1, y1, x2, y2, c)
@@ -481,7 +492,7 @@ object Curve {
   def tangentH5(x: BigInt, y: BigInt, c: CurveParams): BigInt = {
     require(inField(x, c.p) && 0 < y && y < c.p)
     val p = c.p
-    val a = c.a.mod(p)
+    val a = coefA(c)
     Primes.primeOdd(p, y)
     mulNonNeg(x, x)
     val n = 3 * x * x + a
@@ -495,7 +506,7 @@ object Curve {
   }.ensuring(k5 => {
     val p = c.p
     val d = if (2 * y < p) 2 * y else 2 * y - p
-    h5(x, y, slope(3 * x * x + c.a.mod(p), d, p), c.a.mod(p)) == p * k5
+    h5(x, y, slope(3 * x * x + coefA(c), d, p), coefA(c)) == p * k5
   })
 
   @ghost @opaque @inlineOnce
@@ -508,7 +519,7 @@ object Curve {
   def tangentOnCurveCore(x: BigInt, y: BigInt, c: CurveParams): Unit = {
     require(isOnCurve(AffinePoint(x, y), c) && y != 0)
     val p = c.p
-    val (a, b) = (c.a.mod(p), c.b.mod(p))
+    val (a, b) = (coefA(c), coefB(c))
     Primes.primeOdd(p, y)
     mulNonNeg(x, x)
     val d = if (2 * y < p) 2 * y else 2 * y - p
@@ -527,7 +538,7 @@ object Curve {
     reduceOnCurve(xp, yp, l, x, y, BigInt(2), k1 + cf * k5, c)
   }.ensuring(_ => {
     val p = c.p
-    val l = slope(3 * x * x + c.a.mod(p), if (2 * y < p) 2 * y else 2 * y - p, p)
+    val l = slope(3 * x * x + coefA(c), if (2 * y < p) 2 * y else 2 * y - p, p)
     val x3 = red(l * l - 2 * x + p * 2, p)
     isOnCurve(AffinePoint(x3, red(l * (x + p - x3) + p - y, p)), c)
   })
