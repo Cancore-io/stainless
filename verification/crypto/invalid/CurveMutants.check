@@ -1,0 +1,9 @@
+12:7;rhsSignedRem;postcondition;invalid
+20:5;addOffCurve;precond. (call add(AffinePoint(x, y), (InfinityPoint...);invalid
+26:5;slopeOverZero;precond. (call slope(n, BigInt("0"), p));invalid
+32:5;tangentAtOrderTwo;precond. (call tangent(x, BigInt("0"), c));invalid
+39:5;chordCertWrongCofactor;postcondition;invalid
+48:5;chordFlippedY;postcondition;invalid
+57:5;tangentWrongX;postcondition;invalid
+62:7;negNoZeroCase;postcondition;invalid
+68:7;doubleIsInfinity;postcondition;invalid

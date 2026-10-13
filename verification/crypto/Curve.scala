@@ -135,11 +135,20 @@ object Curve {
     AffinePoint(x3, red(l * (x1 + p - x3) + p - y1, p))
   }
 
-  def tangent(x: BigInt, y: BigInt, c: CurveParams): ECPoint = {
+  /** The tangent slope (3x^2 + A) / 2y; 2y mod p != 0 because p is odd. */
+  @opaque
+  def tangentSlope(x: BigInt, y: BigInt, c: CurveParams): BigInt = {
     require(inField(x, c.p) && 0 < y && y < c.p)
     val p = c.p
     ghostExpr(Primes.primeOdd(p, y))
-    val l = slope(3 * x * x + coefA(c), if (2 * y < p) 2 * y else 2 * y - p, p)
+    ghostExpr(mulNonNeg(x, x))
+    slope(3 * x * x + coefA(c), if (2 * y < p) 2 * y else 2 * y - p, p)
+  }.ensuring(l => 0 <= l && l < c.p)
+
+  def tangent(x: BigInt, y: BigInt, c: CurveParams): ECPoint = {
+    require(inField(x, c.p) && 0 < y && y < c.p)
+    val p = c.p
+    val l = tangentSlope(x, y, c)
     val x3 = red(l * l - 2 * x + p * 2, p)
     AffinePoint(x3, red(l * (x + p - x3) + p - y, p))
   }
@@ -502,12 +511,10 @@ object Curve {
     val k = slopeWitness(n, d, p)
     mulShift(l, 2 * y, d, e, p)
     h5Is(x, y, l, a)
+    unfold(tangentSlope(x, y, c))
+    assert(l == tangentSlope(x, y, c))
     k + l * e
-  }.ensuring(k5 => {
-    val p = c.p
-    val d = if (2 * y < p) 2 * y else 2 * y - p
-    h5(x, y, slope(3 * x * x + coefA(c), d, p), coefA(c)) == p * k5
-  })
+  }.ensuring(k5 => h5(x, y, tangentSlope(x, y, c), coefA(c)) == c.p * k5)
 
   @ghost @opaque @inlineOnce
   def tangentOnCurve(x: BigInt, y: BigInt, c: CurveParams): Unit = {
@@ -520,10 +527,7 @@ object Curve {
     require(isOnCurve(AffinePoint(x, y), c) && y != 0)
     val p = c.p
     val (a, b) = (coefA(c), coefB(c))
-    Primes.primeOdd(p, y)
-    mulNonNeg(x, x)
-    val d = if (2 * y < p) 2 * y else 2 * y - p
-    val l = slope(3 * x * x + a, d, p)
+    val l = tangentSlope(x, y, c)
     val h = h5(x, y, l, a)
     val k5 = tangentH5(x, y, c)
     val k1 = onCurveWitness(x, y, c)
@@ -538,7 +542,7 @@ object Curve {
     reduceOnCurve(xp, yp, l, x, y, BigInt(2), k1 + cf * k5, c)
   }.ensuring(_ => {
     val p = c.p
-    val l = slope(3 * x * x + coefA(c), if (2 * y < p) 2 * y else 2 * y - p, p)
+    val l = tangentSlope(x, y, c)
     val x3 = red(l * l - 2 * x + p * 2, p)
     isOnCurve(AffinePoint(x3, red(l * (x + p - x3) + p - y, p)), c)
   })
