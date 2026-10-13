@@ -27,6 +27,6 @@ for m in "${muts[@]}"; do
   fi
 done
 sed 's/\x1b\[[0-9;]*m//g' "$LOG" | grep -E 'total:' | sed 's/  */ /g'
-sed 's/\x1b\[[0-9;]*m//g' "$LOG" | grep -oE ' (valid|invalid) +U:[a-z0-9-]+ +[0-9.]+ ' | awk '{print $3}' | sort -n | tail -1 | sed 's/^/max VC time: /'
+awk '{t=$(NF-1); if (t+0 > m) {m=t+0; r=$0}} END {gsub(/  +/, " ", r); print "max VC time: " m " s —" r}' <<<"$rows"
 ((fail == 0)) && echo "OK: modules valid, mutants match .check"
 exit "$fail"

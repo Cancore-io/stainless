@@ -171,14 +171,17 @@ object FieldLaws {
     modMul(a, b + c, p)
     assert((x * (y + z)).v == (a * (b + c)).mod(p))
     // rhs: ((a*b) mod p + (a*c) mod p) reduced == (a*b + a*c) mod p
+    val ab = a * b
+    val ac = a * c
     mulNonNeg(a, b); mulNonNeg(a, c)
     val u = (x * y).v
     val t = (x * z).v
+    assert(u == ab.mod(p) && t == ac.mod(p))
     if (u + t >= p) modUnique(u + t, p, BigInt(1), u + t - p) else modUnique(u + t, p, BigInt(0), u + t)
     assert((x * y + x * z).v == (u + t).mod(p))
-    modSum(a * b, a * c, p)
-    assert((x * y + x * z).v == (a * b + a * c).mod(p))
-    assert(a * (b + c) == a * b + a * c)
+    modSum(ab, ac, p)
+    assert((ab + ac).mod(p) == (u + t).mod(p))
+    assert(a * (b + c) == ab + ac)
   }.ensuring(_ => x * (y + z) == x * y + x * z)
 
   @ghost @opaque @inlineOnce

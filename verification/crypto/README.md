@@ -6,6 +6,8 @@ Stainless-verified building blocks for ECDSA on secp256k1 / P-256, built on
 | Module | Content |
 | :--- | :--- |
 | `NumberTheory.scala` | `extendedGcd` with divisibility witnesses, `gcdIsGreatest`, `modInverse` (+ completeness), `pow` spec, `modPow` (square-and-multiply), `crt` for two coprime moduli |
+| `PrimeField.scala` | `FieldElem(v, p)` with the invariant `0 <= v < p`: `+ - * inverse /`, unary `-`, `of`; `Primes.isPrime` (definition, executable for small p) and coprimality; field laws (`FieldLaws`): neutral elements, commutativity, associativity, distributivity, additive and multiplicative inverses |
+| `SqrtMod.scala` | `sqrtMod` — Tonelli–Shanks as a certifying algorithm: soundness proved, completeness on vectors |
 
 ## Rules
 
@@ -39,6 +41,6 @@ Everything accepted without proof. An entry without a justification blocks the P
 | T1 | Hash functions (SHA-256/512, HMAC) | input `e` of ECDSA verify (PR 6b), oracle | FIPS 180-4; not part of the verified code | accepted |
 | T2 | `x.mod(m)` vs. the Euclidean quotient for a **negative** `x` | not used | NumberTheory keeps every `mod` dividend non-negative and uses `floorMod` otherwise; the non-negative bridge is proved (`NonLinear.modIsFloorMod`) | not needed |
 | T3 | Associativity of the affine group law | PR 5 | polynomial identity in a CAS plus PR 1 vectors | planned |
-| T4 | Primality of the concrete `p`, `n` until PR 6 | PR 4–5 | removed by the Pratt certificates of PR 6 | temporary |
+| T4 | Primality of the concrete `p`, `n` until PR 6 | PR 4–5: `isPrime(p)` is a precondition of `inverse` and `/`, never assumed in code | removed by the Pratt certificates of PR 6 | temporary (no code relies on it yet) |
 
 No `assume`, `@extern` or unverified `@library` in this directory.
