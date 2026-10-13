@@ -190,7 +190,8 @@ object NumberTheory {
     }
   }.ensuring(_ => pow(b, i + j) == pow(b, i) * pow(b, j))
 
-  /** Square-and-multiply: b^e mod m with O(log e) multiplications. */
+  /** Square-and-multiply: b^e mod m with O(log e) multiplications. Opaque: callers use the contract. */
+  @opaque
   def modPow(b: BigInt, e: BigInt, m: BigInt): BigInt = {
     require(b >= 0 && e >= 0 && m > 0)
     decreases(e)

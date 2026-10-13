@@ -119,6 +119,17 @@ object Curve {
     }
   }.ensuring(res => isOnCurve(res, c))
 
+  /** [k]P by double-and-add, O(log k) group operations; on the curve for every k >= 0. */
+  def scalarMul(k: BigInt, pt: ECPoint, c: CurveParams): ECPoint = {
+    require(k >= 0 && isOnCurve(pt, c))
+    decreases(k)
+    if (k == 0) InfinityPoint
+    else {
+      val d = double(scalarMul(k / 2, pt, c), c)
+      if (k % 2 == 0) d else add(d, pt, c)
+    }
+  }.ensuring(res => isOnCurve(res, c))
+
   /** n / d mod p for d in (0, p). */
   @opaque
   def slope(n: BigInt, d: BigInt, p: BigInt): BigInt = {
