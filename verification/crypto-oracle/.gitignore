@@ -1,1 +1,3 @@
 __pycache__/
+# scala-cli build cache (scala-cli run/test in tests/)
+.scala-build/
