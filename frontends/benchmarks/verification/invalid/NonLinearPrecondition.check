@@ -1,0 +1,4 @@
+8:11;zeroDivisor;body assertion: Inlined precondition of divBounds;invalid
+12:5;negativeDivisor;precondition;invalid
+17:11;scaledNegativeDivisor;body assertion: Inlined precondition of crossMultiply;invalid
+22:11;negativeDividend;body assertion: Inlined precondition of divBounds;invalid

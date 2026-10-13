@@ -1,0 +1,7 @@
+7:7;strictFloor;postcondition;invalid
+12:7;strictNumeratorMono;postcondition;invalid
+17:7;denominatorWrongWay;postcondition;invalid
+22:7;crossMultiplyFlipped;postcondition;invalid
+27:7;mulBoundedNoLowerBound;postcondition;invalid
+32:7;modSumNoOuterMod;postcondition;invalid
+40:5;roundingStrictBound;postcondition;invalid
