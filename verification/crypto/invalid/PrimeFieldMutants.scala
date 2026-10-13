@@ -10,7 +10,7 @@ object PrimeFieldMutants {
 
   // The field's division by zero: inverse of v = 0 violates the precondition.
   def inverseOfZero(p: BigInt): FieldElem = {
-    require(Primes.isPrime(p))
+    require(Primes.isPrime(p) && p > 1)
     FieldElem(BigInt(0), p).inverse
   }
 
