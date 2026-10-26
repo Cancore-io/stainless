@@ -1,5 +1,6 @@
 17:7;wrongPrimitiveRoot;postcondition;invalid
 23:7;compositeNine;postcondition;invalid
 36:5;noOrderTestAgrees;postcondition;invalid
-46:30;scalarMulOffCurve;precond. (call add(d, pt, c));invalid
-56:22;scalarMulNoProgress;measure decreases;invalid
+53:5;noKnownCheckAgrees;postcondition;invalid
+63:30;scalarMulOffCurve;precond. (call add(d, pt, c));invalid
+73:22;scalarMulNoProgress;measure decreases;invalid
