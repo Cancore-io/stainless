@@ -134,6 +134,12 @@ object Pratt {
     certifiesSound(List(s3, s7), BigInt(7))
   }.ensuring(_ => Primes.isPrime(BigInt(7)))
 
+  /** Kills a checker without known.contains(q): 9 - 1 == 8^1, 8^1 != 1 and 8^8 == 1 (mod 9), so only q = 8 being uncertified rejects 9. */
+  @ghost @opaque @inlineOnce
+  def uncertifiedFactorRejected(): Unit = {
+    ()
+  }.ensuring(_ => !certifies(List(PrattStep(BigInt(9), BigInt(8), List(PrattFactor(BigInt(8), BigInt(1), BigInt(1))))), BigInt(9)))
+
   // ──────────────────────────────────────────────────────────────────────────
   // The curve constants
   // ──────────────────────────────────────────────────────────────────────────

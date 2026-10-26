@@ -36,6 +36,23 @@ object PrattMutants {
     noOrderTest(s7, List(BigInt(3), BigInt(2))) == stepOk(s7, List(BigInt(3), BigInt(2)))
   }.holds
 
+  // factorsOk without known.contains(f.q): the composite q = 8 passes the order test and 9 is accepted.
+  def factorsOkNoKnown(p: BigInt, a: BigInt, fs: List[PrattFactor]): Boolean = {
+    require(p > 2 && 0 < a && a < p)
+    decreases(fs)
+    fs match {
+      case Nil() => true
+      case Cons(f, t) =>
+        f.e >= 1 && f.cofactor >= 0 && f.q * f.cofactor == p - 1 &&
+          modPow(a, f.cofactor, p) != BigInt(1) && factorsOkNoKnown(p, a, t)
+    }
+  }
+
+  def noKnownCheckAgrees(): Boolean = {
+    val fs = List(PrattFactor(BigInt(8), BigInt(1), BigInt(1)))
+    factorsOkNoKnown(BigInt(9), BigInt(8), fs) == factorsOk(BigInt(9), BigInt(8), fs, List(BigInt(2)))
+  }.holds
+
   // scalarMul without isOnCurve(P): [1]P == P + O is off the curve.
   def scalarMulOffCurve(k: BigInt, pt: ECPoint, c: CurveParams): ECPoint = {
     require(k >= 0)

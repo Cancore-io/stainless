@@ -58,6 +58,7 @@ object PrattJvm {
       val f0 = toScala(last.factors).head
       check(!certifies(withLast(last.copy(factors = Cons(f0.copy(cofactor = f0.cofactor + 1), last.factors.tail))), n), s"bad cofactor for $name")
       check(!certifies(fromScala(last :: steps.init), n), s"unordered certificate accepted for $name")
+      check(!certifies(fromScala(List(last)), n), s"last step without its factor certificates accepted for $name")
       // A certificate for a different number.
       check(!certifies(cert, n + 2), s"certificate reused for ${name} + 2")
     }
@@ -69,6 +70,9 @@ object PrattJvm {
       PrattStep(7, 3, fromScala(List(PrattFactor(2, 1, 3), PrattFactor(3, 1, 2))))))
     for (a <- BigInt(2) until 561)
       check(!certifies(fromScala(toScala(small) :+ PrattStep(561, a, f561)), BigInt(561)), s"561 certified with a = $a")
+
+    // An uncertified composite q: 560 == 560^1, 2^1 != 1 and 2^560 == 1 (mod 561), so only known.contains(q) rejects it.
+    check(!certifies(fromScala(List(PrattStep(561, 2, fromScala(List(PrattFactor(560, 1, 1)))))), BigInt(561)), "561 certified by the uncertified q = 560")
 
     // Verified scalarMul on every [k]G vector and the order edge cases.
     for (v <- load("secp256k1_vectors.json") ++ load("nist_p256_vectors.json") ++ edge if v("op").str == "mul") {
