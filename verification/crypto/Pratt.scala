@@ -16,9 +16,8 @@ case class PrattStep(p: BigInt, a: BigInt, factors: List[PrattFactor])
  * Pratt primality certificates (SPEC.md §4 PR 6): a list of Lucas steps in
  * dependency order, each certifying its p from primes certified before it
  * (2 is given). The checker is verified (termination, safety); its soundness
- * rests on Lucas's theorem, TCB T5 (`lucas`). That the concrete curve
- * certificates check is TCB T6 (`curveCertsChecked`): an evaluation of this
- * very checker on the JVM, which Stainless cannot do symbolically at 256 bits.
+ * rests on Lucas's theorem (`lucas`, proved in Lucas.scala); that the concrete
+ * curve certificates check is proved by the generated traces in PrattTraces.scala.
  */
 object Pratt {
 
@@ -62,16 +61,12 @@ object Pratt {
   // Soundness
   // ──────────────────────────────────────────────────────────────────────────
 
-  /**
-   * TCB T5 — Lucas's primality theorem (Lucas 1876; Pratt 1975): if a^(p-1) == 1 (mod p) and
-   * a^((p-1)/q) != 1 (mod p) for every prime q dividing p - 1, then p is prime. stepOk lists
-   * primes q whose powers multiply to p - 1, so every prime divisor of p - 1 is listed.
-   * Formally proved in Lean 4 Mathlib (`lucas_primality`, Mathlib/NumberTheory/LucasPrimality.lean);
-   * not proved in Stainless (needs the order of a unit and a counting argument over Z_p).
-   */
-  @extern @ghost
+  /** Lucas's primality theorem, proved in Lucas.scala (formerly TCB T5). */
+  @ghost @opaque @inlineOnce
   def lucas(s: PrattStep, known: List[BigInt]): Unit = {
     require(known.forall(q => Primes.isPrime(q)) && stepOk(s, known))
+    Lucas.forallAllPrime(known)
+    Lucas.lucasTheorem(s, known)
   }.ensuring(_ => Primes.isPrime(s.p))
 
   @ghost @opaque @inlineOnce
@@ -100,7 +95,7 @@ object Pratt {
     }
   }.ensuring(_ => Primes.isPrime(steps.last.p))
 
-  /** A checked certificate proves primality (modulo T5). */
+  /** A checked certificate proves primality. */
   @ghost @opaque @inlineOnce
   def certifiesSound(steps: List[PrattStep], n: BigInt): Unit = {
     require(certifies(steps, n))
@@ -140,25 +135,53 @@ object Pratt {
     ()
   }.ensuring(_ => !certifies(List(PrattStep(BigInt(9), BigInt(8), List(PrattFactor(BigInt(8), BigInt(1), BigInt(1))))), BigInt(9)))
 
+  /** checkSteps one step at a time, so a generated proof never unfolds a whole certificate. */
+  @ghost @opaque @inlineOnce
+  def checkStepsCons(s: PrattStep, t: List[PrattStep], known: List[BigInt]): Unit = {
+    require(stepOk(s, known) && checkSteps(t, s.p :: known))
+  }.ensuring(_ => checkSteps(Cons(s, t), known))
+
+  // ──────────────────────────────────────────────────────────────────────────
+  // Square-and-multiply traces: one ground `mod` per step, chained through modPow's contract
+  // ──────────────────────────────────────────────────────────────────────────
+
+  @ghost @opaque @inlineOnce
+  def traceBase(b: BigInt, m: BigInt, h: BigInt): Unit = {
+    require(b >= 0 && m > 0 && h == b.mod(m))
+    modPowOdd(b, BigInt(0), m, BigInt(1).mod(m))
+    assert(modPow(b, BigInt(0), m) == BigInt(1).mod(m))
+  }.ensuring(_ => modPow(b, BigInt(1), m) == h)
+
+  @ghost @opaque @inlineOnce
+  def traceSq(b: BigInt, e: BigInt, m: BigInt, h: BigInt, h2: BigInt): Unit = {
+    require(b >= 0 && e >= 0 && m > 0 && modPow(b, e, m) == h && (h * h).mod(m) == h2)
+    modPowEven(b, e, m, h)
+  }.ensuring(_ => modPow(b, 2 * e, m) == h2)
+
+  @ghost @opaque @inlineOnce
+  def traceSqMul(b: BigInt, e: BigInt, m: BigInt, h: BigInt, h2: BigInt): Unit = {
+    require(b >= 0 && e >= 0 && m > 0 && modPow(b, e, m) == h && ((h * h).mod(m) * b.mod(m)).mod(m) == h2)
+    modPowOdd(b, e, m, h)
+  }.ensuring(_ => modPow(b, 2 * e + 1, m) == h2)
+
   // ──────────────────────────────────────────────────────────────────────────
   // The curve constants
   // ──────────────────────────────────────────────────────────────────────────
 
-  /**
-   * TCB T6 — the four generated certificates check. Established by executing this very
-   * `certifies` on the JVM (run_jvm.sh, PrattJvm); a deterministic computation that
-   * Stainless cannot unroll at 256 bits (modPow to depth 256 times hundreds of steps).
-   */
-  @extern @ghost
+  /** The four generated certificates check (formerly TCB T6): traces in PrattTraces.scala. */
+  @ghost @opaque @inlineOnce
   def curveCertsChecked(): Unit = {
-    ()
+    PrattTraces.secp256k1PChecked()
+    PrattTraces.secp256k1NChecked()
+    PrattTraces.p256PChecked()
+    PrattTraces.p256NChecked()
   }.ensuring(_ =>
     certifies(PrattCerts.secp256k1PCert, PrattCerts.secp256k1P) &&
     certifies(PrattCerts.secp256k1NCert, PrattCerts.secp256k1N) &&
     certifies(PrattCerts.p256PCert, PrattCerts.p256P) &&
     certifies(PrattCerts.p256NCert, PrattCerts.p256N))
 
-  /** p and n of secp256k1 and P-256 are prime (T5 + T6; replaces T4). */
+  /** p and n of secp256k1 and P-256 are prime. */
   @ghost @opaque @inlineOnce
   def curveConstantsPrime(): Unit = {
     curveCertsChecked()
@@ -171,7 +194,7 @@ object Pratt {
     Primes.isPrime(PrattCerts.p256P) && Primes.isPrime(PrattCerts.p256N))
 }
 
-/** The curves of SEC 2 / FIPS 186-4, built with their primality proved (T5 + T6). */
+/** The curves of SEC 2 / FIPS 186-4, built with their primality proved. */
 object Curves {
 
   def secp256k1: CurveParams = {

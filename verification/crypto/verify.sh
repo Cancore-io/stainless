@@ -8,6 +8,7 @@ set -euo pipefail
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOT="$(cd "$DIR/../.." && pwd)"
 LOG="$(mktemp)"; trap 'rm -f "$LOG"' EXIT
+python3 "$DIR/scripts/pratt_trace_gen.py" --check || { echo "FAIL: PrattTraces.scala is not reproduced by scripts/pratt_trace_gen.py" >&2; exit 1; }
 mapfile -t srcs < <(find "$DIR" -maxdepth 1 -name '*.scala' | sort)
 mapfile -t muts < <(find "$DIR/invalid" -name '*.scala' | sort)
 cmd=("${STAINLESS:-stainless}" --solvers=smt-z3 "--timeout=${CRYPTO_TIMEOUT:-10}" --batched=true --vc-cache=false "$@"
