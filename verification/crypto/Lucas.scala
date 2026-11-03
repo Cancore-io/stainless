@@ -85,8 +85,8 @@ object Lucas {
     mulNonNeg(o, c)
     resOnePow(a, o, c, p)
     resAdd(a, o * c, r, p)
-    modMod(pow(a, r), p)
     powNonNeg(a, r)
+    modMod(pow(a, r), p)
     if (r > 0) ordMin(a, p, BigInt(1), r)
     c
   }.ensuring(c => c >= 0 && e == ordFrom(a, p, BigInt(1)) * c)
@@ -103,7 +103,7 @@ object Lucas {
     val xm = x.mod(r)
     if (xm != 0) {
       val qx = x / r
-      modUnique(x, r, qx, x - qx * r)
+      modUnique(x, r, qx, x % r)
       assert(x == qx * r + xm)
       primeCoprime(r, xm)
       val w = extendedGcd(xm, r)
@@ -127,12 +127,13 @@ object Lucas {
   /** A prime r dividing q^e divides q. */
   @ghost @opaque
   def euclidPow(r: BigInt, q: BigInt, e: BigInt): Unit = {
-    require(isPrime(r) && q >= 0 && e >= 0 && pow(q, e).mod(r) == 0)
+    require(r > 1 && isPrime(r) && q >= 0 && e >= 0 && pow(q, e).mod(r) == 0)
     decreases(e)
     unfold(isPrime(r))
     if (e == 0) modUnique(BigInt(1), r, BigInt(0), BigInt(1))
     else {
       powNonNeg(q, e - 1)
+      mulNonNeg(q, pow(q, e - 1))
       modZero(pow(q, e), r)
       euclid(r, q, pow(q, e - 1), pow(q, e) / r)
       if (q.mod(r) != 0) euclidPow(r, q, e - 1)
@@ -142,7 +143,7 @@ object Lucas {
   /** A prime r dividing a prime q is q. */
   @ghost @opaque @inlineOnce
   def primeDividesPrime(r: BigInt, q: BigInt): Unit = {
-    require(isPrime(r) && isPrime(q) && q.mod(r) == 0)
+    require(r > 1 && isPrime(r) && isPrime(q) && q.mod(r) == 0)
     unfold(isPrime(r))
     unfold(isPrime(q))
     modZero(q, r)
@@ -181,10 +182,11 @@ object Lucas {
   /** A prime r dividing product(fs) is one of the listed q (Pratt.factorsOk lists only certified primes). */
   @ghost @opaque
   def primeFactorListed(r: BigInt, p: BigInt, a: BigInt, fs: List[PrattFactor], known: List[BigInt]): PrattFactor = {
-    require(p > 2 && 0 < a && a < p && isPrime(r) && allPrime(known) && Pratt.factorsOk(p, a, fs, known) &&
+    require(p > 2 && 0 < a && a < p && r > 1 && isPrime(r) && allPrime(known) && Pratt.factorsOk(p, a, fs, known) &&
       Pratt.product(fs).mod(r) == 0)
     decreases(fs)
     unfold(isPrime(r))
+    unfold(Pratt.factorsOk(p, a, fs, known))
     fs match {
       case Nil() =>
         modUnique(BigInt(1), r, BigInt(0), BigInt(1))
@@ -194,6 +196,7 @@ object Lucas {
         unfold(isPrime(f.q))
         powNonNeg(f.q, f.e)
         productNonNeg(p, a, t, known)
+        productNonNeg(p, a, fs, known)
         val pr = Pratt.product(Cons(f, t))
         modZero(pr, r)
         euclid(r, pow(f.q, f.e), Pratt.product(t), pr / r)
@@ -209,6 +212,7 @@ object Lucas {
   def productNonNeg(p: BigInt, a: BigInt, fs: List[PrattFactor], known: List[BigInt]): Unit = {
     require(p > 2 && 0 < a && a < p && allPrime(known) && Pratt.factorsOk(p, a, fs, known))
     decreases(fs)
+    unfold(Pratt.factorsOk(p, a, fs, known))
     fs match {
       case Nil() => ()
       case Cons(f, t) =>
@@ -220,11 +224,13 @@ object Lucas {
     }
   }.ensuring(_ => Pratt.product(fs) >= 0)
 
+
   /** The conditions factorsOk states for a listed factor. */
   @ghost @opaque
   def factorsOkContains(p: BigInt, a: BigInt, fs: List[PrattFactor], known: List[BigInt], f: PrattFactor): Unit = {
     require(p > 2 && 0 < a && a < p && Pratt.factorsOk(p, a, fs, known) && fs.contains(f))
     decreases(fs)
+    unfold(Pratt.factorsOk(p, a, fs, known))
     fs match {
       case Cons(h, t) => if (h != f) factorsOkContains(p, a, t, known, f)
     }
@@ -346,7 +352,7 @@ object Lucas {
   /** Distinct values in [lo, hi] minus {g}: at most hi - lo + 1, one fewer when g is in range. */
   @ghost @opaque
   def pigeonhole(l: List[BigInt], lo: BigInt, hi: BigInt, g: BigInt): Unit = {
-    require(distinct(l) && allIn(l, lo, hi, g))
+    require(distinct(l) && allIn(l, lo, hi, g) && hi >= lo - 1)
     decreases(if (hi < lo) BigInt(0) else hi - lo + 1)
     if (hi < lo) allInEmpty(l, lo, hi, g)
     else {
@@ -387,8 +393,8 @@ object Lucas {
       resAdd(a, j, u, p)
       assert(k + u == (p - 1) + (k - j))
       resAdd(a, p - 1, k - j, p)
-      modMod(pow(a, k - j), p)
       powNonNeg(a, k - j)
+      modMod(pow(a, k - j), p)
       assert(j + u == p - 1)
       ordMin(a, p, BigInt(1), k - j)
     }
@@ -464,8 +470,10 @@ object Lucas {
     val c = ordDivides(a, p, p - 1)
     if (c >= 2) {
       val r = primeDivisor(c)
+      unfold(isPrime(r))
       modZero(c, r)
       val c2 = c / r
+      if (c2 <= 0) mulMonoLeft(c2, BigInt(0), r)
       productNonNeg(p, a, s.factors, known)
       assert(Pratt.product(s.factors) == r * (o * c2))
       mulNonNeg(o, c2)
@@ -473,7 +481,6 @@ object Lucas {
       val f = primeFactorListed(r, p, a, s.factors, known)
       factorsOkContains(p, a, s.factors, known, f)
       // r*f.cofactor == r*(o*c2) with r > 0.
-      unfold(isPrime(r))
       mulCancel(r, f.cofactor, o * c2)
       resOnePow(a, o, c2, p)
     }

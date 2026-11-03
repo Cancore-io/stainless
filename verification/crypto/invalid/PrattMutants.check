@@ -4,3 +4,6 @@
 53:5;noKnownCheckAgrees;postcondition;invalid
 63:30;scalarMulOffCurve;precond. (call add(d, pt, c));invalid
 73:22;scalarMulNoProgress;measure decreases;invalid
+82:5;brokenTrace;body assertion: Inlined precondition of traceSqMul;invalid
+89:5;brokenTrace256;body assertion: Inlined precondition of traceSq;invalid
+95:5;lucasFermatOnly;precond. (call lucasTheorem(s, known));invalid

@@ -92,12 +92,26 @@ def render(certs):
     for name, steps in certs.items():
         known = [2]
         for i, p, a, factors in steps:
-            calls = [pw(a, p - 1, p)] + [pw(a, c, p) for _, _, c in factors]
+            known_lit = "List(" + ", ".join(lit(q) for q in known) + ")"
+            st = f"PrattCerts.{name}S{i}"
+            fermat = pw(a, p - 1, p)
+            for j in reversed(range(len(factors))):
+                order = pw(a, factors[j][2], p)
+                tail = f"{st}.factors{'.tail' * j}"
+                lines.append("  @ghost @opaque")
+                lines.append(f"  def {name}S{i}F{j}(): Unit = {{")
+                lines.append(f"    {order}")
+                if j + 1 < len(factors):
+                    lines.append(f"    {name}S{i}F{j + 1}()")
+                else:
+                    lines.append(f"    factorsOkNil({st}.p, {st}.a, {known_lit})")
+                lines.append(f"    factorsOkCons({st}.p, {st}.a, {tail}, {known_lit})")
+                lines.append(f"  }}.ensuring(_ => factorsOk({st}.p, {st}.a, {tail}, {known_lit}))")
             lines.append("  @ghost @opaque")
             lines.append(f"  def {name}S{i}Ok(): Unit = {{")
-            lines += [f"    {c}" for c in calls]
-            known_lit = "List(" + ", ".join(lit(q) for q in known) + ")"
-            lines.append(f"  }}.ensuring(_ => stepOk(PrattCerts.{name}S{i}, {known_lit}))")
+            lines.append(f"    {fermat}")
+            lines.append(f"    {name}S{i}F0()")
+            lines.append(f"  }}.ensuring(_ => stepOk({st}, {known_lit}))")
             known = [p] + known
         n = len(steps)
         known = [2]

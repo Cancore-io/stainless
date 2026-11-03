@@ -29,7 +29,9 @@ object Pratt {
     }
   }
 
+  /** Opaque: a ground certificate would unroll every modPow under it; lemmas unfold it. */
   /** Every factor: q certified before, e >= 1, q * cofactor == p - 1 and a^cofactor != 1 (mod p). */
+  @opaque
   def factorsOk(p: BigInt, a: BigInt, fs: List[PrattFactor], known: List[BigInt]): Boolean = {
     require(p > 2 && 0 < a && a < p)
     decreases(fs)
@@ -114,6 +116,8 @@ object Pratt {
     assert(modPow(BigInt(2), BigInt(1), BigInt(3)) == BigInt(2))
     assert(modPow(BigInt(2), BigInt(2), BigInt(3)) == BigInt(1))
     assert(product(s3.factors) == BigInt(2))
+    unfold(factorsOk(BigInt(3), BigInt(2), s3.factors, List(BigInt(2))))
+    unfold(factorsOk(BigInt(3), BigInt(2), Nil[PrattFactor](), List(BigInt(2))))
     assert(stepOk(s3, List(BigInt(2))))
     // modPow's contract reduces each power to the spec pow, which unrolls on small exponents.
     assert(pow(BigInt(3), BigInt(2)) == BigInt(9) && pow(BigInt(3), BigInt(3)) == BigInt(27))
@@ -122,6 +126,9 @@ object Pratt {
     assert(modPow(BigInt(3), BigInt(2), BigInt(7)) == BigInt(2))
     assert(modPow(BigInt(3), BigInt(6), BigInt(7)) == BigInt(1))
     assert(product(s7.factors) == BigInt(6))
+    unfold(factorsOk(BigInt(7), BigInt(3), s7.factors, List(BigInt(3), BigInt(2))))
+    unfold(factorsOk(BigInt(7), BigInt(3), s7.factors.tail, List(BigInt(3), BigInt(2))))
+    unfold(factorsOk(BigInt(7), BigInt(3), Nil[PrattFactor](), List(BigInt(3), BigInt(2))))
     assert(factorsOk(BigInt(7), BigInt(3), s7.factors, List(BigInt(3), BigInt(2))))
     assert(stepOk(s7, List(BigInt(3), BigInt(2))))
     assert(checkSteps(List(s3, s7), List(BigInt(2))))
@@ -132,8 +139,23 @@ object Pratt {
   /** Kills a checker without known.contains(q): 9 - 1 == 8^1, 8^1 != 1 and 8^8 == 1 (mod 9), so only q = 8 being uncertified rejects 9. */
   @ghost @opaque @inlineOnce
   def uncertifiedFactorRejected(): Unit = {
-    ()
+    unfold(factorsOk(BigInt(9), BigInt(8), List(PrattFactor(BigInt(8), BigInt(1), BigInt(1))), List(BigInt(2))))
   }.ensuring(_ => !certifies(List(PrattStep(BigInt(9), BigInt(8), List(PrattFactor(BigInt(8), BigInt(1), BigInt(1))))), BigInt(9)))
+
+  /** factorsOk one factor at a time, so a generated proof never unfolds a whole factor list. */
+  @ghost @opaque @inlineOnce
+  def factorsOkCons(p: BigInt, a: BigInt, fs: List[PrattFactor], known: List[BigInt]): Unit = {
+    require(p > 2 && 0 < a && a < p && fs.nonEmpty && known.contains(fs.head.q) && fs.head.e >= 1 &&
+      fs.head.cofactor >= 0 && fs.head.q * fs.head.cofactor == p - 1 &&
+      modPow(a, fs.head.cofactor, p) != BigInt(1) && factorsOk(p, a, fs.tail, known))
+    unfold(factorsOk(p, a, fs, known))
+  }.ensuring(_ => factorsOk(p, a, fs, known))
+
+  @ghost @opaque @inlineOnce
+  def factorsOkNil(p: BigInt, a: BigInt, known: List[BigInt]): Unit = {
+    require(p > 2 && 0 < a && a < p)
+    unfold(factorsOk(p, a, Nil[PrattFactor](), known))
+  }.ensuring(_ => factorsOk(p, a, Nil[PrattFactor](), known))
 
   /** checkSteps one step at a time, so a generated proof never unfolds a whole certificate. */
   @ghost @opaque @inlineOnce
