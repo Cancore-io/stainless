@@ -31,6 +31,8 @@ object PrattTraces {
   def secp256k1PS0F0(): Unit = {
     pw1()
     factorsOkNil(PrattCerts.secp256k1PS0.p, PrattCerts.secp256k1PS0.a, List(BigInt(2)))
+    assert(PrattCerts.secp256k1PS0.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(1)))
+    assert(List(BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS0.p, PrattCerts.secp256k1PS0.a, PrattCerts.secp256k1PS0.factors, List(BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS0.p, PrattCerts.secp256k1PS0.a, PrattCerts.secp256k1PS0.factors, List(BigInt(2))))
   @ghost @opaque
@@ -73,6 +75,8 @@ object PrattTraces {
   def secp256k1PS1F1(): Unit = {
     pw3()
     factorsOkNil(PrattCerts.secp256k1PS1.p, PrattCerts.secp256k1PS1.a, List(BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS1.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(2)))
+    assert(List(BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1PS1.p, PrattCerts.secp256k1PS1.a, PrattCerts.secp256k1PS1.factors.tail, List(BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS1.p, PrattCerts.secp256k1PS1.a, PrattCerts.secp256k1PS1.factors.tail, List(BigInt(3), BigInt(2))))
   val m4: BigInt = BigInt(7)
@@ -93,6 +97,8 @@ object PrattTraces {
   def secp256k1PS1F0(): Unit = {
     pw4()
     secp256k1PS1F1()
+    assert(PrattCerts.secp256k1PS1.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(3)))
+    assert(List(BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS1.p, PrattCerts.secp256k1PS1.a, PrattCerts.secp256k1PS1.factors, List(BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS1.p, PrattCerts.secp256k1PS1.a, PrattCerts.secp256k1PS1.factors, List(BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -135,6 +141,8 @@ object PrattTraces {
   def secp256k1PS2F0(): Unit = {
     pw6()
     factorsOkNil(PrattCerts.secp256k1PS2.p, PrattCerts.secp256k1PS2.a, List(BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS2.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(2)))
+    assert(List(BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS2.p, PrattCerts.secp256k1PS2.a, PrattCerts.secp256k1PS2.factors, List(BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS2.p, PrattCerts.secp256k1PS2.a, PrattCerts.secp256k1PS2.factors, List(BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -237,6 +245,8 @@ object PrattTraces {
   def secp256k1PS3F3(): Unit = {
     pw8()
     factorsOkNil(PrattCerts.secp256k1PS3.p, PrattCerts.secp256k1PS3.a, List(BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS3.factors.tail.tail.tail.head == PrattFactor(BigInt(7), BigInt(1), BigInt(1920)))
+    assert(List(BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.secp256k1PS3.p, PrattCerts.secp256k1PS3.a, PrattCerts.secp256k1PS3.factors.tail.tail.tail, List(BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS3.p, PrattCerts.secp256k1PS3.a, PrattCerts.secp256k1PS3.factors.tail.tail.tail, List(BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m9: BigInt = BigInt(13441)
@@ -287,6 +297,8 @@ object PrattTraces {
   def secp256k1PS3F2(): Unit = {
     pw9()
     secp256k1PS3F3()
+    assert(PrattCerts.secp256k1PS3.factors.tail.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(2688)))
+    assert(List(BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1PS3.p, PrattCerts.secp256k1PS3.a, PrattCerts.secp256k1PS3.factors.tail.tail, List(BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS3.p, PrattCerts.secp256k1PS3.a, PrattCerts.secp256k1PS3.factors.tail.tail, List(BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m10: BigInt = BigInt(13441)
@@ -340,6 +352,8 @@ object PrattTraces {
   def secp256k1PS3F1(): Unit = {
     pw10()
     secp256k1PS3F2()
+    assert(PrattCerts.secp256k1PS3.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(4480)))
+    assert(List(BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1PS3.p, PrattCerts.secp256k1PS3.a, PrattCerts.secp256k1PS3.factors.tail, List(BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS3.p, PrattCerts.secp256k1PS3.a, PrattCerts.secp256k1PS3.factors.tail, List(BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m11: BigInt = BigInt(13441)
@@ -393,6 +407,8 @@ object PrattTraces {
   def secp256k1PS3F0(): Unit = {
     pw11()
     secp256k1PS3F1()
+    assert(PrattCerts.secp256k1PS3.factors.head == PrattFactor(BigInt(2), BigInt(7), BigInt(6720)))
+    assert(List(BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS3.p, PrattCerts.secp256k1PS3.a, PrattCerts.secp256k1PS3.factors, List(BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS3.p, PrattCerts.secp256k1PS3.a, PrattCerts.secp256k1PS3.factors, List(BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -444,6 +460,8 @@ object PrattTraces {
   def secp256k1PS4F1(): Unit = {
     pw13()
     factorsOkNil(PrattCerts.secp256k1PS4.p, PrattCerts.secp256k1PS4.a, List(BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS4.factors.tail.head == PrattFactor(BigInt(7), BigInt(1), BigInt(4)))
+    assert(List(BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.secp256k1PS4.p, PrattCerts.secp256k1PS4.a, PrattCerts.secp256k1PS4.factors.tail, List(BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS4.p, PrattCerts.secp256k1PS4.a, PrattCerts.secp256k1PS4.factors.tail, List(BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m14: BigInt = BigInt(29)
@@ -470,6 +488,8 @@ object PrattTraces {
   def secp256k1PS4F0(): Unit = {
     pw14()
     secp256k1PS4F1()
+    assert(PrattCerts.secp256k1PS4.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(14)))
+    assert(List(BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS4.p, PrattCerts.secp256k1PS4.a, PrattCerts.secp256k1PS4.factors, List(BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS4.p, PrattCerts.secp256k1PS4.a, PrattCerts.secp256k1PS4.factors, List(BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -521,6 +541,8 @@ object PrattTraces {
   def secp256k1PS5F2(): Unit = {
     pw16()
     factorsOkNil(PrattCerts.secp256k1PS5.p, PrattCerts.secp256k1PS5.a, List(BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS5.factors.tail.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(6)))
+    assert(List(BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1PS5.p, PrattCerts.secp256k1PS5.a, PrattCerts.secp256k1PS5.factors.tail.tail, List(BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS5.p, PrattCerts.secp256k1PS5.a, PrattCerts.secp256k1PS5.factors.tail.tail, List(BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m17: BigInt = BigInt(31)
@@ -547,6 +569,8 @@ object PrattTraces {
   def secp256k1PS5F1(): Unit = {
     pw17()
     secp256k1PS5F2()
+    assert(PrattCerts.secp256k1PS5.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(10)))
+    assert(List(BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1PS5.p, PrattCerts.secp256k1PS5.a, PrattCerts.secp256k1PS5.factors.tail, List(BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS5.p, PrattCerts.secp256k1PS5.a, PrattCerts.secp256k1PS5.factors.tail, List(BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m18: BigInt = BigInt(31)
@@ -573,6 +597,8 @@ object PrattTraces {
   def secp256k1PS5F0(): Unit = {
     pw18()
     secp256k1PS5F1()
+    assert(PrattCerts.secp256k1PS5.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(15)))
+    assert(List(BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS5.p, PrattCerts.secp256k1PS5.a, PrattCerts.secp256k1PS5.factors, List(BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS5.p, PrattCerts.secp256k1PS5.a, PrattCerts.secp256k1PS5.factors, List(BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -618,6 +644,8 @@ object PrattTraces {
   def secp256k1PS6F1(): Unit = {
     pw20()
     factorsOkNil(PrattCerts.secp256k1PS6.p, PrattCerts.secp256k1PS6.a, List(BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS6.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(2)))
+    assert(List(BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1PS6.p, PrattCerts.secp256k1PS6.a, PrattCerts.secp256k1PS6.factors.tail, List(BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS6.p, PrattCerts.secp256k1PS6.a, PrattCerts.secp256k1PS6.factors.tail, List(BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m21: BigInt = BigInt(11)
@@ -641,6 +669,8 @@ object PrattTraces {
   def secp256k1PS6F0(): Unit = {
     pw21()
     secp256k1PS6F1()
+    assert(PrattCerts.secp256k1PS6.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(5)))
+    assert(List(BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS6.p, PrattCerts.secp256k1PS6.a, PrattCerts.secp256k1PS6.factors, List(BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS6.p, PrattCerts.secp256k1PS6.a, PrattCerts.secp256k1PS6.factors, List(BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -689,6 +719,8 @@ object PrattTraces {
   def secp256k1PS7F1(): Unit = {
     pw23()
     factorsOkNil(PrattCerts.secp256k1PS7.p, PrattCerts.secp256k1PS7.a, List(BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS7.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(4)))
+    assert(List(BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1PS7.p, PrattCerts.secp256k1PS7.a, PrattCerts.secp256k1PS7.factors.tail, List(BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS7.p, PrattCerts.secp256k1PS7.a, PrattCerts.secp256k1PS7.factors.tail, List(BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m24: BigInt = BigInt(13)
@@ -712,6 +744,8 @@ object PrattTraces {
   def secp256k1PS7F0(): Unit = {
     pw24()
     secp256k1PS7F1()
+    assert(PrattCerts.secp256k1PS7.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(6)))
+    assert(List(BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS7.p, PrattCerts.secp256k1PS7.a, PrattCerts.secp256k1PS7.factors, List(BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS7.p, PrattCerts.secp256k1PS7.a, PrattCerts.secp256k1PS7.factors, List(BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -808,6 +842,8 @@ object PrattTraces {
   def secp256k1PS8F3(): Unit = {
     pw26()
     factorsOkNil(PrattCerts.secp256k1PS8.p, PrattCerts.secp256k1PS8.a, List(BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS8.factors.tail.tail.tail.head == PrattFactor(BigInt(13), BigInt(1), BigInt(594)))
+    assert(List(BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(13)))
     factorsOkCons(PrattCerts.secp256k1PS8.p, PrattCerts.secp256k1PS8.a, PrattCerts.secp256k1PS8.factors.tail.tail.tail, List(BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS8.p, PrattCerts.secp256k1PS8.a, PrattCerts.secp256k1PS8.factors.tail.tail.tail, List(BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m27: BigInt = BigInt(7723)
@@ -852,6 +888,8 @@ object PrattTraces {
   def secp256k1PS8F2(): Unit = {
     pw27()
     secp256k1PS8F3()
+    assert(PrattCerts.secp256k1PS8.factors.tail.tail.head == PrattFactor(BigInt(11), BigInt(1), BigInt(702)))
+    assert(List(BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(11)))
     factorsOkCons(PrattCerts.secp256k1PS8.p, PrattCerts.secp256k1PS8.a, PrattCerts.secp256k1PS8.factors.tail.tail, List(BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS8.p, PrattCerts.secp256k1PS8.a, PrattCerts.secp256k1PS8.factors.tail.tail, List(BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m28: BigInt = BigInt(7723)
@@ -902,6 +940,8 @@ object PrattTraces {
   def secp256k1PS8F1(): Unit = {
     pw28()
     secp256k1PS8F2()
+    assert(PrattCerts.secp256k1PS8.factors.tail.head == PrattFactor(BigInt(3), BigInt(3), BigInt(2574)))
+    assert(List(BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1PS8.p, PrattCerts.secp256k1PS8.a, PrattCerts.secp256k1PS8.factors.tail, List(BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS8.p, PrattCerts.secp256k1PS8.a, PrattCerts.secp256k1PS8.factors.tail, List(BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m29: BigInt = BigInt(7723)
@@ -952,6 +992,8 @@ object PrattTraces {
   def secp256k1PS8F0(): Unit = {
     pw29()
     secp256k1PS8F1()
+    assert(PrattCerts.secp256k1PS8.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(3861)))
+    assert(List(BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS8.p, PrattCerts.secp256k1PS8.a, PrattCerts.secp256k1PS8.factors, List(BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS8.p, PrattCerts.secp256k1PS8.a, PrattCerts.secp256k1PS8.factors, List(BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -1006,6 +1048,8 @@ object PrattTraces {
   def secp256k1PS9F0(): Unit = {
     pw31()
     factorsOkNil(PrattCerts.secp256k1PS9.p, PrattCerts.secp256k1PS9.a, List(BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS9.factors.head == PrattFactor(BigInt(2), BigInt(4), BigInt(8)))
+    assert(List(BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS9.p, PrattCerts.secp256k1PS9.a, PrattCerts.secp256k1PS9.factors, List(BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS9.p, PrattCerts.secp256k1PS9.a, PrattCerts.secp256k1PS9.factors, List(BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -1075,6 +1119,8 @@ object PrattTraces {
   def secp256k1PS10F2(): Unit = {
     pw33()
     factorsOkNil(PrattCerts.secp256k1PS10.p, PrattCerts.secp256k1PS10.a, List(BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS10.factors.tail.tail.head == PrattFactor(BigInt(17), BigInt(1), BigInt(26)))
+    assert(List(BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(17)))
     factorsOkCons(PrattCerts.secp256k1PS10.p, PrattCerts.secp256k1PS10.a, PrattCerts.secp256k1PS10.factors.tail.tail, List(BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS10.p, PrattCerts.secp256k1PS10.a, PrattCerts.secp256k1PS10.factors.tail.tail, List(BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m34: BigInt = BigInt(443)
@@ -1107,6 +1153,8 @@ object PrattTraces {
   def secp256k1PS10F1(): Unit = {
     pw34()
     secp256k1PS10F2()
+    assert(PrattCerts.secp256k1PS10.factors.tail.head == PrattFactor(BigInt(13), BigInt(1), BigInt(34)))
+    assert(List(BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(13)))
     factorsOkCons(PrattCerts.secp256k1PS10.p, PrattCerts.secp256k1PS10.a, PrattCerts.secp256k1PS10.factors.tail, List(BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS10.p, PrattCerts.secp256k1PS10.a, PrattCerts.secp256k1PS10.factors.tail, List(BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m35: BigInt = BigInt(443)
@@ -1145,6 +1193,8 @@ object PrattTraces {
   def secp256k1PS10F0(): Unit = {
     pw35()
     secp256k1PS10F1()
+    assert(PrattCerts.secp256k1PS10.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(221)))
+    assert(List(BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS10.p, PrattCerts.secp256k1PS10.a, PrattCerts.secp256k1PS10.factors, List(BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS10.p, PrattCerts.secp256k1PS10.a, PrattCerts.secp256k1PS10.factors, List(BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -1208,6 +1258,8 @@ object PrattTraces {
   def secp256k1PS11F1(): Unit = {
     pw37()
     factorsOkNil(PrattCerts.secp256k1PS11.p, PrattCerts.secp256k1PS11.a, List(BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS11.factors.tail.head == PrattFactor(BigInt(443), BigInt(1), BigInt(2)))
+    assert(List(BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(443)))
     factorsOkCons(PrattCerts.secp256k1PS11.p, PrattCerts.secp256k1PS11.a, PrattCerts.secp256k1PS11.factors.tail, List(BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS11.p, PrattCerts.secp256k1PS11.a, PrattCerts.secp256k1PS11.factors.tail, List(BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m38: BigInt = BigInt(887)
@@ -1249,6 +1301,8 @@ object PrattTraces {
   def secp256k1PS11F0(): Unit = {
     pw38()
     secp256k1PS11F1()
+    assert(PrattCerts.secp256k1PS11.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(443)))
+    assert(List(BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS11.p, PrattCerts.secp256k1PS11.a, PrattCerts.secp256k1PS11.factors, List(BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS11.p, PrattCerts.secp256k1PS11.a, PrattCerts.secp256k1PS11.factors, List(BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -1324,6 +1378,8 @@ object PrattTraces {
   def secp256k1PS12F2(): Unit = {
     pw40()
     factorsOkNil(PrattCerts.secp256k1PS12.p, PrattCerts.secp256k1PS12.a, List(BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS12.factors.tail.tail.head == PrattFactor(BigInt(887), BigInt(1), BigInt(6)))
+    assert(List(BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(887)))
     factorsOkCons(PrattCerts.secp256k1PS12.p, PrattCerts.secp256k1PS12.a, PrattCerts.secp256k1PS12.factors.tail.tail, List(BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS12.p, PrattCerts.secp256k1PS12.a, PrattCerts.secp256k1PS12.factors.tail.tail, List(BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m41: BigInt = BigInt(5323)
@@ -1371,6 +1427,8 @@ object PrattTraces {
   def secp256k1PS12F1(): Unit = {
     pw41()
     secp256k1PS12F2()
+    assert(PrattCerts.secp256k1PS12.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(1774)))
+    assert(List(BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1PS12.p, PrattCerts.secp256k1PS12.a, PrattCerts.secp256k1PS12.factors.tail, List(BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS12.p, PrattCerts.secp256k1PS12.a, PrattCerts.secp256k1PS12.factors.tail, List(BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m42: BigInt = BigInt(5323)
@@ -1421,6 +1479,8 @@ object PrattTraces {
   def secp256k1PS12F0(): Unit = {
     pw42()
     secp256k1PS12F1()
+    assert(PrattCerts.secp256k1PS12.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(2661)))
+    assert(List(BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS12.p, PrattCerts.secp256k1PS12.a, PrattCerts.secp256k1PS12.factors, List(BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS12.p, PrattCerts.secp256k1PS12.a, PrattCerts.secp256k1PS12.factors, List(BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -1484,6 +1544,8 @@ object PrattTraces {
   def secp256k1PS13F2(): Unit = {
     pw44()
     factorsOkNil(PrattCerts.secp256k1PS13.p, PrattCerts.secp256k1PS13.a, List(BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS13.factors.tail.tail.head == PrattFactor(BigInt(13), BigInt(1), BigInt(10)))
+    assert(List(BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(13)))
     factorsOkCons(PrattCerts.secp256k1PS13.p, PrattCerts.secp256k1PS13.a, PrattCerts.secp256k1PS13.factors.tail.tail, List(BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS13.p, PrattCerts.secp256k1PS13.a, PrattCerts.secp256k1PS13.factors.tail.tail, List(BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m45: BigInt = BigInt(131)
@@ -1513,6 +1575,8 @@ object PrattTraces {
   def secp256k1PS13F1(): Unit = {
     pw45()
     secp256k1PS13F2()
+    assert(PrattCerts.secp256k1PS13.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(26)))
+    assert(List(BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1PS13.p, PrattCerts.secp256k1PS13.a, PrattCerts.secp256k1PS13.factors.tail, List(BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS13.p, PrattCerts.secp256k1PS13.a, PrattCerts.secp256k1PS13.factors.tail, List(BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m46: BigInt = BigInt(131)
@@ -1548,6 +1612,8 @@ object PrattTraces {
   def secp256k1PS13F0(): Unit = {
     pw46()
     secp256k1PS13F1()
+    assert(PrattCerts.secp256k1PS13.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(65)))
+    assert(List(BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS13.p, PrattCerts.secp256k1PS13.a, PrattCerts.secp256k1PS13.factors, List(BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS13.p, PrattCerts.secp256k1PS13.a, PrattCerts.secp256k1PS13.factors, List(BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -1626,6 +1692,8 @@ object PrattTraces {
   def secp256k1PS14F2(): Unit = {
     pw48()
     factorsOkNil(PrattCerts.secp256k1PS14.p, PrattCerts.secp256k1PS14.a, List(BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS14.factors.tail.tail.head == PrattFactor(BigInt(131), BigInt(1), BigInt(20)))
+    assert(List(BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(131)))
     factorsOkCons(PrattCerts.secp256k1PS14.p, PrattCerts.secp256k1PS14.a, PrattCerts.secp256k1PS14.factors.tail.tail, List(BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS14.p, PrattCerts.secp256k1PS14.a, PrattCerts.secp256k1PS14.factors.tail.tail, List(BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m49: BigInt = BigInt(2621)
@@ -1670,6 +1738,8 @@ object PrattTraces {
   def secp256k1PS14F1(): Unit = {
     pw49()
     secp256k1PS14F2()
+    assert(PrattCerts.secp256k1PS14.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(524)))
+    assert(List(BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1PS14.p, PrattCerts.secp256k1PS14.a, PrattCerts.secp256k1PS14.factors.tail, List(BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS14.p, PrattCerts.secp256k1PS14.a, PrattCerts.secp256k1PS14.factors.tail, List(BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m50: BigInt = BigInt(2621)
@@ -1717,6 +1787,8 @@ object PrattTraces {
   def secp256k1PS14F0(): Unit = {
     pw50()
     secp256k1PS14F1()
+    assert(PrattCerts.secp256k1PS14.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(1310)))
+    assert(List(BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS14.p, PrattCerts.secp256k1PS14.a, PrattCerts.secp256k1PS14.factors, List(BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS14.p, PrattCerts.secp256k1PS14.a, PrattCerts.secp256k1PS14.factors, List(BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -1807,6 +1879,8 @@ object PrattTraces {
   def secp256k1PS15F2(): Unit = {
     pw52()
     factorsOkNil(PrattCerts.secp256k1PS15.p, PrattCerts.secp256k1PS15.a, List(BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS15.factors.tail.tail.head == PrattFactor(BigInt(443), BigInt(1), BigInt(56)))
+    assert(List(BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(443)))
     factorsOkCons(PrattCerts.secp256k1PS15.p, PrattCerts.secp256k1PS15.a, PrattCerts.secp256k1PS15.factors.tail.tail, List(BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS15.p, PrattCerts.secp256k1PS15.a, PrattCerts.secp256k1PS15.factors.tail.tail, List(BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m53: BigInt = BigInt(24809)
@@ -1857,6 +1931,8 @@ object PrattTraces {
   def secp256k1PS15F1(): Unit = {
     pw53()
     secp256k1PS15F2()
+    assert(PrattCerts.secp256k1PS15.factors.tail.head == PrattFactor(BigInt(7), BigInt(1), BigInt(3544)))
+    assert(List(BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.secp256k1PS15.p, PrattCerts.secp256k1PS15.a, PrattCerts.secp256k1PS15.factors.tail, List(BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS15.p, PrattCerts.secp256k1PS15.a, PrattCerts.secp256k1PS15.factors.tail, List(BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m54: BigInt = BigInt(24809)
@@ -1913,6 +1989,8 @@ object PrattTraces {
   def secp256k1PS15F0(): Unit = {
     pw54()
     secp256k1PS15F1()
+    assert(PrattCerts.secp256k1PS15.factors.head == PrattFactor(BigInt(2), BigInt(3), BigInt(12404)))
+    assert(List(BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS15.p, PrattCerts.secp256k1PS15.a, PrattCerts.secp256k1PS15.factors, List(BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS15.p, PrattCerts.secp256k1PS15.a, PrattCerts.secp256k1PS15.factors, List(BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -1979,6 +2057,8 @@ object PrattTraces {
   def secp256k1PS16F1(): Unit = {
     pw56()
     factorsOkNil(PrattCerts.secp256k1PS16.p, PrattCerts.secp256k1PS16.a, List(BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS16.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(32)))
+    assert(List(BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1PS16.p, PrattCerts.secp256k1PS16.a, PrattCerts.secp256k1PS16.factors.tail, List(BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS16.p, PrattCerts.secp256k1PS16.a, PrattCerts.secp256k1PS16.factors.tail, List(BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m57: BigInt = BigInt(97)
@@ -2011,6 +2091,8 @@ object PrattTraces {
   def secp256k1PS16F0(): Unit = {
     pw57()
     secp256k1PS16F1()
+    assert(PrattCerts.secp256k1PS16.factors.head == PrattFactor(BigInt(2), BigInt(5), BigInt(48)))
+    assert(List(BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS16.p, PrattCerts.secp256k1PS16.a, PrattCerts.secp256k1PS16.factors, List(BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS16.p, PrattCerts.secp256k1PS16.a, PrattCerts.secp256k1PS16.factors, List(BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -2080,6 +2162,8 @@ object PrattTraces {
   def secp256k1PS17F2(): Unit = {
     pw59()
     factorsOkNil(PrattCerts.secp256k1PS17.p, PrattCerts.secp256k1PS17.a, List(BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS17.factors.tail.tail.head == PrattFactor(BigInt(97), BigInt(1), BigInt(10)))
+    assert(List(BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(97)))
     factorsOkCons(PrattCerts.secp256k1PS17.p, PrattCerts.secp256k1PS17.a, PrattCerts.secp256k1PS17.factors.tail.tail, List(BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS17.p, PrattCerts.secp256k1PS17.a, PrattCerts.secp256k1PS17.factors.tail.tail, List(BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m60: BigInt = BigInt(971)
@@ -2118,6 +2202,8 @@ object PrattTraces {
   def secp256k1PS17F1(): Unit = {
     pw60()
     secp256k1PS17F2()
+    assert(PrattCerts.secp256k1PS17.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(194)))
+    assert(List(BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1PS17.p, PrattCerts.secp256k1PS17.a, PrattCerts.secp256k1PS17.factors.tail, List(BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS17.p, PrattCerts.secp256k1PS17.a, PrattCerts.secp256k1PS17.factors.tail, List(BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m61: BigInt = BigInt(971)
@@ -2159,6 +2245,8 @@ object PrattTraces {
   def secp256k1PS17F0(): Unit = {
     pw61()
     secp256k1PS17F1()
+    assert(PrattCerts.secp256k1PS17.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(485)))
+    assert(List(BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS17.p, PrattCerts.secp256k1PS17.a, PrattCerts.secp256k1PS17.factors, List(BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS17.p, PrattCerts.secp256k1PS17.a, PrattCerts.secp256k1PS17.factors, List(BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -2243,6 +2331,8 @@ object PrattTraces {
   def secp256k1PS18F1(): Unit = {
     pw63()
     factorsOkNil(PrattCerts.secp256k1PS18.p, PrattCerts.secp256k1PS18.a, List(BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS18.factors.tail.head == PrattFactor(BigInt(7), BigInt(3), BigInt(196)))
+    assert(List(BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.secp256k1PS18.p, PrattCerts.secp256k1PS18.a, PrattCerts.secp256k1PS18.factors.tail, List(BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS18.p, PrattCerts.secp256k1PS18.a, PrattCerts.secp256k1PS18.factors.tail, List(BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m64: BigInt = BigInt(1373)
@@ -2287,6 +2377,8 @@ object PrattTraces {
   def secp256k1PS18F0(): Unit = {
     pw64()
     secp256k1PS18F1()
+    assert(PrattCerts.secp256k1PS18.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(686)))
+    assert(List(BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS18.p, PrattCerts.secp256k1PS18.a, PrattCerts.secp256k1PS18.factors, List(BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS18.p, PrattCerts.secp256k1PS18.a, PrattCerts.secp256k1PS18.factors, List(BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -2434,6 +2526,8 @@ object PrattTraces {
   def secp256k1PS19F3(): Unit = {
     pw66()
     factorsOkNil(PrattCerts.secp256k1PS19.p, PrattCerts.secp256k1PS19.a, List(BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS19.factors.tail.tail.tail.head == PrattFactor(BigInt(1373), BigInt(1), BigInt(9710)))
+    assert(List(BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(1373)))
     factorsOkCons(PrattCerts.secp256k1PS19.p, PrattCerts.secp256k1PS19.a, PrattCerts.secp256k1PS19.factors.tail.tail.tail, List(BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS19.p, PrattCerts.secp256k1PS19.a, PrattCerts.secp256k1PS19.factors.tail.tail.tail, List(BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m67: BigInt = BigInt(13331831)
@@ -2490,6 +2584,8 @@ object PrattTraces {
   def secp256k1PS19F2(): Unit = {
     pw67()
     secp256k1PS19F3()
+    assert(PrattCerts.secp256k1PS19.factors.tail.tail.head == PrattFactor(BigInt(971), BigInt(1), BigInt(13730)))
+    assert(List(BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(971)))
     factorsOkCons(PrattCerts.secp256k1PS19.p, PrattCerts.secp256k1PS19.a, PrattCerts.secp256k1PS19.factors.tail.tail, List(BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS19.p, PrattCerts.secp256k1PS19.a, PrattCerts.secp256k1PS19.factors.tail.tail, List(BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m68: BigInt = BigInt(13331831)
@@ -2576,6 +2672,8 @@ object PrattTraces {
   def secp256k1PS19F1(): Unit = {
     pw68()
     secp256k1PS19F2()
+    assert(PrattCerts.secp256k1PS19.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(2666366)))
+    assert(List(BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1PS19.p, PrattCerts.secp256k1PS19.a, PrattCerts.secp256k1PS19.factors.tail, List(BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS19.p, PrattCerts.secp256k1PS19.a, PrattCerts.secp256k1PS19.factors.tail, List(BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m69: BigInt = BigInt(13331831)
@@ -2665,6 +2763,8 @@ object PrattTraces {
   def secp256k1PS19F0(): Unit = {
     pw69()
     secp256k1PS19F1()
+    assert(PrattCerts.secp256k1PS19.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(6665915)))
+    assert(List(BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS19.p, PrattCerts.secp256k1PS19.a, PrattCerts.secp256k1PS19.factors, List(BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS19.p, PrattCerts.secp256k1PS19.a, PrattCerts.secp256k1PS19.factors, List(BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -2998,6 +3098,8 @@ object PrattTraces {
   def secp256k1PS20F4(): Unit = {
     pw71()
     factorsOkNil(PrattCerts.secp256k1PS20.p, PrattCerts.secp256k1PS20.a, List(BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS20.factors.tail.tail.tail.tail.head == PrattFactor(BigInt(13331831), BigInt(1), BigInt("13004877800")))
+    assert(List(BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(13331831)))
     factorsOkCons(PrattCerts.secp256k1PS20.p, PrattCerts.secp256k1PS20.a, PrattCerts.secp256k1PS20.factors.tail.tail.tail.tail, List(BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS20.p, PrattCerts.secp256k1PS20.a, PrattCerts.secp256k1PS20.factors.tail.tail.tail.tail, List(BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m72: BigInt = BigInt("173378833005251801")
@@ -3153,6 +3255,8 @@ object PrattTraces {
   def secp256k1PS20F3(): Unit = {
     pw72()
     secp256k1PS20F4()
+    assert(PrattCerts.secp256k1PS20.factors.tail.tail.tail.head == PrattFactor(BigInt(24809), BigInt(1), BigInt("6988545810200")))
+    assert(List(BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(24809)))
     factorsOkCons(PrattCerts.secp256k1PS20.p, PrattCerts.secp256k1PS20.a, PrattCerts.secp256k1PS20.factors.tail.tail.tail, List(BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS20.p, PrattCerts.secp256k1PS20.a, PrattCerts.secp256k1PS20.factors.tail.tail.tail, List(BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m73: BigInt = BigInt("173378833005251801")
@@ -3317,6 +3421,8 @@ object PrattTraces {
   def secp256k1PS20F2(): Unit = {
     pw73()
     secp256k1PS20F3()
+    assert(PrattCerts.secp256k1PS20.factors.tail.tail.head == PrattFactor(BigInt(2621), BigInt(1), BigInt("66149879055800")))
+    assert(List(BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2621)))
     factorsOkCons(PrattCerts.secp256k1PS20.p, PrattCerts.secp256k1PS20.a, PrattCerts.secp256k1PS20.factors.tail.tail, List(BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS20.p, PrattCerts.secp256k1PS20.a, PrattCerts.secp256k1PS20.factors.tail.tail, List(BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m74: BigInt = BigInt("173378833005251801")
@@ -3514,6 +3620,8 @@ object PrattTraces {
   def secp256k1PS20F1(): Unit = {
     pw74()
     secp256k1PS20F2()
+    assert(PrattCerts.secp256k1PS20.factors.tail.head == PrattFactor(BigInt(5), BigInt(2), BigInt("34675766601050360")))
+    assert(List(BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1PS20.p, PrattCerts.secp256k1PS20.a, PrattCerts.secp256k1PS20.factors.tail, List(BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS20.p, PrattCerts.secp256k1PS20.a, PrattCerts.secp256k1PS20.factors.tail, List(BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m75: BigInt = BigInt("173378833005251801")
@@ -3717,6 +3825,8 @@ object PrattTraces {
   def secp256k1PS20F0(): Unit = {
     pw75()
     secp256k1PS20F1()
+    assert(PrattCerts.secp256k1PS20.factors.head == PrattFactor(BigInt(2), BigInt(3), BigInt("86689416502625900")))
+    assert(List(BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS20.p, PrattCerts.secp256k1PS20.a, PrattCerts.secp256k1PS20.factors, List(BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS20.p, PrattCerts.secp256k1PS20.a, PrattCerts.secp256k1PS20.factors, List(BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -4044,6 +4154,8 @@ object PrattTraces {
   def secp256k1PS21F3(): Unit = {
     pw77()
     factorsOkNil(PrattCerts.secp256k1PS21.p, PrattCerts.secp256k1PS21.a, List(BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS21.factors.tail.tail.tail.head == PrattFactor(BigInt("173378833005251801"), BigInt(1), BigInt(127752)))
+    assert(List(BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt("173378833005251801")))
     factorsOkCons(PrattCerts.secp256k1PS21.p, PrattCerts.secp256k1PS21.a, PrattCerts.secp256k1PS21.factors.tail.tail.tail, List(BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS21.p, PrattCerts.secp256k1PS21.a, PrattCerts.secp256k1PS21.factors.tail.tail.tail, List(BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m78: BigInt = BigInt("22149492674086928081353")
@@ -4262,6 +4374,8 @@ object PrattTraces {
   def secp256k1PS21F2(): Unit = {
     pw78()
     secp256k1PS21F3()
+    assert(PrattCerts.secp256k1PS21.factors.tail.tail.head == PrattFactor(BigInt(5323), BigInt(1), BigInt("4161091992126043224")))
+    assert(List(BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(5323)))
     factorsOkCons(PrattCerts.secp256k1PS21.p, PrattCerts.secp256k1PS21.a, PrattCerts.secp256k1PS21.factors.tail.tail, List(BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS21.p, PrattCerts.secp256k1PS21.a, PrattCerts.secp256k1PS21.factors.tail.tail, List(BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m79: BigInt = BigInt("22149492674086928081353")
@@ -4519,6 +4633,8 @@ object PrattTraces {
   def secp256k1PS21F1(): Unit = {
     pw79()
     secp256k1PS21F2()
+    assert(PrattCerts.secp256k1PS21.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt("7383164224695642693784")))
+    assert(List(BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1PS21.p, PrattCerts.secp256k1PS21.a, PrattCerts.secp256k1PS21.factors.tail, List(BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS21.p, PrattCerts.secp256k1PS21.a, PrattCerts.secp256k1PS21.factors.tail, List(BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m80: BigInt = BigInt("22149492674086928081353")
@@ -4779,6 +4895,8 @@ object PrattTraces {
   def secp256k1PS21F0(): Unit = {
     pw80()
     secp256k1PS21F1()
+    assert(PrattCerts.secp256k1PS21.factors.head == PrattFactor(BigInt(2), BigInt(3), BigInt("11074746337043464040676")))
+    assert(List(BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS21.p, PrattCerts.secp256k1PS21.a, PrattCerts.secp256k1PS21.factors, List(BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS21.p, PrattCerts.secp256k1PS21.a, PrattCerts.secp256k1PS21.factors, List(BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -5070,6 +5188,8 @@ object PrattTraces {
   def secp256k1PS22F2(): Unit = {
     pw82()
     factorsOkNil(PrattCerts.secp256k1PS22.p, PrattCerts.secp256k1PS22.a, List(BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS22.factors.tail.tail.head == PrattFactor(BigInt("22149492674086928081353"), BigInt(1), BigInt(6)))
+    assert(List(BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt("22149492674086928081353")))
     factorsOkCons(PrattCerts.secp256k1PS22.p, PrattCerts.secp256k1PS22.a, PrattCerts.secp256k1PS22.factors.tail.tail, List(BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS22.p, PrattCerts.secp256k1PS22.a, PrattCerts.secp256k1PS22.factors.tail.tail, List(BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m83: BigInt = BigInt("132896956044521568488119")
@@ -5336,6 +5456,8 @@ object PrattTraces {
   def secp256k1PS22F1(): Unit = {
     pw83()
     secp256k1PS22F2()
+    assert(PrattCerts.secp256k1PS22.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt("44298985348173856162706")))
+    assert(List(BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1PS22.p, PrattCerts.secp256k1PS22.a, PrattCerts.secp256k1PS22.factors.tail, List(BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS22.p, PrattCerts.secp256k1PS22.a, PrattCerts.secp256k1PS22.factors.tail, List(BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m84: BigInt = BigInt("132896956044521568488119")
@@ -5602,6 +5724,8 @@ object PrattTraces {
   def secp256k1PS22F0(): Unit = {
     pw84()
     secp256k1PS22F1()
+    assert(PrattCerts.secp256k1PS22.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt("66448478022260784244059")))
+    assert(List(BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS22.p, PrattCerts.secp256k1PS22.a, PrattCerts.secp256k1PS22.factors, List(BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS22.p, PrattCerts.secp256k1PS22.a, PrattCerts.secp256k1PS22.factors, List(BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -5674,6 +5798,8 @@ object PrattTraces {
   def secp256k1PS23F2(): Unit = {
     pw86()
     factorsOkNil(PrattCerts.secp256k1PS23.p, PrattCerts.secp256k1PS23.a, List(BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS23.factors.tail.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(54)))
+    assert(List(BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1PS23.p, PrattCerts.secp256k1PS23.a, PrattCerts.secp256k1PS23.factors.tail.tail, List(BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS23.p, PrattCerts.secp256k1PS23.a, PrattCerts.secp256k1PS23.factors.tail.tail, List(BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m87: BigInt = BigInt(271)
@@ -5709,6 +5835,8 @@ object PrattTraces {
   def secp256k1PS23F1(): Unit = {
     pw87()
     secp256k1PS23F2()
+    assert(PrattCerts.secp256k1PS23.factors.tail.head == PrattFactor(BigInt(3), BigInt(3), BigInt(90)))
+    assert(List(BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1PS23.p, PrattCerts.secp256k1PS23.a, PrattCerts.secp256k1PS23.factors.tail, List(BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS23.p, PrattCerts.secp256k1PS23.a, PrattCerts.secp256k1PS23.factors.tail, List(BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m88: BigInt = BigInt(271)
@@ -5747,6 +5875,8 @@ object PrattTraces {
   def secp256k1PS23F0(): Unit = {
     pw88()
     secp256k1PS23F1()
+    assert(PrattCerts.secp256k1PS23.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(135)))
+    assert(List(BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS23.p, PrattCerts.secp256k1PS23.a, PrattCerts.secp256k1PS23.factors, List(BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS23.p, PrattCerts.secp256k1PS23.a, PrattCerts.secp256k1PS23.factors, List(BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -5816,6 +5946,8 @@ object PrattTraces {
   def secp256k1PS24F2(): Unit = {
     pw90()
     factorsOkNil(PrattCerts.secp256k1PS24.p, PrattCerts.secp256k1PS24.a, List(BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS24.factors.tail.tail.head == PrattFactor(BigInt(271), BigInt(1), BigInt(6)))
+    assert(List(BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(271)))
     factorsOkCons(PrattCerts.secp256k1PS24.p, PrattCerts.secp256k1PS24.a, PrattCerts.secp256k1PS24.factors.tail.tail, List(BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS24.p, PrattCerts.secp256k1PS24.a, PrattCerts.secp256k1PS24.factors.tail.tail, List(BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m91: BigInt = BigInt(1627)
@@ -5860,6 +5992,8 @@ object PrattTraces {
   def secp256k1PS24F1(): Unit = {
     pw91()
     secp256k1PS24F2()
+    assert(PrattCerts.secp256k1PS24.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(542)))
+    assert(List(BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1PS24.p, PrattCerts.secp256k1PS24.a, PrattCerts.secp256k1PS24.factors.tail, List(BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS24.p, PrattCerts.secp256k1PS24.a, PrattCerts.secp256k1PS24.factors.tail, List(BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m92: BigInt = BigInt(1627)
@@ -5904,6 +6038,8 @@ object PrattTraces {
   def secp256k1PS24F0(): Unit = {
     pw92()
     secp256k1PS24F1()
+    assert(PrattCerts.secp256k1PS24.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(813)))
+    assert(List(BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS24.p, PrattCerts.secp256k1PS24.a, PrattCerts.secp256k1PS24.factors, List(BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS24.p, PrattCerts.secp256k1PS24.a, PrattCerts.secp256k1PS24.factors, List(BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -5961,6 +6097,8 @@ object PrattTraces {
   def secp256k1PS25F1(): Unit = {
     pw94()
     factorsOkNil(PrattCerts.secp256k1PS25.p, PrattCerts.secp256k1PS25.a, List(BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS25.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(8)))
+    assert(List(BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1PS25.p, PrattCerts.secp256k1PS25.a, PrattCerts.secp256k1PS25.factors.tail, List(BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS25.p, PrattCerts.secp256k1PS25.a, PrattCerts.secp256k1PS25.factors.tail, List(BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m95: BigInt = BigInt(41)
@@ -5990,6 +6128,8 @@ object PrattTraces {
   def secp256k1PS25F0(): Unit = {
     pw95()
     secp256k1PS25F1()
+    assert(PrattCerts.secp256k1PS25.factors.head == PrattFactor(BigInt(2), BigInt(3), BigInt(20)))
+    assert(List(BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS25.p, PrattCerts.secp256k1PS25.a, PrattCerts.secp256k1PS25.factors, List(BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS25.p, PrattCerts.secp256k1PS25.a, PrattCerts.secp256k1PS25.factors, List(BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -6044,6 +6184,8 @@ object PrattTraces {
   def secp256k1PS26F1(): Unit = {
     pw97()
     factorsOkNil(PrattCerts.secp256k1PS26.p, PrattCerts.secp256k1PS26.a, List(BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS26.factors.tail.head == PrattFactor(BigInt(41), BigInt(1), BigInt(2)))
+    assert(List(BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(41)))
     factorsOkCons(PrattCerts.secp256k1PS26.p, PrattCerts.secp256k1PS26.a, PrattCerts.secp256k1PS26.factors.tail, List(BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS26.p, PrattCerts.secp256k1PS26.a, PrattCerts.secp256k1PS26.factors.tail, List(BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m98: BigInt = BigInt(83)
@@ -6076,6 +6218,8 @@ object PrattTraces {
   def secp256k1PS26F0(): Unit = {
     pw98()
     secp256k1PS26F1()
+    assert(PrattCerts.secp256k1PS26.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(41)))
+    assert(List(BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS26.p, PrattCerts.secp256k1PS26.a, PrattCerts.secp256k1PS26.factors, List(BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS26.p, PrattCerts.secp256k1PS26.a, PrattCerts.secp256k1PS26.factors, List(BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -6157,6 +6301,8 @@ object PrattTraces {
   def secp256k1PS27F1(): Unit = {
     pw100()
     factorsOkNil(PrattCerts.secp256k1PS27.p, PrattCerts.secp256k1PS27.a, List(BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS27.factors.tail.head == PrattFactor(BigInt(83), BigInt(1), BigInt(32)))
+    assert(List(BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(83)))
     factorsOkCons(PrattCerts.secp256k1PS27.p, PrattCerts.secp256k1PS27.a, PrattCerts.secp256k1PS27.factors.tail, List(BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS27.p, PrattCerts.secp256k1PS27.a, PrattCerts.secp256k1PS27.factors.tail, List(BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m101: BigInt = BigInt(2657)
@@ -6204,6 +6350,8 @@ object PrattTraces {
   def secp256k1PS27F0(): Unit = {
     pw101()
     secp256k1PS27F1()
+    assert(PrattCerts.secp256k1PS27.factors.head == PrattFactor(BigInt(2), BigInt(5), BigInt(1328)))
+    assert(List(BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS27.p, PrattCerts.secp256k1PS27.a, PrattCerts.secp256k1PS27.factors, List(BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS27.p, PrattCerts.secp256k1PS27.a, PrattCerts.secp256k1PS27.factors, List(BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -6261,6 +6409,8 @@ object PrattTraces {
   def secp256k1PS28F2(): Unit = {
     pw103()
     factorsOkNil(PrattCerts.secp256k1PS28.p, PrattCerts.secp256k1PS28.a, List(BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS28.factors.tail.tail.head == PrattFactor(BigInt(11), BigInt(1), BigInt(6)))
+    assert(List(BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(11)))
     factorsOkCons(PrattCerts.secp256k1PS28.p, PrattCerts.secp256k1PS28.a, PrattCerts.secp256k1PS28.factors.tail.tail, List(BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS28.p, PrattCerts.secp256k1PS28.a, PrattCerts.secp256k1PS28.factors.tail.tail, List(BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m104: BigInt = BigInt(67)
@@ -6290,6 +6440,8 @@ object PrattTraces {
   def secp256k1PS28F1(): Unit = {
     pw104()
     secp256k1PS28F2()
+    assert(PrattCerts.secp256k1PS28.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(22)))
+    assert(List(BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1PS28.p, PrattCerts.secp256k1PS28.a, PrattCerts.secp256k1PS28.factors.tail, List(BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS28.p, PrattCerts.secp256k1PS28.a, PrattCerts.secp256k1PS28.factors.tail, List(BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m105: BigInt = BigInt(67)
@@ -6322,6 +6474,8 @@ object PrattTraces {
   def secp256k1PS28F0(): Unit = {
     pw105()
     secp256k1PS28F1()
+    assert(PrattCerts.secp256k1PS28.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(33)))
+    assert(List(BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS28.p, PrattCerts.secp256k1PS28.a, PrattCerts.secp256k1PS28.factors, List(BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS28.p, PrattCerts.secp256k1PS28.a, PrattCerts.secp256k1PS28.factors, List(BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -6409,6 +6563,8 @@ object PrattTraces {
   def secp256k1PS29F3(): Unit = {
     pw107()
     factorsOkNil(PrattCerts.secp256k1PS29.p, PrattCerts.secp256k1PS29.a, List(BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS29.factors.tail.tail.tail.head == PrattFactor(BigInt(67), BigInt(1), BigInt(66)))
+    assert(List(BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(67)))
     factorsOkCons(PrattCerts.secp256k1PS29.p, PrattCerts.secp256k1PS29.a, PrattCerts.secp256k1PS29.factors.tail.tail.tail, List(BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS29.p, PrattCerts.secp256k1PS29.a, PrattCerts.secp256k1PS29.factors.tail.tail.tail, List(BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m108: BigInt = BigInt(4423)
@@ -6450,6 +6606,8 @@ object PrattTraces {
   def secp256k1PS29F2(): Unit = {
     pw108()
     secp256k1PS29F3()
+    assert(PrattCerts.secp256k1PS29.factors.tail.tail.head == PrattFactor(BigInt(11), BigInt(1), BigInt(402)))
+    assert(List(BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(11)))
     factorsOkCons(PrattCerts.secp256k1PS29.p, PrattCerts.secp256k1PS29.a, PrattCerts.secp256k1PS29.factors.tail.tail, List(BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS29.p, PrattCerts.secp256k1PS29.a, PrattCerts.secp256k1PS29.factors.tail.tail, List(BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m109: BigInt = BigInt(4423)
@@ -6497,6 +6655,8 @@ object PrattTraces {
   def secp256k1PS29F1(): Unit = {
     pw109()
     secp256k1PS29F2()
+    assert(PrattCerts.secp256k1PS29.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(1474)))
+    assert(List(BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1PS29.p, PrattCerts.secp256k1PS29.a, PrattCerts.secp256k1PS29.factors.tail, List(BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS29.p, PrattCerts.secp256k1PS29.a, PrattCerts.secp256k1PS29.factors.tail, List(BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m110: BigInt = BigInt(4423)
@@ -6547,6 +6707,8 @@ object PrattTraces {
   def secp256k1PS29F0(): Unit = {
     pw110()
     secp256k1PS29F1()
+    assert(PrattCerts.secp256k1PS29.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(2211)))
+    assert(List(BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS29.p, PrattCerts.secp256k1PS29.a, PrattCerts.secp256k1PS29.factors, List(BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS29.p, PrattCerts.secp256k1PS29.a, PrattCerts.secp256k1PS29.factors, List(BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -6604,6 +6766,8 @@ object PrattTraces {
   def secp256k1PS30F2(): Unit = {
     pw112()
     factorsOkNil(PrattCerts.secp256k1PS30.p, PrattCerts.secp256k1PS30.a, List(BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS30.factors.tail.tail.head == PrattFactor(BigInt(17), BigInt(1), BigInt(6)))
+    assert(List(BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(17)))
     factorsOkCons(PrattCerts.secp256k1PS30.p, PrattCerts.secp256k1PS30.a, PrattCerts.secp256k1PS30.factors.tail.tail, List(BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS30.p, PrattCerts.secp256k1PS30.a, PrattCerts.secp256k1PS30.factors.tail.tail, List(BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m113: BigInt = BigInt(103)
@@ -6636,6 +6800,8 @@ object PrattTraces {
   def secp256k1PS30F1(): Unit = {
     pw113()
     secp256k1PS30F2()
+    assert(PrattCerts.secp256k1PS30.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(34)))
+    assert(List(BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1PS30.p, PrattCerts.secp256k1PS30.a, PrattCerts.secp256k1PS30.factors.tail, List(BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS30.p, PrattCerts.secp256k1PS30.a, PrattCerts.secp256k1PS30.factors.tail, List(BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m114: BigInt = BigInt(103)
@@ -6668,6 +6834,8 @@ object PrattTraces {
   def secp256k1PS30F0(): Unit = {
     pw114()
     secp256k1PS30F1()
+    assert(PrattCerts.secp256k1PS30.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(51)))
+    assert(List(BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS30.p, PrattCerts.secp256k1PS30.a, PrattCerts.secp256k1PS30.factors, List(BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS30.p, PrattCerts.secp256k1PS30.a, PrattCerts.secp256k1PS30.factors, List(BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -6770,6 +6938,8 @@ object PrattTraces {
   def secp256k1PS31F2(): Unit = {
     pw116()
     factorsOkNil(PrattCerts.secp256k1PS31.p, PrattCerts.secp256k1PS31.a, List(BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS31.factors.tail.tail.head == PrattFactor(BigInt(103), BigInt(1), BigInt(400)))
+    assert(List(BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(103)))
     factorsOkCons(PrattCerts.secp256k1PS31.p, PrattCerts.secp256k1PS31.a, PrattCerts.secp256k1PS31.factors.tail.tail, List(BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS31.p, PrattCerts.secp256k1PS31.a, PrattCerts.secp256k1PS31.factors.tail.tail, List(BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m117: BigInt = BigInt(41201)
@@ -6826,6 +6996,8 @@ object PrattTraces {
   def secp256k1PS31F1(): Unit = {
     pw117()
     secp256k1PS31F2()
+    assert(PrattCerts.secp256k1PS31.factors.tail.head == PrattFactor(BigInt(5), BigInt(2), BigInt(8240)))
+    assert(List(BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1PS31.p, PrattCerts.secp256k1PS31.a, PrattCerts.secp256k1PS31.factors.tail, List(BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS31.p, PrattCerts.secp256k1PS31.a, PrattCerts.secp256k1PS31.factors.tail, List(BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m118: BigInt = BigInt(41201)
@@ -6885,6 +7057,8 @@ object PrattTraces {
   def secp256k1PS31F0(): Unit = {
     pw118()
     secp256k1PS31F1()
+    assert(PrattCerts.secp256k1PS31.factors.head == PrattFactor(BigInt(2), BigInt(4), BigInt(20600)))
+    assert(List(BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS31.p, PrattCerts.secp256k1PS31.a, PrattCerts.secp256k1PS31.factors, List(BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS31.p, PrattCerts.secp256k1PS31.a, PrattCerts.secp256k1PS31.factors, List(BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -6948,6 +7122,8 @@ object PrattTraces {
   def secp256k1PS32F1(): Unit = {
     pw120()
     factorsOkNil(PrattCerts.secp256k1PS32.p, PrattCerts.secp256k1PS32.a, List(BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS32.factors.tail.head == PrattFactor(BigInt(5), BigInt(2), BigInt(20)))
+    assert(List(BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1PS32.p, PrattCerts.secp256k1PS32.a, PrattCerts.secp256k1PS32.factors.tail, List(BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS32.p, PrattCerts.secp256k1PS32.a, PrattCerts.secp256k1PS32.factors.tail, List(BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m121: BigInt = BigInt(101)
@@ -6980,6 +7156,8 @@ object PrattTraces {
   def secp256k1PS32F0(): Unit = {
     pw121()
     secp256k1PS32F1()
+    assert(PrattCerts.secp256k1PS32.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(50)))
+    assert(List(BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS32.p, PrattCerts.secp256k1PS32.a, PrattCerts.secp256k1PS32.factors, List(BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS32.p, PrattCerts.secp256k1PS32.a, PrattCerts.secp256k1PS32.factors, List(BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -7043,6 +7221,8 @@ object PrattTraces {
   def secp256k1PS33F2(): Unit = {
     pw123()
     factorsOkNil(PrattCerts.secp256k1PS33.p, PrattCerts.secp256k1PS33.a, List(BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS33.factors.tail.tail.head == PrattFactor(BigInt(17), BigInt(1), BigInt(14)))
+    assert(List(BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(17)))
     factorsOkCons(PrattCerts.secp256k1PS33.p, PrattCerts.secp256k1PS33.a, PrattCerts.secp256k1PS33.factors.tail.tail, List(BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS33.p, PrattCerts.secp256k1PS33.a, PrattCerts.secp256k1PS33.factors.tail.tail, List(BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m124: BigInt = BigInt(239)
@@ -7075,6 +7255,8 @@ object PrattTraces {
   def secp256k1PS33F1(): Unit = {
     pw124()
     secp256k1PS33F2()
+    assert(PrattCerts.secp256k1PS33.factors.tail.head == PrattFactor(BigInt(7), BigInt(1), BigInt(34)))
+    assert(List(BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.secp256k1PS33.p, PrattCerts.secp256k1PS33.a, PrattCerts.secp256k1PS33.factors.tail, List(BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS33.p, PrattCerts.secp256k1PS33.a, PrattCerts.secp256k1PS33.factors.tail, List(BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m125: BigInt = BigInt(239)
@@ -7110,6 +7292,8 @@ object PrattTraces {
   def secp256k1PS33F0(): Unit = {
     pw125()
     secp256k1PS33F1()
+    assert(PrattCerts.secp256k1PS33.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(119)))
+    assert(List(BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS33.p, PrattCerts.secp256k1PS33.a, PrattCerts.secp256k1PS33.factors, List(BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS33.p, PrattCerts.secp256k1PS33.a, PrattCerts.secp256k1PS33.factors, List(BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -7215,6 +7399,8 @@ object PrattTraces {
   def secp256k1PS34F2(): Unit = {
     pw127()
     factorsOkNil(PrattCerts.secp256k1PS34.p, PrattCerts.secp256k1PS34.a, List(BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS34.factors.tail.tail.head == PrattFactor(BigInt(239), BigInt(1), BigInt(404)))
+    assert(List(BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(239)))
     factorsOkCons(PrattCerts.secp256k1PS34.p, PrattCerts.secp256k1PS34.a, PrattCerts.secp256k1PS34.factors.tail.tail, List(BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS34.p, PrattCerts.secp256k1PS34.a, PrattCerts.secp256k1PS34.factors.tail.tail, List(BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m128: BigInt = BigInt(96557)
@@ -7259,6 +7445,8 @@ object PrattTraces {
   def secp256k1PS34F1(): Unit = {
     pw128()
     secp256k1PS34F2()
+    assert(PrattCerts.secp256k1PS34.factors.tail.head == PrattFactor(BigInt(101), BigInt(1), BigInt(956)))
+    assert(List(BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(101)))
     factorsOkCons(PrattCerts.secp256k1PS34.p, PrattCerts.secp256k1PS34.a, PrattCerts.secp256k1PS34.factors.tail, List(BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS34.p, PrattCerts.secp256k1PS34.a, PrattCerts.secp256k1PS34.factors.tail, List(BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m129: BigInt = BigInt(96557)
@@ -7321,6 +7509,8 @@ object PrattTraces {
   def secp256k1PS34F0(): Unit = {
     pw129()
     secp256k1PS34F1()
+    assert(PrattCerts.secp256k1PS34.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(48278)))
+    assert(List(BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS34.p, PrattCerts.secp256k1PS34.a, PrattCerts.secp256k1PS34.factors, List(BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS34.p, PrattCerts.secp256k1PS34.a, PrattCerts.secp256k1PS34.factors, List(BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -7372,6 +7562,8 @@ object PrattTraces {
   def secp256k1PS35F1(): Unit = {
     pw131()
     factorsOkNil(PrattCerts.secp256k1PS35.p, PrattCerts.secp256k1PS35.a, List(BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS35.factors.tail.head == PrattFactor(BigInt(3), BigInt(2), BigInt(6)))
+    assert(List(BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1PS35.p, PrattCerts.secp256k1PS35.a, PrattCerts.secp256k1PS35.factors.tail, List(BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS35.p, PrattCerts.secp256k1PS35.a, PrattCerts.secp256k1PS35.factors.tail, List(BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m132: BigInt = BigInt(19)
@@ -7398,6 +7590,8 @@ object PrattTraces {
   def secp256k1PS35F0(): Unit = {
     pw132()
     secp256k1PS35F1()
+    assert(PrattCerts.secp256k1PS35.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(9)))
+    assert(List(BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS35.p, PrattCerts.secp256k1PS35.a, PrattCerts.secp256k1PS35.factors, List(BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS35.p, PrattCerts.secp256k1PS35.a, PrattCerts.secp256k1PS35.factors, List(BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -7467,6 +7661,8 @@ object PrattTraces {
   def secp256k1PS36F2(): Unit = {
     pw134()
     factorsOkNil(PrattCerts.secp256k1PS36.p, PrattCerts.secp256k1PS36.a, List(BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS36.factors.tail.tail.head == PrattFactor(BigInt(19), BigInt(1), BigInt(22)))
+    assert(List(BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(19)))
     factorsOkCons(PrattCerts.secp256k1PS36.p, PrattCerts.secp256k1PS36.a, PrattCerts.secp256k1PS36.factors.tail.tail, List(BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS36.p, PrattCerts.secp256k1PS36.a, PrattCerts.secp256k1PS36.factors.tail.tail, List(BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m135: BigInt = BigInt(419)
@@ -7499,6 +7695,8 @@ object PrattTraces {
   def secp256k1PS36F1(): Unit = {
     pw135()
     secp256k1PS36F2()
+    assert(PrattCerts.secp256k1PS36.factors.tail.head == PrattFactor(BigInt(11), BigInt(1), BigInt(38)))
+    assert(List(BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(11)))
     factorsOkCons(PrattCerts.secp256k1PS36.p, PrattCerts.secp256k1PS36.a, PrattCerts.secp256k1PS36.factors.tail, List(BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS36.p, PrattCerts.secp256k1PS36.a, PrattCerts.secp256k1PS36.factors.tail, List(BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m136: BigInt = BigInt(419)
@@ -7537,6 +7735,8 @@ object PrattTraces {
   def secp256k1PS36F0(): Unit = {
     pw136()
     secp256k1PS36F1()
+    assert(PrattCerts.secp256k1PS36.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(209)))
+    assert(List(BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS36.p, PrattCerts.secp256k1PS36.a, PrattCerts.secp256k1PS36.factors, List(BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS36.p, PrattCerts.secp256k1PS36.a, PrattCerts.secp256k1PS36.factors, List(BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -7627,6 +7827,8 @@ object PrattTraces {
   def secp256k1PS37F2(): Unit = {
     pw138()
     factorsOkNil(PrattCerts.secp256k1PS37.p, PrattCerts.secp256k1PS37.a, List(BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS37.factors.tail.tail.head == PrattFactor(BigInt(419), BigInt(1), BigInt(48)))
+    assert(List(BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(419)))
     factorsOkCons(PrattCerts.secp256k1PS37.p, PrattCerts.secp256k1PS37.a, PrattCerts.secp256k1PS37.factors.tail.tail, List(BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS37.p, PrattCerts.secp256k1PS37.a, PrattCerts.secp256k1PS37.factors.tail.tail, List(BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m139: BigInt = BigInt(20113)
@@ -7680,6 +7882,8 @@ object PrattTraces {
   def secp256k1PS37F1(): Unit = {
     pw139()
     secp256k1PS37F2()
+    assert(PrattCerts.secp256k1PS37.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(6704)))
+    assert(List(BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1PS37.p, PrattCerts.secp256k1PS37.a, PrattCerts.secp256k1PS37.factors.tail, List(BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS37.p, PrattCerts.secp256k1PS37.a, PrattCerts.secp256k1PS37.factors.tail, List(BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m140: BigInt = BigInt(20113)
@@ -7736,6 +7940,8 @@ object PrattTraces {
   def secp256k1PS37F0(): Unit = {
     pw140()
     secp256k1PS37F1()
+    assert(PrattCerts.secp256k1PS37.factors.head == PrattFactor(BigInt(2), BigInt(4), BigInt(10056)))
+    assert(List(BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS37.p, PrattCerts.secp256k1PS37.a, PrattCerts.secp256k1PS37.factors, List(BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS37.p, PrattCerts.secp256k1PS37.a, PrattCerts.secp256k1PS37.factors, List(BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -7850,6 +8056,8 @@ object PrattTraces {
   def secp256k1PS38F3(): Unit = {
     pw142()
     factorsOkNil(PrattCerts.secp256k1PS38.p, PrattCerts.secp256k1PS38.a, List(BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS38.factors.tail.tail.tail.head == PrattFactor(BigInt(20113), BigInt(1), BigInt(60)))
+    assert(List(BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(20113)))
     factorsOkCons(PrattCerts.secp256k1PS38.p, PrattCerts.secp256k1PS38.a, PrattCerts.secp256k1PS38.factors.tail.tail.tail, List(BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS38.p, PrattCerts.secp256k1PS38.a, PrattCerts.secp256k1PS38.factors.tail.tail.tail, List(BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m143: BigInt = BigInt(1206781)
@@ -7924,6 +8132,8 @@ object PrattTraces {
   def secp256k1PS38F2(): Unit = {
     pw143()
     secp256k1PS38F3()
+    assert(PrattCerts.secp256k1PS38.factors.tail.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(241356)))
+    assert(List(BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1PS38.p, PrattCerts.secp256k1PS38.a, PrattCerts.secp256k1PS38.factors.tail.tail, List(BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS38.p, PrattCerts.secp256k1PS38.a, PrattCerts.secp256k1PS38.factors.tail.tail, List(BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m144: BigInt = BigInt(1206781)
@@ -8001,6 +8211,8 @@ object PrattTraces {
   def secp256k1PS38F1(): Unit = {
     pw144()
     secp256k1PS38F2()
+    assert(PrattCerts.secp256k1PS38.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(402260)))
+    assert(List(BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1PS38.p, PrattCerts.secp256k1PS38.a, PrattCerts.secp256k1PS38.factors.tail, List(BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS38.p, PrattCerts.secp256k1PS38.a, PrattCerts.secp256k1PS38.factors.tail, List(BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m145: BigInt = BigInt(1206781)
@@ -8081,6 +8293,8 @@ object PrattTraces {
   def secp256k1PS38F0(): Unit = {
     pw145()
     secp256k1PS38F1()
+    assert(PrattCerts.secp256k1PS38.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(603390)))
+    assert(List(BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS38.p, PrattCerts.secp256k1PS38.a, PrattCerts.secp256k1PS38.factors, List(BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS38.p, PrattCerts.secp256k1PS38.a, PrattCerts.secp256k1PS38.factors, List(BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -8192,6 +8406,8 @@ object PrattTraces {
   def secp256k1PS39F2(): Unit = {
     pw147()
     factorsOkNil(PrattCerts.secp256k1PS39.p, PrattCerts.secp256k1PS39.a, List(BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS39.factors.tail.tail.head == PrattFactor(BigInt(1206781), BigInt(1), BigInt(6)))
+    assert(List(BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(1206781)))
     factorsOkCons(PrattCerts.secp256k1PS39.p, PrattCerts.secp256k1PS39.a, PrattCerts.secp256k1PS39.factors.tail.tail, List(BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS39.p, PrattCerts.secp256k1PS39.a, PrattCerts.secp256k1PS39.factors.tail.tail, List(BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m148: BigInt = BigInt(7240687)
@@ -8278,6 +8494,8 @@ object PrattTraces {
   def secp256k1PS39F1(): Unit = {
     pw148()
     secp256k1PS39F2()
+    assert(PrattCerts.secp256k1PS39.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(2413562)))
+    assert(List(BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1PS39.p, PrattCerts.secp256k1PS39.a, PrattCerts.secp256k1PS39.factors.tail, List(BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS39.p, PrattCerts.secp256k1PS39.a, PrattCerts.secp256k1PS39.factors.tail, List(BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m149: BigInt = BigInt(7240687)
@@ -8364,6 +8582,8 @@ object PrattTraces {
   def secp256k1PS39F0(): Unit = {
     pw149()
     secp256k1PS39F1()
+    assert(PrattCerts.secp256k1PS39.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(3620343)))
+    assert(List(BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS39.p, PrattCerts.secp256k1PS39.a, PrattCerts.secp256k1PS39.factors, List(BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS39.p, PrattCerts.secp256k1PS39.a, PrattCerts.secp256k1PS39.factors, List(BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -8418,6 +8638,8 @@ object PrattTraces {
   def secp256k1PS40F1(): Unit = {
     pw151()
     factorsOkNil(PrattCerts.secp256k1PS40.p, PrattCerts.secp256k1PS40.a, List(BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS40.factors.tail.head == PrattFactor(BigInt(13), BigInt(1), BigInt(4)))
+    assert(List(BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(13)))
     factorsOkCons(PrattCerts.secp256k1PS40.p, PrattCerts.secp256k1PS40.a, PrattCerts.secp256k1PS40.factors.tail, List(BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS40.p, PrattCerts.secp256k1PS40.a, PrattCerts.secp256k1PS40.factors.tail, List(BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m152: BigInt = BigInt(53)
@@ -8447,6 +8669,8 @@ object PrattTraces {
   def secp256k1PS40F0(): Unit = {
     pw152()
     secp256k1PS40F1()
+    assert(PrattCerts.secp256k1PS40.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(26)))
+    assert(List(BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS40.p, PrattCerts.secp256k1PS40.a, PrattCerts.secp256k1PS40.factors, List(BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS40.p, PrattCerts.secp256k1PS40.a, PrattCerts.secp256k1PS40.factors, List(BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -8630,6 +8854,8 @@ object PrattTraces {
   def secp256k1PS41F4(): Unit = {
     pw154()
     factorsOkNil(PrattCerts.secp256k1PS41.p, PrattCerts.secp256k1PS41.a, List(BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS41.factors.tail.tail.tail.tail.head == PrattFactor(BigInt(53), BigInt(1), BigInt(2030000)))
+    assert(List(BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(53)))
     factorsOkCons(PrattCerts.secp256k1PS41.p, PrattCerts.secp256k1PS41.a, PrattCerts.secp256k1PS41.factors.tail.tail.tail.tail, List(BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS41.p, PrattCerts.secp256k1PS41.a, PrattCerts.secp256k1PS41.factors.tail.tail.tail.tail, List(BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m155: BigInt = BigInt(107590001)
@@ -8716,6 +8942,8 @@ object PrattTraces {
   def secp256k1PS41F3(): Unit = {
     pw155()
     secp256k1PS41F4()
+    assert(PrattCerts.secp256k1PS41.factors.tail.tail.tail.head == PrattFactor(BigInt(29), BigInt(1), BigInt(3710000)))
+    assert(List(BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(29)))
     factorsOkCons(PrattCerts.secp256k1PS41.p, PrattCerts.secp256k1PS41.a, PrattCerts.secp256k1PS41.factors.tail.tail.tail, List(BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS41.p, PrattCerts.secp256k1PS41.a, PrattCerts.secp256k1PS41.factors.tail.tail.tail, List(BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m156: BigInt = BigInt(107590001)
@@ -8808,6 +9036,8 @@ object PrattTraces {
   def secp256k1PS41F2(): Unit = {
     pw156()
     secp256k1PS41F3()
+    assert(PrattCerts.secp256k1PS41.factors.tail.tail.head == PrattFactor(BigInt(7), BigInt(1), BigInt(15370000)))
+    assert(List(BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.secp256k1PS41.p, PrattCerts.secp256k1PS41.a, PrattCerts.secp256k1PS41.factors.tail.tail, List(BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS41.p, PrattCerts.secp256k1PS41.a, PrattCerts.secp256k1PS41.factors.tail.tail, List(BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m157: BigInt = BigInt(107590001)
@@ -8903,6 +9133,8 @@ object PrattTraces {
   def secp256k1PS41F1(): Unit = {
     pw157()
     secp256k1PS41F2()
+    assert(PrattCerts.secp256k1PS41.factors.tail.head == PrattFactor(BigInt(5), BigInt(4), BigInt(21518000)))
+    assert(List(BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1PS41.p, PrattCerts.secp256k1PS41.a, PrattCerts.secp256k1PS41.factors.tail, List(BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS41.p, PrattCerts.secp256k1PS41.a, PrattCerts.secp256k1PS41.factors.tail, List(BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m158: BigInt = BigInt(107590001)
@@ -9001,6 +9233,8 @@ object PrattTraces {
   def secp256k1PS41F0(): Unit = {
     pw158()
     secp256k1PS41F1()
+    assert(PrattCerts.secp256k1PS41.factors.head == PrattFactor(BigInt(2), BigInt(4), BigInt(53795000)))
+    assert(List(BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS41.p, PrattCerts.secp256k1PS41.a, PrattCerts.secp256k1PS41.factors, List(BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS41.p, PrattCerts.secp256k1PS41.a, PrattCerts.secp256k1PS41.factors, List(BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -9793,6 +10027,8 @@ object PrattTraces {
   def secp256k1PS42F9(): Unit = {
     pw160()
     factorsOkNil(PrattCerts.secp256k1PS42.p, PrattCerts.secp256k1PS42.a, List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS42.factors.tail.tail.tail.tail.tail.tail.tail.tail.tail.head == PrattFactor(BigInt(107590001), BigInt(1), BigInt("2374904191824599455024826335976")))
+    assert(List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(107590001)))
     factorsOkCons(PrattCerts.secp256k1PS42.p, PrattCerts.secp256k1PS42.a, PrattCerts.secp256k1PS42.factors.tail.tail.tail.tail.tail.tail.tail.tail.tail, List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS42.p, PrattCerts.secp256k1PS42.a, PrattCerts.secp256k1PS42.factors.tail.tail.tail.tail.tail.tail.tail.tail.tail, List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m161: BigInt = BigInt("255515944373312847190720520512484175977")
@@ -10158,6 +10394,8 @@ object PrattTraces {
   def secp256k1PS42F8(): Unit = {
     pw161()
     secp256k1PS42F9()
+    assert(PrattCerts.secp256k1PS42.factors.tail.tail.tail.tail.tail.tail.tail.tail.head == PrattFactor(BigInt(7240687), BigInt(1), BigInt("35288908963101546467996824129048")))
+    assert(List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(7240687)))
     factorsOkCons(PrattCerts.secp256k1PS42.p, PrattCerts.secp256k1PS42.a, PrattCerts.secp256k1PS42.factors.tail.tail.tail.tail.tail.tail.tail.tail, List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS42.p, PrattCerts.secp256k1PS42.a, PrattCerts.secp256k1PS42.factors.tail.tail.tail.tail.tail.tail.tail.tail, List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m162: BigInt = BigInt("255515944373312847190720520512484175977")
@@ -10544,6 +10782,8 @@ object PrattTraces {
   def secp256k1PS42F7(): Unit = {
     pw162()
     secp256k1PS42F8()
+    assert(PrattCerts.secp256k1PS42.factors.tail.tail.tail.tail.tail.tail.tail.head == PrattFactor(BigInt(96557), BigInt(1), BigInt("2646270538369179315748423423599368")))
+    assert(List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(96557)))
     factorsOkCons(PrattCerts.secp256k1PS42.p, PrattCerts.secp256k1PS42.a, PrattCerts.secp256k1PS42.factors.tail.tail.tail.tail.tail.tail.tail, List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS42.p, PrattCerts.secp256k1PS42.a, PrattCerts.secp256k1PS42.factors.tail.tail.tail.tail.tail.tail.tail, List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m163: BigInt = BigInt("255515944373312847190720520512484175977")
@@ -10933,6 +11173,8 @@ object PrattTraces {
   def secp256k1PS42F6(): Unit = {
     pw163()
     secp256k1PS42F7()
+    assert(PrattCerts.secp256k1PS42.factors.tail.tail.tail.tail.tail.tail.head == PrattFactor(BigInt(41201), BigInt(1), BigInt("6201692783507993669831327407404776")))
+    assert(List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(41201)))
     factorsOkCons(PrattCerts.secp256k1PS42.p, PrattCerts.secp256k1PS42.a, PrattCerts.secp256k1PS42.factors.tail.tail.tail.tail.tail.tail, List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS42.p, PrattCerts.secp256k1PS42.a, PrattCerts.secp256k1PS42.factors.tail.tail.tail.tail.tail.tail, List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m164: BigInt = BigInt("255515944373312847190720520512484175977")
@@ -11337,6 +11579,8 @@ object PrattTraces {
   def secp256k1PS42F5(): Unit = {
     pw164()
     secp256k1PS42F6()
+    assert(PrattCerts.secp256k1PS42.factors.tail.tail.tail.tail.tail.head == PrattFactor(BigInt(4423), BigInt(1), BigInt("57769826898782013834664372713652312")))
+    assert(List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(4423)))
     factorsOkCons(PrattCerts.secp256k1PS42.p, PrattCerts.secp256k1PS42.a, PrattCerts.secp256k1PS42.factors.tail.tail.tail.tail.tail, List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS42.p, PrattCerts.secp256k1PS42.a, PrattCerts.secp256k1PS42.factors.tail.tail.tail.tail.tail, List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m165: BigInt = BigInt("255515944373312847190720520512484175977")
@@ -11744,6 +11988,8 @@ object PrattTraces {
   def secp256k1PS42F4(): Unit = {
     pw165()
     secp256k1PS42F5()
+    assert(PrattCerts.secp256k1PS42.factors.tail.tail.tail.tail.head == PrattFactor(BigInt(2657), BigInt(1), BigInt("96167084822473785167753300907972968")))
+    assert(List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2657)))
     factorsOkCons(PrattCerts.secp256k1PS42.p, PrattCerts.secp256k1PS42.a, PrattCerts.secp256k1PS42.factors.tail.tail.tail.tail, List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS42.p, PrattCerts.secp256k1PS42.a, PrattCerts.secp256k1PS42.factors.tail.tail.tail.tail, List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m166: BigInt = BigInt("255515944373312847190720520512484175977")
@@ -12151,6 +12397,8 @@ object PrattTraces {
   def secp256k1PS42F3(): Unit = {
     pw166()
     secp256k1PS42F4()
+    assert(PrattCerts.secp256k1PS42.factors.tail.tail.tail.head == PrattFactor(BigInt(1627), BigInt(1), BigInt("157047292177819820031174259688066488")))
+    assert(List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(1627)))
     factorsOkCons(PrattCerts.secp256k1PS42.p, PrattCerts.secp256k1PS42.a, PrattCerts.secp256k1PS42.factors.tail.tail.tail, List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS42.p, PrattCerts.secp256k1PS42.a, PrattCerts.secp256k1PS42.factors.tail.tail.tail, List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m167: BigInt = BigInt("255515944373312847190720520512484175977")
@@ -12582,6 +12830,8 @@ object PrattTraces {
   def secp256k1PS42F2(): Unit = {
     pw167()
     secp256k1PS42F3()
+    assert(PrattCerts.secp256k1PS42.factors.tail.tail.head == PrattFactor(BigInt(11), BigInt(1), BigInt("23228722215755713380974592773862197816")))
+    assert(List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(11)))
     factorsOkCons(PrattCerts.secp256k1PS42.p, PrattCerts.secp256k1PS42.a, PrattCerts.secp256k1PS42.factors.tail.tail, List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS42.p, PrattCerts.secp256k1PS42.a, PrattCerts.secp256k1PS42.factors.tail.tail, List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m168: BigInt = BigInt("255515944373312847190720520512484175977")
@@ -13013,6 +13263,8 @@ object PrattTraces {
   def secp256k1PS42F1(): Unit = {
     pw168()
     secp256k1PS42F2()
+    assert(PrattCerts.secp256k1PS42.factors.tail.head == PrattFactor(BigInt(7), BigInt(2), BigInt("36502277767616121027245788644640596568")))
+    assert(List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.secp256k1PS42.p, PrattCerts.secp256k1PS42.a, PrattCerts.secp256k1PS42.factors.tail, List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS42.p, PrattCerts.secp256k1PS42.a, PrattCerts.secp256k1PS42.factors.tail, List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m169: BigInt = BigInt("255515944373312847190720520512484175977")
@@ -13450,6 +13702,8 @@ object PrattTraces {
   def secp256k1PS42F0(): Unit = {
     pw169()
     secp256k1PS42F1()
+    assert(PrattCerts.secp256k1PS42.factors.head == PrattFactor(BigInt(2), BigInt(3), BigInt("127757972186656423595360260256242087988")))
+    assert(List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS42.p, PrattCerts.secp256k1PS42.a, PrattCerts.secp256k1PS42.factors, List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS42.p, PrattCerts.secp256k1PS42.a, PrattCerts.secp256k1PS42.factors, List(BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -14638,6 +14892,8 @@ object PrattTraces {
   def secp256k1PS43F7(): Unit = {
     pw171()
     factorsOkNil(PrattCerts.secp256k1PS43.p, PrattCerts.secp256k1PS43.a, List(BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS43.factors.tail.tail.tail.tail.tail.tail.tail.head == PrattFactor(BigInt("255515944373312847190720520512484175977"), BigInt(1), BigInt("802749442992798076634733441528810")))
+    assert(List(BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt("255515944373312847190720520512484175977")))
     factorsOkCons(PrattCerts.secp256k1PS43.p, PrattCerts.secp256k1PS43.a, PrattCerts.secp256k1PS43.factors.tail.tail.tail.tail.tail.tail.tail, List(BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS43.p, PrattCerts.secp256k1PS43.a, PrattCerts.secp256k1PS43.factors.tail.tail.tail.tail.tail.tail.tail, List(BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m172: BigInt = BigInt("205115282021455665897114700593932402728804164701536103180137503955397371")
@@ -15189,6 +15445,8 @@ object PrattTraces {
   def secp256k1PS43F6(): Unit = {
     pw172()
     secp256k1PS43F7()
+    assert(PrattCerts.secp256k1PS43.factors.tail.tail.tail.tail.tail.tail.head == PrattFactor(BigInt("132896956044521568488119"), BigInt(1), BigInt("1543415952677955745309227852991199086604869270230")))
+    assert(List(BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt("132896956044521568488119")))
     factorsOkCons(PrattCerts.secp256k1PS43.p, PrattCerts.secp256k1PS43.a, PrattCerts.secp256k1PS43.factors.tail.tail.tail.tail.tail.tail, List(BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS43.p, PrattCerts.secp256k1PS43.a, PrattCerts.secp256k1PS43.factors.tail.tail.tail.tail.tail.tail, List(BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m173: BigInt = BigInt("205115282021455665897114700593932402728804164701536103180137503955397371")
@@ -15953,6 +16211,8 @@ object PrattTraces {
   def secp256k1PS43F5(): Unit = {
     pw173()
     secp256k1PS43F6()
+    assert(PrattCerts.secp256k1PS43.factors.tail.tail.tail.tail.tail.head == PrattFactor(BigInt(7723), BigInt(1), BigInt("26559016188198325248881872406310035313842310591937861346644762910190")))
+    assert(List(BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(7723)))
     factorsOkCons(PrattCerts.secp256k1PS43.p, PrattCerts.secp256k1PS43.a, PrattCerts.secp256k1PS43.factors.tail.tail.tail.tail.tail, List(BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS43.p, PrattCerts.secp256k1PS43.a, PrattCerts.secp256k1PS43.factors.tail.tail.tail.tail.tail, List(BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m174: BigInt = BigInt("205115282021455665897114700593932402728804164701536103180137503955397371")
@@ -16747,6 +17007,8 @@ object PrattTraces {
   def secp256k1PS43F4(): Unit = {
     pw174()
     secp256k1PS43F5()
+    assert(PrattCerts.secp256k1PS43.factors.tail.tail.tail.tail.head == PrattFactor(BigInt(31), BigInt(1), BigInt("6616622000692118254745635503030077507380779506501164618714113030819270")))
+    assert(List(BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(31)))
     factorsOkCons(PrattCerts.secp256k1PS43.p, PrattCerts.secp256k1PS43.a, PrattCerts.secp256k1PS43.factors.tail.tail.tail.tail, List(BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS43.p, PrattCerts.secp256k1PS43.a, PrattCerts.secp256k1PS43.factors.tail.tail.tail.tail, List(BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m175: BigInt = BigInt("205115282021455665897114700593932402728804164701536103180137503955397371")
@@ -17544,6 +17806,8 @@ object PrattTraces {
   def secp256k1PS43F3(): Unit = {
     pw175()
     secp256k1PS43F4()
+    assert(PrattCerts.secp256k1PS43.factors.tail.tail.tail.head == PrattFactor(BigInt(29), BigInt(2), BigInt("7072940759360540203348782779101117335476005679363313902763362205358530")))
+    assert(List(BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(29)))
     factorsOkCons(PrattCerts.secp256k1PS43.p, PrattCerts.secp256k1PS43.a, PrattCerts.secp256k1PS43.factors.tail.tail.tail, List(BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS43.p, PrattCerts.secp256k1PS43.a, PrattCerts.secp256k1PS43.factors.tail.tail.tail, List(BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m176: BigInt = BigInt("205115282021455665897114700593932402728804164701536103180137503955397371")
@@ -18347,6 +18611,8 @@ object PrattTraces {
   def secp256k1PS43F2(): Unit = {
     pw176()
     secp256k1PS43F3()
+    assert(PrattCerts.secp256k1PS43.factors.tail.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt("41023056404291133179422940118786480545760832940307220636027500791079474")))
+    assert(List(BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1PS43.p, PrattCerts.secp256k1PS43.a, PrattCerts.secp256k1PS43.factors.tail.tail, List(BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS43.p, PrattCerts.secp256k1PS43.a, PrattCerts.secp256k1PS43.factors.tail.tail, List(BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m177: BigInt = BigInt("205115282021455665897114700593932402728804164701536103180137503955397371")
@@ -19153,6 +19419,8 @@ object PrattTraces {
   def secp256k1PS43F1(): Unit = {
     pw177()
     secp256k1PS43F2()
+    assert(PrattCerts.secp256k1PS43.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt("68371760673818555299038233531310800909601388233845367726712501318465790")))
+    assert(List(BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1PS43.p, PrattCerts.secp256k1PS43.a, PrattCerts.secp256k1PS43.factors.tail, List(BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS43.p, PrattCerts.secp256k1PS43.a, PrattCerts.secp256k1PS43.factors.tail, List(BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m178: BigInt = BigInt("205115282021455665897114700593932402728804164701536103180137503955397371")
@@ -19959,6 +20227,8 @@ object PrattTraces {
   def secp256k1PS43F0(): Unit = {
     pw178()
     secp256k1PS43F1()
+    assert(PrattCerts.secp256k1PS43.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt("102557641010727832948557350296966201364402082350768051590068751977698685")))
+    assert(List(BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS43.p, PrattCerts.secp256k1PS43.a, PrattCerts.secp256k1PS43.factors, List(BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS43.p, PrattCerts.secp256k1PS43.a, PrattCerts.secp256k1PS43.factors, List(BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -20910,6 +21180,8 @@ object PrattTraces {
   def secp256k1PS44F4(): Unit = {
     pw180()
     factorsOkNil(PrattCerts.secp256k1PS44.p, PrattCerts.secp256k1PS44.a, List(BigInt("205115282021455665897114700593932402728804164701536103180137503955397371"), BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1PS44.factors.tail.tail.tail.tail.head == PrattFactor(BigInt("205115282021455665897114700593932402728804164701536103180137503955397371"), BigInt(1), BigInt(564522)))
+    assert(List(BigInt("205115282021455665897114700593932402728804164701536103180137503955397371"), BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt("205115282021455665897114700593932402728804164701536103180137503955397371")))
     factorsOkCons(PrattCerts.secp256k1PS44.p, PrattCerts.secp256k1PS44.a, PrattCerts.secp256k1PS44.factors.tail.tail.tail.tail, List(BigInt("205115282021455665897114700593932402728804164701536103180137503955397371"), BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS44.p, PrattCerts.secp256k1PS44.a, PrattCerts.secp256k1PS44.factors.tail.tail.tail.tail, List(BigInt("205115282021455665897114700593932402728804164701536103180137503955397371"), BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m181: BigInt = BigInt("115792089237316195423570985008687907853269984665640564039457584007908834671663")
@@ -21743,6 +22015,8 @@ object PrattTraces {
   def secp256k1PS44F3(): Unit = {
     pw181()
     secp256k1PS44F4()
+    assert(PrattCerts.secp256k1PS44.factors.tail.tail.tail.head == PrattFactor(BigInt(13441), BigInt(1), BigInt("8614841844901137967678817424945160914609774917464516333565775166126689582")))
+    assert(List(BigInt("205115282021455665897114700593932402728804164701536103180137503955397371"), BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(13441)))
     factorsOkCons(PrattCerts.secp256k1PS44.p, PrattCerts.secp256k1PS44.a, PrattCerts.secp256k1PS44.factors.tail.tail.tail, List(BigInt("205115282021455665897114700593932402728804164701536103180137503955397371"), BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS44.p, PrattCerts.secp256k1PS44.a, PrattCerts.secp256k1PS44.factors.tail.tail.tail, List(BigInt("205115282021455665897114700593932402728804164701536103180137503955397371"), BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m182: BigInt = BigInt("115792089237316195423570985008687907853269984665640564039457584007908834671663")
@@ -22609,6 +22883,8 @@ object PrattTraces {
   def secp256k1PS44F2(): Unit = {
     pw182()
     secp256k1PS44F3()
+    assert(PrattCerts.secp256k1PS44.factors.tail.tail.head == PrattFactor(BigInt(7), BigInt(1), BigInt("16541727033902313631938712144098272550467140666520080577065369143986976381666")))
+    assert(List(BigInt("205115282021455665897114700593932402728804164701536103180137503955397371"), BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.secp256k1PS44.p, PrattCerts.secp256k1PS44.a, PrattCerts.secp256k1PS44.factors.tail.tail, List(BigInt("205115282021455665897114700593932402728804164701536103180137503955397371"), BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS44.p, PrattCerts.secp256k1PS44.a, PrattCerts.secp256k1PS44.factors.tail.tail, List(BigInt("205115282021455665897114700593932402728804164701536103180137503955397371"), BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m183: BigInt = BigInt("115792089237316195423570985008687907853269984665640564039457584007908834671663")
@@ -23478,6 +23754,8 @@ object PrattTraces {
   def secp256k1PS44F1(): Unit = {
     pw183()
     secp256k1PS44F2()
+    assert(PrattCerts.secp256k1PS44.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt("38597363079105398474523661669562635951089994888546854679819194669302944890554")))
+    assert(List(BigInt("205115282021455665897114700593932402728804164701536103180137503955397371"), BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1PS44.p, PrattCerts.secp256k1PS44.a, PrattCerts.secp256k1PS44.factors.tail, List(BigInt("205115282021455665897114700593932402728804164701536103180137503955397371"), BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS44.p, PrattCerts.secp256k1PS44.a, PrattCerts.secp256k1PS44.factors.tail, List(BigInt("205115282021455665897114700593932402728804164701536103180137503955397371"), BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   val m184: BigInt = BigInt("115792089237316195423570985008687907853269984665640564039457584007908834671663")
@@ -24347,6 +24625,8 @@ object PrattTraces {
   def secp256k1PS44F0(): Unit = {
     pw184()
     secp256k1PS44F1()
+    assert(PrattCerts.secp256k1PS44.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt("57896044618658097711785492504343953926634992332820282019728792003954417335831")))
+    assert(List(BigInt("205115282021455665897114700593932402728804164701536103180137503955397371"), BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1PS44.p, PrattCerts.secp256k1PS44.a, PrattCerts.secp256k1PS44.factors, List(BigInt("205115282021455665897114700593932402728804164701536103180137503955397371"), BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1PS44.p, PrattCerts.secp256k1PS44.a, PrattCerts.secp256k1PS44.factors, List(BigInt("205115282021455665897114700593932402728804164701536103180137503955397371"), BigInt("255515944373312847190720520512484175977"), BigInt(107590001), BigInt(53), BigInt(7240687), BigInt(1206781), BigInt(20113), BigInt(419), BigInt(19), BigInt(96557), BigInt(239), BigInt(101), BigInt(41201), BigInt(103), BigInt(4423), BigInt(67), BigInt(2657), BigInt(83), BigInt(41), BigInt(1627), BigInt(271), BigInt("132896956044521568488119"), BigInt("22149492674086928081353"), BigInt("173378833005251801"), BigInt(13331831), BigInt(1373), BigInt(971), BigInt(97), BigInt(24809), BigInt(2621), BigInt(131), BigInt(5323), BigInt(887), BigInt(443), BigInt(17), BigInt(7723), BigInt(13), BigInt(11), BigInt(31), BigInt(29), BigInt(13441), BigInt(5), BigInt(7), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -24631,6 +24911,8 @@ object PrattTraces {
   def secp256k1NS0F0(): Unit = {
     pw1()
     factorsOkNil(PrattCerts.secp256k1NS0.p, PrattCerts.secp256k1NS0.a, List(BigInt(2)))
+    assert(PrattCerts.secp256k1NS0.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(1)))
+    assert(List(BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS0.p, PrattCerts.secp256k1NS0.a, PrattCerts.secp256k1NS0.factors, List(BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS0.p, PrattCerts.secp256k1NS0.a, PrattCerts.secp256k1NS0.factors, List(BigInt(2))))
   @ghost @opaque
@@ -24688,6 +24970,8 @@ object PrattTraces {
   def secp256k1NS1F1(): Unit = {
     pw186()
     factorsOkNil(PrattCerts.secp256k1NS1.p, PrattCerts.secp256k1NS1.a, List(BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS1.factors.tail.head == PrattFactor(BigInt(3), BigInt(2), BigInt(12)))
+    assert(List(BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1NS1.p, PrattCerts.secp256k1NS1.a, PrattCerts.secp256k1NS1.factors.tail, List(BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS1.p, PrattCerts.secp256k1NS1.a, PrattCerts.secp256k1NS1.factors.tail, List(BigInt(3), BigInt(2))))
   val m187: BigInt = BigInt(37)
@@ -24717,6 +25001,8 @@ object PrattTraces {
   def secp256k1NS1F0(): Unit = {
     pw187()
     secp256k1NS1F1()
+    assert(PrattCerts.secp256k1NS1.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(18)))
+    assert(List(BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS1.p, PrattCerts.secp256k1NS1.a, PrattCerts.secp256k1NS1.factors, List(BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS1.p, PrattCerts.secp256k1NS1.a, PrattCerts.secp256k1NS1.factors, List(BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -24777,6 +25063,8 @@ object PrattTraces {
   def secp256k1NS2F1(): Unit = {
     pw189()
     factorsOkNil(PrattCerts.secp256k1NS2.p, PrattCerts.secp256k1NS2.a, List(BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS2.factors.tail.head == PrattFactor(BigInt(37), BigInt(1), BigInt(4)))
+    assert(List(BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(37)))
     factorsOkCons(PrattCerts.secp256k1NS2.p, PrattCerts.secp256k1NS2.a, PrattCerts.secp256k1NS2.factors.tail, List(BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS2.p, PrattCerts.secp256k1NS2.a, PrattCerts.secp256k1NS2.factors.tail, List(BigInt(37), BigInt(3), BigInt(2))))
   val m190: BigInt = BigInt(149)
@@ -24812,6 +25100,8 @@ object PrattTraces {
   def secp256k1NS2F0(): Unit = {
     pw190()
     secp256k1NS2F1()
+    assert(PrattCerts.secp256k1NS2.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(74)))
+    assert(List(BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS2.p, PrattCerts.secp256k1NS2.a, PrattCerts.secp256k1NS2.factors, List(BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS2.p, PrattCerts.secp256k1NS2.a, PrattCerts.secp256k1NS2.factors, List(BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -24823,6 +25113,8 @@ object PrattTraces {
   def secp256k1NS3F0(): Unit = {
     pw6()
     factorsOkNil(PrattCerts.secp256k1NS3.p, PrattCerts.secp256k1NS3.a, List(BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS3.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(2)))
+    assert(List(BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS3.p, PrattCerts.secp256k1NS3.a, PrattCerts.secp256k1NS3.factors, List(BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS3.p, PrattCerts.secp256k1NS3.a, PrattCerts.secp256k1NS3.factors, List(BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -24834,12 +25126,16 @@ object PrattTraces {
   def secp256k1NS4F1(): Unit = {
     pw3()
     factorsOkNil(PrattCerts.secp256k1NS4.p, PrattCerts.secp256k1NS4.a, List(BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS4.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(2)))
+    assert(List(BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1NS4.p, PrattCerts.secp256k1NS4.a, PrattCerts.secp256k1NS4.factors.tail, List(BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS4.p, PrattCerts.secp256k1NS4.a, PrattCerts.secp256k1NS4.factors.tail, List(BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
   def secp256k1NS4F0(): Unit = {
     pw4()
     secp256k1NS4F1()
+    assert(PrattCerts.secp256k1NS4.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(3)))
+    assert(List(BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS4.p, PrattCerts.secp256k1NS4.a, PrattCerts.secp256k1NS4.factors, List(BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS4.p, PrattCerts.secp256k1NS4.a, PrattCerts.secp256k1NS4.factors, List(BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -24918,6 +25214,8 @@ object PrattTraces {
   def secp256k1NS5F3(): Unit = {
     pw192()
     factorsOkNil(PrattCerts.secp256k1NS5.p, PrattCerts.secp256k1NS5.a, List(BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS5.factors.tail.tail.tail.head == PrattFactor(BigInt(7), BigInt(1), BigInt(90)))
+    assert(List(BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.secp256k1NS5.p, PrattCerts.secp256k1NS5.a, PrattCerts.secp256k1NS5.factors.tail.tail.tail, List(BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS5.p, PrattCerts.secp256k1NS5.a, PrattCerts.secp256k1NS5.factors.tail.tail.tail, List(BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m193: BigInt = BigInt(631)
@@ -24953,6 +25251,8 @@ object PrattTraces {
   def secp256k1NS5F2(): Unit = {
     pw193()
     secp256k1NS5F3()
+    assert(PrattCerts.secp256k1NS5.factors.tail.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(126)))
+    assert(List(BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1NS5.p, PrattCerts.secp256k1NS5.a, PrattCerts.secp256k1NS5.factors.tail.tail, List(BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS5.p, PrattCerts.secp256k1NS5.a, PrattCerts.secp256k1NS5.factors.tail.tail, List(BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m194: BigInt = BigInt(631)
@@ -24991,6 +25291,8 @@ object PrattTraces {
   def secp256k1NS5F1(): Unit = {
     pw194()
     secp256k1NS5F2()
+    assert(PrattCerts.secp256k1NS5.factors.tail.head == PrattFactor(BigInt(3), BigInt(2), BigInt(210)))
+    assert(List(BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1NS5.p, PrattCerts.secp256k1NS5.a, PrattCerts.secp256k1NS5.factors.tail, List(BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS5.p, PrattCerts.secp256k1NS5.a, PrattCerts.secp256k1NS5.factors.tail, List(BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m195: BigInt = BigInt(631)
@@ -25032,6 +25334,8 @@ object PrattTraces {
   def secp256k1NS5F0(): Unit = {
     pw195()
     secp256k1NS5F1()
+    assert(PrattCerts.secp256k1NS5.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(315)))
+    assert(List(BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS5.p, PrattCerts.secp256k1NS5.a, PrattCerts.secp256k1NS5.factors, List(BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS5.p, PrattCerts.secp256k1NS5.a, PrattCerts.secp256k1NS5.factors, List(BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -25043,12 +25347,16 @@ object PrattTraces {
   def secp256k1NS6F1(): Unit = {
     pw20()
     factorsOkNil(PrattCerts.secp256k1NS6.p, PrattCerts.secp256k1NS6.a, List(BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS6.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(2)))
+    assert(List(BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1NS6.p, PrattCerts.secp256k1NS6.a, PrattCerts.secp256k1NS6.factors.tail, List(BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS6.p, PrattCerts.secp256k1NS6.a, PrattCerts.secp256k1NS6.factors.tail, List(BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
   def secp256k1NS6F0(): Unit = {
     pw21()
     secp256k1NS6F1()
+    assert(PrattCerts.secp256k1NS6.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(5)))
+    assert(List(BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS6.p, PrattCerts.secp256k1NS6.a, PrattCerts.secp256k1NS6.factors, List(BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS6.p, PrattCerts.secp256k1NS6.a, PrattCerts.secp256k1NS6.factors, List(BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -25097,6 +25405,8 @@ object PrattTraces {
   def secp256k1NS7F1(): Unit = {
     pw197()
     factorsOkNil(PrattCerts.secp256k1NS7.p, PrattCerts.secp256k1NS7.a, List(BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS7.factors.tail.head == PrattFactor(BigInt(11), BigInt(1), BigInt(2)))
+    assert(List(BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(11)))
     factorsOkCons(PrattCerts.secp256k1NS7.p, PrattCerts.secp256k1NS7.a, PrattCerts.secp256k1NS7.factors.tail, List(BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS7.p, PrattCerts.secp256k1NS7.a, PrattCerts.secp256k1NS7.factors.tail, List(BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m198: BigInt = BigInt(23)
@@ -25123,6 +25433,8 @@ object PrattTraces {
   def secp256k1NS7F0(): Unit = {
     pw198()
     secp256k1NS7F1()
+    assert(PrattCerts.secp256k1NS7.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(11)))
+    assert(List(BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS7.p, PrattCerts.secp256k1NS7.a, PrattCerts.secp256k1NS7.factors, List(BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS7.p, PrattCerts.secp256k1NS7.a, PrattCerts.secp256k1NS7.factors, List(BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -25225,6 +25537,8 @@ object PrattTraces {
   def secp256k1NS8F3(): Unit = {
     pw200()
     factorsOkNil(PrattCerts.secp256k1NS8.p, PrattCerts.secp256k1NS8.a, List(BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS8.factors.tail.tail.tail.head == PrattFactor(BigInt(23), BigInt(1), BigInt(726)))
+    assert(List(BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(23)))
     factorsOkCons(PrattCerts.secp256k1NS8.p, PrattCerts.secp256k1NS8.a, PrattCerts.secp256k1NS8.factors.tail.tail.tail, List(BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS8.p, PrattCerts.secp256k1NS8.a, PrattCerts.secp256k1NS8.factors.tail.tail.tail, List(BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m201: BigInt = BigInt(16699)
@@ -25272,6 +25586,8 @@ object PrattTraces {
   def secp256k1NS8F2(): Unit = {
     pw201()
     secp256k1NS8F3()
+    assert(PrattCerts.secp256k1NS8.factors.tail.tail.head == PrattFactor(BigInt(11), BigInt(2), BigInt(1518)))
+    assert(List(BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(11)))
     factorsOkCons(PrattCerts.secp256k1NS8.p, PrattCerts.secp256k1NS8.a, PrattCerts.secp256k1NS8.factors.tail.tail, List(BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS8.p, PrattCerts.secp256k1NS8.a, PrattCerts.secp256k1NS8.factors.tail.tail, List(BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m202: BigInt = BigInt(16699)
@@ -25325,6 +25641,8 @@ object PrattTraces {
   def secp256k1NS8F1(): Unit = {
     pw202()
     secp256k1NS8F2()
+    assert(PrattCerts.secp256k1NS8.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(5566)))
+    assert(List(BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1NS8.p, PrattCerts.secp256k1NS8.a, PrattCerts.secp256k1NS8.factors.tail, List(BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS8.p, PrattCerts.secp256k1NS8.a, PrattCerts.secp256k1NS8.factors.tail, List(BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m203: BigInt = BigInt(16699)
@@ -25381,6 +25699,8 @@ object PrattTraces {
   def secp256k1NS8F0(): Unit = {
     pw203()
     secp256k1NS8F1()
+    assert(PrattCerts.secp256k1NS8.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(8349)))
+    assert(List(BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS8.p, PrattCerts.secp256k1NS8.a, PrattCerts.secp256k1NS8.factors, List(BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS8.p, PrattCerts.secp256k1NS8.a, PrattCerts.secp256k1NS8.factors, List(BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -25392,12 +25712,16 @@ object PrattTraces {
   def secp256k1NS9F1(): Unit = {
     pw23()
     factorsOkNil(PrattCerts.secp256k1NS9.p, PrattCerts.secp256k1NS9.a, List(BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS9.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(4)))
+    assert(List(BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1NS9.p, PrattCerts.secp256k1NS9.a, PrattCerts.secp256k1NS9.factors.tail, List(BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS9.p, PrattCerts.secp256k1NS9.a, PrattCerts.secp256k1NS9.factors.tail, List(BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
   def secp256k1NS9F0(): Unit = {
     pw24()
     secp256k1NS9F1()
+    assert(PrattCerts.secp256k1NS9.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(6)))
+    assert(List(BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS9.p, PrattCerts.secp256k1NS9.a, PrattCerts.secp256k1NS9.factors, List(BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS9.p, PrattCerts.secp256k1NS9.a, PrattCerts.secp256k1NS9.factors, List(BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -25485,6 +25809,8 @@ object PrattTraces {
   def secp256k1NS10F3(): Unit = {
     pw205()
     factorsOkNil(PrattCerts.secp256k1NS10.p, PrattCerts.secp256k1NS10.a, List(BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS10.factors.tail.tail.tail.head == PrattFactor(BigInt(13), BigInt(1), BigInt(220)))
+    assert(List(BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(13)))
     factorsOkCons(PrattCerts.secp256k1NS10.p, PrattCerts.secp256k1NS10.a, PrattCerts.secp256k1NS10.factors.tail.tail.tail, List(BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS10.p, PrattCerts.secp256k1NS10.a, PrattCerts.secp256k1NS10.factors.tail.tail.tail, List(BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m206: BigInt = BigInt(2861)
@@ -25526,6 +25852,8 @@ object PrattTraces {
   def secp256k1NS10F2(): Unit = {
     pw206()
     secp256k1NS10F3()
+    assert(PrattCerts.secp256k1NS10.factors.tail.tail.head == PrattFactor(BigInt(11), BigInt(1), BigInt(260)))
+    assert(List(BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(11)))
     factorsOkCons(PrattCerts.secp256k1NS10.p, PrattCerts.secp256k1NS10.a, PrattCerts.secp256k1NS10.factors.tail.tail, List(BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS10.p, PrattCerts.secp256k1NS10.a, PrattCerts.secp256k1NS10.factors.tail.tail, List(BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m207: BigInt = BigInt(2861)
@@ -25570,6 +25898,8 @@ object PrattTraces {
   def secp256k1NS10F1(): Unit = {
     pw207()
     secp256k1NS10F2()
+    assert(PrattCerts.secp256k1NS10.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(572)))
+    assert(List(BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1NS10.p, PrattCerts.secp256k1NS10.a, PrattCerts.secp256k1NS10.factors.tail, List(BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS10.p, PrattCerts.secp256k1NS10.a, PrattCerts.secp256k1NS10.factors.tail, List(BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m208: BigInt = BigInt(2861)
@@ -25617,6 +25947,8 @@ object PrattTraces {
   def secp256k1NS10F0(): Unit = {
     pw208()
     secp256k1NS10F1()
+    assert(PrattCerts.secp256k1NS10.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(1430)))
+    assert(List(BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS10.p, PrattCerts.secp256k1NS10.a, PrattCerts.secp256k1NS10.factors, List(BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS10.p, PrattCerts.secp256k1NS10.a, PrattCerts.secp256k1NS10.factors, List(BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -25710,6 +26042,8 @@ object PrattTraces {
   def secp256k1NS11F3(): Unit = {
     pw210()
     factorsOkNil(PrattCerts.secp256k1NS11.p, PrattCerts.secp256k1NS11.a, List(BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS11.factors.tail.tail.tail.head == PrattFactor(BigInt(2861), BigInt(1), BigInt(30)))
+    assert(List(BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2861)))
     factorsOkCons(PrattCerts.secp256k1NS11.p, PrattCerts.secp256k1NS11.a, PrattCerts.secp256k1NS11.factors.tail.tail.tail, List(BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS11.p, PrattCerts.secp256k1NS11.a, PrattCerts.secp256k1NS11.factors.tail.tail.tail, List(BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m211: BigInt = BigInt(85831)
@@ -25769,6 +26103,8 @@ object PrattTraces {
   def secp256k1NS11F2(): Unit = {
     pw211()
     secp256k1NS11F3()
+    assert(PrattCerts.secp256k1NS11.factors.tail.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(17166)))
+    assert(List(BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1NS11.p, PrattCerts.secp256k1NS11.a, PrattCerts.secp256k1NS11.factors.tail.tail, List(BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS11.p, PrattCerts.secp256k1NS11.a, PrattCerts.secp256k1NS11.factors.tail.tail, List(BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m212: BigInt = BigInt(85831)
@@ -25828,6 +26164,8 @@ object PrattTraces {
   def secp256k1NS11F1(): Unit = {
     pw212()
     secp256k1NS11F2()
+    assert(PrattCerts.secp256k1NS11.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(28610)))
+    assert(List(BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1NS11.p, PrattCerts.secp256k1NS11.a, PrattCerts.secp256k1NS11.factors.tail, List(BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS11.p, PrattCerts.secp256k1NS11.a, PrattCerts.secp256k1NS11.factors.tail, List(BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m213: BigInt = BigInt(85831)
@@ -25890,6 +26228,8 @@ object PrattTraces {
   def secp256k1NS11F0(): Unit = {
     pw213()
     secp256k1NS11F1()
+    assert(PrattCerts.secp256k1NS11.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(42915)))
+    assert(List(BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS11.p, PrattCerts.secp256k1NS11.a, PrattCerts.secp256k1NS11.factors, List(BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS11.p, PrattCerts.secp256k1NS11.a, PrattCerts.secp256k1NS11.factors, List(BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -25901,12 +26241,16 @@ object PrattTraces {
   def secp256k1NS12F1(): Unit = {
     pw56()
     factorsOkNil(PrattCerts.secp256k1NS12.p, PrattCerts.secp256k1NS12.a, List(BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS12.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(32)))
+    assert(List(BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1NS12.p, PrattCerts.secp256k1NS12.a, PrattCerts.secp256k1NS12.factors.tail, List(BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS12.p, PrattCerts.secp256k1NS12.a, PrattCerts.secp256k1NS12.factors.tail, List(BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
   def secp256k1NS12F0(): Unit = {
     pw57()
     secp256k1NS12F1()
+    assert(PrattCerts.secp256k1NS12.factors.head == PrattFactor(BigInt(2), BigInt(5), BigInt(48)))
+    assert(List(BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS12.p, PrattCerts.secp256k1NS12.a, PrattCerts.secp256k1NS12.factors, List(BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS12.p, PrattCerts.secp256k1NS12.a, PrattCerts.secp256k1NS12.factors, List(BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -25918,18 +26262,24 @@ object PrattTraces {
   def secp256k1NS13F2(): Unit = {
     pw103()
     factorsOkNil(PrattCerts.secp256k1NS13.p, PrattCerts.secp256k1NS13.a, List(BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS13.factors.tail.tail.head == PrattFactor(BigInt(11), BigInt(1), BigInt(6)))
+    assert(List(BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(11)))
     factorsOkCons(PrattCerts.secp256k1NS13.p, PrattCerts.secp256k1NS13.a, PrattCerts.secp256k1NS13.factors.tail.tail, List(BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS13.p, PrattCerts.secp256k1NS13.a, PrattCerts.secp256k1NS13.factors.tail.tail, List(BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
   def secp256k1NS13F1(): Unit = {
     pw104()
     secp256k1NS13F2()
+    assert(PrattCerts.secp256k1NS13.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(22)))
+    assert(List(BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1NS13.p, PrattCerts.secp256k1NS13.a, PrattCerts.secp256k1NS13.factors.tail, List(BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS13.p, PrattCerts.secp256k1NS13.a, PrattCerts.secp256k1NS13.factors.tail, List(BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
   def secp256k1NS13F0(): Unit = {
     pw105()
     secp256k1NS13F1()
+    assert(PrattCerts.secp256k1NS13.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(33)))
+    assert(List(BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS13.p, PrattCerts.secp256k1NS13.a, PrattCerts.secp256k1NS13.factors, List(BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS13.p, PrattCerts.secp256k1NS13.a, PrattCerts.secp256k1NS13.factors, List(BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -26005,6 +26355,8 @@ object PrattTraces {
   def secp256k1NS14F3(): Unit = {
     pw215()
     factorsOkNil(PrattCerts.secp256k1NS14.p, PrattCerts.secp256k1NS14.a, List(BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS14.factors.tail.tail.tail.head == PrattFactor(BigInt(67), BigInt(1), BigInt(30)))
+    assert(List(BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(67)))
     factorsOkCons(PrattCerts.secp256k1NS14.p, PrattCerts.secp256k1NS14.a, PrattCerts.secp256k1NS14.factors.tail.tail.tail, List(BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS14.p, PrattCerts.secp256k1NS14.a, PrattCerts.secp256k1NS14.factors.tail.tail.tail, List(BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m216: BigInt = BigInt(2011)
@@ -26046,6 +26398,8 @@ object PrattTraces {
   def secp256k1NS14F2(): Unit = {
     pw216()
     secp256k1NS14F3()
+    assert(PrattCerts.secp256k1NS14.factors.tail.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(402)))
+    assert(List(BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1NS14.p, PrattCerts.secp256k1NS14.a, PrattCerts.secp256k1NS14.factors.tail.tail, List(BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS14.p, PrattCerts.secp256k1NS14.a, PrattCerts.secp256k1NS14.factors.tail.tail, List(BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m217: BigInt = BigInt(2011)
@@ -26090,6 +26444,8 @@ object PrattTraces {
   def secp256k1NS14F1(): Unit = {
     pw217()
     secp256k1NS14F2()
+    assert(PrattCerts.secp256k1NS14.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(670)))
+    assert(List(BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1NS14.p, PrattCerts.secp256k1NS14.a, PrattCerts.secp256k1NS14.factors.tail, List(BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS14.p, PrattCerts.secp256k1NS14.a, PrattCerts.secp256k1NS14.factors.tail, List(BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m218: BigInt = BigInt(2011)
@@ -26134,6 +26490,8 @@ object PrattTraces {
   def secp256k1NS14F0(): Unit = {
     pw218()
     secp256k1NS14F1()
+    assert(PrattCerts.secp256k1NS14.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(1005)))
+    assert(List(BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS14.p, PrattCerts.secp256k1NS14.a, PrattCerts.secp256k1NS14.factors, List(BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS14.p, PrattCerts.secp256k1NS14.a, PrattCerts.secp256k1NS14.factors, List(BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -26272,6 +26630,8 @@ object PrattTraces {
   def secp256k1NS15F3(): Unit = {
     pw220()
     factorsOkNil(PrattCerts.secp256k1NS15.p, PrattCerts.secp256k1NS15.a, List(BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS15.factors.tail.tail.tail.head == PrattFactor(BigInt(2011), BigInt(1), BigInt(2328)))
+    assert(List(BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2011)))
     factorsOkCons(PrattCerts.secp256k1NS15.p, PrattCerts.secp256k1NS15.a, PrattCerts.secp256k1NS15.factors.tail.tail.tail, List(BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS15.p, PrattCerts.secp256k1NS15.a, PrattCerts.secp256k1NS15.factors.tail.tail.tail, List(BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m221: BigInt = BigInt(4681609)
@@ -26334,6 +26694,8 @@ object PrattTraces {
   def secp256k1NS15F2(): Unit = {
     pw221()
     secp256k1NS15F3()
+    assert(PrattCerts.secp256k1NS15.factors.tail.tail.head == PrattFactor(BigInt(97), BigInt(1), BigInt(48264)))
+    assert(List(BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(97)))
     factorsOkCons(PrattCerts.secp256k1NS15.p, PrattCerts.secp256k1NS15.a, PrattCerts.secp256k1NS15.factors.tail.tail, List(BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS15.p, PrattCerts.secp256k1NS15.a, PrattCerts.secp256k1NS15.factors.tail.tail, List(BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m222: BigInt = BigInt(4681609)
@@ -26417,6 +26779,8 @@ object PrattTraces {
   def secp256k1NS15F1(): Unit = {
     pw222()
     secp256k1NS15F2()
+    assert(PrattCerts.secp256k1NS15.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(1560536)))
+    assert(List(BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1NS15.p, PrattCerts.secp256k1NS15.a, PrattCerts.secp256k1NS15.factors.tail, List(BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS15.p, PrattCerts.secp256k1NS15.a, PrattCerts.secp256k1NS15.factors.tail, List(BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m223: BigInt = BigInt(4681609)
@@ -26503,6 +26867,8 @@ object PrattTraces {
   def secp256k1NS15F0(): Unit = {
     pw223()
     secp256k1NS15F1()
+    assert(PrattCerts.secp256k1NS15.factors.head == PrattFactor(BigInt(2), BigInt(3), BigInt(2340804)))
+    assert(List(BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS15.p, PrattCerts.secp256k1NS15.a, PrattCerts.secp256k1NS15.factors, List(BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS15.p, PrattCerts.secp256k1NS15.a, PrattCerts.secp256k1NS15.factors, List(BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -26836,6 +27202,8 @@ object PrattTraces {
   def secp256k1NS16F3(): Unit = {
     pw225()
     factorsOkNil(PrattCerts.secp256k1NS16.p, PrattCerts.secp256k1NS16.a, List(BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS16.factors.tail.tail.tail.head == PrattFactor(BigInt(4681609), BigInt(1), BigInt("22932669904")))
+    assert(List(BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(4681609)))
     factorsOkCons(PrattCerts.secp256k1NS16.p, PrattCerts.secp256k1NS16.a, PrattCerts.secp256k1NS16.factors.tail.tail.tail, List(BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS16.p, PrattCerts.secp256k1NS16.a, PrattCerts.secp256k1NS16.factors.tail.tail.tail, List(BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m226: BigInt = BigInt("107361793816595537")
@@ -26985,6 +27353,8 @@ object PrattTraces {
   def secp256k1NS16F2(): Unit = {
     pw226()
     secp256k1NS16F3()
+    assert(PrattCerts.secp256k1NS16.factors.tail.tail.head == PrattFactor(BigInt(85831), BigInt(1), BigInt("1250851019056")))
+    assert(List(BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(85831)))
     factorsOkCons(PrattCerts.secp256k1NS16.p, PrattCerts.secp256k1NS16.a, PrattCerts.secp256k1NS16.factors.tail.tail, List(BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS16.p, PrattCerts.secp256k1NS16.a, PrattCerts.secp256k1NS16.factors.tail.tail, List(BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m227: BigInt = BigInt("107361793816595537")
@@ -27140,6 +27510,8 @@ object PrattTraces {
   def secp256k1NS16F1(): Unit = {
     pw227()
     secp256k1NS16F2()
+    assert(PrattCerts.secp256k1NS16.factors.tail.head == PrattFactor(BigInt(16699), BigInt(1), BigInt("6429234913264")))
+    assert(List(BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(16699)))
     factorsOkCons(PrattCerts.secp256k1NS16.p, PrattCerts.secp256k1NS16.a, PrattCerts.secp256k1NS16.factors.tail, List(BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS16.p, PrattCerts.secp256k1NS16.a, PrattCerts.secp256k1NS16.factors.tail, List(BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m228: BigInt = BigInt("107361793816595537")
@@ -27340,6 +27712,8 @@ object PrattTraces {
   def secp256k1NS16F0(): Unit = {
     pw228()
     secp256k1NS16F1()
+    assert(PrattCerts.secp256k1NS16.factors.head == PrattFactor(BigInt(2), BigInt(4), BigInt("53680896908297768")))
+    assert(List(BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS16.p, PrattCerts.secp256k1NS16.a, PrattCerts.secp256k1NS16.factors, List(BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS16.p, PrattCerts.secp256k1NS16.a, PrattCerts.secp256k1NS16.factors, List(BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -27351,6 +27725,8 @@ object PrattTraces {
   def secp256k1NS17F0(): Unit = {
     pw31()
     factorsOkNil(PrattCerts.secp256k1NS17.p, PrattCerts.secp256k1NS17.a, List(BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS17.factors.head == PrattFactor(BigInt(2), BigInt(4), BigInt(8)))
+    assert(List(BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS17.p, PrattCerts.secp256k1NS17.a, PrattCerts.secp256k1NS17.factors, List(BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS17.p, PrattCerts.secp256k1NS17.a, PrattCerts.secp256k1NS17.factors, List(BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -27362,12 +27738,16 @@ object PrattTraces {
   def secp256k1NS18F1(): Unit = {
     pw13()
     factorsOkNil(PrattCerts.secp256k1NS18.p, PrattCerts.secp256k1NS18.a, List(BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS18.factors.tail.head == PrattFactor(BigInt(7), BigInt(1), BigInt(4)))
+    assert(List(BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.secp256k1NS18.p, PrattCerts.secp256k1NS18.a, PrattCerts.secp256k1NS18.factors.tail, List(BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS18.p, PrattCerts.secp256k1NS18.a, PrattCerts.secp256k1NS18.factors.tail, List(BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
   def secp256k1NS18F0(): Unit = {
     pw14()
     secp256k1NS18F1()
+    assert(PrattCerts.secp256k1NS18.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(14)))
+    assert(List(BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS18.p, PrattCerts.secp256k1NS18.a, PrattCerts.secp256k1NS18.factors, List(BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS18.p, PrattCerts.secp256k1NS18.a, PrattCerts.secp256k1NS18.factors, List(BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -27419,6 +27799,8 @@ object PrattTraces {
   def secp256k1NS19F1(): Unit = {
     pw230()
     factorsOkNil(PrattCerts.secp256k1NS19.p, PrattCerts.secp256k1NS19.a, List(BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS19.factors.tail.head == PrattFactor(BigInt(29), BigInt(1), BigInt(2)))
+    assert(List(BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(29)))
     factorsOkCons(PrattCerts.secp256k1NS19.p, PrattCerts.secp256k1NS19.a, PrattCerts.secp256k1NS19.factors.tail, List(BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS19.p, PrattCerts.secp256k1NS19.a, PrattCerts.secp256k1NS19.factors.tail, List(BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m231: BigInt = BigInt(59)
@@ -27448,6 +27830,8 @@ object PrattTraces {
   def secp256k1NS19F0(): Unit = {
     pw231()
     secp256k1NS19F1()
+    assert(PrattCerts.secp256k1NS19.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(29)))
+    assert(List(BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS19.p, PrattCerts.secp256k1NS19.a, PrattCerts.secp256k1NS19.factors, List(BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS19.p, PrattCerts.secp256k1NS19.a, PrattCerts.secp256k1NS19.factors, List(BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -27541,6 +27925,8 @@ object PrattTraces {
   def secp256k1NS20F2(): Unit = {
     pw233()
     factorsOkNil(PrattCerts.secp256k1NS20.p, PrattCerts.secp256k1NS20.a, List(BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS20.factors.tail.tail.head == PrattFactor(BigInt(5), BigInt(2), BigInt(810)))
+    assert(List(BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1NS20.p, PrattCerts.secp256k1NS20.a, PrattCerts.secp256k1NS20.factors.tail.tail, List(BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS20.p, PrattCerts.secp256k1NS20.a, PrattCerts.secp256k1NS20.factors.tail.tail, List(BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m234: BigInt = BigInt(4051)
@@ -27588,6 +27974,8 @@ object PrattTraces {
   def secp256k1NS20F1(): Unit = {
     pw234()
     secp256k1NS20F2()
+    assert(PrattCerts.secp256k1NS20.factors.tail.head == PrattFactor(BigInt(3), BigInt(4), BigInt(1350)))
+    assert(List(BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1NS20.p, PrattCerts.secp256k1NS20.a, PrattCerts.secp256k1NS20.factors.tail, List(BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS20.p, PrattCerts.secp256k1NS20.a, PrattCerts.secp256k1NS20.factors.tail, List(BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m235: BigInt = BigInt(4051)
@@ -27635,6 +28023,8 @@ object PrattTraces {
   def secp256k1NS20F0(): Unit = {
     pw235()
     secp256k1NS20F1()
+    assert(PrattCerts.secp256k1NS20.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(2025)))
+    assert(List(BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS20.p, PrattCerts.secp256k1NS20.a, PrattCerts.secp256k1NS20.factors, List(BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS20.p, PrattCerts.secp256k1NS20.a, PrattCerts.secp256k1NS20.factors, List(BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -27646,12 +28036,16 @@ object PrattTraces {
   def secp256k1NS21F1(): Unit = {
     pw131()
     factorsOkNil(PrattCerts.secp256k1NS21.p, PrattCerts.secp256k1NS21.a, List(BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS21.factors.tail.head == PrattFactor(BigInt(3), BigInt(2), BigInt(6)))
+    assert(List(BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1NS21.p, PrattCerts.secp256k1NS21.a, PrattCerts.secp256k1NS21.factors.tail, List(BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS21.p, PrattCerts.secp256k1NS21.a, PrattCerts.secp256k1NS21.factors.tail, List(BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
   def secp256k1NS21F0(): Unit = {
     pw132()
     secp256k1NS21F1()
+    assert(PrattCerts.secp256k1NS21.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(9)))
+    assert(List(BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS21.p, PrattCerts.secp256k1NS21.a, PrattCerts.secp256k1NS21.factors, List(BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS21.p, PrattCerts.secp256k1NS21.a, PrattCerts.secp256k1NS21.factors, List(BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -27715,6 +28109,8 @@ object PrattTraces {
   def secp256k1NS22F1(): Unit = {
     pw237()
     factorsOkNil(PrattCerts.secp256k1NS22.p, PrattCerts.secp256k1NS22.a, List(BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS22.factors.tail.head == PrattFactor(BigInt(7), BigInt(1), BigInt(16)))
+    assert(List(BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.secp256k1NS22.p, PrattCerts.secp256k1NS22.a, PrattCerts.secp256k1NS22.factors.tail, List(BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS22.p, PrattCerts.secp256k1NS22.a, PrattCerts.secp256k1NS22.factors.tail, List(BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m238: BigInt = BigInt(113)
@@ -27747,6 +28143,8 @@ object PrattTraces {
   def secp256k1NS22F0(): Unit = {
     pw238()
     secp256k1NS22F1()
+    assert(PrattCerts.secp256k1NS22.factors.head == PrattFactor(BigInt(2), BigInt(4), BigInt(56)))
+    assert(List(BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS22.p, PrattCerts.secp256k1NS22.a, PrattCerts.secp256k1NS22.factors, List(BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS22.p, PrattCerts.secp256k1NS22.a, PrattCerts.secp256k1NS22.factors, List(BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -27858,6 +28256,8 @@ object PrattTraces {
   def secp256k1NS23F3(): Unit = {
     pw240()
     factorsOkNil(PrattCerts.secp256k1NS23.p, PrattCerts.secp256k1NS23.a, List(BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS23.factors.tail.tail.tail.head == PrattFactor(BigInt(113), BigInt(1), BigInt(1064)))
+    assert(List(BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(113)))
     factorsOkCons(PrattCerts.secp256k1NS23.p, PrattCerts.secp256k1NS23.a, PrattCerts.secp256k1NS23.factors.tail.tail.tail, List(BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS23.p, PrattCerts.secp256k1NS23.a, PrattCerts.secp256k1NS23.factors.tail.tail.tail, List(BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m241: BigInt = BigInt(120233)
@@ -27911,6 +28311,8 @@ object PrattTraces {
   def secp256k1NS23F2(): Unit = {
     pw241()
     secp256k1NS23F3()
+    assert(PrattCerts.secp256k1NS23.factors.tail.tail.head == PrattFactor(BigInt(19), BigInt(1), BigInt(6328)))
+    assert(List(BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(19)))
     factorsOkCons(PrattCerts.secp256k1NS23.p, PrattCerts.secp256k1NS23.a, PrattCerts.secp256k1NS23.factors.tail.tail, List(BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS23.p, PrattCerts.secp256k1NS23.a, PrattCerts.secp256k1NS23.factors.tail.tail, List(BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m242: BigInt = BigInt(120233)
@@ -27970,6 +28372,8 @@ object PrattTraces {
   def secp256k1NS23F1(): Unit = {
     pw242()
     secp256k1NS23F2()
+    assert(PrattCerts.secp256k1NS23.factors.tail.head == PrattFactor(BigInt(7), BigInt(1), BigInt(17176)))
+    assert(List(BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.secp256k1NS23.p, PrattCerts.secp256k1NS23.a, PrattCerts.secp256k1NS23.factors.tail, List(BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS23.p, PrattCerts.secp256k1NS23.a, PrattCerts.secp256k1NS23.factors.tail, List(BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m243: BigInt = BigInt(120233)
@@ -28032,6 +28436,8 @@ object PrattTraces {
   def secp256k1NS23F0(): Unit = {
     pw243()
     secp256k1NS23F1()
+    assert(PrattCerts.secp256k1NS23.factors.head == PrattFactor(BigInt(2), BigInt(3), BigInt(60116)))
+    assert(List(BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS23.p, PrattCerts.secp256k1NS23.a, PrattCerts.secp256k1NS23.factors, List(BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS23.p, PrattCerts.secp256k1NS23.a, PrattCerts.secp256k1NS23.factors, List(BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -28098,6 +28504,8 @@ object PrattTraces {
   def secp256k1NS24F2(): Unit = {
     pw245()
     factorsOkNil(PrattCerts.secp256k1NS24.p, PrattCerts.secp256k1NS24.a, List(BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS24.factors.tail.tail.head == PrattFactor(BigInt(11), BigInt(1), BigInt(18)))
+    assert(List(BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(11)))
     factorsOkCons(PrattCerts.secp256k1NS24.p, PrattCerts.secp256k1NS24.a, PrattCerts.secp256k1NS24.factors.tail.tail, List(BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS24.p, PrattCerts.secp256k1NS24.a, PrattCerts.secp256k1NS24.factors.tail.tail, List(BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m246: BigInt = BigInt(199)
@@ -28133,6 +28541,8 @@ object PrattTraces {
   def secp256k1NS24F1(): Unit = {
     pw246()
     secp256k1NS24F2()
+    assert(PrattCerts.secp256k1NS24.factors.tail.head == PrattFactor(BigInt(3), BigInt(2), BigInt(66)))
+    assert(List(BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1NS24.p, PrattCerts.secp256k1NS24.a, PrattCerts.secp256k1NS24.factors.tail, List(BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS24.p, PrattCerts.secp256k1NS24.a, PrattCerts.secp256k1NS24.factors.tail, List(BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m247: BigInt = BigInt(199)
@@ -28168,6 +28578,8 @@ object PrattTraces {
   def secp256k1NS24F0(): Unit = {
     pw247()
     secp256k1NS24F1()
+    assert(PrattCerts.secp256k1NS24.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(99)))
+    assert(List(BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS24.p, PrattCerts.secp256k1NS24.a, PrattCerts.secp256k1NS24.factors, List(BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS24.p, PrattCerts.secp256k1NS24.a, PrattCerts.secp256k1NS24.factors, List(BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -28234,6 +28646,8 @@ object PrattTraces {
   def secp256k1NS25F1(): Unit = {
     pw249()
     factorsOkNil(PrattCerts.secp256k1NS25.p, PrattCerts.secp256k1NS25.a, List(BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS25.factors.tail.head == PrattFactor(BigInt(199), BigInt(1), BigInt(4)))
+    assert(List(BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(199)))
     factorsOkCons(PrattCerts.secp256k1NS25.p, PrattCerts.secp256k1NS25.a, PrattCerts.secp256k1NS25.factors.tail, List(BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS25.p, PrattCerts.secp256k1NS25.a, PrattCerts.secp256k1NS25.factors.tail, List(BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m250: BigInt = BigInt(797)
@@ -28275,6 +28689,8 @@ object PrattTraces {
   def secp256k1NS25F0(): Unit = {
     pw250()
     secp256k1NS25F1()
+    assert(PrattCerts.secp256k1NS25.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(398)))
+    assert(List(BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS25.p, PrattCerts.secp256k1NS25.a, PrattCerts.secp256k1NS25.factors, List(BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS25.p, PrattCerts.secp256k1NS25.a, PrattCerts.secp256k1NS25.factors, List(BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -28286,12 +28702,16 @@ object PrattTraces {
   def secp256k1NS26F1(): Unit = {
     pw94()
     factorsOkNil(PrattCerts.secp256k1NS26.p, PrattCerts.secp256k1NS26.a, List(BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS26.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(8)))
+    assert(List(BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1NS26.p, PrattCerts.secp256k1NS26.a, PrattCerts.secp256k1NS26.factors.tail, List(BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS26.p, PrattCerts.secp256k1NS26.a, PrattCerts.secp256k1NS26.factors.tail, List(BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
   def secp256k1NS26F0(): Unit = {
     pw95()
     secp256k1NS26F1()
+    assert(PrattCerts.secp256k1NS26.factors.head == PrattFactor(BigInt(2), BigInt(3), BigInt(20)))
+    assert(List(BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS26.p, PrattCerts.secp256k1NS26.a, PrattCerts.secp256k1NS26.factors, List(BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS26.p, PrattCerts.secp256k1NS26.a, PrattCerts.secp256k1NS26.factors, List(BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -28385,6 +28805,8 @@ object PrattTraces {
   def secp256k1NS27F3(): Unit = {
     pw252()
     factorsOkNil(PrattCerts.secp256k1NS27.p, PrattCerts.secp256k1NS27.a, List(BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS27.factors.tail.tail.tail.head == PrattFactor(BigInt(41), BigInt(1), BigInt(228)))
+    assert(List(BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(41)))
     factorsOkCons(PrattCerts.secp256k1NS27.p, PrattCerts.secp256k1NS27.a, PrattCerts.secp256k1NS27.factors.tail.tail.tail, List(BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS27.p, PrattCerts.secp256k1NS27.a, PrattCerts.secp256k1NS27.factors.tail.tail.tail, List(BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m253: BigInt = BigInt(9349)
@@ -28426,6 +28848,8 @@ object PrattTraces {
   def secp256k1NS27F2(): Unit = {
     pw253()
     secp256k1NS27F3()
+    assert(PrattCerts.secp256k1NS27.factors.tail.tail.head == PrattFactor(BigInt(19), BigInt(1), BigInt(492)))
+    assert(List(BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(19)))
     factorsOkCons(PrattCerts.secp256k1NS27.p, PrattCerts.secp256k1NS27.a, PrattCerts.secp256k1NS27.factors.tail.tail, List(BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS27.p, PrattCerts.secp256k1NS27.a, PrattCerts.secp256k1NS27.factors.tail.tail, List(BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m254: BigInt = BigInt(9349)
@@ -28476,6 +28900,8 @@ object PrattTraces {
   def secp256k1NS27F1(): Unit = {
     pw254()
     secp256k1NS27F2()
+    assert(PrattCerts.secp256k1NS27.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(3116)))
+    assert(List(BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1NS27.p, PrattCerts.secp256k1NS27.a, PrattCerts.secp256k1NS27.factors.tail, List(BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS27.p, PrattCerts.secp256k1NS27.a, PrattCerts.secp256k1NS27.factors.tail, List(BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m255: BigInt = BigInt(9349)
@@ -28529,6 +28955,8 @@ object PrattTraces {
   def secp256k1NS27F0(): Unit = {
     pw255()
     secp256k1NS27F1()
+    assert(PrattCerts.secp256k1NS27.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(4674)))
+    assert(List(BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS27.p, PrattCerts.secp256k1NS27.a, PrattCerts.secp256k1NS27.factors, List(BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS27.p, PrattCerts.secp256k1NS27.a, PrattCerts.secp256k1NS27.factors, List(BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -28679,6 +29107,8 @@ object PrattTraces {
   def secp256k1NS28F3(): Unit = {
     pw257()
     factorsOkNil(PrattCerts.secp256k1NS28.p, PrattCerts.secp256k1NS28.a, List(BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS28.factors.tail.tail.tail.head == PrattFactor(BigInt(9349), BigInt(1), BigInt(4782)))
+    assert(List(BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(9349)))
     factorsOkCons(PrattCerts.secp256k1NS28.p, PrattCerts.secp256k1NS28.a, PrattCerts.secp256k1NS28.factors.tail.tail.tail, List(BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS28.p, PrattCerts.secp256k1NS28.a, PrattCerts.secp256k1NS28.factors.tail.tail.tail, List(BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m258: BigInt = BigInt(44706919)
@@ -28741,6 +29171,8 @@ object PrattTraces {
   def secp256k1NS28F2(): Unit = {
     pw258()
     secp256k1NS28F3()
+    assert(PrattCerts.secp256k1NS28.factors.tail.tail.head == PrattFactor(BigInt(797), BigInt(1), BigInt(56094)))
+    assert(List(BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(797)))
     factorsOkCons(PrattCerts.secp256k1NS28.p, PrattCerts.secp256k1NS28.a, PrattCerts.secp256k1NS28.factors.tail.tail, List(BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS28.p, PrattCerts.secp256k1NS28.a, PrattCerts.secp256k1NS28.factors.tail.tail, List(BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m259: BigInt = BigInt(44706919)
@@ -28833,6 +29265,8 @@ object PrattTraces {
   def secp256k1NS28F1(): Unit = {
     pw259()
     secp256k1NS28F2()
+    assert(PrattCerts.secp256k1NS28.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(14902306)))
+    assert(List(BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1NS28.p, PrattCerts.secp256k1NS28.a, PrattCerts.secp256k1NS28.factors.tail, List(BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS28.p, PrattCerts.secp256k1NS28.a, PrattCerts.secp256k1NS28.factors.tail, List(BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m260: BigInt = BigInt(44706919)
@@ -28928,6 +29362,8 @@ object PrattTraces {
   def secp256k1NS28F0(): Unit = {
     pw260()
     secp256k1NS28F1()
+    assert(PrattCerts.secp256k1NS28.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(22353459)))
+    assert(List(BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS28.p, PrattCerts.secp256k1NS28.a, PrattCerts.secp256k1NS28.factors, List(BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS28.p, PrattCerts.secp256k1NS28.a, PrattCerts.secp256k1NS28.factors, List(BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -29321,6 +29757,8 @@ object PrattTraces {
   def secp256k1NS29F5(): Unit = {
     pw262()
     factorsOkNil(PrattCerts.secp256k1NS29.p, PrattCerts.secp256k1NS29.a, List(BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS29.factors.tail.tail.tail.tail.tail.head == PrattFactor(BigInt(44706919), BigInt(1), BigInt("3908200597192")))
+    assert(List(BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(44706919)))
     factorsOkCons(PrattCerts.secp256k1NS29.p, PrattCerts.secp256k1NS29.a, PrattCerts.secp256k1NS29.factors.tail.tail.tail.tail.tail, List(BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS29.p, PrattCerts.secp256k1NS29.a, PrattCerts.secp256k1NS29.factors.tail.tail.tail.tail.tail, List(BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m263: BigInt = BigInt("174723607534414371449")
@@ -29506,6 +29944,8 @@ object PrattTraces {
   def secp256k1NS29F4(): Unit = {
     pw263()
     secp256k1NS29F5()
+    assert(PrattCerts.secp256k1NS29.factors.tail.tail.tail.tail.head == PrattFactor(BigInt(120233), BigInt(1), BigInt("1453208416444856")))
+    assert(List(BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(120233)))
     factorsOkCons(PrattCerts.secp256k1NS29.p, PrattCerts.secp256k1NS29.a, PrattCerts.secp256k1NS29.factors.tail.tail.tail.tail, List(BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS29.p, PrattCerts.secp256k1NS29.a, PrattCerts.secp256k1NS29.factors.tail.tail.tail.tail, List(BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m264: BigInt = BigInt("174723607534414371449")
@@ -29706,6 +30146,8 @@ object PrattTraces {
   def secp256k1NS29F3(): Unit = {
     pw264()
     secp256k1NS29F4()
+    assert(PrattCerts.secp256k1NS29.factors.tail.tail.tail.head == PrattFactor(BigInt(4051), BigInt(1), BigInt("43130981864827048")))
+    assert(List(BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(4051)))
     factorsOkCons(PrattCerts.secp256k1NS29.p, PrattCerts.secp256k1NS29.a, PrattCerts.secp256k1NS29.factors.tail.tail.tail, List(BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS29.p, PrattCerts.secp256k1NS29.a, PrattCerts.secp256k1NS29.factors.tail.tail.tail, List(BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m265: BigInt = BigInt("174723607534414371449")
@@ -29924,6 +30366,8 @@ object PrattTraces {
   def secp256k1NS29F2(): Unit = {
     pw265()
     secp256k1NS29F3()
+    assert(PrattCerts.secp256k1NS29.factors.tail.tail.head == PrattFactor(BigInt(59), BigInt(1), BigInt("2961417076854480872")))
+    assert(List(BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(59)))
     factorsOkCons(PrattCerts.secp256k1NS29.p, PrattCerts.secp256k1NS29.a, PrattCerts.secp256k1NS29.factors.tail.tail, List(BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS29.p, PrattCerts.secp256k1NS29.a, PrattCerts.secp256k1NS29.factors.tail.tail, List(BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m266: BigInt = BigInt("174723607534414371449")
@@ -30148,6 +30592,8 @@ object PrattTraces {
   def secp256k1NS29F1(): Unit = {
     pw266()
     secp256k1NS29F2()
+    assert(PrattCerts.secp256k1NS29.factors.tail.head == PrattFactor(BigInt(17), BigInt(1), BigInt("10277859266730257144")))
+    assert(List(BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(17)))
     factorsOkCons(PrattCerts.secp256k1NS29.p, PrattCerts.secp256k1NS29.a, PrattCerts.secp256k1NS29.factors.tail, List(BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS29.p, PrattCerts.secp256k1NS29.a, PrattCerts.secp256k1NS29.factors.tail, List(BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m267: BigInt = BigInt("174723607534414371449")
@@ -30387,6 +30833,8 @@ object PrattTraces {
   def secp256k1NS29F0(): Unit = {
     pw267()
     secp256k1NS29F1()
+    assert(PrattCerts.secp256k1NS29.factors.head == PrattFactor(BigInt(2), BigInt(3), BigInt("87361803767207185724")))
+    assert(List(BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS29.p, PrattCerts.secp256k1NS29.a, PrattCerts.secp256k1NS29.factors, List(BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS29.p, PrattCerts.secp256k1NS29.a, PrattCerts.secp256k1NS29.factors, List(BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -30453,6 +30901,8 @@ object PrattTraces {
   def secp256k1NS30F1(): Unit = {
     pw269()
     factorsOkNil(PrattCerts.secp256k1NS30.p, PrattCerts.secp256k1NS30.a, List(BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS30.factors.tail.head == PrattFactor(BigInt(3), BigInt(3), BigInt(36)))
+    assert(List(BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1NS30.p, PrattCerts.secp256k1NS30.a, PrattCerts.secp256k1NS30.factors.tail, List(BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS30.p, PrattCerts.secp256k1NS30.a, PrattCerts.secp256k1NS30.factors.tail, List(BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m270: BigInt = BigInt(109)
@@ -30485,6 +30935,8 @@ object PrattTraces {
   def secp256k1NS30F0(): Unit = {
     pw270()
     secp256k1NS30F1()
+    assert(PrattCerts.secp256k1NS30.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(54)))
+    assert(List(BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS30.p, PrattCerts.secp256k1NS30.a, PrattCerts.secp256k1NS30.factors, List(BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS30.p, PrattCerts.secp256k1NS30.a, PrattCerts.secp256k1NS30.factors, List(BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -30548,6 +31000,8 @@ object PrattTraces {
   def secp256k1NS31F1(): Unit = {
     pw272()
     factorsOkNil(PrattCerts.secp256k1NS31.p, PrattCerts.secp256k1NS31.a, List(BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS31.factors.tail.head == PrattFactor(BigInt(3), BigInt(2), BigInt(24)))
+    assert(List(BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1NS31.p, PrattCerts.secp256k1NS31.a, PrattCerts.secp256k1NS31.factors.tail, List(BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS31.p, PrattCerts.secp256k1NS31.a, PrattCerts.secp256k1NS31.factors.tail, List(BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m273: BigInt = BigInt(73)
@@ -30580,6 +31034,8 @@ object PrattTraces {
   def secp256k1NS31F0(): Unit = {
     pw273()
     secp256k1NS31F1()
+    assert(PrattCerts.secp256k1NS31.factors.head == PrattFactor(BigInt(2), BigInt(3), BigInt(36)))
+    assert(List(BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS31.p, PrattCerts.secp256k1NS31.a, PrattCerts.secp256k1NS31.factors, List(BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS31.p, PrattCerts.secp256k1NS31.a, PrattCerts.secp256k1NS31.factors, List(BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -30643,6 +31099,8 @@ object PrattTraces {
   def secp256k1NS32F1(): Unit = {
     pw275()
     factorsOkNil(PrattCerts.secp256k1NS32.p, PrattCerts.secp256k1NS32.a, List(BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS32.factors.tail.head == PrattFactor(BigInt(73), BigInt(1), BigInt(4)))
+    assert(List(BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(73)))
     factorsOkCons(PrattCerts.secp256k1NS32.p, PrattCerts.secp256k1NS32.a, PrattCerts.secp256k1NS32.factors.tail, List(BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS32.p, PrattCerts.secp256k1NS32.a, PrattCerts.secp256k1NS32.factors.tail, List(BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m276: BigInt = BigInt(293)
@@ -30681,6 +31139,8 @@ object PrattTraces {
   def secp256k1NS32F0(): Unit = {
     pw276()
     secp256k1NS32F1()
+    assert(PrattCerts.secp256k1NS32.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(146)))
+    assert(List(BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS32.p, PrattCerts.secp256k1NS32.a, PrattCerts.secp256k1NS32.factors, List(BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS32.p, PrattCerts.secp256k1NS32.a, PrattCerts.secp256k1NS32.factors, List(BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -30768,6 +31228,8 @@ object PrattTraces {
   def secp256k1NS33F4(): Unit = {
     pw278()
     factorsOkNil(PrattCerts.secp256k1NS33.p, PrattCerts.secp256k1NS33.a, List(BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS33.factors.tail.tail.tail.tail.head == PrattFactor(BigInt(13), BigInt(1), BigInt(210)))
+    assert(List(BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(13)))
     factorsOkCons(PrattCerts.secp256k1NS33.p, PrattCerts.secp256k1NS33.a, PrattCerts.secp256k1NS33.factors.tail.tail.tail.tail, List(BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS33.p, PrattCerts.secp256k1NS33.a, PrattCerts.secp256k1NS33.factors.tail.tail.tail.tail, List(BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m279: BigInt = BigInt(2731)
@@ -30809,6 +31271,8 @@ object PrattTraces {
   def secp256k1NS33F3(): Unit = {
     pw279()
     secp256k1NS33F4()
+    assert(PrattCerts.secp256k1NS33.factors.tail.tail.tail.head == PrattFactor(BigInt(7), BigInt(1), BigInt(390)))
+    assert(List(BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.secp256k1NS33.p, PrattCerts.secp256k1NS33.a, PrattCerts.secp256k1NS33.factors.tail.tail.tail, List(BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS33.p, PrattCerts.secp256k1NS33.a, PrattCerts.secp256k1NS33.factors.tail.tail.tail, List(BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m280: BigInt = BigInt(2731)
@@ -30853,6 +31317,8 @@ object PrattTraces {
   def secp256k1NS33F2(): Unit = {
     pw280()
     secp256k1NS33F3()
+    assert(PrattCerts.secp256k1NS33.factors.tail.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(546)))
+    assert(List(BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1NS33.p, PrattCerts.secp256k1NS33.a, PrattCerts.secp256k1NS33.factors.tail.tail, List(BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS33.p, PrattCerts.secp256k1NS33.a, PrattCerts.secp256k1NS33.factors.tail.tail, List(BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m281: BigInt = BigInt(2731)
@@ -30897,6 +31363,8 @@ object PrattTraces {
   def secp256k1NS33F1(): Unit = {
     pw281()
     secp256k1NS33F2()
+    assert(PrattCerts.secp256k1NS33.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(910)))
+    assert(List(BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1NS33.p, PrattCerts.secp256k1NS33.a, PrattCerts.secp256k1NS33.factors.tail, List(BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS33.p, PrattCerts.secp256k1NS33.a, PrattCerts.secp256k1NS33.factors.tail, List(BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m282: BigInt = BigInt(2731)
@@ -30944,6 +31412,8 @@ object PrattTraces {
   def secp256k1NS33F0(): Unit = {
     pw282()
     secp256k1NS33F1()
+    assert(PrattCerts.secp256k1NS33.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(1365)))
+    assert(List(BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS33.p, PrattCerts.secp256k1NS33.a, PrattCerts.secp256k1NS33.factors, List(BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS33.p, PrattCerts.secp256k1NS33.a, PrattCerts.secp256k1NS33.factors, List(BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -31055,6 +31525,8 @@ object PrattTraces {
   def secp256k1NS34F2(): Unit = {
     pw284()
     factorsOkNil(PrattCerts.secp256k1NS34.p, PrattCerts.secp256k1NS34.a, List(BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS34.factors.tail.tail.head == PrattFactor(BigInt(2731), BigInt(1), BigInt(112)))
+    assert(List(BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2731)))
     factorsOkCons(PrattCerts.secp256k1NS34.p, PrattCerts.secp256k1NS34.a, PrattCerts.secp256k1NS34.factors.tail.tail, List(BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS34.p, PrattCerts.secp256k1NS34.a, PrattCerts.secp256k1NS34.factors.tail.tail, List(BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m285: BigInt = BigInt(305873)
@@ -31117,6 +31589,8 @@ object PrattTraces {
   def secp256k1NS34F1(): Unit = {
     pw285()
     secp256k1NS34F2()
+    assert(PrattCerts.secp256k1NS34.factors.tail.head == PrattFactor(BigInt(7), BigInt(1), BigInt(43696)))
+    assert(List(BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.secp256k1NS34.p, PrattCerts.secp256k1NS34.a, PrattCerts.secp256k1NS34.factors.tail, List(BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS34.p, PrattCerts.secp256k1NS34.a, PrattCerts.secp256k1NS34.factors.tail, List(BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m286: BigInt = BigInt(305873)
@@ -31191,6 +31665,8 @@ object PrattTraces {
   def secp256k1NS34F0(): Unit = {
     pw286()
     secp256k1NS34F1()
+    assert(PrattCerts.secp256k1NS34.factors.head == PrattFactor(BigInt(2), BigInt(4), BigInt(152936)))
+    assert(List(BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS34.p, PrattCerts.secp256k1NS34.a, PrattCerts.secp256k1NS34.factors, List(BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS34.p, PrattCerts.secp256k1NS34.a, PrattCerts.secp256k1NS34.factors, List(BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -31275,6 +31751,8 @@ object PrattTraces {
   def secp256k1NS35F1(): Unit = {
     pw288()
     factorsOkNil(PrattCerts.secp256k1NS35.p, PrattCerts.secp256k1NS35.a, List(BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS35.factors.tail.head == PrattFactor(BigInt(11), BigInt(1), BigInt(128)))
+    assert(List(BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(11)))
     factorsOkCons(PrattCerts.secp256k1NS35.p, PrattCerts.secp256k1NS35.a, PrattCerts.secp256k1NS35.factors.tail, List(BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS35.p, PrattCerts.secp256k1NS35.a, PrattCerts.secp256k1NS35.factors.tail, List(BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m289: BigInt = BigInt(1409)
@@ -31319,6 +31797,8 @@ object PrattTraces {
   def secp256k1NS35F0(): Unit = {
     pw289()
     secp256k1NS35F1()
+    assert(PrattCerts.secp256k1NS35.factors.head == PrattFactor(BigInt(2), BigInt(7), BigInt(704)))
+    assert(List(BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS35.p, PrattCerts.secp256k1NS35.a, PrattCerts.secp256k1NS35.factors, List(BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS35.p, PrattCerts.secp256k1NS35.a, PrattCerts.secp256k1NS35.factors, List(BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -31406,6 +31886,8 @@ object PrattTraces {
   def secp256k1NS36F2(): Unit = {
     pw291()
     factorsOkNil(PrattCerts.secp256k1NS36.p, PrattCerts.secp256k1NS36.a, List(BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS36.factors.tail.tail.head == PrattFactor(BigInt(1409), BigInt(1), BigInt(20)))
+    assert(List(BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(1409)))
     factorsOkCons(PrattCerts.secp256k1NS36.p, PrattCerts.secp256k1NS36.a, PrattCerts.secp256k1NS36.factors.tail.tail, List(BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS36.p, PrattCerts.secp256k1NS36.a, PrattCerts.secp256k1NS36.factors.tail.tail, List(BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m292: BigInt = BigInt(28181)
@@ -31459,6 +31941,8 @@ object PrattTraces {
   def secp256k1NS36F1(): Unit = {
     pw292()
     secp256k1NS36F2()
+    assert(PrattCerts.secp256k1NS36.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(5636)))
+    assert(List(BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1NS36.p, PrattCerts.secp256k1NS36.a, PrattCerts.secp256k1NS36.factors.tail, List(BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS36.p, PrattCerts.secp256k1NS36.a, PrattCerts.secp256k1NS36.factors.tail, List(BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m293: BigInt = BigInt(28181)
@@ -31515,6 +31999,8 @@ object PrattTraces {
   def secp256k1NS36F0(): Unit = {
     pw293()
     secp256k1NS36F1()
+    assert(PrattCerts.secp256k1NS36.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(14090)))
+    assert(List(BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS36.p, PrattCerts.secp256k1NS36.a, PrattCerts.secp256k1NS36.factors, List(BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS36.p, PrattCerts.secp256k1NS36.a, PrattCerts.secp256k1NS36.factors, List(BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -31683,6 +32169,8 @@ object PrattTraces {
   def secp256k1NS37F3(): Unit = {
     pw295()
     factorsOkNil(PrattCerts.secp256k1NS37.p, PrattCerts.secp256k1NS37.a, List(BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS37.factors.tail.tail.tail.head == PrattFactor(BigInt(28181), BigInt(1), BigInt(19352)))
+    assert(List(BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(28181)))
     factorsOkCons(PrattCerts.secp256k1NS37.p, PrattCerts.secp256k1NS37.a, PrattCerts.secp256k1NS37.factors.tail.tail.tail, List(BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS37.p, PrattCerts.secp256k1NS37.a, PrattCerts.secp256k1NS37.factors.tail.tail.tail, List(BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m296: BigInt = BigInt(545358713)
@@ -31775,6 +32263,8 @@ object PrattTraces {
   def secp256k1NS37F2(): Unit = {
     pw296()
     secp256k1NS37F3()
+    assert(PrattCerts.secp256k1NS37.factors.tail.tail.head == PrattFactor(BigInt(59), BigInt(1), BigInt(9243368)))
+    assert(List(BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(59)))
     factorsOkCons(PrattCerts.secp256k1NS37.p, PrattCerts.secp256k1NS37.a, PrattCerts.secp256k1NS37.factors.tail.tail, List(BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS37.p, PrattCerts.secp256k1NS37.a, PrattCerts.secp256k1NS37.factors.tail.tail, List(BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m297: BigInt = BigInt(545358713)
@@ -31867,6 +32357,8 @@ object PrattTraces {
   def secp256k1NS37F1(): Unit = {
     pw297()
     secp256k1NS37F2()
+    assert(PrattCerts.secp256k1NS37.factors.tail.head == PrattFactor(BigInt(41), BigInt(1), BigInt(13301432)))
+    assert(List(BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(41)))
     factorsOkCons(PrattCerts.secp256k1NS37.p, PrattCerts.secp256k1NS37.a, PrattCerts.secp256k1NS37.factors.tail, List(BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS37.p, PrattCerts.secp256k1NS37.a, PrattCerts.secp256k1NS37.factors.tail, List(BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m298: BigInt = BigInt(545358713)
@@ -31974,6 +32466,8 @@ object PrattTraces {
   def secp256k1NS37F0(): Unit = {
     pw298()
     secp256k1NS37F1()
+    assert(PrattCerts.secp256k1NS37.factors.head == PrattFactor(BigInt(2), BigInt(3), BigInt(272679356)))
+    assert(List(BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS37.p, PrattCerts.secp256k1NS37.a, PrattCerts.secp256k1NS37.factors, List(BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS37.p, PrattCerts.secp256k1NS37.a, PrattCerts.secp256k1NS37.factors, List(BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -32043,6 +32537,8 @@ object PrattTraces {
   def secp256k1NS38F2(): Unit = {
     pw300()
     factorsOkNil(PrattCerts.secp256k1NS38.p, PrattCerts.secp256k1NS38.a, List(BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS38.factors.tail.tail.head == PrattFactor(BigInt(23), BigInt(1), BigInt(20)))
+    assert(List(BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(23)))
     factorsOkCons(PrattCerts.secp256k1NS38.p, PrattCerts.secp256k1NS38.a, PrattCerts.secp256k1NS38.factors.tail.tail, List(BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS38.p, PrattCerts.secp256k1NS38.a, PrattCerts.secp256k1NS38.factors.tail.tail, List(BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m301: BigInt = BigInt(461)
@@ -32078,6 +32574,8 @@ object PrattTraces {
   def secp256k1NS38F1(): Unit = {
     pw301()
     secp256k1NS38F2()
+    assert(PrattCerts.secp256k1NS38.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(92)))
+    assert(List(BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1NS38.p, PrattCerts.secp256k1NS38.a, PrattCerts.secp256k1NS38.factors.tail, List(BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS38.p, PrattCerts.secp256k1NS38.a, PrattCerts.secp256k1NS38.factors.tail, List(BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m302: BigInt = BigInt(461)
@@ -32116,6 +32614,8 @@ object PrattTraces {
   def secp256k1NS38F0(): Unit = {
     pw302()
     secp256k1NS38F1()
+    assert(PrattCerts.secp256k1NS38.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(230)))
+    assert(List(BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS38.p, PrattCerts.secp256k1NS38.a, PrattCerts.secp256k1NS38.factors, List(BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS38.p, PrattCerts.secp256k1NS38.a, PrattCerts.secp256k1NS38.factors, List(BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -32197,6 +32697,8 @@ object PrattTraces {
   def secp256k1NS39F3(): Unit = {
     pw304()
     factorsOkNil(PrattCerts.secp256k1NS39.p, PrattCerts.secp256k1NS39.a, List(BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS39.factors.tail.tail.tail.head == PrattFactor(BigInt(17), BigInt(1), BigInt(110)))
+    assert(List(BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(17)))
     factorsOkCons(PrattCerts.secp256k1NS39.p, PrattCerts.secp256k1NS39.a, PrattCerts.secp256k1NS39.factors.tail.tail.tail, List(BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS39.p, PrattCerts.secp256k1NS39.a, PrattCerts.secp256k1NS39.factors.tail.tail.tail, List(BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m305: BigInt = BigInt(1871)
@@ -32235,6 +32737,8 @@ object PrattTraces {
   def secp256k1NS39F2(): Unit = {
     pw305()
     secp256k1NS39F3()
+    assert(PrattCerts.secp256k1NS39.factors.tail.tail.head == PrattFactor(BigInt(11), BigInt(1), BigInt(170)))
+    assert(List(BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(11)))
     factorsOkCons(PrattCerts.secp256k1NS39.p, PrattCerts.secp256k1NS39.a, PrattCerts.secp256k1NS39.factors.tail.tail, List(BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS39.p, PrattCerts.secp256k1NS39.a, PrattCerts.secp256k1NS39.factors.tail.tail, List(BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m306: BigInt = BigInt(1871)
@@ -32276,6 +32780,8 @@ object PrattTraces {
   def secp256k1NS39F1(): Unit = {
     pw306()
     secp256k1NS39F2()
+    assert(PrattCerts.secp256k1NS39.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(374)))
+    assert(List(BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1NS39.p, PrattCerts.secp256k1NS39.a, PrattCerts.secp256k1NS39.factors.tail, List(BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS39.p, PrattCerts.secp256k1NS39.a, PrattCerts.secp256k1NS39.factors.tail, List(BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m307: BigInt = BigInt(1871)
@@ -32320,6 +32826,8 @@ object PrattTraces {
   def secp256k1NS39F0(): Unit = {
     pw307()
     secp256k1NS39F1()
+    assert(PrattCerts.secp256k1NS39.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(935)))
+    assert(List(BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS39.p, PrattCerts.secp256k1NS39.a, PrattCerts.secp256k1NS39.factors, List(BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS39.p, PrattCerts.secp256k1NS39.a, PrattCerts.secp256k1NS39.factors, List(BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -32446,6 +32954,8 @@ object PrattTraces {
   def secp256k1NS40F4(): Unit = {
     pw309()
     factorsOkNil(PrattCerts.secp256k1NS40.p, PrattCerts.secp256k1NS40.a, List(BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS40.factors.tail.tail.tail.tail.head == PrattFactor(BigInt(1871), BigInt(1), BigInt(870)))
+    assert(List(BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(1871)))
     factorsOkCons(PrattCerts.secp256k1NS40.p, PrattCerts.secp256k1NS40.a, PrattCerts.secp256k1NS40.factors.tail.tail.tail.tail, List(BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS40.p, PrattCerts.secp256k1NS40.a, PrattCerts.secp256k1NS40.factors.tail.tail.tail.tail, List(BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m310: BigInt = BigInt(1627771)
@@ -32508,6 +33018,8 @@ object PrattTraces {
   def secp256k1NS40F3(): Unit = {
     pw310()
     secp256k1NS40F4()
+    assert(PrattCerts.secp256k1NS40.factors.tail.tail.tail.head == PrattFactor(BigInt(29), BigInt(1), BigInt(56130)))
+    assert(List(BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(29)))
     factorsOkCons(PrattCerts.secp256k1NS40.p, PrattCerts.secp256k1NS40.a, PrattCerts.secp256k1NS40.factors.tail.tail.tail, List(BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS40.p, PrattCerts.secp256k1NS40.a, PrattCerts.secp256k1NS40.factors.tail.tail.tail, List(BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m311: BigInt = BigInt(1627771)
@@ -32585,6 +33097,8 @@ object PrattTraces {
   def secp256k1NS40F2(): Unit = {
     pw311()
     secp256k1NS40F3()
+    assert(PrattCerts.secp256k1NS40.factors.tail.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(325554)))
+    assert(List(BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.secp256k1NS40.p, PrattCerts.secp256k1NS40.a, PrattCerts.secp256k1NS40.factors.tail.tail, List(BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS40.p, PrattCerts.secp256k1NS40.a, PrattCerts.secp256k1NS40.factors.tail.tail, List(BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m312: BigInt = BigInt(1627771)
@@ -32665,6 +33179,8 @@ object PrattTraces {
   def secp256k1NS40F1(): Unit = {
     pw312()
     secp256k1NS40F2()
+    assert(PrattCerts.secp256k1NS40.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(542590)))
+    assert(List(BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1NS40.p, PrattCerts.secp256k1NS40.a, PrattCerts.secp256k1NS40.factors.tail, List(BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS40.p, PrattCerts.secp256k1NS40.a, PrattCerts.secp256k1NS40.factors.tail, List(BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m313: BigInt = BigInt(1627771)
@@ -32745,6 +33261,8 @@ object PrattTraces {
   def secp256k1NS40F0(): Unit = {
     pw313()
     secp256k1NS40F1()
+    assert(PrattCerts.secp256k1NS40.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(813885)))
+    assert(List(BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS40.p, PrattCerts.secp256k1NS40.a, PrattCerts.secp256k1NS40.factors, List(BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS40.p, PrattCerts.secp256k1NS40.a, PrattCerts.secp256k1NS40.factors, List(BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -32961,6 +33479,8 @@ object PrattTraces {
   def secp256k1NS41F4(): Unit = {
     pw315()
     factorsOkNil(PrattCerts.secp256k1NS41.p, PrattCerts.secp256k1NS41.a, List(BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS41.factors.tail.tail.tail.tail.head == PrattFactor(BigInt(1627771), BigInt(1), BigInt(182556)))
+    assert(List(BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(1627771)))
     factorsOkCons(PrattCerts.secp256k1NS41.p, PrattCerts.secp256k1NS41.a, PrattCerts.secp256k1NS41.factors.tail.tail.tail.tail, List(BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS41.p, PrattCerts.secp256k1NS41.a, PrattCerts.secp256k1NS41.factors.tail.tail.tail.tail, List(BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m316: BigInt = BigInt("297159362677")
@@ -33071,6 +33591,8 @@ object PrattTraces {
   def secp256k1NS41F3(): Unit = {
     pw316()
     secp256k1NS41F4()
+    assert(PrattCerts.secp256k1NS41.factors.tail.tail.tail.head == PrattFactor(BigInt(461), BigInt(1), BigInt(644597316)))
+    assert(List(BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(461)))
     factorsOkCons(PrattCerts.secp256k1NS41.p, PrattCerts.secp256k1NS41.a, PrattCerts.secp256k1NS41.factors.tail.tail.tail, List(BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS41.p, PrattCerts.secp256k1NS41.a, PrattCerts.secp256k1NS41.factors.tail.tail.tail, List(BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m317: BigInt = BigInt("297159362677")
@@ -33202,6 +33724,8 @@ object PrattTraces {
   def secp256k1NS41F2(): Unit = {
     pw317()
     secp256k1NS41F3()
+    assert(PrattCerts.secp256k1NS41.factors.tail.tail.head == PrattFactor(BigInt(11), BigInt(1), BigInt("27014487516")))
+    assert(List(BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(11)))
     factorsOkCons(PrattCerts.secp256k1NS41.p, PrattCerts.secp256k1NS41.a, PrattCerts.secp256k1NS41.factors.tail.tail, List(BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS41.p, PrattCerts.secp256k1NS41.a, PrattCerts.secp256k1NS41.factors.tail.tail, List(BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m318: BigInt = BigInt("297159362677")
@@ -33339,6 +33863,8 @@ object PrattTraces {
   def secp256k1NS41F1(): Unit = {
     pw318()
     secp256k1NS41F2()
+    assert(PrattCerts.secp256k1NS41.factors.tail.head == PrattFactor(BigInt(3), BigInt(2), BigInt("99053120892")))
+    assert(List(BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1NS41.p, PrattCerts.secp256k1NS41.a, PrattCerts.secp256k1NS41.factors.tail, List(BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS41.p, PrattCerts.secp256k1NS41.a, PrattCerts.secp256k1NS41.factors.tail, List(BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m319: BigInt = BigInt("297159362677")
@@ -33479,6 +34005,8 @@ object PrattTraces {
   def secp256k1NS41F0(): Unit = {
     pw319()
     secp256k1NS41F1()
+    assert(PrattCerts.secp256k1NS41.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt("148579681338")))
+    assert(List(BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS41.p, PrattCerts.secp256k1NS41.a, PrattCerts.secp256k1NS41.factors, List(BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS41.p, PrattCerts.secp256k1NS41.a, PrattCerts.secp256k1NS41.factors, List(BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -34010,6 +34538,8 @@ object PrattTraces {
   def secp256k1NS42F4(): Unit = {
     pw321()
     factorsOkNil(PrattCerts.secp256k1NS42.p, PrattCerts.secp256k1NS42.a, List(BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS42.factors.tail.tail.tail.tail.head == PrattFactor(BigInt("297159362677"), BigInt(1), BigInt("97750956294169114")))
+    assert(List(BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt("297159362677")))
     factorsOkCons(PrattCerts.secp256k1NS42.p, PrattCerts.secp256k1NS42.a, PrattCerts.secp256k1NS42.factors.tail.tail.tail.tail, List(BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS42.p, PrattCerts.secp256k1NS42.a, PrattCerts.secp256k1NS42.factors.tail.tail.tail.tail, List(BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m322: BigInt = BigInt("29047611873442575647497758179")
@@ -34246,6 +34776,8 @@ object PrattTraces {
   def secp256k1NS42F3(): Unit = {
     pw322()
     secp256k1NS42F4()
+    assert(PrattCerts.secp256k1NS42.factors.tail.tail.tail.head == PrattFactor(BigInt(545358713), BigInt(1), BigInt("53263313083699784306")))
+    assert(List(BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(545358713)))
     factorsOkCons(PrattCerts.secp256k1NS42.p, PrattCerts.secp256k1NS42.a, PrattCerts.secp256k1NS42.factors.tail.tail.tail, List(BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS42.p, PrattCerts.secp256k1NS42.a, PrattCerts.secp256k1NS42.factors.tail.tail.tail, List(BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m323: BigInt = BigInt("29047611873442575647497758179")
@@ -34515,6 +35047,8 @@ object PrattTraces {
   def secp256k1NS42F2(): Unit = {
     pw323()
     secp256k1NS42F3()
+    assert(PrattCerts.secp256k1NS42.factors.tail.tail.head == PrattFactor(BigInt(305873), BigInt(1), BigInt("94966250285061367454786")))
+    assert(List(BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(305873)))
     factorsOkCons(PrattCerts.secp256k1NS42.p, PrattCerts.secp256k1NS42.a, PrattCerts.secp256k1NS42.factors.tail.tail, List(BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS42.p, PrattCerts.secp256k1NS42.a, PrattCerts.secp256k1NS42.factors.tail.tail, List(BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m324: BigInt = BigInt("29047611873442575647497758179")
@@ -34820,6 +35354,8 @@ object PrattTraces {
   def secp256k1NS42F1(): Unit = {
     pw324()
     secp256k1NS42F2()
+    assert(PrattCerts.secp256k1NS42.factors.tail.head == PrattFactor(BigInt(293), BigInt(1), BigInt("99138607076595821322517946")))
+    assert(List(BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(293)))
     factorsOkCons(PrattCerts.secp256k1NS42.p, PrattCerts.secp256k1NS42.a, PrattCerts.secp256k1NS42.factors.tail, List(BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS42.p, PrattCerts.secp256k1NS42.a, PrattCerts.secp256k1NS42.factors.tail, List(BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m325: BigInt = BigInt("29047611873442575647497758179")
@@ -35146,6 +35682,8 @@ object PrattTraces {
   def secp256k1NS42F0(): Unit = {
     pw325()
     secp256k1NS42F1()
+    assert(PrattCerts.secp256k1NS42.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt("14523805936721287823748879089")))
+    assert(List(BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS42.p, PrattCerts.secp256k1NS42.a, PrattCerts.secp256k1NS42.factors, List(BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS42.p, PrattCerts.secp256k1NS42.a, PrattCerts.secp256k1NS42.factors, List(BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -35578,6 +36116,8 @@ object PrattTraces {
   def secp256k1NS43F3(): Unit = {
     pw327()
     factorsOkNil(PrattCerts.secp256k1NS43.p, PrattCerts.secp256k1NS43.a, List(BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS43.factors.tail.tail.tail.head == PrattFactor(BigInt("29047611873442575647497758179"), BigInt(1), BigInt(11772)))
+    assert(List(BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt("29047611873442575647497758179")))
     factorsOkCons(PrattCerts.secp256k1NS43.p, PrattCerts.secp256k1NS43.a, PrattCerts.secp256k1NS43.factors.tail.tail.tail, List(BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS43.p, PrattCerts.secp256k1NS43.a, PrattCerts.secp256k1NS43.factors.tail.tail.tail, List(BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m328: BigInt = BigInt("341948486974166000522343609283189")
@@ -35934,6 +36474,8 @@ object PrattTraces {
   def secp256k1NS43F2(): Unit = {
     pw328()
     secp256k1NS43F3()
+    assert(PrattCerts.secp256k1NS43.factors.tail.tail.head == PrattFactor(BigInt(109), BigInt(1), BigInt("3137142082331798169929757883332")))
+    assert(List(BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(109)))
     factorsOkCons(PrattCerts.secp256k1NS43.p, PrattCerts.secp256k1NS43.a, PrattCerts.secp256k1NS43.factors.tail.tail, List(BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS43.p, PrattCerts.secp256k1NS43.a, PrattCerts.secp256k1NS43.factors.tail.tail, List(BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m329: BigInt = BigInt("341948486974166000522343609283189")
@@ -36305,6 +36847,8 @@ object PrattTraces {
   def secp256k1NS43F1(): Unit = {
     pw329()
     secp256k1NS43F2()
+    assert(PrattCerts.secp256k1NS43.factors.tail.head == PrattFactor(BigInt(3), BigInt(3), BigInt("113982828991388666840781203094396")))
+    assert(List(BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1NS43.p, PrattCerts.secp256k1NS43.a, PrattCerts.secp256k1NS43.factors.tail, List(BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS43.p, PrattCerts.secp256k1NS43.a, PrattCerts.secp256k1NS43.factors.tail, List(BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m330: BigInt = BigInt("341948486974166000522343609283189")
@@ -36679,6 +37223,8 @@ object PrattTraces {
   def secp256k1NS43F0(): Unit = {
     pw330()
     secp256k1NS43F1()
+    assert(PrattCerts.secp256k1NS43.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt("170974243487083000261171804641594")))
+    assert(List(BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS43.p, PrattCerts.secp256k1NS43.a, PrattCerts.secp256k1NS43.factors, List(BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS43.p, PrattCerts.secp256k1NS43.a, PrattCerts.secp256k1NS43.factors, List(BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -38062,6 +38608,8 @@ object PrattTraces {
   def secp256k1NS44F6(): Unit = {
     pw332()
     factorsOkNil(PrattCerts.secp256k1NS44.p, PrattCerts.secp256k1NS44.a, List(BigInt("341948486974166000522343609283189"), BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
+    assert(PrattCerts.secp256k1NS44.factors.tail.tail.tail.tail.tail.tail.head == PrattFactor(BigInt("341948486974166000522343609283189"), BigInt(1), BigInt("338624364920977752681389262317185522840540224")))
+    assert(List(BigInt("341948486974166000522343609283189"), BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt("341948486974166000522343609283189")))
     factorsOkCons(PrattCerts.secp256k1NS44.p, PrattCerts.secp256k1NS44.a, PrattCerts.secp256k1NS44.factors.tail.tail.tail.tail.tail.tail, List(BigInt("341948486974166000522343609283189"), BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS44.p, PrattCerts.secp256k1NS44.a, PrattCerts.secp256k1NS44.factors.tail.tail.tail.tail.tail.tail, List(BigInt("341948486974166000522343609283189"), BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m333: BigInt = BigInt("115792089237316195423570985008687907852837564279074904382605163141518161494337")
@@ -38709,6 +39257,8 @@ object PrattTraces {
   def secp256k1NS44F5(): Unit = {
     pw333()
     secp256k1NS44F6()
+    assert(PrattCerts.secp256k1NS44.factors.tail.tail.tail.tail.tail.head == PrattFactor(BigInt("174723607534414371449"), BigInt(1), BigInt("662715765037699607481235088557493206623080876315205958464")))
+    assert(List(BigInt("341948486974166000522343609283189"), BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt("174723607534414371449")))
     factorsOkCons(PrattCerts.secp256k1NS44.p, PrattCerts.secp256k1NS44.a, PrattCerts.secp256k1NS44.factors.tail.tail.tail.tail.tail, List(BigInt("341948486974166000522343609283189"), BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS44.p, PrattCerts.secp256k1NS44.a, PrattCerts.secp256k1NS44.factors.tail.tail.tail.tail.tail, List(BigInt("341948486974166000522343609283189"), BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m334: BigInt = BigInt("115792089237316195423570985008687907852837564279074904382605163141518161494337")
@@ -39395,6 +39945,8 @@ object PrattTraces {
   def secp256k1NS44F4(): Unit = {
     pw334()
     secp256k1NS44F5()
+    assert(PrattCerts.secp256k1NS44.factors.tail.tail.tail.tail.head == PrattFactor(BigInt("107361793816595537"), BigInt(1), BigInt("1078522304080742162682399010554089082520748534743704783428928")))
+    assert(List(BigInt("341948486974166000522343609283189"), BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt("107361793816595537")))
     factorsOkCons(PrattCerts.secp256k1NS44.p, PrattCerts.secp256k1NS44.a, PrattCerts.secp256k1NS44.factors.tail.tail.tail.tail, List(BigInt("341948486974166000522343609283189"), BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS44.p, PrattCerts.secp256k1NS44.a, PrattCerts.secp256k1NS44.factors.tail.tail.tail.tail, List(BigInt("341948486974166000522343609283189"), BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m335: BigInt = BigInt("115792089237316195423570985008687907852837564279074904382605163141518161494337")
@@ -40240,6 +40792,8 @@ object PrattTraces {
   def secp256k1NS44F3(): Unit = {
     pw335()
     secp256k1NS44F4()
+    assert(PrattCerts.secp256k1NS44.factors.tail.tail.tail.head == PrattFactor(BigInt(631), BigInt(1), BigInt("183505688173242781970793954054972912603546060664144063997789481999236389056")))
+    assert(List(BigInt("341948486974166000522343609283189"), BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(631)))
     factorsOkCons(PrattCerts.secp256k1NS44.p, PrattCerts.secp256k1NS44.a, PrattCerts.secp256k1NS44.factors.tail.tail.tail, List(BigInt("341948486974166000522343609283189"), BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS44.p, PrattCerts.secp256k1NS44.a, PrattCerts.secp256k1NS44.factors.tail.tail.tail, List(BigInt("341948486974166000522343609283189"), BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m336: BigInt = BigInt("115792089237316195423570985008687907852837564279074904382605163141518161494337")
@@ -41091,6 +41645,8 @@ object PrattTraces {
   def secp256k1NS44F2(): Unit = {
     pw336()
     secp256k1NS44F3()
+    assert(PrattCerts.secp256k1NS44.factors.tail.tail.head == PrattFactor(BigInt(149), BigInt(1), BigInt("777128115686685875325979765158979247334480297174999358272517873433007795264")))
+    assert(List(BigInt("341948486974166000522343609283189"), BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(149)))
     factorsOkCons(PrattCerts.secp256k1NS44.p, PrattCerts.secp256k1NS44.a, PrattCerts.secp256k1NS44.factors.tail.tail, List(BigInt("341948486974166000522343609283189"), BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS44.p, PrattCerts.secp256k1NS44.a, PrattCerts.secp256k1NS44.factors.tail.tail, List(BigInt("341948486974166000522343609283189"), BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m337: BigInt = BigInt("115792089237316195423570985008687907852837564279074904382605163141518161494337")
@@ -41960,6 +42516,8 @@ object PrattTraces {
   def secp256k1NS44F1(): Unit = {
     pw337()
     secp256k1NS44F2()
+    assert(PrattCerts.secp256k1NS44.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt("38597363079105398474523661669562635950945854759691634794201721047172720498112")))
+    assert(List(BigInt("341948486974166000522343609283189"), BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.secp256k1NS44.p, PrattCerts.secp256k1NS44.a, PrattCerts.secp256k1NS44.factors.tail, List(BigInt("341948486974166000522343609283189"), BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS44.p, PrattCerts.secp256k1NS44.a, PrattCerts.secp256k1NS44.factors.tail, List(BigInt("341948486974166000522343609283189"), BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   val m338: BigInt = BigInt("115792089237316195423570985008687907852837564279074904382605163141518161494337")
@@ -42829,6 +43387,8 @@ object PrattTraces {
   def secp256k1NS44F0(): Unit = {
     pw338()
     secp256k1NS44F1()
+    assert(PrattCerts.secp256k1NS44.factors.head == PrattFactor(BigInt(2), BigInt(6), BigInt("57896044618658097711785492504343953926418782139537452191302581570759080747168")))
+    assert(List(BigInt("341948486974166000522343609283189"), BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.secp256k1NS44.p, PrattCerts.secp256k1NS44.a, PrattCerts.secp256k1NS44.factors, List(BigInt("341948486974166000522343609283189"), BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.secp256k1NS44.p, PrattCerts.secp256k1NS44.a, PrattCerts.secp256k1NS44.factors, List(BigInt("341948486974166000522343609283189"), BigInt("29047611873442575647497758179"), BigInt("297159362677"), BigInt(1627771), BigInt(1871), BigInt(461), BigInt(545358713), BigInt(28181), BigInt(1409), BigInt(305873), BigInt(2731), BigInt(293), BigInt(73), BigInt(109), BigInt("174723607534414371449"), BigInt(44706919), BigInt(9349), BigInt(41), BigInt(797), BigInt(199), BigInt(120233), BigInt(113), BigInt(19), BigInt(4051), BigInt(59), BigInt(29), BigInt(17), BigInt("107361793816595537"), BigInt(4681609), BigInt(2011), BigInt(67), BigInt(97), BigInt(85831), BigInt(2861), BigInt(13), BigInt(16699), BigInt(23), BigInt(11), BigInt(631), BigInt(7), BigInt(5), BigInt(149), BigInt(37), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -43113,6 +43673,8 @@ object PrattTraces {
   def p256PS0F0(): Unit = {
     pw1()
     factorsOkNil(PrattCerts.p256PS0.p, PrattCerts.p256PS0.a, List(BigInt(2)))
+    assert(PrattCerts.p256PS0.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(1)))
+    assert(List(BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS0.p, PrattCerts.p256PS0.a, PrattCerts.p256PS0.factors, List(BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS0.p, PrattCerts.p256PS0.a, PrattCerts.p256PS0.factors, List(BigInt(2))))
   @ghost @opaque
@@ -43124,6 +43686,8 @@ object PrattTraces {
   def p256PS1F0(): Unit = {
     pw6()
     factorsOkNil(PrattCerts.p256PS1.p, PrattCerts.p256PS1.a, List(BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS1.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(2)))
+    assert(List(BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS1.p, PrattCerts.p256PS1.a, PrattCerts.p256PS1.factors, List(BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS1.p, PrattCerts.p256PS1.a, PrattCerts.p256PS1.factors, List(BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -43135,6 +43699,8 @@ object PrattTraces {
   def p256PS2F0(): Unit = {
     pw31()
     factorsOkNil(PrattCerts.p256PS2.p, PrattCerts.p256PS2.a, List(BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS2.factors.head == PrattFactor(BigInt(2), BigInt(4), BigInt(8)))
+    assert(List(BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS2.p, PrattCerts.p256PS2.a, PrattCerts.p256PS2.factors, List(BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS2.p, PrattCerts.p256PS2.a, PrattCerts.p256PS2.factors, List(BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -43213,6 +43779,8 @@ object PrattTraces {
   def p256PS3F0(): Unit = {
     pw340()
     factorsOkNil(PrattCerts.p256PS3.p, PrattCerts.p256PS3.a, List(BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS3.factors.head == PrattFactor(BigInt(2), BigInt(8), BigInt(128)))
+    assert(List(BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS3.p, PrattCerts.p256PS3.a, PrattCerts.p256PS3.factors, List(BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS3.p, PrattCerts.p256PS3.a, PrattCerts.p256PS3.factors, List(BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -43294,6 +43862,8 @@ object PrattTraces {
   def p256PS4F1(): Unit = {
     pw342()
     factorsOkNil(PrattCerts.p256PS4.p, PrattCerts.p256PS4.a, List(BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS4.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(128)))
+    assert(List(BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256PS4.p, PrattCerts.p256PS4.a, PrattCerts.p256PS4.factors.tail, List(BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS4.p, PrattCerts.p256PS4.a, PrattCerts.p256PS4.factors.tail, List(BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m343: BigInt = BigInt(641)
@@ -43335,6 +43905,8 @@ object PrattTraces {
   def p256PS4F0(): Unit = {
     pw343()
     p256PS4F1()
+    assert(PrattCerts.p256PS4.factors.head == PrattFactor(BigInt(2), BigInt(7), BigInt(320)))
+    assert(List(BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS4.p, PrattCerts.p256PS4.a, PrattCerts.p256PS4.factors, List(BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS4.p, PrattCerts.p256PS4.a, PrattCerts.p256PS4.factors, List(BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -43416,6 +43988,8 @@ object PrattTraces {
   def p256PS5F3(): Unit = {
     pw345()
     factorsOkNil(PrattCerts.p256PS5.p, PrattCerts.p256PS5.a, List(BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS5.factors.tail.tail.tail.head == PrattFactor(BigInt(17), BigInt(1), BigInt(90)))
+    assert(List(BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(17)))
     factorsOkCons(PrattCerts.p256PS5.p, PrattCerts.p256PS5.a, PrattCerts.p256PS5.factors.tail.tail.tail, List(BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS5.p, PrattCerts.p256PS5.a, PrattCerts.p256PS5.factors.tail.tail.tail, List(BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m346: BigInt = BigInt(1531)
@@ -43457,6 +44031,8 @@ object PrattTraces {
   def p256PS5F2(): Unit = {
     pw346()
     p256PS5F3()
+    assert(PrattCerts.p256PS5.factors.tail.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(306)))
+    assert(List(BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256PS5.p, PrattCerts.p256PS5.a, PrattCerts.p256PS5.factors.tail.tail, List(BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS5.p, PrattCerts.p256PS5.a, PrattCerts.p256PS5.factors.tail.tail, List(BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m347: BigInt = BigInt(1531)
@@ -43498,6 +44074,8 @@ object PrattTraces {
   def p256PS5F1(): Unit = {
     pw347()
     p256PS5F2()
+    assert(PrattCerts.p256PS5.factors.tail.head == PrattFactor(BigInt(3), BigInt(2), BigInt(510)))
+    assert(List(BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256PS5.p, PrattCerts.p256PS5.a, PrattCerts.p256PS5.factors.tail, List(BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS5.p, PrattCerts.p256PS5.a, PrattCerts.p256PS5.factors.tail, List(BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m348: BigInt = BigInt(1531)
@@ -43542,6 +44120,8 @@ object PrattTraces {
   def p256PS5F0(): Unit = {
     pw348()
     p256PS5F1()
+    assert(PrattCerts.p256PS5.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(765)))
+    assert(List(BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS5.p, PrattCerts.p256PS5.a, PrattCerts.p256PS5.factors, List(BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS5.p, PrattCerts.p256PS5.a, PrattCerts.p256PS5.factors, List(BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -43668,6 +44248,8 @@ object PrattTraces {
   def p256PS6F0(): Unit = {
     pw350()
     factorsOkNil(PrattCerts.p256PS6.p, PrattCerts.p256PS6.a, List(BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS6.factors.head == PrattFactor(BigInt(2), BigInt(16), BigInt(32768)))
+    assert(List(BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS6.p, PrattCerts.p256PS6.a, PrattCerts.p256PS6.factors, List(BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS6.p, PrattCerts.p256PS6.a, PrattCerts.p256PS6.factors, List(BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -43679,12 +44261,16 @@ object PrattTraces {
   def p256PS7F1(): Unit = {
     pw3()
     factorsOkNil(PrattCerts.p256PS7.p, PrattCerts.p256PS7.a, List(BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS7.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(2)))
+    assert(List(BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256PS7.p, PrattCerts.p256PS7.a, PrattCerts.p256PS7.factors.tail, List(BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS7.p, PrattCerts.p256PS7.a, PrattCerts.p256PS7.factors.tail, List(BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
   def p256PS7F0(): Unit = {
     pw4()
     p256PS7F1()
+    assert(PrattCerts.p256PS7.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(3)))
+    assert(List(BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS7.p, PrattCerts.p256PS7.a, PrattCerts.p256PS7.factors, List(BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS7.p, PrattCerts.p256PS7.a, PrattCerts.p256PS7.factors, List(BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -43696,12 +44282,16 @@ object PrattTraces {
   def p256PS8F1(): Unit = {
     pw23()
     factorsOkNil(PrattCerts.p256PS8.p, PrattCerts.p256PS8.a, List(BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS8.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(4)))
+    assert(List(BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256PS8.p, PrattCerts.p256PS8.a, PrattCerts.p256PS8.factors.tail, List(BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS8.p, PrattCerts.p256PS8.a, PrattCerts.p256PS8.factors.tail, List(BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
   def p256PS8F0(): Unit = {
     pw24()
     p256PS8F1()
+    assert(PrattCerts.p256PS8.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(6)))
+    assert(List(BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS8.p, PrattCerts.p256PS8.a, PrattCerts.p256PS8.factors, List(BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS8.p, PrattCerts.p256PS8.a, PrattCerts.p256PS8.factors, List(BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -43713,12 +44303,16 @@ object PrattTraces {
   def p256PS9F1(): Unit = {
     pw151()
     factorsOkNil(PrattCerts.p256PS9.p, PrattCerts.p256PS9.a, List(BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS9.factors.tail.head == PrattFactor(BigInt(13), BigInt(1), BigInt(4)))
+    assert(List(BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(13)))
     factorsOkCons(PrattCerts.p256PS9.p, PrattCerts.p256PS9.a, PrattCerts.p256PS9.factors.tail, List(BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS9.p, PrattCerts.p256PS9.a, PrattCerts.p256PS9.factors.tail, List(BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
   def p256PS9F0(): Unit = {
     pw152()
     p256PS9F1()
+    assert(PrattCerts.p256PS9.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(26)))
+    assert(List(BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS9.p, PrattCerts.p256PS9.a, PrattCerts.p256PS9.factors, List(BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS9.p, PrattCerts.p256PS9.a, PrattCerts.p256PS9.factors, List(BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -43730,12 +44324,16 @@ object PrattTraces {
   def p256PS10F1(): Unit = {
     pw20()
     factorsOkNil(PrattCerts.p256PS10.p, PrattCerts.p256PS10.a, List(BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS10.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(2)))
+    assert(List(BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256PS10.p, PrattCerts.p256PS10.a, PrattCerts.p256PS10.factors.tail, List(BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS10.p, PrattCerts.p256PS10.a, PrattCerts.p256PS10.factors.tail, List(BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
   def p256PS10F0(): Unit = {
     pw21()
     p256PS10F1()
+    assert(PrattCerts.p256PS10.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(5)))
+    assert(List(BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS10.p, PrattCerts.p256PS10.a, PrattCerts.p256PS10.factors, List(BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS10.p, PrattCerts.p256PS10.a, PrattCerts.p256PS10.factors, List(BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -43811,6 +44409,8 @@ object PrattTraces {
   def p256PS11F3(): Unit = {
     pw352()
     factorsOkNil(PrattCerts.p256PS11.p, PrattCerts.p256PS11.a, List(BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS11.factors.tail.tail.tail.head == PrattFactor(BigInt(11), BigInt(1), BigInt(60)))
+    assert(List(BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(11)))
     factorsOkCons(PrattCerts.p256PS11.p, PrattCerts.p256PS11.a, PrattCerts.p256PS11.factors.tail.tail.tail, List(BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS11.p, PrattCerts.p256PS11.a, PrattCerts.p256PS11.factors.tail.tail.tail, List(BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m353: BigInt = BigInt(661)
@@ -43849,6 +44449,8 @@ object PrattTraces {
   def p256PS11F2(): Unit = {
     pw353()
     p256PS11F3()
+    assert(PrattCerts.p256PS11.factors.tail.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(132)))
+    assert(List(BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256PS11.p, PrattCerts.p256PS11.a, PrattCerts.p256PS11.factors.tail.tail, List(BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS11.p, PrattCerts.p256PS11.a, PrattCerts.p256PS11.factors.tail.tail, List(BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m354: BigInt = BigInt(661)
@@ -43887,6 +44489,8 @@ object PrattTraces {
   def p256PS11F1(): Unit = {
     pw354()
     p256PS11F2()
+    assert(PrattCerts.p256PS11.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(220)))
+    assert(List(BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256PS11.p, PrattCerts.p256PS11.a, PrattCerts.p256PS11.factors.tail, List(BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS11.p, PrattCerts.p256PS11.a, PrattCerts.p256PS11.factors.tail, List(BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m355: BigInt = BigInt(661)
@@ -43928,6 +44532,8 @@ object PrattTraces {
   def p256PS11F0(): Unit = {
     pw355()
     p256PS11F1()
+    assert(PrattCerts.p256PS11.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(330)))
+    assert(List(BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS11.p, PrattCerts.p256PS11.a, PrattCerts.p256PS11.factors, List(BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS11.p, PrattCerts.p256PS11.a, PrattCerts.p256PS11.factors, List(BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -44048,6 +44654,8 @@ object PrattTraces {
   def p256PS12F3(): Unit = {
     pw357()
     factorsOkNil(PrattCerts.p256PS12.p, PrattCerts.p256PS12.a, List(BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS12.factors.tail.tail.tail.head == PrattFactor(BigInt(661), BigInt(1), BigInt(742)))
+    assert(List(BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(661)))
     factorsOkCons(PrattCerts.p256PS12.p, PrattCerts.p256PS12.a, PrattCerts.p256PS12.factors.tail.tail.tail, List(BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS12.p, PrattCerts.p256PS12.a, PrattCerts.p256PS12.factors.tail.tail.tail, List(BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m358: BigInt = BigInt(490463)
@@ -44104,6 +44712,8 @@ object PrattTraces {
   def p256PS12F2(): Unit = {
     pw358()
     p256PS12F3()
+    assert(PrattCerts.p256PS12.factors.tail.tail.head == PrattFactor(BigInt(53), BigInt(1), BigInt(9254)))
+    assert(List(BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(53)))
     factorsOkCons(PrattCerts.p256PS12.p, PrattCerts.p256PS12.a, PrattCerts.p256PS12.factors.tail.tail, List(BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS12.p, PrattCerts.p256PS12.a, PrattCerts.p256PS12.factors.tail.tail, List(BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m359: BigInt = BigInt(490463)
@@ -44169,6 +44779,8 @@ object PrattTraces {
   def p256PS12F1(): Unit = {
     pw359()
     p256PS12F2()
+    assert(PrattCerts.p256PS12.factors.tail.head == PrattFactor(BigInt(7), BigInt(1), BigInt(70066)))
+    assert(List(BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.p256PS12.p, PrattCerts.p256PS12.a, PrattCerts.p256PS12.factors.tail, List(BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS12.p, PrattCerts.p256PS12.a, PrattCerts.p256PS12.factors.tail, List(BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m360: BigInt = BigInt(490463)
@@ -44243,6 +44855,8 @@ object PrattTraces {
   def p256PS12F0(): Unit = {
     pw360()
     p256PS12F1()
+    assert(PrattCerts.p256PS12.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(245231)))
+    assert(List(BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS12.p, PrattCerts.p256PS12.a, PrattCerts.p256PS12.factors, List(BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS12.p, PrattCerts.p256PS12.a, PrattCerts.p256PS12.factors, List(BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -44321,6 +44935,8 @@ object PrattTraces {
   def p256PS13F2(): Unit = {
     pw362()
     factorsOkNil(PrattCerts.p256PS13.p, PrattCerts.p256PS13.a, List(BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS13.factors.tail.tail.head == PrattFactor(BigInt(11), BigInt(2), BigInt(66)))
+    assert(List(BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(11)))
     factorsOkCons(PrattCerts.p256PS13.p, PrattCerts.p256PS13.a, PrattCerts.p256PS13.factors.tail.tail, List(BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS13.p, PrattCerts.p256PS13.a, PrattCerts.p256PS13.factors.tail.tail, List(BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m363: BigInt = BigInt(727)
@@ -44359,6 +44975,8 @@ object PrattTraces {
   def p256PS13F1(): Unit = {
     pw363()
     p256PS13F2()
+    assert(PrattCerts.p256PS13.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(242)))
+    assert(List(BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256PS13.p, PrattCerts.p256PS13.a, PrattCerts.p256PS13.factors.tail, List(BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS13.p, PrattCerts.p256PS13.a, PrattCerts.p256PS13.factors.tail, List(BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m364: BigInt = BigInt(727)
@@ -44400,6 +45018,8 @@ object PrattTraces {
   def p256PS13F0(): Unit = {
     pw364()
     p256PS13F1()
+    assert(PrattCerts.p256PS13.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(363)))
+    assert(List(BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS13.p, PrattCerts.p256PS13.a, PrattCerts.p256PS13.factors, List(BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS13.p, PrattCerts.p256PS13.a, PrattCerts.p256PS13.factors, List(BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -44487,6 +45107,8 @@ object PrattTraces {
   def p256PS14F2(): Unit = {
     pw366()
     factorsOkNil(PrattCerts.p256PS14.p, PrattCerts.p256PS14.a, List(BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS14.factors.tail.tail.head == PrattFactor(BigInt(727), BigInt(1), BigInt(24)))
+    assert(List(BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(727)))
     factorsOkCons(PrattCerts.p256PS14.p, PrattCerts.p256PS14.a, PrattCerts.p256PS14.factors.tail.tail, List(BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS14.p, PrattCerts.p256PS14.a, PrattCerts.p256PS14.factors.tail.tail, List(BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m367: BigInt = BigInt(17449)
@@ -44540,6 +45162,8 @@ object PrattTraces {
   def p256PS14F1(): Unit = {
     pw367()
     p256PS14F2()
+    assert(PrattCerts.p256PS14.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(5816)))
+    assert(List(BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256PS14.p, PrattCerts.p256PS14.a, PrattCerts.p256PS14.factors.tail, List(BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS14.p, PrattCerts.p256PS14.a, PrattCerts.p256PS14.factors.tail, List(BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m368: BigInt = BigInt(17449)
@@ -44596,6 +45220,8 @@ object PrattTraces {
   def p256PS14F0(): Unit = {
     pw368()
     p256PS14F1()
+    assert(PrattCerts.p256PS14.factors.head == PrattFactor(BigInt(2), BigInt(3), BigInt(8724)))
+    assert(List(BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS14.p, PrattCerts.p256PS14.a, PrattCerts.p256PS14.factors, List(BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS14.p, PrattCerts.p256PS14.a, PrattCerts.p256PS14.factors, List(BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -44725,6 +45351,8 @@ object PrattTraces {
   def p256PS15F2(): Unit = {
     pw370()
     factorsOkNil(PrattCerts.p256PS15.p, PrattCerts.p256PS15.a, List(BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS15.factors.tail.tail.head == PrattFactor(BigInt(17449), BigInt(1), BigInt(384)))
+    assert(List(BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(17449)))
     factorsOkCons(PrattCerts.p256PS15.p, PrattCerts.p256PS15.a, PrattCerts.p256PS15.factors.tail.tail, List(BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS15.p, PrattCerts.p256PS15.a, PrattCerts.p256PS15.factors.tail.tail, List(BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m371: BigInt = BigInt(6700417)
@@ -44811,6 +45439,8 @@ object PrattTraces {
   def p256PS15F1(): Unit = {
     pw371()
     p256PS15F2()
+    assert(PrattCerts.p256PS15.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(2233472)))
+    assert(List(BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256PS15.p, PrattCerts.p256PS15.a, PrattCerts.p256PS15.factors.tail, List(BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS15.p, PrattCerts.p256PS15.a, PrattCerts.p256PS15.factors.tail, List(BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m372: BigInt = BigInt(6700417)
@@ -44897,6 +45527,8 @@ object PrattTraces {
   def p256PS15F0(): Unit = {
     pw372()
     p256PS15F1()
+    assert(PrattCerts.p256PS15.factors.head == PrattFactor(BigInt(2), BigInt(7), BigInt(3350208)))
+    assert(List(BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS15.p, PrattCerts.p256PS15.a, PrattCerts.p256PS15.factors, List(BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS15.p, PrattCerts.p256PS15.a, PrattCerts.p256PS15.factors, List(BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -44966,6 +45598,8 @@ object PrattTraces {
   def p256PS16F2(): Unit = {
     pw374()
     factorsOkNil(PrattCerts.p256PS16.p, PrattCerts.p256PS16.a, List(BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS16.factors.tail.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(48)))
+    assert(List(BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256PS16.p, PrattCerts.p256PS16.a, PrattCerts.p256PS16.factors.tail.tail, List(BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS16.p, PrattCerts.p256PS16.a, PrattCerts.p256PS16.factors.tail.tail, List(BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m375: BigInt = BigInt(241)
@@ -45001,6 +45635,8 @@ object PrattTraces {
   def p256PS16F1(): Unit = {
     pw375()
     p256PS16F2()
+    assert(PrattCerts.p256PS16.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(80)))
+    assert(List(BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256PS16.p, PrattCerts.p256PS16.a, PrattCerts.p256PS16.factors.tail, List(BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS16.p, PrattCerts.p256PS16.a, PrattCerts.p256PS16.factors.tail, List(BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m376: BigInt = BigInt(241)
@@ -45036,6 +45672,8 @@ object PrattTraces {
   def p256PS16F0(): Unit = {
     pw376()
     p256PS16F1()
+    assert(PrattCerts.p256PS16.factors.head == PrattFactor(BigInt(2), BigInt(4), BigInt(120)))
+    assert(List(BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS16.p, PrattCerts.p256PS16.a, PrattCerts.p256PS16.factors, List(BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS16.p, PrattCerts.p256PS16.a, PrattCerts.p256PS16.factors, List(BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -45111,6 +45749,8 @@ object PrattTraces {
   def p256PS17F2(): Unit = {
     pw378()
     factorsOkNil(PrattCerts.p256PS17.p, PrattCerts.p256PS17.a, List(BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS17.factors.tail.tail.head == PrattFactor(BigInt(241), BigInt(1), BigInt(10)))
+    assert(List(BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(241)))
     factorsOkCons(PrattCerts.p256PS17.p, PrattCerts.p256PS17.a, PrattCerts.p256PS17.factors.tail.tail, List(BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS17.p, PrattCerts.p256PS17.a, PrattCerts.p256PS17.factors.tail.tail, List(BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m379: BigInt = BigInt(2411)
@@ -45152,6 +45792,8 @@ object PrattTraces {
   def p256PS17F1(): Unit = {
     pw379()
     p256PS17F2()
+    assert(PrattCerts.p256PS17.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(482)))
+    assert(List(BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256PS17.p, PrattCerts.p256PS17.a, PrattCerts.p256PS17.factors.tail, List(BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS17.p, PrattCerts.p256PS17.a, PrattCerts.p256PS17.factors.tail, List(BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m380: BigInt = BigInt(2411)
@@ -45199,6 +45841,8 @@ object PrattTraces {
   def p256PS17F0(): Unit = {
     pw380()
     p256PS17F1()
+    assert(PrattCerts.p256PS17.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(1205)))
+    assert(List(BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS17.p, PrattCerts.p256PS17.a, PrattCerts.p256PS17.factors, List(BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS17.p, PrattCerts.p256PS17.a, PrattCerts.p256PS17.factors, List(BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -45210,12 +45854,16 @@ object PrattTraces {
   def p256PS18F1(): Unit = {
     pw197()
     factorsOkNil(PrattCerts.p256PS18.p, PrattCerts.p256PS18.a, List(BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS18.factors.tail.head == PrattFactor(BigInt(11), BigInt(1), BigInt(2)))
+    assert(List(BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(11)))
     factorsOkCons(PrattCerts.p256PS18.p, PrattCerts.p256PS18.a, PrattCerts.p256PS18.factors.tail, List(BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS18.p, PrattCerts.p256PS18.a, PrattCerts.p256PS18.factors.tail, List(BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
   def p256PS18F0(): Unit = {
     pw198()
     p256PS18F1()
+    assert(PrattCerts.p256PS18.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(11)))
+    assert(List(BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS18.p, PrattCerts.p256PS18.a, PrattCerts.p256PS18.factors, List(BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS18.p, PrattCerts.p256PS18.a, PrattCerts.p256PS18.factors, List(BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -45270,6 +45918,8 @@ object PrattTraces {
   def p256PS19F1(): Unit = {
     pw382()
     factorsOkNil(PrattCerts.p256PS19.p, PrattCerts.p256PS19.a, List(BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS19.factors.tail.head == PrattFactor(BigInt(53), BigInt(1), BigInt(2)))
+    assert(List(BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(53)))
     factorsOkCons(PrattCerts.p256PS19.p, PrattCerts.p256PS19.a, PrattCerts.p256PS19.factors.tail, List(BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS19.p, PrattCerts.p256PS19.a, PrattCerts.p256PS19.factors.tail, List(BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m383: BigInt = BigInt(107)
@@ -45302,6 +45952,8 @@ object PrattTraces {
   def p256PS19F0(): Unit = {
     pw383()
     p256PS19F1()
+    assert(PrattCerts.p256PS19.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(53)))
+    assert(List(BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS19.p, PrattCerts.p256PS19.a, PrattCerts.p256PS19.factors, List(BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS19.p, PrattCerts.p256PS19.a, PrattCerts.p256PS19.factors, List(BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -45365,6 +46017,8 @@ object PrattTraces {
   def p256PS20F2(): Unit = {
     pw385()
     factorsOkNil(PrattCerts.p256PS20.p, PrattCerts.p256PS20.a, List(BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS20.factors.tail.tail.head == PrattFactor(BigInt(13), BigInt(1), BigInt(12)))
+    assert(List(BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(13)))
     factorsOkCons(PrattCerts.p256PS20.p, PrattCerts.p256PS20.a, PrattCerts.p256PS20.factors.tail.tail, List(BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS20.p, PrattCerts.p256PS20.a, PrattCerts.p256PS20.factors.tail.tail, List(BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m386: BigInt = BigInt(157)
@@ -45397,6 +46051,8 @@ object PrattTraces {
   def p256PS20F1(): Unit = {
     pw386()
     p256PS20F2()
+    assert(PrattCerts.p256PS20.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(52)))
+    assert(List(BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256PS20.p, PrattCerts.p256PS20.a, PrattCerts.p256PS20.factors.tail, List(BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS20.p, PrattCerts.p256PS20.a, PrattCerts.p256PS20.factors.tail, List(BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m387: BigInt = BigInt(157)
@@ -45432,6 +46088,8 @@ object PrattTraces {
   def p256PS20F0(): Unit = {
     pw387()
     p256PS20F1()
+    assert(PrattCerts.p256PS20.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(78)))
+    assert(List(BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS20.p, PrattCerts.p256PS20.a, PrattCerts.p256PS20.factors, List(BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS20.p, PrattCerts.p256PS20.a, PrattCerts.p256PS20.factors, List(BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -45510,6 +46168,8 @@ object PrattTraces {
   def p256PS21F2(): Unit = {
     pw389()
     factorsOkNil(PrattCerts.p256PS21.p, PrattCerts.p256PS21.a, List(BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS21.factors.tail.tail.head == PrattFactor(BigInt(157), BigInt(1), BigInt(24)))
+    assert(List(BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(157)))
     factorsOkCons(PrattCerts.p256PS21.p, PrattCerts.p256PS21.a, PrattCerts.p256PS21.factors.tail.tail, List(BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS21.p, PrattCerts.p256PS21.a, PrattCerts.p256PS21.factors.tail.tail, List(BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m390: BigInt = BigInt(3769)
@@ -45557,6 +46217,8 @@ object PrattTraces {
   def p256PS21F1(): Unit = {
     pw390()
     p256PS21F2()
+    assert(PrattCerts.p256PS21.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(1256)))
+    assert(List(BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256PS21.p, PrattCerts.p256PS21.a, PrattCerts.p256PS21.factors.tail, List(BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS21.p, PrattCerts.p256PS21.a, PrattCerts.p256PS21.factors.tail, List(BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m391: BigInt = BigInt(3769)
@@ -45604,6 +46266,8 @@ object PrattTraces {
   def p256PS21F0(): Unit = {
     pw391()
     p256PS21F1()
+    assert(PrattCerts.p256PS21.factors.head == PrattFactor(BigInt(2), BigInt(3), BigInt(1884)))
+    assert(List(BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS21.p, PrattCerts.p256PS21.a, PrattCerts.p256PS21.factors, List(BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS21.p, PrattCerts.p256PS21.a, PrattCerts.p256PS21.factors, List(BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -45769,6 +46433,8 @@ object PrattTraces {
   def p256PS22F4(): Unit = {
     pw393()
     factorsOkNil(PrattCerts.p256PS22.p, PrattCerts.p256PS22.a, List(BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS22.factors.tail.tail.tail.tail.head == PrattFactor(BigInt(3769), BigInt(1), BigInt(54142)))
+    assert(List(BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3769)))
     factorsOkCons(PrattCerts.p256PS22.p, PrattCerts.p256PS22.a, PrattCerts.p256PS22.factors.tail.tail.tail.tail, List(BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS22.p, PrattCerts.p256PS22.a, PrattCerts.p256PS22.factors.tail.tail.tail.tail, List(BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m394: BigInt = BigInt(204061199)
@@ -45852,6 +46518,8 @@ object PrattTraces {
   def p256PS22F3(): Unit = {
     pw394()
     p256PS22F4()
+    assert(PrattCerts.p256PS22.factors.tail.tail.tail.head == PrattFactor(BigInt(107), BigInt(1), BigInt(1907114)))
+    assert(List(BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(107)))
     factorsOkCons(PrattCerts.p256PS22.p, PrattCerts.p256PS22.a, PrattCerts.p256PS22.factors.tail.tail.tail, List(BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS22.p, PrattCerts.p256PS22.a, PrattCerts.p256PS22.factors.tail.tail.tail, List(BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m395: BigInt = BigInt(204061199)
@@ -45944,6 +46612,8 @@ object PrattTraces {
   def p256PS22F2(): Unit = {
     pw395()
     p256PS22F3()
+    assert(PrattCerts.p256PS22.factors.tail.tail.head == PrattFactor(BigInt(23), BigInt(1), BigInt(8872226)))
+    assert(List(BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(23)))
     factorsOkCons(PrattCerts.p256PS22.p, PrattCerts.p256PS22.a, PrattCerts.p256PS22.factors.tail.tail, List(BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS22.p, PrattCerts.p256PS22.a, PrattCerts.p256PS22.factors.tail.tail, List(BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m396: BigInt = BigInt(204061199)
@@ -46039,6 +46709,8 @@ object PrattTraces {
   def p256PS22F1(): Unit = {
     pw396()
     p256PS22F2()
+    assert(PrattCerts.p256PS22.factors.tail.head == PrattFactor(BigInt(11), BigInt(1), BigInt(18551018)))
+    assert(List(BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(11)))
     factorsOkCons(PrattCerts.p256PS22.p, PrattCerts.p256PS22.a, PrattCerts.p256PS22.factors.tail, List(BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS22.p, PrattCerts.p256PS22.a, PrattCerts.p256PS22.factors.tail, List(BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m397: BigInt = BigInt(204061199)
@@ -46140,6 +46812,8 @@ object PrattTraces {
   def p256PS22F0(): Unit = {
     pw397()
     p256PS22F1()
+    assert(PrattCerts.p256PS22.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(102030599)))
+    assert(List(BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS22.p, PrattCerts.p256PS22.a, PrattCerts.p256PS22.factors, List(BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS22.p, PrattCerts.p256PS22.a, PrattCerts.p256PS22.factors, List(BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -46308,6 +46982,8 @@ object PrattTraces {
   def p256PS23F3(): Unit = {
     pw399()
     factorsOkNil(PrattCerts.p256PS23.p, PrattCerts.p256PS23.a, List(BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS23.factors.tail.tail.tail.head == PrattFactor(BigInt(204061199), BigInt(1), BigInt(168)))
+    assert(List(BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(204061199)))
     factorsOkCons(PrattCerts.p256PS23.p, PrattCerts.p256PS23.a, PrattCerts.p256PS23.factors.tail.tail.tail, List(BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS23.p, PrattCerts.p256PS23.a, PrattCerts.p256PS23.factors.tail.tail.tail, List(BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m400: BigInt = BigInt("34282281433")
@@ -46427,6 +47103,8 @@ object PrattTraces {
   def p256PS23F2(): Unit = {
     pw400()
     p256PS23F3()
+    assert(PrattCerts.p256PS23.factors.tail.tail.head == PrattFactor(BigInt(7), BigInt(1), BigInt("4897468776")))
+    assert(List(BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.p256PS23.p, PrattCerts.p256PS23.a, PrattCerts.p256PS23.factors.tail.tail, List(BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS23.p, PrattCerts.p256PS23.a, PrattCerts.p256PS23.factors.tail.tail, List(BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m401: BigInt = BigInt("34282281433")
@@ -46555,6 +47233,8 @@ object PrattTraces {
   def p256PS23F1(): Unit = {
     pw401()
     p256PS23F2()
+    assert(PrattCerts.p256PS23.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt("11427427144")))
+    assert(List(BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256PS23.p, PrattCerts.p256PS23.a, PrattCerts.p256PS23.factors.tail, List(BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS23.p, PrattCerts.p256PS23.a, PrattCerts.p256PS23.factors.tail, List(BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m402: BigInt = BigInt("34282281433")
@@ -46683,6 +47363,8 @@ object PrattTraces {
   def p256PS23F0(): Unit = {
     pw402()
     p256PS23F1()
+    assert(PrattCerts.p256PS23.factors.head == PrattFactor(BigInt(2), BigInt(3), BigInt("17141140716")))
+    assert(List(BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS23.p, PrattCerts.p256PS23.a, PrattCerts.p256PS23.factors, List(BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS23.p, PrattCerts.p256PS23.a, PrattCerts.p256PS23.factors, List(BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -46737,6 +47419,8 @@ object PrattTraces {
   def p256PS24F2(): Unit = {
     pw404()
     factorsOkNil(PrattCerts.p256PS24.p, PrattCerts.p256PS24.a, List(BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS24.factors.tail.tail.head == PrattFactor(BigInt(7), BigInt(1), BigInt(6)))
+    assert(List(BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.p256PS24.p, PrattCerts.p256PS24.a, PrattCerts.p256PS24.factors.tail.tail, List(BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS24.p, PrattCerts.p256PS24.a, PrattCerts.p256PS24.factors.tail.tail, List(BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m405: BigInt = BigInt(43)
@@ -46763,6 +47447,8 @@ object PrattTraces {
   def p256PS24F1(): Unit = {
     pw405()
     p256PS24F2()
+    assert(PrattCerts.p256PS24.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(14)))
+    assert(List(BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256PS24.p, PrattCerts.p256PS24.a, PrattCerts.p256PS24.factors.tail, List(BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS24.p, PrattCerts.p256PS24.a, PrattCerts.p256PS24.factors.tail, List(BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m406: BigInt = BigInt(43)
@@ -46792,6 +47478,8 @@ object PrattTraces {
   def p256PS24F0(): Unit = {
     pw406()
     p256PS24F1()
+    assert(PrattCerts.p256PS24.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(21)))
+    assert(List(BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS24.p, PrattCerts.p256PS24.a, PrattCerts.p256PS24.factors, List(BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS24.p, PrattCerts.p256PS24.a, PrattCerts.p256PS24.factors, List(BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -46852,6 +47540,8 @@ object PrattTraces {
   def p256PS25F1(): Unit = {
     pw408()
     factorsOkNil(PrattCerts.p256PS25.p, PrattCerts.p256PS25.a, List(BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS25.factors.tail.head == PrattFactor(BigInt(43), BigInt(1), BigInt(4)))
+    assert(List(BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(43)))
     factorsOkCons(PrattCerts.p256PS25.p, PrattCerts.p256PS25.a, PrattCerts.p256PS25.factors.tail, List(BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS25.p, PrattCerts.p256PS25.a, PrattCerts.p256PS25.factors.tail, List(BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m409: BigInt = BigInt(173)
@@ -46887,6 +47577,8 @@ object PrattTraces {
   def p256PS25F0(): Unit = {
     pw409()
     p256PS25F1()
+    assert(PrattCerts.p256PS25.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(86)))
+    assert(List(BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS25.p, PrattCerts.p256PS25.a, PrattCerts.p256PS25.factors, List(BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS25.p, PrattCerts.p256PS25.a, PrattCerts.p256PS25.factors, List(BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -46953,6 +47645,8 @@ object PrattTraces {
   def p256PS26F1(): Unit = {
     pw411()
     factorsOkNil(PrattCerts.p256PS26.p, PrattCerts.p256PS26.a, List(BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS26.factors.tail.head == PrattFactor(BigInt(7), BigInt(2), BigInt(28)))
+    assert(List(BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.p256PS26.p, PrattCerts.p256PS26.a, PrattCerts.p256PS26.factors.tail, List(BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS26.p, PrattCerts.p256PS26.a, PrattCerts.p256PS26.factors.tail, List(BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m412: BigInt = BigInt(197)
@@ -46988,6 +47682,8 @@ object PrattTraces {
   def p256PS26F0(): Unit = {
     pw412()
     p256PS26F1()
+    assert(PrattCerts.p256PS26.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(98)))
+    assert(List(BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS26.p, PrattCerts.p256PS26.a, PrattCerts.p256PS26.factors, List(BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS26.p, PrattCerts.p256PS26.a, PrattCerts.p256PS26.factors, List(BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -47063,6 +47759,8 @@ object PrattTraces {
   def p256PS27F2(): Unit = {
     pw414()
     factorsOkNil(PrattCerts.p256PS27.p, PrattCerts.p256PS27.a, List(BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS27.factors.tail.tail.head == PrattFactor(BigInt(17), BigInt(1), BigInt(54)))
+    assert(List(BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(17)))
     factorsOkCons(PrattCerts.p256PS27.p, PrattCerts.p256PS27.a, PrattCerts.p256PS27.factors.tail.tail, List(BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS27.p, PrattCerts.p256PS27.a, PrattCerts.p256PS27.factors.tail.tail, List(BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m415: BigInt = BigInt(919)
@@ -47104,6 +47802,8 @@ object PrattTraces {
   def p256PS27F1(): Unit = {
     pw415()
     p256PS27F2()
+    assert(PrattCerts.p256PS27.factors.tail.head == PrattFactor(BigInt(3), BigInt(3), BigInt(306)))
+    assert(List(BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256PS27.p, PrattCerts.p256PS27.a, PrattCerts.p256PS27.factors.tail, List(BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS27.p, PrattCerts.p256PS27.a, PrattCerts.p256PS27.factors.tail, List(BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m416: BigInt = BigInt(919)
@@ -47145,6 +47845,8 @@ object PrattTraces {
   def p256PS27F0(): Unit = {
     pw416()
     p256PS27F1()
+    assert(PrattCerts.p256PS27.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(459)))
+    assert(List(BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS27.p, PrattCerts.p256PS27.a, PrattCerts.p256PS27.factors, List(BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS27.p, PrattCerts.p256PS27.a, PrattCerts.p256PS27.factors, List(BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -47217,6 +47919,8 @@ object PrattTraces {
   def p256PS28F1(): Unit = {
     pw418()
     factorsOkNil(PrattCerts.p256PS28.p, PrattCerts.p256PS28.a, List(BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS28.factors.tail.head == PrattFactor(BigInt(919), BigInt(1), BigInt(4)))
+    assert(List(BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(919)))
     factorsOkCons(PrattCerts.p256PS28.p, PrattCerts.p256PS28.a, PrattCerts.p256PS28.factors.tail, List(BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS28.p, PrattCerts.p256PS28.a, PrattCerts.p256PS28.factors.tail, List(BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m419: BigInt = BigInt(3677)
@@ -47264,6 +47968,8 @@ object PrattTraces {
   def p256PS28F0(): Unit = {
     pw419()
     p256PS28F1()
+    assert(PrattCerts.p256PS28.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(1838)))
+    assert(List(BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS28.p, PrattCerts.p256PS28.a, PrattCerts.p256PS28.factors, List(BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS28.p, PrattCerts.p256PS28.a, PrattCerts.p256PS28.factors, List(BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -47492,6 +48198,8 @@ object PrattTraces {
   def p256PS29F5(): Unit = {
     pw421()
     factorsOkNil(PrattCerts.p256PS29.p, PrattCerts.p256PS29.a, List(BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS29.factors.tail.tail.tail.tail.tail.head == PrattFactor(BigInt(3677), BigInt(1), BigInt(18062930)))
+    assert(List(BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3677)))
     factorsOkCons(PrattCerts.p256PS29.p, PrattCerts.p256PS29.a, PrattCerts.p256PS29.factors.tail.tail.tail.tail.tail, List(BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS29.p, PrattCerts.p256PS29.a, PrattCerts.p256PS29.factors.tail.tail.tail.tail.tail, List(BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m422: BigInt = BigInt("66417393611")
@@ -47599,6 +48307,8 @@ object PrattTraces {
   def p256PS29F4(): Unit = {
     pw422()
     p256PS29F5()
+    assert(PrattCerts.p256PS29.factors.tail.tail.tail.tail.head == PrattFactor(BigInt(197), BigInt(1), BigInt(337144130)))
+    assert(List(BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(197)))
     factorsOkCons(PrattCerts.p256PS29.p, PrattCerts.p256PS29.a, PrattCerts.p256PS29.factors.tail.tail.tail.tail, List(BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS29.p, PrattCerts.p256PS29.a, PrattCerts.p256PS29.factors.tail.tail.tail.tail, List(BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m423: BigInt = BigInt("66417393611")
@@ -47706,6 +48416,8 @@ object PrattTraces {
   def p256PS29F3(): Unit = {
     pw423()
     p256PS29F4()
+    assert(PrattCerts.p256PS29.factors.tail.tail.tail.head == PrattFactor(BigInt(173), BigInt(1), BigInt(383915570)))
+    assert(List(BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(173)))
     factorsOkCons(PrattCerts.p256PS29.p, PrattCerts.p256PS29.a, PrattCerts.p256PS29.factors.tail.tail.tail, List(BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS29.p, PrattCerts.p256PS29.a, PrattCerts.p256PS29.factors.tail.tail.tail, List(BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m424: BigInt = BigInt("66417393611")
@@ -47819,6 +48531,8 @@ object PrattTraces {
   def p256PS29F2(): Unit = {
     pw424()
     p256PS29F3()
+    assert(PrattCerts.p256PS29.factors.tail.tail.head == PrattFactor(BigInt(53), BigInt(1), BigInt(1253158370)))
+    assert(List(BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(53)))
     factorsOkCons(PrattCerts.p256PS29.p, PrattCerts.p256PS29.a, PrattCerts.p256PS29.factors.tail.tail, List(BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS29.p, PrattCerts.p256PS29.a, PrattCerts.p256PS29.factors.tail.tail, List(BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m425: BigInt = BigInt("66417393611")
@@ -47947,6 +48661,8 @@ object PrattTraces {
   def p256PS29F1(): Unit = {
     pw425()
     p256PS29F2()
+    assert(PrattCerts.p256PS29.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt("13283478722")))
+    assert(List(BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256PS29.p, PrattCerts.p256PS29.a, PrattCerts.p256PS29.factors.tail, List(BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS29.p, PrattCerts.p256PS29.a, PrattCerts.p256PS29.factors.tail, List(BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m426: BigInt = BigInt("66417393611")
@@ -48078,6 +48794,8 @@ object PrattTraces {
   def p256PS29F0(): Unit = {
     pw426()
     p256PS29F1()
+    assert(PrattCerts.p256PS29.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt("33208696805")))
+    assert(List(BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS29.p, PrattCerts.p256PS29.a, PrattCerts.p256PS29.factors, List(BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS29.p, PrattCerts.p256PS29.a, PrattCerts.p256PS29.factors, List(BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -48273,6 +48991,8 @@ object PrattTraces {
   def p256PS30F3(): Unit = {
     pw428()
     factorsOkNil(PrattCerts.p256PS30.p, PrattCerts.p256PS30.a, List(BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS30.factors.tail.tail.tail.head == PrattFactor(BigInt("66417393611"), BigInt(1), BigInt(170)))
+    assert(List(BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt("66417393611")))
     factorsOkCons(PrattCerts.p256PS30.p, PrattCerts.p256PS30.a, PrattCerts.p256PS30.factors.tail.tail.tail, List(BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS30.p, PrattCerts.p256PS30.a, PrattCerts.p256PS30.factors.tail.tail.tail, List(BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m429: BigInt = BigInt("11290956913871")
@@ -48419,6 +49139,8 @@ object PrattTraces {
   def p256PS30F2(): Unit = {
     pw429()
     p256PS30F3()
+    assert(PrattCerts.p256PS30.factors.tail.tail.head == PrattFactor(BigInt(17), BigInt(1), BigInt("664173936110")))
+    assert(List(BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(17)))
     factorsOkCons(PrattCerts.p256PS30.p, PrattCerts.p256PS30.a, PrattCerts.p256PS30.factors.tail.tail, List(BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS30.p, PrattCerts.p256PS30.a, PrattCerts.p256PS30.factors.tail.tail, List(BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m430: BigInt = BigInt("11290956913871")
@@ -48571,6 +49293,8 @@ object PrattTraces {
   def p256PS30F1(): Unit = {
     pw430()
     p256PS30F2()
+    assert(PrattCerts.p256PS30.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt("2258191382774")))
+    assert(List(BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256PS30.p, PrattCerts.p256PS30.a, PrattCerts.p256PS30.factors.tail, List(BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS30.p, PrattCerts.p256PS30.a, PrattCerts.p256PS30.factors.tail, List(BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m431: BigInt = BigInt("11290956913871")
@@ -48726,6 +49450,8 @@ object PrattTraces {
   def p256PS30F0(): Unit = {
     pw431()
     p256PS30F1()
+    assert(PrattCerts.p256PS30.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt("5645478456935")))
+    assert(List(BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS30.p, PrattCerts.p256PS30.a, PrattCerts.p256PS30.factors, List(BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS30.p, PrattCerts.p256PS30.a, PrattCerts.p256PS30.factors, List(BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -48804,6 +49530,8 @@ object PrattTraces {
   def p256PS31F2(): Unit = {
     pw433()
     factorsOkNil(PrattCerts.p256PS31.p, PrattCerts.p256PS31.a, List(BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS31.factors.tail.tail.head == PrattFactor(BigInt(7), BigInt(1), BigInt(108)))
+    assert(List(BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.p256PS31.p, PrattCerts.p256PS31.a, PrattCerts.p256PS31.factors.tail.tail, List(BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS31.p, PrattCerts.p256PS31.a, PrattCerts.p256PS31.factors.tail.tail, List(BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m434: BigInt = BigInt(757)
@@ -48842,6 +49570,8 @@ object PrattTraces {
   def p256PS31F1(): Unit = {
     pw434()
     p256PS31F2()
+    assert(PrattCerts.p256PS31.factors.tail.head == PrattFactor(BigInt(3), BigInt(3), BigInt(252)))
+    assert(List(BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256PS31.p, PrattCerts.p256PS31.a, PrattCerts.p256PS31.factors.tail, List(BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS31.p, PrattCerts.p256PS31.a, PrattCerts.p256PS31.factors.tail, List(BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m435: BigInt = BigInt(757)
@@ -48883,6 +49613,8 @@ object PrattTraces {
   def p256PS31F0(): Unit = {
     pw435()
     p256PS31F1()
+    assert(PrattCerts.p256PS31.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(378)))
+    assert(List(BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS31.p, PrattCerts.p256PS31.a, PrattCerts.p256PS31.factors, List(BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS31.p, PrattCerts.p256PS31.a, PrattCerts.p256PS31.factors, List(BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -48970,6 +49702,8 @@ object PrattTraces {
   def p256PS32F2(): Unit = {
     pw437()
     factorsOkNil(PrattCerts.p256PS32.p, PrattCerts.p256PS32.a, List(BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS32.factors.tail.tail.head == PrattFactor(BigInt(757), BigInt(1), BigInt(24)))
+    assert(List(BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(757)))
     factorsOkCons(PrattCerts.p256PS32.p, PrattCerts.p256PS32.a, PrattCerts.p256PS32.factors.tail.tail, List(BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS32.p, PrattCerts.p256PS32.a, PrattCerts.p256PS32.factors.tail.tail, List(BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m438: BigInt = BigInt(18169)
@@ -49023,6 +49757,8 @@ object PrattTraces {
   def p256PS32F1(): Unit = {
     pw438()
     p256PS32F2()
+    assert(PrattCerts.p256PS32.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(6056)))
+    assert(List(BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256PS32.p, PrattCerts.p256PS32.a, PrattCerts.p256PS32.factors.tail, List(BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS32.p, PrattCerts.p256PS32.a, PrattCerts.p256PS32.factors.tail, List(BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m439: BigInt = BigInt(18169)
@@ -49079,6 +49815,8 @@ object PrattTraces {
   def p256PS32F0(): Unit = {
     pw439()
     p256PS32F1()
+    assert(PrattCerts.p256PS32.factors.head == PrattFactor(BigInt(2), BigInt(3), BigInt(9084)))
+    assert(List(BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS32.p, PrattCerts.p256PS32.a, PrattCerts.p256PS32.factors, List(BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS32.p, PrattCerts.p256PS32.a, PrattCerts.p256PS32.factors, List(BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -49148,6 +49886,8 @@ object PrattTraces {
   def p256PS33F2(): Unit = {
     pw441()
     factorsOkNil(PrattCerts.p256PS33.p, PrattCerts.p256PS33.a, List(BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS33.factors.tail.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(36)))
+    assert(List(BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256PS33.p, PrattCerts.p256PS33.a, PrattCerts.p256PS33.factors.tail.tail, List(BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS33.p, PrattCerts.p256PS33.a, PrattCerts.p256PS33.factors.tail.tail, List(BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m442: BigInt = BigInt(181)
@@ -49180,6 +49920,8 @@ object PrattTraces {
   def p256PS33F1(): Unit = {
     pw442()
     p256PS33F2()
+    assert(PrattCerts.p256PS33.factors.tail.head == PrattFactor(BigInt(3), BigInt(2), BigInt(60)))
+    assert(List(BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256PS33.p, PrattCerts.p256PS33.a, PrattCerts.p256PS33.factors.tail, List(BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS33.p, PrattCerts.p256PS33.a, PrattCerts.p256PS33.factors.tail, List(BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m443: BigInt = BigInt(181)
@@ -49215,6 +49957,8 @@ object PrattTraces {
   def p256PS33F0(): Unit = {
     pw443()
     p256PS33F1()
+    assert(PrattCerts.p256PS33.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(90)))
+    assert(List(BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS33.p, PrattCerts.p256PS33.a, PrattCerts.p256PS33.factors, List(BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS33.p, PrattCerts.p256PS33.a, PrattCerts.p256PS33.factors, List(BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -49284,6 +50028,8 @@ object PrattTraces {
   def p256PS34F2(): Unit = {
     pw445()
     factorsOkNil(PrattCerts.p256PS34.p, PrattCerts.p256PS34.a, List(BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS34.factors.tail.tail.head == PrattFactor(BigInt(181), BigInt(1), BigInt(6)))
+    assert(List(BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(181)))
     factorsOkCons(PrattCerts.p256PS34.p, PrattCerts.p256PS34.a, PrattCerts.p256PS34.factors.tail.tail, List(BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS34.p, PrattCerts.p256PS34.a, PrattCerts.p256PS34.factors.tail.tail, List(BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m446: BigInt = BigInt(1087)
@@ -49325,6 +50071,8 @@ object PrattTraces {
   def p256PS34F1(): Unit = {
     pw446()
     p256PS34F2()
+    assert(PrattCerts.p256PS34.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(362)))
+    assert(List(BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256PS34.p, PrattCerts.p256PS34.a, PrattCerts.p256PS34.factors.tail, List(BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS34.p, PrattCerts.p256PS34.a, PrattCerts.p256PS34.factors.tail, List(BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m447: BigInt = BigInt(1087)
@@ -49369,6 +50117,8 @@ object PrattTraces {
   def p256PS34F0(): Unit = {
     pw447()
     p256PS34F1()
+    assert(PrattCerts.p256PS34.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(543)))
+    assert(List(BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS34.p, PrattCerts.p256PS34.a, PrattCerts.p256PS34.factors, List(BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS34.p, PrattCerts.p256PS34.a, PrattCerts.p256PS34.factors, List(BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -49444,6 +50194,8 @@ object PrattTraces {
   def p256PS35F1(): Unit = {
     pw449()
     factorsOkNil(PrattCerts.p256PS35.p, PrattCerts.p256PS35.a, List(BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS35.factors.tail.head == PrattFactor(BigInt(1087), BigInt(1), BigInt(4)))
+    assert(List(BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(1087)))
     factorsOkCons(PrattCerts.p256PS35.p, PrattCerts.p256PS35.a, PrattCerts.p256PS35.factors.tail, List(BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS35.p, PrattCerts.p256PS35.a, PrattCerts.p256PS35.factors.tail, List(BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m450: BigInt = BigInt(4349)
@@ -49494,6 +50246,8 @@ object PrattTraces {
   def p256PS35F0(): Unit = {
     pw450()
     p256PS35F1()
+    assert(PrattCerts.p256PS35.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(2174)))
+    assert(List(BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS35.p, PrattCerts.p256PS35.a, PrattCerts.p256PS35.factors, List(BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS35.p, PrattCerts.p256PS35.a, PrattCerts.p256PS35.factors, List(BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -49587,6 +50341,8 @@ object PrattTraces {
   def p256PS36F2(): Unit = {
     pw452()
     factorsOkNil(PrattCerts.p256PS36.p, PrattCerts.p256PS36.a, List(BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS36.factors.tail.tail.head == PrattFactor(BigInt(4349), BigInt(1), BigInt(18)))
+    assert(List(BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(4349)))
     factorsOkCons(PrattCerts.p256PS36.p, PrattCerts.p256PS36.a, PrattCerts.p256PS36.factors.tail.tail, List(BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS36.p, PrattCerts.p256PS36.a, PrattCerts.p256PS36.factors.tail.tail, List(BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m453: BigInt = BigInt(78283)
@@ -49646,6 +50402,8 @@ object PrattTraces {
   def p256PS36F1(): Unit = {
     pw453()
     p256PS36F2()
+    assert(PrattCerts.p256PS36.factors.tail.head == PrattFactor(BigInt(3), BigInt(2), BigInt(26094)))
+    assert(List(BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256PS36.p, PrattCerts.p256PS36.a, PrattCerts.p256PS36.factors.tail, List(BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS36.p, PrattCerts.p256PS36.a, PrattCerts.p256PS36.factors.tail, List(BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m454: BigInt = BigInt(78283)
@@ -49708,6 +50466,8 @@ object PrattTraces {
   def p256PS36F0(): Unit = {
     pw454()
     p256PS36F1()
+    assert(PrattCerts.p256PS36.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(39141)))
+    assert(List(BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS36.p, PrattCerts.p256PS36.a, PrattCerts.p256PS36.factors, List(BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS36.p, PrattCerts.p256PS36.a, PrattCerts.p256PS36.factors, List(BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -49777,6 +50537,8 @@ object PrattTraces {
   def p256PS37F2(): Unit = {
     pw456()
     factorsOkNil(PrattCerts.p256PS37.p, PrattCerts.p256PS37.a, List(BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS37.factors.tail.tail.head == PrattFactor(BigInt(13), BigInt(1), BigInt(24)))
+    assert(List(BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(13)))
     factorsOkCons(PrattCerts.p256PS37.p, PrattCerts.p256PS37.a, PrattCerts.p256PS37.factors.tail.tail, List(BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS37.p, PrattCerts.p256PS37.a, PrattCerts.p256PS37.factors.tail.tail, List(BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m457: BigInt = BigInt(313)
@@ -49812,6 +50574,8 @@ object PrattTraces {
   def p256PS37F1(): Unit = {
     pw457()
     p256PS37F2()
+    assert(PrattCerts.p256PS37.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(104)))
+    assert(List(BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256PS37.p, PrattCerts.p256PS37.a, PrattCerts.p256PS37.factors.tail, List(BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS37.p, PrattCerts.p256PS37.a, PrattCerts.p256PS37.factors.tail, List(BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m458: BigInt = BigInt(313)
@@ -49850,6 +50614,8 @@ object PrattTraces {
   def p256PS37F0(): Unit = {
     pw458()
     p256PS37F1()
+    assert(PrattCerts.p256PS37.factors.head == PrattFactor(BigInt(2), BigInt(3), BigInt(156)))
+    assert(List(BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS37.p, PrattCerts.p256PS37.a, PrattCerts.p256PS37.factors, List(BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS37.p, PrattCerts.p256PS37.a, PrattCerts.p256PS37.factors, List(BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -49979,6 +50745,8 @@ object PrattTraces {
   def p256PS38F3(): Unit = {
     pw460()
     factorsOkNil(PrattCerts.p256PS38.p, PrattCerts.p256PS38.a, List(BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS38.factors.tail.tail.tail.head == PrattFactor(BigInt(313), BigInt(1), BigInt(2250)))
+    assert(List(BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(313)))
     factorsOkCons(PrattCerts.p256PS38.p, PrattCerts.p256PS38.a, PrattCerts.p256PS38.factors.tail.tail.tail, List(BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS38.p, PrattCerts.p256PS38.a, PrattCerts.p256PS38.factors.tail.tail.tail, List(BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m461: BigInt = BigInt(704251)
@@ -50053,6 +50821,8 @@ object PrattTraces {
   def p256PS38F2(): Unit = {
     pw461()
     p256PS38F3()
+    assert(PrattCerts.p256PS38.factors.tail.tail.head == PrattFactor(BigInt(5), BigInt(3), BigInt(140850)))
+    assert(List(BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256PS38.p, PrattCerts.p256PS38.a, PrattCerts.p256PS38.factors.tail.tail, List(BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS38.p, PrattCerts.p256PS38.a, PrattCerts.p256PS38.factors.tail.tail, List(BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m462: BigInt = BigInt(704251)
@@ -50127,6 +50897,8 @@ object PrattTraces {
   def p256PS38F1(): Unit = {
     pw462()
     p256PS38F2()
+    assert(PrattCerts.p256PS38.factors.tail.head == PrattFactor(BigInt(3), BigInt(2), BigInt(234750)))
+    assert(List(BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256PS38.p, PrattCerts.p256PS38.a, PrattCerts.p256PS38.factors.tail, List(BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS38.p, PrattCerts.p256PS38.a, PrattCerts.p256PS38.factors.tail, List(BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m463: BigInt = BigInt(704251)
@@ -50204,6 +50976,8 @@ object PrattTraces {
   def p256PS38F0(): Unit = {
     pw463()
     p256PS38F1()
+    assert(PrattCerts.p256PS38.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(352125)))
+    assert(List(BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS38.p, PrattCerts.p256PS38.a, PrattCerts.p256PS38.factors, List(BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS38.p, PrattCerts.p256PS38.a, PrattCerts.p256PS38.factors, List(BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -50537,6 +51311,8 @@ object PrattTraces {
   def p256PS39F4(): Unit = {
     pw465()
     factorsOkNil(PrattCerts.p256PS39.p, PrattCerts.p256PS39.a, List(BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS39.factors.tail.tail.tail.tail.head == PrattFactor(BigInt(704251), BigInt(1), BigInt("65426896042")))
+    assert(List(BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(704251)))
     factorsOkCons(PrattCerts.p256PS39.p, PrattCerts.p256PS39.a, PrattCerts.p256PS39.factors.tail.tail.tail.tail, List(BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS39.p, PrattCerts.p256PS39.a, PrattCerts.p256PS39.factors.tail.tail.tail.tail, List(BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m466: BigInt = BigInt("46076956964474543")
@@ -50683,6 +51459,8 @@ object PrattTraces {
   def p256PS39F3(): Unit = {
     pw466()
     p256PS39F4()
+    assert(PrattCerts.p256PS39.factors.tail.tail.tail.head == PrattFactor(BigInt(78283), BigInt(1), BigInt("588594675274")))
+    assert(List(BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(78283)))
     factorsOkCons(PrattCerts.p256PS39.p, PrattCerts.p256PS39.a, PrattCerts.p256PS39.factors.tail.tail.tail, List(BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS39.p, PrattCerts.p256PS39.a, PrattCerts.p256PS39.factors.tail.tail.tail, List(BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m467: BigInt = BigInt("46076956964474543")
@@ -50835,6 +51613,8 @@ object PrattTraces {
   def p256PS39F2(): Unit = {
     pw467()
     p256PS39F3()
+    assert(PrattCerts.p256PS39.factors.tail.tail.head == PrattFactor(BigInt(18169), BigInt(1), BigInt("2536020527518")))
+    assert(List(BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(18169)))
     factorsOkCons(PrattCerts.p256PS39.p, PrattCerts.p256PS39.a, PrattCerts.p256PS39.factors.tail.tail, List(BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS39.p, PrattCerts.p256PS39.a, PrattCerts.p256PS39.factors.tail.tail, List(BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m468: BigInt = BigInt("46076956964474543")
@@ -51020,6 +51800,8 @@ object PrattTraces {
   def p256PS39F1(): Unit = {
     pw468()
     p256PS39F2()
+    assert(PrattCerts.p256PS39.factors.tail.head == PrattFactor(BigInt(23), BigInt(1), BigInt("2003345954977154")))
+    assert(List(BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(23)))
     factorsOkCons(PrattCerts.p256PS39.p, PrattCerts.p256PS39.a, PrattCerts.p256PS39.factors.tail, List(BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS39.p, PrattCerts.p256PS39.a, PrattCerts.p256PS39.factors.tail, List(BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m469: BigInt = BigInt("46076956964474543")
@@ -51217,6 +51999,8 @@ object PrattTraces {
   def p256PS39F0(): Unit = {
     pw469()
     p256PS39F1()
+    assert(PrattCerts.p256PS39.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt("23038478482237271")))
+    assert(List(BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS39.p, PrattCerts.p256PS39.a, PrattCerts.p256PS39.factors, List(BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS39.p, PrattCerts.p256PS39.a, PrattCerts.p256PS39.factors, List(BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -52060,6 +52844,8 @@ object PrattTraces {
   def p256PS40F5(): Unit = {
     pw471()
     factorsOkNil(PrattCerts.p256PS40.p, PrattCerts.p256PS40.a, List(BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS40.factors.tail.tail.tail.tail.tail.head == PrattFactor(BigInt("46076956964474543"), BigInt(1), BigInt("16798487535978261528513091914")))
+    assert(List(BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt("46076956964474543")))
     factorsOkCons(PrattCerts.p256PS40.p, PrattCerts.p256PS40.a, PrattCerts.p256PS40.factors.tail.tail.tail.tail.tail, List(BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS40.p, PrattCerts.p256PS40.a, PrattCerts.p256PS40.factors.tail.tail.tail.tail.tail, List(BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m472: BigInt = BigInt("774023187263532362759620327192479577272145303")
@@ -52428,6 +53214,8 @@ object PrattTraces {
   def p256PS40F4(): Unit = {
     pw472()
     p256PS40F5()
+    assert(PrattCerts.p256PS40.factors.tail.tail.tail.tail.head == PrattFactor(BigInt("11290956913871"), BigInt(1), BigInt("68552487904071337216976429044362")))
+    assert(List(BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt("11290956913871")))
     factorsOkCons(PrattCerts.p256PS40.p, PrattCerts.p256PS40.a, PrattCerts.p256PS40.factors.tail.tail.tail.tail, List(BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS40.p, PrattCerts.p256PS40.a, PrattCerts.p256PS40.factors.tail.tail.tail.tail, List(BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m473: BigInt = BigInt("774023187263532362759620327192479577272145303")
@@ -52829,6 +53617,8 @@ object PrattTraces {
   def p256PS40F3(): Unit = {
     pw473()
     p256PS40F4()
+    assert(PrattCerts.p256PS40.factors.tail.tail.tail.head == PrattFactor(BigInt("34282281433"), BigInt(1), BigInt("22577936908202977552973533084188294")))
+    assert(List(BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt("34282281433")))
     factorsOkCons(PrattCerts.p256PS40.p, PrattCerts.p256PS40.a, PrattCerts.p256PS40.factors.tail.tail.tail, List(BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS40.p, PrattCerts.p256PS40.a, PrattCerts.p256PS40.factors.tail.tail.tail, List(BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m474: BigInt = BigInt("774023187263532362759620327192479577272145303")
@@ -53305,6 +54095,8 @@ object PrattTraces {
   def p256PS40F2(): Unit = {
     pw474()
     p256PS40F3()
+    assert(PrattCerts.p256PS40.factors.tail.tail.head == PrattFactor(BigInt(2411), BigInt(1), BigInt("321038236110963236316723487014715710191682")))
+    assert(List(BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2411)))
     factorsOkCons(PrattCerts.p256PS40.p, PrattCerts.p256PS40.a, PrattCerts.p256PS40.factors.tail.tail, List(BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS40.p, PrattCerts.p256PS40.a, PrattCerts.p256PS40.factors.tail.tail, List(BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m475: BigInt = BigInt("774023187263532362759620327192479577272145303")
@@ -53817,6 +54609,8 @@ object PrattTraces {
   def p256PS40F1(): Unit = {
     pw475()
     p256PS40F2()
+    assert(PrattCerts.p256PS40.factors.tail.head == PrattFactor(BigInt(3), BigInt(2), BigInt("258007729087844120919873442397493192424048434")))
+    assert(List(BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256PS40.p, PrattCerts.p256PS40.a, PrattCerts.p256PS40.factors.tail, List(BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS40.p, PrattCerts.p256PS40.a, PrattCerts.p256PS40.factors.tail, List(BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m476: BigInt = BigInt("774023187263532362759620327192479577272145303")
@@ -54332,6 +55126,8 @@ object PrattTraces {
   def p256PS40F0(): Unit = {
     pw476()
     p256PS40F1()
+    assert(PrattCerts.p256PS40.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt("387011593631766181379810163596239788636072651")))
+    assert(List(BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS40.p, PrattCerts.p256PS40.a, PrattCerts.p256PS40.factors, List(BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS40.p, PrattCerts.p256PS40.a, PrattCerts.p256PS40.factors, List(BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -54926,6 +55722,8 @@ object PrattTraces {
   def p256PS41F3(): Unit = {
     pw478()
     factorsOkNil(PrattCerts.p256PS41.p, PrattCerts.p256PS41.a, List(BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS41.factors.tail.tail.tail.head == PrattFactor(BigInt("774023187263532362759620327192479577272145303"), BigInt(1), BigInt(1080)))
+    assert(List(BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt("774023187263532362759620327192479577272145303")))
     factorsOkCons(PrattCerts.p256PS41.p, PrattCerts.p256PS41.a, PrattCerts.p256PS41.factors.tail.tail.tail, List(BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS41.p, PrattCerts.p256PS41.a, PrattCerts.p256PS41.factors.tail.tail.tail, List(BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m479: BigInt = BigInt("835945042244614951780389953367877943453916927241")
@@ -55465,6 +56263,8 @@ object PrattTraces {
   def p256PS41F2(): Unit = {
     pw479()
     p256PS41F3()
+    assert(PrattCerts.p256PS41.factors.tail.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt("167189008448922990356077990673575588690783385448")))
+    assert(List(BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256PS41.p, PrattCerts.p256PS41.a, PrattCerts.p256PS41.factors.tail.tail, List(BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS41.p, PrattCerts.p256PS41.a, PrattCerts.p256PS41.factors.tail.tail, List(BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m480: BigInt = BigInt("835945042244614951780389953367877943453916927241")
@@ -56007,6 +56807,8 @@ object PrattTraces {
   def p256PS41F1(): Unit = {
     pw480()
     p256PS41F2()
+    assert(PrattCerts.p256PS41.factors.tail.head == PrattFactor(BigInt(3), BigInt(3), BigInt("278648347414871650593463317789292647817972309080")))
+    assert(List(BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256PS41.p, PrattCerts.p256PS41.a, PrattCerts.p256PS41.factors.tail, List(BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS41.p, PrattCerts.p256PS41.a, PrattCerts.p256PS41.factors.tail, List(BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m481: BigInt = BigInt("835945042244614951780389953367877943453916927241")
@@ -56552,6 +57354,8 @@ object PrattTraces {
   def p256PS41F0(): Unit = {
     pw481()
     p256PS41F1()
+    assert(PrattCerts.p256PS41.factors.head == PrattFactor(BigInt(2), BigInt(3), BigInt("417972521122307475890194976683938971726958463620")))
+    assert(List(BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS41.p, PrattCerts.p256PS41.a, PrattCerts.p256PS41.factors, List(BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS41.p, PrattCerts.p256PS41.a, PrattCerts.p256PS41.factors, List(BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -57758,6 +58562,8 @@ object PrattTraces {
   def p256PS42F10(): Unit = {
     pw483()
     factorsOkNil(PrattCerts.p256PS42.p, PrattCerts.p256PS42.a, List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256PS42.factors.tail.tail.tail.tail.tail.tail.tail.tail.tail.tail.head == PrattFactor(BigInt("835945042244614951780389953367877943453916927241"), BigInt(1), BigInt("138516389665330497628477975950")))
+    assert(List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt("835945042244614951780389953367877943453916927241")))
     factorsOkCons(PrattCerts.p256PS42.p, PrattCerts.p256PS42.a, PrattCerts.p256PS42.factors.tail.tail.tail.tail.tail.tail.tail.tail.tail.tail, List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS42.p, PrattCerts.p256PS42.a, PrattCerts.p256PS42.factors.tail.tail.tail.tail.tail.tail.tail.tail.tail.tail, List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m484: BigInt = BigInt("115792089210356248762697446949407573530086143415290314195533631308867097853951")
@@ -58558,6 +59364,8 @@ object PrattTraces {
   def p256PS42F9(): Unit = {
     pw484()
     p256PS42F10()
+    assert(PrattCerts.p256PS42.factors.tail.tail.tail.tail.tail.tail.tail.tail.tail.head == PrattFactor(BigInt(6700417), BigInt(1), BigInt("17281325805596315686426299579475064541518258253969911752586985453124350")))
+    assert(List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(6700417)))
     factorsOkCons(PrattCerts.p256PS42.p, PrattCerts.p256PS42.a, PrattCerts.p256PS42.factors.tail.tail.tail.tail.tail.tail.tail.tail.tail, List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS42.p, PrattCerts.p256PS42.a, PrattCerts.p256PS42.factors.tail.tail.tail.tail.tail.tail.tail.tail.tail, List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m485: BigInt = BigInt("115792089210356248762697446949407573530086143415290314195533631308867097853951")
@@ -59370,6 +60178,8 @@ object PrattTraces {
   def p256PS42F8(): Unit = {
     pw485()
     p256PS42F9()
+    assert(PrattCerts.p256PS42.factors.tail.tail.tail.tail.tail.tail.tail.tail.head == PrattFactor(BigInt(490463), BigInt(1), BigInt("236087307728322521296606363679640612095277612001904963668072069266931650")))
+    assert(List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(490463)))
     factorsOkCons(PrattCerts.p256PS42.p, PrattCerts.p256PS42.a, PrattCerts.p256PS42.factors.tail.tail.tail.tail.tail.tail.tail.tail, List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS42.p, PrattCerts.p256PS42.a, PrattCerts.p256PS42.factors.tail.tail.tail.tail.tail.tail.tail.tail, List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m486: BigInt = BigInt("115792089210356248762697446949407573530086143415290314195533631308867097853951")
@@ -60188,6 +60998,8 @@ object PrattTraces {
   def p256PS42F7(): Unit = {
     pw486()
     p256PS42F8()
+    assert(PrattCerts.p256PS42.factors.tail.tail.tail.tail.tail.tail.tail.head == PrattFactor(BigInt(65537), BigInt(1), BigInt("1766820104831717179039282343552612623862644665079120408250814521703268350")))
+    assert(List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(65537)))
     factorsOkCons(PrattCerts.p256PS42.p, PrattCerts.p256PS42.a, PrattCerts.p256PS42.factors.tail.tail.tail.tail.tail.tail.tail, List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS42.p, PrattCerts.p256PS42.a, PrattCerts.p256PS42.factors.tail.tail.tail.tail.tail.tail.tail, List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m487: BigInt = BigInt("115792089210356248762697446949407573530086143415290314195533631308867097853951")
@@ -61030,6 +61842,8 @@ object PrattTraces {
   def p256PS42F6(): Unit = {
     pw487()
     p256PS42F7()
+    assert(PrattCerts.p256PS42.factors.tail.tail.tail.tail.tail.tail.head == PrattFactor(BigInt(1531), BigInt(1), BigInt("75631671593962278747679586511696651554595782766355528540518374466928215450")))
+    assert(List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(1531)))
     factorsOkCons(PrattCerts.p256PS42.p, PrattCerts.p256PS42.a, PrattCerts.p256PS42.factors.tail.tail.tail.tail.tail.tail, List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS42.p, PrattCerts.p256PS42.a, PrattCerts.p256PS42.factors.tail.tail.tail.tail.tail.tail, List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m488: BigInt = BigInt("115792089210356248762697446949407573530086143415290314195533631308867097853951")
@@ -61875,6 +62689,8 @@ object PrattTraces {
   def p256PS42F5(): Unit = {
     pw488()
     p256PS42F6()
+    assert(PrattCerts.p256PS42.factors.tail.tail.tail.tail.tail.head == PrattFactor(BigInt(641), BigInt(1), BigInt("180642884883551090113412553743225543728683531069095653971191312494332445950")))
+    assert(List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(641)))
     factorsOkCons(PrattCerts.p256PS42.p, PrattCerts.p256PS42.a, PrattCerts.p256PS42.factors.tail.tail.tail.tail.tail, List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS42.p, PrattCerts.p256PS42.a, PrattCerts.p256PS42.factors.tail.tail.tail.tail.tail, List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m489: BigInt = BigInt("115792089210356248762697446949407573530086143415290314195533631308867097853951")
@@ -62723,6 +63539,8 @@ object PrattTraces {
   def p256PS42F4(): Unit = {
     pw489()
     p256PS42F5()
+    assert(PrattCerts.p256PS42.factors.tail.tail.tail.tail.head == PrattFactor(BigInt(257), BigInt(1), BigInt("450552876304888127481313023149445811401113398503075152511804012874969252350")))
+    assert(List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(257)))
     factorsOkCons(PrattCerts.p256PS42.p, PrattCerts.p256PS42.a, PrattCerts.p256PS42.factors.tail.tail.tail.tail, List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS42.p, PrattCerts.p256PS42.a, PrattCerts.p256PS42.factors.tail.tail.tail.tail, List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m490: BigInt = BigInt("115792089210356248762697446949407573530086143415290314195533631308867097853951")
@@ -63583,6 +64401,8 @@ object PrattTraces {
   def p256PS42F3(): Unit = {
     pw490()
     p256PS42F4()
+    assert(PrattCerts.p256PS42.factors.tail.tail.tail.head == PrattFactor(BigInt(17), BigInt(1), BigInt("6811299365315073456629261585259269031181537847958253776207860665227476344350")))
+    assert(List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(17)))
     factorsOkCons(PrattCerts.p256PS42.p, PrattCerts.p256PS42.a, PrattCerts.p256PS42.factors.tail.tail.tail, List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS42.p, PrattCerts.p256PS42.a, PrattCerts.p256PS42.factors.tail.tail.tail, List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m491: BigInt = BigInt("115792089210356248762697446949407573530086143415290314195533631308867097853951")
@@ -64449,6 +65269,8 @@ object PrattTraces {
   def p256PS42F2(): Unit = {
     pw491()
     p256PS42F3()
+    assert(PrattCerts.p256PS42.factors.tail.tail.head == PrattFactor(BigInt(5), BigInt(2), BigInt("23158417842071249752539489389881514706017228683058062839106726261773419570790")))
+    assert(List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256PS42.p, PrattCerts.p256PS42.a, PrattCerts.p256PS42.factors.tail.tail, List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS42.p, PrattCerts.p256PS42.a, PrattCerts.p256PS42.factors.tail.tail, List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m492: BigInt = BigInt("115792089210356248762697446949407573530086143415290314195533631308867097853951")
@@ -65318,6 +66140,8 @@ object PrattTraces {
   def p256PS42F1(): Unit = {
     pw492()
     p256PS42F2()
+    assert(PrattCerts.p256PS42.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt("38597363070118749587565815649802524510028714471763438065177877102955699284650")))
+    assert(List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256PS42.p, PrattCerts.p256PS42.a, PrattCerts.p256PS42.factors.tail, List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS42.p, PrattCerts.p256PS42.a, PrattCerts.p256PS42.factors.tail, List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   val m493: BigInt = BigInt("115792089210356248762697446949407573530086143415290314195533631308867097853951")
@@ -66187,6 +67011,8 @@ object PrattTraces {
   def p256PS42F0(): Unit = {
     pw493()
     p256PS42F1()
+    assert(PrattCerts.p256PS42.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt("57896044605178124381348723474703786765043071707645157097766815654433548926975")))
+    assert(List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256PS42.p, PrattCerts.p256PS42.a, PrattCerts.p256PS42.factors, List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256PS42.p, PrattCerts.p256PS42.a, PrattCerts.p256PS42.factors, List(BigInt("835945042244614951780389953367877943453916927241"), BigInt("774023187263532362759620327192479577272145303"), BigInt("46076956964474543"), BigInt(704251), BigInt(313), BigInt(78283), BigInt(4349), BigInt(1087), BigInt(181), BigInt(18169), BigInt(757), BigInt("11290956913871"), BigInt("66417393611"), BigInt(3677), BigInt(919), BigInt(197), BigInt(173), BigInt(43), BigInt("34282281433"), BigInt(204061199), BigInt(3769), BigInt(157), BigInt(107), BigInt(23), BigInt(2411), BigInt(241), BigInt(6700417), BigInt(17449), BigInt(727), BigInt(490463), BigInt(661), BigInt(11), BigInt(53), BigInt(13), BigInt(7), BigInt(65537), BigInt(1531), BigInt(641), BigInt(257), BigInt(17), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -66459,6 +67285,8 @@ object PrattTraces {
   def p256NS0F0(): Unit = {
     pw1()
     factorsOkNil(PrattCerts.p256NS0.p, PrattCerts.p256NS0.a, List(BigInt(2)))
+    assert(PrattCerts.p256NS0.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(1)))
+    assert(List(BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS0.p, PrattCerts.p256NS0.a, PrattCerts.p256NS0.factors, List(BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS0.p, PrattCerts.p256NS0.a, PrattCerts.p256NS0.factors, List(BigInt(2))))
   @ghost @opaque
@@ -66470,6 +67298,8 @@ object PrattTraces {
   def p256NS1F0(): Unit = {
     pw6()
     factorsOkNil(PrattCerts.p256NS1.p, PrattCerts.p256NS1.a, List(BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS1.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(2)))
+    assert(List(BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS1.p, PrattCerts.p256NS1.a, PrattCerts.p256NS1.factors, List(BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS1.p, PrattCerts.p256NS1.a, PrattCerts.p256NS1.factors, List(BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -66481,12 +67311,16 @@ object PrattTraces {
   def p256NS2F1(): Unit = {
     pw3()
     factorsOkNil(PrattCerts.p256NS2.p, PrattCerts.p256NS2.a, List(BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS2.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(2)))
+    assert(List(BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256NS2.p, PrattCerts.p256NS2.a, PrattCerts.p256NS2.factors.tail, List(BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS2.p, PrattCerts.p256NS2.a, PrattCerts.p256NS2.factors.tail, List(BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
   def p256NS2F0(): Unit = {
     pw4()
     p256NS2F1()
+    assert(PrattCerts.p256NS2.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(3)))
+    assert(List(BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS2.p, PrattCerts.p256NS2.a, PrattCerts.p256NS2.factors, List(BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS2.p, PrattCerts.p256NS2.a, PrattCerts.p256NS2.factors, List(BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -66547,6 +67381,8 @@ object PrattTraces {
   def p256NS3F2(): Unit = {
     pw495()
     factorsOkNil(PrattCerts.p256NS3.p, PrattCerts.p256NS3.a, List(BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS3.factors.tail.tail.head == PrattFactor(BigInt(7), BigInt(1), BigInt(10)))
+    assert(List(BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.p256NS3.p, PrattCerts.p256NS3.a, PrattCerts.p256NS3.factors.tail.tail, List(BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS3.p, PrattCerts.p256NS3.a, PrattCerts.p256NS3.factors.tail.tail, List(BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m496: BigInt = BigInt(71)
@@ -66573,6 +67409,8 @@ object PrattTraces {
   def p256NS3F1(): Unit = {
     pw496()
     p256NS3F2()
+    assert(PrattCerts.p256NS3.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(14)))
+    assert(List(BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256NS3.p, PrattCerts.p256NS3.a, PrattCerts.p256NS3.factors.tail, List(BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS3.p, PrattCerts.p256NS3.a, PrattCerts.p256NS3.factors.tail, List(BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m497: BigInt = BigInt(71)
@@ -66605,6 +67443,8 @@ object PrattTraces {
   def p256NS3F0(): Unit = {
     pw497()
     p256NS3F1()
+    assert(PrattCerts.p256NS3.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(35)))
+    assert(List(BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS3.p, PrattCerts.p256NS3.a, PrattCerts.p256NS3.factors, List(BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS3.p, PrattCerts.p256NS3.a, PrattCerts.p256NS3.factors, List(BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -66616,12 +67456,16 @@ object PrattTraces {
   def p256NS4F1(): Unit = {
     pw23()
     factorsOkNil(PrattCerts.p256NS4.p, PrattCerts.p256NS4.a, List(BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS4.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(4)))
+    assert(List(BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256NS4.p, PrattCerts.p256NS4.a, PrattCerts.p256NS4.factors.tail, List(BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS4.p, PrattCerts.p256NS4.a, PrattCerts.p256NS4.factors.tail, List(BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
   def p256NS4F0(): Unit = {
     pw24()
     p256NS4F1()
+    assert(PrattCerts.p256NS4.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(6)))
+    assert(List(BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS4.p, PrattCerts.p256NS4.a, PrattCerts.p256NS4.factors, List(BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS4.p, PrattCerts.p256NS4.a, PrattCerts.p256NS4.factors, List(BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -66633,18 +67477,24 @@ object PrattTraces {
   def p256NS5F2(): Unit = {
     pw44()
     factorsOkNil(PrattCerts.p256NS5.p, PrattCerts.p256NS5.a, List(BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS5.factors.tail.tail.head == PrattFactor(BigInt(13), BigInt(1), BigInt(10)))
+    assert(List(BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(13)))
     factorsOkCons(PrattCerts.p256NS5.p, PrattCerts.p256NS5.a, PrattCerts.p256NS5.factors.tail.tail, List(BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS5.p, PrattCerts.p256NS5.a, PrattCerts.p256NS5.factors.tail.tail, List(BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
   def p256NS5F1(): Unit = {
     pw45()
     p256NS5F2()
+    assert(PrattCerts.p256NS5.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(26)))
+    assert(List(BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256NS5.p, PrattCerts.p256NS5.a, PrattCerts.p256NS5.factors.tail, List(BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS5.p, PrattCerts.p256NS5.a, PrattCerts.p256NS5.factors.tail, List(BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
   def p256NS5F0(): Unit = {
     pw46()
     p256NS5F1()
+    assert(PrattCerts.p256NS5.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(65)))
+    assert(List(BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS5.p, PrattCerts.p256NS5.a, PrattCerts.p256NS5.factors, List(BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS5.p, PrattCerts.p256NS5.a, PrattCerts.p256NS5.factors, List(BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -66656,18 +67506,24 @@ object PrattTraces {
   def p256NS6F2(): Unit = {
     pw16()
     factorsOkNil(PrattCerts.p256NS6.p, PrattCerts.p256NS6.a, List(BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS6.factors.tail.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(6)))
+    assert(List(BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256NS6.p, PrattCerts.p256NS6.a, PrattCerts.p256NS6.factors.tail.tail, List(BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS6.p, PrattCerts.p256NS6.a, PrattCerts.p256NS6.factors.tail.tail, List(BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
   def p256NS6F1(): Unit = {
     pw17()
     p256NS6F2()
+    assert(PrattCerts.p256NS6.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(10)))
+    assert(List(BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256NS6.p, PrattCerts.p256NS6.a, PrattCerts.p256NS6.factors.tail, List(BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS6.p, PrattCerts.p256NS6.a, PrattCerts.p256NS6.factors.tail, List(BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
   def p256NS6F0(): Unit = {
     pw18()
     p256NS6F1()
+    assert(PrattCerts.p256NS6.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(15)))
+    assert(List(BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS6.p, PrattCerts.p256NS6.a, PrattCerts.p256NS6.factors, List(BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS6.p, PrattCerts.p256NS6.a, PrattCerts.p256NS6.factors, List(BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -66734,6 +67590,8 @@ object PrattTraces {
   def p256NS7F2(): Unit = {
     pw499()
     factorsOkNil(PrattCerts.p256NS7.p, PrattCerts.p256NS7.a, List(BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS7.factors.tail.tail.head == PrattFactor(BigInt(31), BigInt(1), BigInt(12)))
+    assert(List(BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(31)))
     factorsOkCons(PrattCerts.p256NS7.p, PrattCerts.p256NS7.a, PrattCerts.p256NS7.factors.tail.tail, List(BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS7.p, PrattCerts.p256NS7.a, PrattCerts.p256NS7.factors.tail.tail, List(BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m500: BigInt = BigInt(373)
@@ -66769,6 +67627,8 @@ object PrattTraces {
   def p256NS7F1(): Unit = {
     pw500()
     p256NS7F2()
+    assert(PrattCerts.p256NS7.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(124)))
+    assert(List(BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256NS7.p, PrattCerts.p256NS7.a, PrattCerts.p256NS7.factors.tail, List(BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS7.p, PrattCerts.p256NS7.a, PrattCerts.p256NS7.factors.tail, List(BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m501: BigInt = BigInt(373)
@@ -66807,6 +67667,8 @@ object PrattTraces {
   def p256NS7F0(): Unit = {
     pw501()
     p256NS7F1()
+    assert(PrattCerts.p256NS7.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(186)))
+    assert(List(BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS7.p, PrattCerts.p256NS7.a, PrattCerts.p256NS7.factors, List(BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS7.p, PrattCerts.p256NS7.a, PrattCerts.p256NS7.factors, List(BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -66885,6 +67747,8 @@ object PrattTraces {
   def p256NS8F2(): Unit = {
     pw503()
     factorsOkNil(PrattCerts.p256NS8.p, PrattCerts.p256NS8.a, List(BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS8.factors.tail.tail.head == PrattFactor(BigInt(131), BigInt(1), BigInt(26)))
+    assert(List(BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(131)))
     factorsOkCons(PrattCerts.p256NS8.p, PrattCerts.p256NS8.a, PrattCerts.p256NS8.factors.tail.tail, List(BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS8.p, PrattCerts.p256NS8.a, PrattCerts.p256NS8.factors.tail.tail, List(BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m504: BigInt = BigInt(3407)
@@ -66926,6 +67790,8 @@ object PrattTraces {
   def p256NS8F1(): Unit = {
     pw504()
     p256NS8F2()
+    assert(PrattCerts.p256NS8.factors.tail.head == PrattFactor(BigInt(13), BigInt(1), BigInt(262)))
+    assert(List(BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(13)))
     factorsOkCons(PrattCerts.p256NS8.p, PrattCerts.p256NS8.a, PrattCerts.p256NS8.factors.tail, List(BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS8.p, PrattCerts.p256NS8.a, PrattCerts.p256NS8.factors.tail, List(BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m505: BigInt = BigInt(3407)
@@ -66973,6 +67839,8 @@ object PrattTraces {
   def p256NS8F0(): Unit = {
     pw505()
     p256NS8F1()
+    assert(PrattCerts.p256NS8.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(1703)))
+    assert(List(BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS8.p, PrattCerts.p256NS8.a, PrattCerts.p256NS8.factors, List(BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS8.p, PrattCerts.p256NS8.a, PrattCerts.p256NS8.factors, List(BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -66984,12 +67852,16 @@ object PrattTraces {
   def p256NS9F1(): Unit = {
     pw20()
     factorsOkNil(PrattCerts.p256NS9.p, PrattCerts.p256NS9.a, List(BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS9.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(2)))
+    assert(List(BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256NS9.p, PrattCerts.p256NS9.a, PrattCerts.p256NS9.factors.tail, List(BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS9.p, PrattCerts.p256NS9.a, PrattCerts.p256NS9.factors.tail, List(BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
   def p256NS9F0(): Unit = {
     pw21()
     p256NS9F1()
+    assert(PrattCerts.p256NS9.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(5)))
+    assert(List(BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS9.p, PrattCerts.p256NS9.a, PrattCerts.p256NS9.factors, List(BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS9.p, PrattCerts.p256NS9.a, PrattCerts.p256NS9.factors, List(BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -67001,18 +67873,24 @@ object PrattTraces {
   def p256NS10F2(): Unit = {
     pw362()
     factorsOkNil(PrattCerts.p256NS10.p, PrattCerts.p256NS10.a, List(BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS10.factors.tail.tail.head == PrattFactor(BigInt(11), BigInt(2), BigInt(66)))
+    assert(List(BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(11)))
     factorsOkCons(PrattCerts.p256NS10.p, PrattCerts.p256NS10.a, PrattCerts.p256NS10.factors.tail.tail, List(BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS10.p, PrattCerts.p256NS10.a, PrattCerts.p256NS10.factors.tail.tail, List(BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
   def p256NS10F1(): Unit = {
     pw363()
     p256NS10F2()
+    assert(PrattCerts.p256NS10.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(242)))
+    assert(List(BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256NS10.p, PrattCerts.p256NS10.a, PrattCerts.p256NS10.factors.tail, List(BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS10.p, PrattCerts.p256NS10.a, PrattCerts.p256NS10.factors.tail, List(BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
   def p256NS10F0(): Unit = {
     pw364()
     p256NS10F1()
+    assert(PrattCerts.p256NS10.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(363)))
+    assert(List(BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS10.p, PrattCerts.p256NS10.a, PrattCerts.p256NS10.factors, List(BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS10.p, PrattCerts.p256NS10.a, PrattCerts.p256NS10.factors, List(BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -67024,18 +67902,24 @@ object PrattTraces {
   def p256NS11F2(): Unit = {
     pw366()
     factorsOkNil(PrattCerts.p256NS11.p, PrattCerts.p256NS11.a, List(BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS11.factors.tail.tail.head == PrattFactor(BigInt(727), BigInt(1), BigInt(24)))
+    assert(List(BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(727)))
     factorsOkCons(PrattCerts.p256NS11.p, PrattCerts.p256NS11.a, PrattCerts.p256NS11.factors.tail.tail, List(BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS11.p, PrattCerts.p256NS11.a, PrattCerts.p256NS11.factors.tail.tail, List(BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
   def p256NS11F1(): Unit = {
     pw367()
     p256NS11F2()
+    assert(PrattCerts.p256NS11.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(5816)))
+    assert(List(BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256NS11.p, PrattCerts.p256NS11.a, PrattCerts.p256NS11.factors.tail, List(BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS11.p, PrattCerts.p256NS11.a, PrattCerts.p256NS11.factors.tail, List(BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
   def p256NS11F0(): Unit = {
     pw368()
     p256NS11F1()
+    assert(PrattCerts.p256NS11.factors.head == PrattFactor(BigInt(2), BigInt(3), BigInt(8724)))
+    assert(List(BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS11.p, PrattCerts.p256NS11.a, PrattCerts.p256NS11.factors, List(BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS11.p, PrattCerts.p256NS11.a, PrattCerts.p256NS11.factors, List(BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -67047,12 +67931,16 @@ object PrattTraces {
   def p256NS12F1(): Unit = {
     pw186()
     factorsOkNil(PrattCerts.p256NS12.p, PrattCerts.p256NS12.a, List(BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS12.factors.tail.head == PrattFactor(BigInt(3), BigInt(2), BigInt(12)))
+    assert(List(BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256NS12.p, PrattCerts.p256NS12.a, PrattCerts.p256NS12.factors.tail, List(BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS12.p, PrattCerts.p256NS12.a, PrattCerts.p256NS12.factors.tail, List(BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
   def p256NS12F0(): Unit = {
     pw187()
     p256NS12F1()
+    assert(PrattCerts.p256NS12.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(18)))
+    assert(List(BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS12.p, PrattCerts.p256NS12.a, PrattCerts.p256NS12.factors, List(BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS12.p, PrattCerts.p256NS12.a, PrattCerts.p256NS12.factors, List(BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -67064,18 +67952,24 @@ object PrattTraces {
   def p256NS13F2(): Unit = {
     pw404()
     factorsOkNil(PrattCerts.p256NS13.p, PrattCerts.p256NS13.a, List(BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS13.factors.tail.tail.head == PrattFactor(BigInt(7), BigInt(1), BigInt(6)))
+    assert(List(BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.p256NS13.p, PrattCerts.p256NS13.a, PrattCerts.p256NS13.factors.tail.tail, List(BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS13.p, PrattCerts.p256NS13.a, PrattCerts.p256NS13.factors.tail.tail, List(BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
   def p256NS13F1(): Unit = {
     pw405()
     p256NS13F2()
+    assert(PrattCerts.p256NS13.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(14)))
+    assert(List(BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256NS13.p, PrattCerts.p256NS13.a, PrattCerts.p256NS13.factors.tail, List(BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS13.p, PrattCerts.p256NS13.a, PrattCerts.p256NS13.factors.tail, List(BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
   def p256NS13F0(): Unit = {
     pw406()
     p256NS13F1()
+    assert(PrattCerts.p256NS13.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(21)))
+    assert(List(BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS13.p, PrattCerts.p256NS13.a, PrattCerts.p256NS13.factors, List(BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS13.p, PrattCerts.p256NS13.a, PrattCerts.p256NS13.factors, List(BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -67169,6 +68063,8 @@ object PrattTraces {
   def p256NS14F3(): Unit = {
     pw507()
     factorsOkNil(PrattCerts.p256NS14.p, PrattCerts.p256NS14.a, List(BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS14.factors.tail.tail.tail.head == PrattFactor(BigInt(43), BigInt(1), BigInt(222)))
+    assert(List(BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(43)))
     factorsOkCons(PrattCerts.p256NS14.p, PrattCerts.p256NS14.a, PrattCerts.p256NS14.factors.tail.tail.tail, List(BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS14.p, PrattCerts.p256NS14.a, PrattCerts.p256NS14.factors.tail.tail.tail, List(BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m508: BigInt = BigInt(9547)
@@ -67210,6 +68106,8 @@ object PrattTraces {
   def p256NS14F2(): Unit = {
     pw508()
     p256NS14F3()
+    assert(PrattCerts.p256NS14.factors.tail.tail.head == PrattFactor(BigInt(37), BigInt(1), BigInt(258)))
+    assert(List(BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(37)))
     factorsOkCons(PrattCerts.p256NS14.p, PrattCerts.p256NS14.a, PrattCerts.p256NS14.factors.tail.tail, List(BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS14.p, PrattCerts.p256NS14.a, PrattCerts.p256NS14.factors.tail.tail, List(BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m509: BigInt = BigInt(9547)
@@ -67260,6 +68158,8 @@ object PrattTraces {
   def p256NS14F1(): Unit = {
     pw509()
     p256NS14F2()
+    assert(PrattCerts.p256NS14.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(3182)))
+    assert(List(BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256NS14.p, PrattCerts.p256NS14.a, PrattCerts.p256NS14.factors.tail, List(BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS14.p, PrattCerts.p256NS14.a, PrattCerts.p256NS14.factors.tail, List(BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m510: BigInt = BigInt(9547)
@@ -67313,6 +68213,8 @@ object PrattTraces {
   def p256NS14F0(): Unit = {
     pw510()
     p256NS14F1()
+    assert(PrattCerts.p256NS14.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(4773)))
+    assert(List(BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS14.p, PrattCerts.p256NS14.a, PrattCerts.p256NS14.factors, List(BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS14.p, PrattCerts.p256NS14.a, PrattCerts.p256NS14.factors, List(BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -67397,6 +68299,8 @@ object PrattTraces {
   def p256NS15F1(): Unit = {
     pw512()
     factorsOkNil(PrattCerts.p256NS15.p, PrattCerts.p256NS15.a, List(BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS15.factors.tail.head == PrattFactor(BigInt(9547), BigInt(1), BigInt(4)))
+    assert(List(BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(9547)))
     factorsOkCons(PrattCerts.p256NS15.p, PrattCerts.p256NS15.a, PrattCerts.p256NS15.factors.tail, List(BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS15.p, PrattCerts.p256NS15.a, PrattCerts.p256NS15.factors.tail, List(BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m513: BigInt = BigInt(38189)
@@ -67456,6 +68360,8 @@ object PrattTraces {
   def p256NS15F0(): Unit = {
     pw513()
     p256NS15F1()
+    assert(PrattCerts.p256NS15.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(19094)))
+    assert(List(BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS15.p, PrattCerts.p256NS15.a, PrattCerts.p256NS15.factors, List(BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS15.p, PrattCerts.p256NS15.a, PrattCerts.p256NS15.factors, List(BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -67467,6 +68373,8 @@ object PrattTraces {
   def p256NS16F0(): Unit = {
     pw31()
     factorsOkNil(PrattCerts.p256NS16.p, PrattCerts.p256NS16.a, List(BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS16.factors.head == PrattFactor(BigInt(2), BigInt(4), BigInt(8)))
+    assert(List(BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS16.p, PrattCerts.p256NS16.a, PrattCerts.p256NS16.factors, List(BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS16.p, PrattCerts.p256NS16.a, PrattCerts.p256NS16.factors, List(BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -67478,12 +68386,16 @@ object PrattTraces {
   def p256NS17F1(): Unit = {
     pw131()
     factorsOkNil(PrattCerts.p256NS17.p, PrattCerts.p256NS17.a, List(BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS17.factors.tail.head == PrattFactor(BigInt(3), BigInt(2), BigInt(6)))
+    assert(List(BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256NS17.p, PrattCerts.p256NS17.a, PrattCerts.p256NS17.factors.tail, List(BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS17.p, PrattCerts.p256NS17.a, PrattCerts.p256NS17.factors.tail, List(BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
   def p256NS17F0(): Unit = {
     pw132()
     p256NS17F1()
+    assert(PrattCerts.p256NS17.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(9)))
+    assert(List(BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS17.p, PrattCerts.p256NS17.a, PrattCerts.p256NS17.factors, List(BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS17.p, PrattCerts.p256NS17.a, PrattCerts.p256NS17.factors, List(BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -67547,6 +68459,8 @@ object PrattTraces {
   def p256NS18F2(): Unit = {
     pw515()
     factorsOkNil(PrattCerts.p256NS18.p, PrattCerts.p256NS18.a, List(BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS18.factors.tail.tail.head == PrattFactor(BigInt(19), BigInt(1), BigInt(12)))
+    assert(List(BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(19)))
     factorsOkCons(PrattCerts.p256NS18.p, PrattCerts.p256NS18.a, PrattCerts.p256NS18.factors.tail.tail, List(BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS18.p, PrattCerts.p256NS18.a, PrattCerts.p256NS18.factors.tail.tail, List(BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m516: BigInt = BigInt(229)
@@ -67582,6 +68496,8 @@ object PrattTraces {
   def p256NS18F1(): Unit = {
     pw516()
     p256NS18F2()
+    assert(PrattCerts.p256NS18.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(76)))
+    assert(List(BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256NS18.p, PrattCerts.p256NS18.a, PrattCerts.p256NS18.factors.tail, List(BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS18.p, PrattCerts.p256NS18.a, PrattCerts.p256NS18.factors.tail, List(BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m517: BigInt = BigInt(229)
@@ -67617,6 +68533,8 @@ object PrattTraces {
   def p256NS18F0(): Unit = {
     pw517()
     p256NS18F1()
+    assert(PrattCerts.p256NS18.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(114)))
+    assert(List(BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS18.p, PrattCerts.p256NS18.a, PrattCerts.p256NS18.factors, List(BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS18.p, PrattCerts.p256NS18.a, PrattCerts.p256NS18.factors, List(BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -67701,6 +68619,8 @@ object PrattTraces {
   def p256NS19F2(): Unit = {
     pw519()
     factorsOkNil(PrattCerts.p256NS19.p, PrattCerts.p256NS19.a, List(BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS19.factors.tail.tail.head == PrattFactor(BigInt(5), BigInt(2), BigInt(240)))
+    assert(List(BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256NS19.p, PrattCerts.p256NS19.a, PrattCerts.p256NS19.factors.tail.tail, List(BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS19.p, PrattCerts.p256NS19.a, PrattCerts.p256NS19.factors.tail.tail, List(BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m520: BigInt = BigInt(1201)
@@ -67742,6 +68662,8 @@ object PrattTraces {
   def p256NS19F1(): Unit = {
     pw520()
     p256NS19F2()
+    assert(PrattCerts.p256NS19.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(400)))
+    assert(List(BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256NS19.p, PrattCerts.p256NS19.a, PrattCerts.p256NS19.factors.tail, List(BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS19.p, PrattCerts.p256NS19.a, PrattCerts.p256NS19.factors.tail, List(BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m521: BigInt = BigInt(1201)
@@ -67786,6 +68708,8 @@ object PrattTraces {
   def p256NS19F0(): Unit = {
     pw521()
     p256NS19F1()
+    assert(PrattCerts.p256NS19.factors.head == PrattFactor(BigInt(2), BigInt(4), BigInt(600)))
+    assert(List(BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS19.p, PrattCerts.p256NS19.a, PrattCerts.p256NS19.factors, List(BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS19.p, PrattCerts.p256NS19.a, PrattCerts.p256NS19.factors, List(BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -67930,6 +68854,8 @@ object PrattTraces {
   def p256NS20F3(): Unit = {
     pw523()
     factorsOkNil(PrattCerts.p256NS20.p, PrattCerts.p256NS20.a, List(BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS20.factors.tail.tail.tail.head == PrattFactor(BigInt(1201), BigInt(1), BigInt(7786)))
+    assert(List(BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(1201)))
     factorsOkCons(PrattCerts.p256NS20.p, PrattCerts.p256NS20.a, PrattCerts.p256NS20.factors.tail.tail.tail, List(BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS20.p, PrattCerts.p256NS20.a, PrattCerts.p256NS20.factors.tail.tail.tail, List(BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m524: BigInt = BigInt(9350987)
@@ -67992,6 +68918,8 @@ object PrattTraces {
   def p256NS20F2(): Unit = {
     pw524()
     p256NS20F3()
+    assert(PrattCerts.p256NS20.factors.tail.tail.head == PrattFactor(BigInt(229), BigInt(1), BigInt(40834)))
+    assert(List(BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(229)))
     factorsOkCons(PrattCerts.p256NS20.p, PrattCerts.p256NS20.a, PrattCerts.p256NS20.factors.tail.tail, List(BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS20.p, PrattCerts.p256NS20.a, PrattCerts.p256NS20.factors.tail.tail, List(BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m525: BigInt = BigInt(9350987)
@@ -68072,6 +69000,8 @@ object PrattTraces {
   def p256NS20F1(): Unit = {
     pw525()
     p256NS20F2()
+    assert(PrattCerts.p256NS20.factors.tail.head == PrattFactor(BigInt(17), BigInt(1), BigInt(550058)))
+    assert(List(BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(17)))
     factorsOkCons(PrattCerts.p256NS20.p, PrattCerts.p256NS20.a, PrattCerts.p256NS20.factors.tail, List(BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS20.p, PrattCerts.p256NS20.a, PrattCerts.p256NS20.factors.tail, List(BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m526: BigInt = BigInt(9350987)
@@ -68161,6 +69091,8 @@ object PrattTraces {
   def p256NS20F0(): Unit = {
     pw526()
     p256NS20F1()
+    assert(PrattCerts.p256NS20.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(4675493)))
+    assert(List(BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS20.p, PrattCerts.p256NS20.a, PrattCerts.p256NS20.factors, List(BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS20.p, PrattCerts.p256NS20.a, PrattCerts.p256NS20.factors, List(BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -68293,6 +69225,8 @@ object PrattTraces {
   def p256NS21F2(): Unit = {
     pw528()
     factorsOkNil(PrattCerts.p256NS21.p, PrattCerts.p256NS21.a, List(BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS21.factors.tail.tail.head == PrattFactor(BigInt(9350987), BigInt(1), BigInt(20)))
+    assert(List(BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(9350987)))
     factorsOkCons(PrattCerts.p256NS21.p, PrattCerts.p256NS21.a, PrattCerts.p256NS21.factors.tail.tail, List(BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS21.p, PrattCerts.p256NS21.a, PrattCerts.p256NS21.factors.tail.tail, List(BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m529: BigInt = BigInt(187019741)
@@ -68391,6 +69325,8 @@ object PrattTraces {
   def p256NS21F1(): Unit = {
     pw529()
     p256NS21F2()
+    assert(PrattCerts.p256NS21.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(37403948)))
+    assert(List(BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256NS21.p, PrattCerts.p256NS21.a, PrattCerts.p256NS21.factors.tail, List(BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS21.p, PrattCerts.p256NS21.a, PrattCerts.p256NS21.factors.tail, List(BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m530: BigInt = BigInt(187019741)
@@ -68492,6 +69428,8 @@ object PrattTraces {
   def p256NS21F0(): Unit = {
     pw530()
     p256NS21F1()
+    assert(PrattCerts.p256NS21.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(93509870)))
+    assert(List(BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS21.p, PrattCerts.p256NS21.a, PrattCerts.p256NS21.factors, List(BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS21.p, PrattCerts.p256NS21.a, PrattCerts.p256NS21.factors, List(BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -68503,12 +69441,16 @@ object PrattTraces {
   def p256NS22F1(): Unit = {
     pw13()
     factorsOkNil(PrattCerts.p256NS22.p, PrattCerts.p256NS22.a, List(BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS22.factors.tail.head == PrattFactor(BigInt(7), BigInt(1), BigInt(4)))
+    assert(List(BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.p256NS22.p, PrattCerts.p256NS22.a, PrattCerts.p256NS22.factors.tail, List(BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS22.p, PrattCerts.p256NS22.a, PrattCerts.p256NS22.factors.tail, List(BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
   def p256NS22F0(): Unit = {
     pw14()
     p256NS22F1()
+    assert(PrattCerts.p256NS22.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(14)))
+    assert(List(BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS22.p, PrattCerts.p256NS22.a, PrattCerts.p256NS22.factors, List(BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS22.p, PrattCerts.p256NS22.a, PrattCerts.p256NS22.factors, List(BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -68575,6 +69517,8 @@ object PrattTraces {
   def p256NS23F2(): Unit = {
     pw532()
     factorsOkNil(PrattCerts.p256NS23.p, PrattCerts.p256NS23.a, List(BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS23.factors.tail.tail.head == PrattFactor(BigInt(31), BigInt(1), BigInt(10)))
+    assert(List(BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(31)))
     factorsOkCons(PrattCerts.p256NS23.p, PrattCerts.p256NS23.a, PrattCerts.p256NS23.factors.tail.tail, List(BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS23.p, PrattCerts.p256NS23.a, PrattCerts.p256NS23.factors.tail.tail, List(BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m533: BigInt = BigInt(311)
@@ -68607,6 +69551,8 @@ object PrattTraces {
   def p256NS23F1(): Unit = {
     pw533()
     p256NS23F2()
+    assert(PrattCerts.p256NS23.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(62)))
+    assert(List(BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256NS23.p, PrattCerts.p256NS23.a, PrattCerts.p256NS23.factors.tail, List(BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS23.p, PrattCerts.p256NS23.a, PrattCerts.p256NS23.factors.tail, List(BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m534: BigInt = BigInt(311)
@@ -68645,6 +69591,8 @@ object PrattTraces {
   def p256NS23F0(): Unit = {
     pw534()
     p256NS23F1()
+    assert(PrattCerts.p256NS23.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(155)))
+    assert(List(BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS23.p, PrattCerts.p256NS23.a, PrattCerts.p256NS23.factors, List(BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS23.p, PrattCerts.p256NS23.a, PrattCerts.p256NS23.factors, List(BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -68831,6 +69779,8 @@ object PrattTraces {
   def p256NS24F5(): Unit = {
     pw536()
     factorsOkNil(PrattCerts.p256NS24.p, PrattCerts.p256NS24.a, List(BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS24.factors.tail.tail.tail.tail.tail.head == PrattFactor(BigInt(311), BigInt(1), BigInt(1000790)))
+    assert(List(BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(311)))
     factorsOkCons(PrattCerts.p256NS24.p, PrattCerts.p256NS24.a, PrattCerts.p256NS24.factors.tail.tail.tail.tail.tail, List(BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS24.p, PrattCerts.p256NS24.a, PrattCerts.p256NS24.factors.tail.tail.tail.tail.tail, List(BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m537: BigInt = BigInt(311245691)
@@ -68923,6 +69873,8 @@ object PrattTraces {
   def p256NS24F4(): Unit = {
     pw537()
     p256NS24F5()
+    assert(PrattCerts.p256NS24.factors.tail.tail.tail.tail.head == PrattFactor(BigInt(29), BigInt(2), BigInt(10732610)))
+    assert(List(BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(29)))
     factorsOkCons(PrattCerts.p256NS24.p, PrattCerts.p256NS24.a, PrattCerts.p256NS24.factors.tail.tail.tail.tail, List(BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS24.p, PrattCerts.p256NS24.a, PrattCerts.p256NS24.factors.tail.tail.tail.tail, List(BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m538: BigInt = BigInt(311245691)
@@ -69018,6 +69970,8 @@ object PrattTraces {
   def p256NS24F3(): Unit = {
     pw538()
     p256NS24F4()
+    assert(PrattCerts.p256NS24.factors.tail.tail.tail.head == PrattFactor(BigInt(17), BigInt(1), BigInt(18308570)))
+    assert(List(BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(17)))
     factorsOkCons(PrattCerts.p256NS24.p, PrattCerts.p256NS24.a, PrattCerts.p256NS24.factors.tail.tail.tail, List(BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS24.p, PrattCerts.p256NS24.a, PrattCerts.p256NS24.factors.tail.tail.tail, List(BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m539: BigInt = BigInt(311245691)
@@ -69116,6 +70070,8 @@ object PrattTraces {
   def p256NS24F2(): Unit = {
     pw539()
     p256NS24F3()
+    assert(PrattCerts.p256NS24.factors.tail.tail.head == PrattFactor(BigInt(7), BigInt(1), BigInt(44463670)))
+    assert(List(BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.p256NS24.p, PrattCerts.p256NS24.a, PrattCerts.p256NS24.factors.tail.tail, List(BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS24.p, PrattCerts.p256NS24.a, PrattCerts.p256NS24.factors.tail.tail, List(BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m540: BigInt = BigInt(311245691)
@@ -69214,6 +70170,8 @@ object PrattTraces {
   def p256NS24F1(): Unit = {
     pw540()
     p256NS24F2()
+    assert(PrattCerts.p256NS24.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(62249138)))
+    assert(List(BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256NS24.p, PrattCerts.p256NS24.a, PrattCerts.p256NS24.factors.tail, List(BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS24.p, PrattCerts.p256NS24.a, PrattCerts.p256NS24.factors.tail, List(BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m541: BigInt = BigInt(311245691)
@@ -69318,6 +70276,8 @@ object PrattTraces {
   def p256NS24F0(): Unit = {
     pw541()
     p256NS24F1()
+    assert(PrattCerts.p256NS24.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(155622845)))
+    assert(List(BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS24.p, PrattCerts.p256NS24.a, PrattCerts.p256NS24.factors, List(BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS24.p, PrattCerts.p256NS24.a, PrattCerts.p256NS24.factors, List(BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -69447,6 +70407,8 @@ object PrattTraces {
   def p256NS25F1(): Unit = {
     pw543()
     factorsOkNil(PrattCerts.p256NS25.p, PrattCerts.p256NS25.a, List(BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS25.factors.tail.head == PrattFactor(BigInt(311245691), BigInt(1), BigInt(2)))
+    assert(List(BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(311245691)))
     factorsOkCons(PrattCerts.p256NS25.p, PrattCerts.p256NS25.a, PrattCerts.p256NS25.factors.tail, List(BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS25.p, PrattCerts.p256NS25.a, PrattCerts.p256NS25.factors.tail, List(BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m544: BigInt = BigInt(622491383)
@@ -69554,6 +70516,8 @@ object PrattTraces {
   def p256NS25F0(): Unit = {
     pw544()
     p256NS25F1()
+    assert(PrattCerts.p256NS25.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(311245691)))
+    assert(List(BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS25.p, PrattCerts.p256NS25.a, PrattCerts.p256NS25.factors, List(BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS25.p, PrattCerts.p256NS25.a, PrattCerts.p256NS25.factors, List(BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -69614,6 +70578,8 @@ object PrattTraces {
   def p256NS26F1(): Unit = {
     pw546()
     factorsOkNil(PrattCerts.p256NS26.p, PrattCerts.p256NS26.a, List(BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS26.factors.tail.head == PrattFactor(BigInt(131), BigInt(1), BigInt(2)))
+    assert(List(BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(131)))
     factorsOkCons(PrattCerts.p256NS26.p, PrattCerts.p256NS26.a, PrattCerts.p256NS26.factors.tail, List(BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS26.p, PrattCerts.p256NS26.a, PrattCerts.p256NS26.factors.tail, List(BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m547: BigInt = BigInt(263)
@@ -69652,6 +70618,8 @@ object PrattTraces {
   def p256NS26F0(): Unit = {
     pw547()
     p256NS26F1()
+    assert(PrattCerts.p256NS26.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(131)))
+    assert(List(BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS26.p, PrattCerts.p256NS26.a, PrattCerts.p256NS26.factors, List(BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS26.p, PrattCerts.p256NS26.a, PrattCerts.p256NS26.factors, List(BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -69757,6 +70725,8 @@ object PrattTraces {
   def p256NS27F3(): Unit = {
     pw549()
     factorsOkNil(PrattCerts.p256NS27.p, PrattCerts.p256NS27.a, List(BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS27.factors.tail.tail.tail.head == PrattFactor(BigInt(263), BigInt(1), BigInt(480)))
+    assert(List(BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(263)))
     factorsOkCons(PrattCerts.p256NS27.p, PrattCerts.p256NS27.a, PrattCerts.p256NS27.factors.tail.tail.tail, List(BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS27.p, PrattCerts.p256NS27.a, PrattCerts.p256NS27.factors.tail.tail.tail, List(BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m550: BigInt = BigInt(126241)
@@ -69816,6 +70786,8 @@ object PrattTraces {
   def p256NS27F2(): Unit = {
     pw550()
     p256NS27F3()
+    assert(PrattCerts.p256NS27.factors.tail.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(25248)))
+    assert(List(BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256NS27.p, PrattCerts.p256NS27.a, PrattCerts.p256NS27.factors.tail.tail, List(BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS27.p, PrattCerts.p256NS27.a, PrattCerts.p256NS27.factors.tail.tail, List(BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m551: BigInt = BigInt(126241)
@@ -69878,6 +70850,8 @@ object PrattTraces {
   def p256NS27F1(): Unit = {
     pw551()
     p256NS27F2()
+    assert(PrattCerts.p256NS27.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(42080)))
+    assert(List(BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256NS27.p, PrattCerts.p256NS27.a, PrattCerts.p256NS27.factors.tail, List(BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS27.p, PrattCerts.p256NS27.a, PrattCerts.p256NS27.factors.tail, List(BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m552: BigInt = BigInt(126241)
@@ -69940,6 +70914,8 @@ object PrattTraces {
   def p256NS27F0(): Unit = {
     pw552()
     p256NS27F1()
+    assert(PrattCerts.p256NS27.factors.head == PrattFactor(BigInt(2), BigInt(5), BigInt(63120)))
+    assert(List(BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS27.p, PrattCerts.p256NS27.a, PrattCerts.p256NS27.factors, List(BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS27.p, PrattCerts.p256NS27.a, PrattCerts.p256NS27.factors, List(BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -70012,6 +70988,8 @@ object PrattTraces {
   def p256NS28F2(): Unit = {
     pw554()
     factorsOkNil(PrattCerts.p256NS28.p, PrattCerts.p256NS28.a, List(BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS28.factors.tail.tail.head == PrattFactor(BigInt(7), BigInt(1), BigInt(48)))
+    assert(List(BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.p256NS28.p, PrattCerts.p256NS28.a, PrattCerts.p256NS28.factors.tail.tail, List(BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS28.p, PrattCerts.p256NS28.a, PrattCerts.p256NS28.factors.tail.tail, List(BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m555: BigInt = BigInt(337)
@@ -70047,6 +71025,8 @@ object PrattTraces {
   def p256NS28F1(): Unit = {
     pw555()
     p256NS28F2()
+    assert(PrattCerts.p256NS28.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(112)))
+    assert(List(BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256NS28.p, PrattCerts.p256NS28.a, PrattCerts.p256NS28.factors.tail, List(BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS28.p, PrattCerts.p256NS28.a, PrattCerts.p256NS28.factors.tail, List(BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m556: BigInt = BigInt(337)
@@ -70085,6 +71065,8 @@ object PrattTraces {
   def p256NS28F0(): Unit = {
     pw556()
     p256NS28F1()
+    assert(PrattCerts.p256NS28.factors.head == PrattFactor(BigInt(2), BigInt(4), BigInt(168)))
+    assert(List(BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS28.p, PrattCerts.p256NS28.a, PrattCerts.p256NS28.factors, List(BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS28.p, PrattCerts.p256NS28.a, PrattCerts.p256NS28.factors, List(BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -70190,6 +71172,8 @@ object PrattTraces {
   def p256NS29F3(): Unit = {
     pw558()
     factorsOkNil(PrattCerts.p256NS29.p, PrattCerts.p256NS29.a, List(BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS29.factors.tail.tail.tail.head == PrattFactor(BigInt(337), BigInt(1), BigInt(310)))
+    assert(List(BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(337)))
     factorsOkCons(PrattCerts.p256NS29.p, PrattCerts.p256NS29.a, PrattCerts.p256NS29.factors.tail.tail.tail, List(BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS29.p, PrattCerts.p256NS29.a, PrattCerts.p256NS29.factors.tail.tail.tail, List(BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m559: BigInt = BigInt(104471)
@@ -70240,6 +71224,8 @@ object PrattTraces {
   def p256NS29F2(): Unit = {
     pw559()
     p256NS29F3()
+    assert(PrattCerts.p256NS29.factors.tail.tail.head == PrattFactor(BigInt(31), BigInt(1), BigInt(3370)))
+    assert(List(BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(31)))
     factorsOkCons(PrattCerts.p256NS29.p, PrattCerts.p256NS29.a, PrattCerts.p256NS29.factors.tail.tail, List(BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS29.p, PrattCerts.p256NS29.a, PrattCerts.p256NS29.factors.tail.tail, List(BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m560: BigInt = BigInt(104471)
@@ -70299,6 +71285,8 @@ object PrattTraces {
   def p256NS29F1(): Unit = {
     pw560()
     p256NS29F2()
+    assert(PrattCerts.p256NS29.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(20894)))
+    assert(List(BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256NS29.p, PrattCerts.p256NS29.a, PrattCerts.p256NS29.factors.tail, List(BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS29.p, PrattCerts.p256NS29.a, PrattCerts.p256NS29.factors.tail, List(BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m561: BigInt = BigInt(104471)
@@ -70361,6 +71349,8 @@ object PrattTraces {
   def p256NS29F0(): Unit = {
     pw561()
     p256NS29F1()
+    assert(PrattCerts.p256NS29.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(52235)))
+    assert(List(BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS29.p, PrattCerts.p256NS29.a, PrattCerts.p256NS29.factors, List(BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS29.p, PrattCerts.p256NS29.a, PrattCerts.p256NS29.factors, List(BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -70478,6 +71468,8 @@ object PrattTraces {
   def p256NS30F2(): Unit = {
     pw563()
     factorsOkNil(PrattCerts.p256NS30.p, PrattCerts.p256NS30.a, List(BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS30.factors.tail.tail.head == PrattFactor(BigInt(104471), BigInt(1), BigInt(38)))
+    assert(List(BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(104471)))
     factorsOkCons(PrattCerts.p256NS30.p, PrattCerts.p256NS30.a, PrattCerts.p256NS30.factors.tail.tail, List(BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS30.p, PrattCerts.p256NS30.a, PrattCerts.p256NS30.factors.tail.tail, List(BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m564: BigInt = BigInt(3969899)
@@ -70552,6 +71544,8 @@ object PrattTraces {
   def p256NS30F1(): Unit = {
     pw564()
     p256NS30F2()
+    assert(PrattCerts.p256NS30.factors.tail.head == PrattFactor(BigInt(19), BigInt(1), BigInt(208942)))
+    assert(List(BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(19)))
     factorsOkCons(PrattCerts.p256NS30.p, PrattCerts.p256NS30.a, PrattCerts.p256NS30.factors.tail, List(BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS30.p, PrattCerts.p256NS30.a, PrattCerts.p256NS30.factors.tail, List(BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m565: BigInt = BigInt(3969899)
@@ -70635,6 +71629,8 @@ object PrattTraces {
   def p256NS30F0(): Unit = {
     pw565()
     p256NS30F1()
+    assert(PrattCerts.p256NS30.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(1984949)))
+    assert(List(BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS30.p, PrattCerts.p256NS30.a, PrattCerts.p256NS30.factors, List(BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS30.p, PrattCerts.p256NS30.a, PrattCerts.p256NS30.factors, List(BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -70854,6 +71850,8 @@ object PrattTraces {
   def p256NS31F2(): Unit = {
     pw567()
     factorsOkNil(PrattCerts.p256NS31.p, PrattCerts.p256NS31.a, List(BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS31.factors.tail.tail.head == PrattFactor(BigInt(3969899), BigInt(1), BigInt(252482)))
+    assert(List(BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3969899)))
     factorsOkCons(PrattCerts.p256NS31.p, PrattCerts.p256NS31.a, PrattCerts.p256NS31.factors.tail.tail, List(BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS31.p, PrattCerts.p256NS31.a, PrattCerts.p256NS31.factors.tail.tail, List(BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m568: BigInt = BigInt("1002328039319")
@@ -70943,6 +71941,8 @@ object PrattTraces {
   def p256NS31F1(): Unit = {
     pw568()
     p256NS31F2()
+    assert(PrattCerts.p256NS31.factors.tail.head == PrattFactor(BigInt(126241), BigInt(1), BigInt(7939798)))
+    assert(List(BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(126241)))
     factorsOkCons(PrattCerts.p256NS31.p, PrattCerts.p256NS31.a, PrattCerts.p256NS31.factors.tail, List(BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS31.p, PrattCerts.p256NS31.a, PrattCerts.p256NS31.factors.tail, List(BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m569: BigInt = BigInt("1002328039319")
@@ -71086,6 +72086,8 @@ object PrattTraces {
   def p256NS31F0(): Unit = {
     pw569()
     p256NS31F1()
+    assert(PrattCerts.p256NS31.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt("501164019659")))
+    assert(List(BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS31.p, PrattCerts.p256NS31.a, PrattCerts.p256NS31.factors, List(BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS31.p, PrattCerts.p256NS31.a, PrattCerts.p256NS31.factors, List(BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -71173,6 +72175,8 @@ object PrattTraces {
   def p256NS32F1(): Unit = {
     pw571()
     factorsOkNil(PrattCerts.p256NS32.p, PrattCerts.p256NS32.a, List(BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS32.factors.tail.head == PrattFactor(BigInt(3), BigInt(4), BigInt(432)))
+    assert(List(BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256NS32.p, PrattCerts.p256NS32.a, PrattCerts.p256NS32.factors.tail, List(BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS32.p, PrattCerts.p256NS32.a, PrattCerts.p256NS32.factors.tail, List(BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m572: BigInt = BigInt(1297)
@@ -71217,6 +72221,8 @@ object PrattTraces {
   def p256NS32F0(): Unit = {
     pw572()
     p256NS32F1()
+    assert(PrattCerts.p256NS32.factors.head == PrattFactor(BigInt(2), BigInt(4), BigInt(648)))
+    assert(List(BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS32.p, PrattCerts.p256NS32.a, PrattCerts.p256NS32.factors, List(BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS32.p, PrattCerts.p256NS32.a, PrattCerts.p256NS32.factors, List(BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -71228,12 +72234,16 @@ object PrattTraces {
   def p256NS33F1(): Unit = {
     pw56()
     factorsOkNil(PrattCerts.p256NS33.p, PrattCerts.p256NS33.a, List(BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS33.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(32)))
+    assert(List(BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256NS33.p, PrattCerts.p256NS33.a, PrattCerts.p256NS33.factors.tail, List(BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS33.p, PrattCerts.p256NS33.a, PrattCerts.p256NS33.factors.tail, List(BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
   def p256NS33F0(): Unit = {
     pw57()
     p256NS33F1()
+    assert(PrattCerts.p256NS33.factors.head == PrattFactor(BigInt(2), BigInt(5), BigInt(48)))
+    assert(List(BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS33.p, PrattCerts.p256NS33.a, PrattCerts.p256NS33.factors, List(BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS33.p, PrattCerts.p256NS33.a, PrattCerts.p256NS33.factors, List(BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -71330,6 +72340,8 @@ object PrattTraces {
   def p256NS34F3(): Unit = {
     pw574()
     factorsOkNil(PrattCerts.p256NS34.p, PrattCerts.p256NS34.a, List(BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS34.factors.tail.tail.tail.head == PrattFactor(BigInt(97), BigInt(1), BigInt(174)))
+    assert(List(BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(97)))
     factorsOkCons(PrattCerts.p256NS34.p, PrattCerts.p256NS34.a, PrattCerts.p256NS34.factors.tail.tail.tail, List(BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS34.p, PrattCerts.p256NS34.a, PrattCerts.p256NS34.factors.tail.tail.tail, List(BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m575: BigInt = BigInt(16879)
@@ -71374,6 +72386,8 @@ object PrattTraces {
   def p256NS34F2(): Unit = {
     pw575()
     p256NS34F3()
+    assert(PrattCerts.p256NS34.factors.tail.tail.head == PrattFactor(BigInt(29), BigInt(1), BigInt(582)))
+    assert(List(BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(29)))
     factorsOkCons(PrattCerts.p256NS34.p, PrattCerts.p256NS34.a, PrattCerts.p256NS34.factors.tail.tail, List(BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS34.p, PrattCerts.p256NS34.a, PrattCerts.p256NS34.factors.tail.tail, List(BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m576: BigInt = BigInt(16879)
@@ -71427,6 +72441,8 @@ object PrattTraces {
   def p256NS34F1(): Unit = {
     pw576()
     p256NS34F2()
+    assert(PrattCerts.p256NS34.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(5626)))
+    assert(List(BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256NS34.p, PrattCerts.p256NS34.a, PrattCerts.p256NS34.factors.tail, List(BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS34.p, PrattCerts.p256NS34.a, PrattCerts.p256NS34.factors.tail, List(BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m577: BigInt = BigInt(16879)
@@ -71483,6 +72499,8 @@ object PrattTraces {
   def p256NS34F0(): Unit = {
     pw577()
     p256NS34F1()
+    assert(PrattCerts.p256NS34.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(8439)))
+    assert(List(BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS34.p, PrattCerts.p256NS34.a, PrattCerts.p256NS34.factors, List(BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS34.p, PrattCerts.p256NS34.a, PrattCerts.p256NS34.factors, List(BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -71546,6 +72564,8 @@ object PrattTraces {
   def p256NS35F2(): Unit = {
     pw579()
     factorsOkNil(PrattCerts.p256NS35.p, PrattCerts.p256NS35.a, List(BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS35.factors.tail.tail.head == PrattFactor(BigInt(7), BigInt(1), BigInt(18)))
+    assert(List(BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.p256NS35.p, PrattCerts.p256NS35.a, PrattCerts.p256NS35.factors.tail.tail, List(BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS35.p, PrattCerts.p256NS35.a, PrattCerts.p256NS35.factors.tail.tail, List(BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m580: BigInt = BigInt(127)
@@ -71578,6 +72598,8 @@ object PrattTraces {
   def p256NS35F1(): Unit = {
     pw580()
     p256NS35F2()
+    assert(PrattCerts.p256NS35.factors.tail.head == PrattFactor(BigInt(3), BigInt(2), BigInt(42)))
+    assert(List(BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256NS35.p, PrattCerts.p256NS35.a, PrattCerts.p256NS35.factors.tail, List(BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS35.p, PrattCerts.p256NS35.a, PrattCerts.p256NS35.factors.tail, List(BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m581: BigInt = BigInt(127)
@@ -71610,6 +72632,8 @@ object PrattTraces {
   def p256NS35F0(): Unit = {
     pw581()
     p256NS35F1()
+    assert(PrattCerts.p256NS35.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(63)))
+    assert(List(BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS35.p, PrattCerts.p256NS35.a, PrattCerts.p256NS35.factors, List(BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS35.p, PrattCerts.p256NS35.a, PrattCerts.p256NS35.factors, List(BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -71676,6 +72700,8 @@ object PrattTraces {
   def p256NS36F2(): Unit = {
     pw583()
     factorsOkNil(PrattCerts.p256NS36.p, PrattCerts.p256NS36.a, List(BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS36.factors.tail.tail.head == PrattFactor(BigInt(5), BigInt(2), BigInt(30)))
+    assert(List(BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256NS36.p, PrattCerts.p256NS36.a, PrattCerts.p256NS36.factors.tail.tail, List(BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS36.p, PrattCerts.p256NS36.a, PrattCerts.p256NS36.factors.tail.tail, List(BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m584: BigInt = BigInt(151)
@@ -71708,6 +72734,8 @@ object PrattTraces {
   def p256NS36F1(): Unit = {
     pw584()
     p256NS36F2()
+    assert(PrattCerts.p256NS36.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(50)))
+    assert(List(BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256NS36.p, PrattCerts.p256NS36.a, PrattCerts.p256NS36.factors.tail, List(BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS36.p, PrattCerts.p256NS36.a, PrattCerts.p256NS36.factors.tail, List(BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m585: BigInt = BigInt(151)
@@ -71743,6 +72771,8 @@ object PrattTraces {
   def p256NS36F0(): Unit = {
     pw585()
     p256NS36F1()
+    assert(PrattCerts.p256NS36.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(75)))
+    assert(List(BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS36.p, PrattCerts.p256NS36.a, PrattCerts.p256NS36.factors, List(BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS36.p, PrattCerts.p256NS36.a, PrattCerts.p256NS36.factors, List(BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -71815,6 +72845,8 @@ object PrattTraces {
   def p256NS37F2(): Unit = {
     pw587()
     factorsOkNil(PrattCerts.p256NS37.p, PrattCerts.p256NS37.a, List(BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS37.factors.tail.tail.head == PrattFactor(BigInt(151), BigInt(1), BigInt(10)))
+    assert(List(BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(151)))
     factorsOkCons(PrattCerts.p256NS37.p, PrattCerts.p256NS37.a, PrattCerts.p256NS37.factors.tail.tail, List(BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS37.p, PrattCerts.p256NS37.a, PrattCerts.p256NS37.factors.tail.tail, List(BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m588: BigInt = BigInt(1511)
@@ -71856,6 +72888,8 @@ object PrattTraces {
   def p256NS37F1(): Unit = {
     pw588()
     p256NS37F2()
+    assert(PrattCerts.p256NS37.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(302)))
+    assert(List(BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256NS37.p, PrattCerts.p256NS37.a, PrattCerts.p256NS37.factors.tail, List(BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS37.p, PrattCerts.p256NS37.a, PrattCerts.p256NS37.factors.tail, List(BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m589: BigInt = BigInt(1511)
@@ -71900,6 +72934,8 @@ object PrattTraces {
   def p256NS37F0(): Unit = {
     pw589()
     p256NS37F1()
+    assert(PrattCerts.p256NS37.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(755)))
+    assert(List(BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS37.p, PrattCerts.p256NS37.a, PrattCerts.p256NS37.factors, List(BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS37.p, PrattCerts.p256NS37.a, PrattCerts.p256NS37.factors, List(BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -71969,6 +73005,8 @@ object PrattTraces {
   def p256NS38F1(): Unit = {
     pw591()
     factorsOkNil(PrattCerts.p256NS38.p, PrattCerts.p256NS38.a, List(BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS38.factors.tail.head == PrattFactor(BigInt(1511), BigInt(1), BigInt(2)))
+    assert(List(BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(1511)))
     factorsOkCons(PrattCerts.p256NS38.p, PrattCerts.p256NS38.a, PrattCerts.p256NS38.factors.tail, List(BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS38.p, PrattCerts.p256NS38.a, PrattCerts.p256NS38.factors.tail, List(BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m592: BigInt = BigInt(3023)
@@ -72016,6 +73054,8 @@ object PrattTraces {
   def p256NS38F0(): Unit = {
     pw592()
     p256NS38F1()
+    assert(PrattCerts.p256NS38.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(1511)))
+    assert(List(BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS38.p, PrattCerts.p256NS38.a, PrattCerts.p256NS38.factors, List(BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS38.p, PrattCerts.p256NS38.a, PrattCerts.p256NS38.factors, List(BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -72027,12 +73067,16 @@ object PrattTraces {
   def p256NS39F1(): Unit = {
     pw94()
     factorsOkNil(PrattCerts.p256NS39.p, PrattCerts.p256NS39.a, List(BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS39.factors.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(8)))
+    assert(List(BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256NS39.p, PrattCerts.p256NS39.a, PrattCerts.p256NS39.factors.tail, List(BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS39.p, PrattCerts.p256NS39.a, PrattCerts.p256NS39.factors.tail, List(BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
   def p256NS39F0(): Unit = {
     pw95()
     p256NS39F1()
+    assert(PrattCerts.p256NS39.factors.head == PrattFactor(BigInt(2), BigInt(3), BigInt(20)))
+    assert(List(BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS39.p, PrattCerts.p256NS39.a, PrattCerts.p256NS39.factors, List(BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS39.p, PrattCerts.p256NS39.a, PrattCerts.p256NS39.factors, List(BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -72156,6 +73200,8 @@ object PrattTraces {
   def p256NS40F3(): Unit = {
     pw594()
     factorsOkNil(PrattCerts.p256NS40.p, PrattCerts.p256NS40.a, List(BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS40.factors.tail.tail.tail.head == PrattFactor(BigInt(43), BigInt(2), BigInt(3612)))
+    assert(List(BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(43)))
     factorsOkCons(PrattCerts.p256NS40.p, PrattCerts.p256NS40.a, PrattCerts.p256NS40.factors.tail.tail.tail, List(BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS40.p, PrattCerts.p256NS40.a, PrattCerts.p256NS40.factors.tail.tail.tail, List(BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m595: BigInt = BigInt(155317)
@@ -72215,6 +73261,8 @@ object PrattTraces {
   def p256NS40F2(): Unit = {
     pw595()
     p256NS40F3()
+    assert(PrattCerts.p256NS40.factors.tail.tail.head == PrattFactor(BigInt(7), BigInt(1), BigInt(22188)))
+    assert(List(BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(7)))
     factorsOkCons(PrattCerts.p256NS40.p, PrattCerts.p256NS40.a, PrattCerts.p256NS40.factors.tail.tail, List(BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS40.p, PrattCerts.p256NS40.a, PrattCerts.p256NS40.factors.tail.tail, List(BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m596: BigInt = BigInt(155317)
@@ -72277,6 +73325,8 @@ object PrattTraces {
   def p256NS40F1(): Unit = {
     pw596()
     p256NS40F2()
+    assert(PrattCerts.p256NS40.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(51772)))
+    assert(List(BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256NS40.p, PrattCerts.p256NS40.a, PrattCerts.p256NS40.factors.tail, List(BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS40.p, PrattCerts.p256NS40.a, PrattCerts.p256NS40.factors.tail, List(BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m597: BigInt = BigInt(155317)
@@ -72342,6 +73392,8 @@ object PrattTraces {
   def p256NS40F0(): Unit = {
     pw597()
     p256NS40F1()
+    assert(PrattCerts.p256NS40.factors.head == PrattFactor(BigInt(2), BigInt(2), BigInt(77658)))
+    assert(List(BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS40.p, PrattCerts.p256NS40.a, PrattCerts.p256NS40.factors, List(BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS40.p, PrattCerts.p256NS40.a, PrattCerts.p256NS40.factors, List(BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -72492,6 +73544,8 @@ object PrattTraces {
   def p256NS41F4(): Unit = {
     pw599()
     factorsOkNil(PrattCerts.p256NS41.p, PrattCerts.p256NS41.a, List(BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS41.factors.tail.tail.tail.tail.head == PrattFactor(BigInt(155317), BigInt(1), BigInt(1230)))
+    assert(List(BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(155317)))
     factorsOkCons(PrattCerts.p256NS41.p, PrattCerts.p256NS41.a, PrattCerts.p256NS41.factors.tail.tail.tail.tail, List(BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS41.p, PrattCerts.p256NS41.a, PrattCerts.p256NS41.factors.tail.tail.tail.tail, List(BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m600: BigInt = BigInt(191039911)
@@ -72581,6 +73635,8 @@ object PrattTraces {
   def p256NS41F3(): Unit = {
     pw600()
     p256NS41F4()
+    assert(PrattCerts.p256NS41.factors.tail.tail.tail.head == PrattFactor(BigInt(41), BigInt(1), BigInt(4659510)))
+    assert(List(BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(41)))
     factorsOkCons(PrattCerts.p256NS41.p, PrattCerts.p256NS41.a, PrattCerts.p256NS41.factors.tail.tail.tail, List(BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS41.p, PrattCerts.p256NS41.a, PrattCerts.p256NS41.factors.tail.tail.tail, List(BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m601: BigInt = BigInt(191039911)
@@ -72679,6 +73735,8 @@ object PrattTraces {
   def p256NS41F2(): Unit = {
     pw601()
     p256NS41F3()
+    assert(PrattCerts.p256NS41.factors.tail.tail.head == PrattFactor(BigInt(5), BigInt(1), BigInt(38207982)))
+    assert(List(BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(5)))
     factorsOkCons(PrattCerts.p256NS41.p, PrattCerts.p256NS41.a, PrattCerts.p256NS41.factors.tail.tail, List(BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS41.p, PrattCerts.p256NS41.a, PrattCerts.p256NS41.factors.tail.tail, List(BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m602: BigInt = BigInt(191039911)
@@ -72777,6 +73835,8 @@ object PrattTraces {
   def p256NS41F1(): Unit = {
     pw602()
     p256NS41F2()
+    assert(PrattCerts.p256NS41.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt(63679970)))
+    assert(List(BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256NS41.p, PrattCerts.p256NS41.a, PrattCerts.p256NS41.factors.tail, List(BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS41.p, PrattCerts.p256NS41.a, PrattCerts.p256NS41.factors.tail, List(BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m603: BigInt = BigInt(191039911)
@@ -72878,6 +73938,8 @@ object PrattTraces {
   def p256NS41F0(): Unit = {
     pw603()
     p256NS41F1()
+    assert(PrattCerts.p256NS41.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt(95519955)))
+    assert(List(BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS41.p, PrattCerts.p256NS41.a, PrattCerts.p256NS41.factors, List(BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS41.p, PrattCerts.p256NS41.a, PrattCerts.p256NS41.factors, List(BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -73196,6 +74258,8 @@ object PrattTraces {
   def p256NS42F6(): Unit = {
     pw605()
     factorsOkNil(PrattCerts.p256NS42.p, PrattCerts.p256NS42.a, List(BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS42.factors.tail.tail.tail.tail.tail.tail.head == PrattFactor(BigInt(191039911), BigInt(1), BigInt(1089567798)))
+    assert(List(BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(191039911)))
     factorsOkCons(PrattCerts.p256NS42.p, PrattCerts.p256NS42.a, PrattCerts.p256NS42.factors.tail.tail.tail.tail.tail.tail, List(BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS42.p, PrattCerts.p256NS42.a, PrattCerts.p256NS42.factors.tail.tail.tail.tail.tail.tail, List(BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m606: BigInt = BigInt("208150935158385979")
@@ -73360,6 +74424,8 @@ object PrattTraces {
   def p256NS42F5(): Unit = {
     pw606()
     p256NS42F6()
+    assert(PrattCerts.p256NS42.factors.tail.tail.tail.tail.tail.head == PrattFactor(BigInt(3023), BigInt(1), BigInt("68855750962086")))
+    assert(List(BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3023)))
     factorsOkCons(PrattCerts.p256NS42.p, PrattCerts.p256NS42.a, PrattCerts.p256NS42.factors.tail.tail.tail.tail.tail, List(BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS42.p, PrattCerts.p256NS42.a, PrattCerts.p256NS42.factors.tail.tail.tail.tail.tail, List(BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m607: BigInt = BigInt("208150935158385979")
@@ -73545,6 +74611,8 @@ object PrattTraces {
   def p256NS42F4(): Unit = {
     pw607()
     p256NS42F5()
+    assert(PrattCerts.p256NS42.factors.tail.tail.tail.tail.head == PrattFactor(BigInt(127), BigInt(1), BigInt("1638983741404614")))
+    assert(List(BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(127)))
     factorsOkCons(PrattCerts.p256NS42.p, PrattCerts.p256NS42.a, PrattCerts.p256NS42.factors.tail.tail.tail.tail, List(BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS42.p, PrattCerts.p256NS42.a, PrattCerts.p256NS42.factors.tail.tail.tail.tail, List(BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m608: BigInt = BigInt("208150935158385979")
@@ -73736,6 +74804,8 @@ object PrattTraces {
   def p256NS42F3(): Unit = {
     pw608()
     p256NS42F4()
+    assert(PrattCerts.p256NS42.factors.tail.tail.tail.head == PrattFactor(BigInt(43), BigInt(1), BigInt("4840719422288046")))
+    assert(List(BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(43)))
     factorsOkCons(PrattCerts.p256NS42.p, PrattCerts.p256NS42.a, PrattCerts.p256NS42.factors.tail.tail.tail, List(BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS42.p, PrattCerts.p256NS42.a, PrattCerts.p256NS42.factors.tail.tail.tail, List(BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m609: BigInt = BigInt("208150935158385979")
@@ -73933,6 +75003,8 @@ object PrattTraces {
   def p256NS42F2(): Unit = {
     pw609()
     p256NS42F3()
+    assert(PrattCerts.p256NS42.factors.tail.tail.head == PrattFactor(BigInt(11), BigInt(1), BigInt("18922812287125998")))
+    assert(List(BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(11)))
     factorsOkCons(PrattCerts.p256NS42.p, PrattCerts.p256NS42.a, PrattCerts.p256NS42.factors.tail.tail, List(BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS42.p, PrattCerts.p256NS42.a, PrattCerts.p256NS42.factors.tail.tail, List(BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m610: BigInt = BigInt("208150935158385979")
@@ -74133,6 +75205,8 @@ object PrattTraces {
   def p256NS42F1(): Unit = {
     pw610()
     p256NS42F2()
+    assert(PrattCerts.p256NS42.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt("69383645052795326")))
+    assert(List(BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256NS42.p, PrattCerts.p256NS42.a, PrattCerts.p256NS42.factors.tail, List(BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS42.p, PrattCerts.p256NS42.a, PrattCerts.p256NS42.factors.tail, List(BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m611: BigInt = BigInt("208150935158385979")
@@ -74336,6 +75410,8 @@ object PrattTraces {
   def p256NS42F0(): Unit = {
     pw611()
     p256NS42F1()
+    assert(PrattCerts.p256NS42.factors.head == PrattFactor(BigInt(2), BigInt(1), BigInt("104075467579192989")))
+    assert(List(BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS42.p, PrattCerts.p256NS42.a, PrattCerts.p256NS42.factors, List(BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS42.p, PrattCerts.p256NS42.a, PrattCerts.p256NS42.factors, List(BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -74783,6 +75859,8 @@ object PrattTraces {
   def p256NS43F4(): Unit = {
     pw613()
     factorsOkNil(PrattCerts.p256NS43.p, PrattCerts.p256NS43.a, List(BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS43.factors.tail.tail.tail.tail.head == PrattFactor(BigInt("208150935158385979"), BigInt(1), BigInt("12609828288")))
+    assert(List(BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt("208150935158385979")))
     factorsOkCons(PrattCerts.p256NS43.p, PrattCerts.p256NS43.a, PrattCerts.p256NS43.factors.tail.tail.tail.tail, List(BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS43.p, PrattCerts.p256NS43.a, PrattCerts.p256NS43.factors.tail.tail.tail.tail, List(BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m614: BigInt = BigInt("2624747550333869278416773953")
@@ -75055,6 +76133,8 @@ object PrattTraces {
   def p256NS43F3(): Unit = {
     pw614()
     p256NS43F4()
+    assert(PrattCerts.p256NS43.factors.tail.tail.tail.head == PrattFactor(BigInt(16879), BigInt(1), BigInt("155503735430645730103488")))
+    assert(List(BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(16879)))
     factorsOkCons(PrattCerts.p256NS43.p, PrattCerts.p256NS43.a, PrattCerts.p256NS43.factors.tail.tail.tail, List(BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS43.p, PrattCerts.p256NS43.a, PrattCerts.p256NS43.factors.tail.tail.tail, List(BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m615: BigInt = BigInt("2624747550333869278416773953")
@@ -75336,6 +76416,8 @@ object PrattTraces {
   def p256NS43F2(): Unit = {
     pw615()
     p256NS43F3()
+    assert(PrattCerts.p256NS43.factors.tail.tail.head == PrattFactor(BigInt(1297), BigInt(1), BigInt("2023706669494116637175616")))
+    assert(List(BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(1297)))
     factorsOkCons(PrattCerts.p256NS43.p, PrattCerts.p256NS43.a, PrattCerts.p256NS43.factors.tail.tail, List(BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS43.p, PrattCerts.p256NS43.a, PrattCerts.p256NS43.factors.tail.tail, List(BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m616: BigInt = BigInt("2624747550333869278416773953")
@@ -75650,6 +76732,8 @@ object PrattTraces {
   def p256NS43F1(): Unit = {
     pw616()
     p256NS43F2()
+    assert(PrattCerts.p256NS43.factors.tail.head == PrattFactor(BigInt(3), BigInt(2), BigInt("874915850111289759472257984")))
+    assert(List(BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256NS43.p, PrattCerts.p256NS43.a, PrattCerts.p256NS43.factors.tail, List(BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS43.p, PrattCerts.p256NS43.a, PrattCerts.p256NS43.factors.tail, List(BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m617: BigInt = BigInt("2624747550333869278416773953")
@@ -75967,6 +77051,8 @@ object PrattTraces {
   def p256NS43F0(): Unit = {
     pw617()
     p256NS43F1()
+    assert(PrattCerts.p256NS43.factors.head == PrattFactor(BigInt(2), BigInt(6), BigInt("1312373775166934639208386976")))
+    assert(List(BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS43.p, PrattCerts.p256NS43.a, PrattCerts.p256NS43.factors, List(BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS43.p, PrattCerts.p256NS43.a, PrattCerts.p256NS43.factors, List(BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque
@@ -77407,6 +78493,8 @@ object PrattTraces {
   def p256NS44F11(): Unit = {
     pw619()
     factorsOkNil(PrattCerts.p256NS44.p, PrattCerts.p256NS44.a, List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
+    assert(PrattCerts.p256NS44.factors.tail.tail.tail.tail.tail.tail.tail.tail.tail.tail.tail.head == PrattFactor(BigInt("2624747550333869278416773953"), BigInt(1), BigInt("44115514726598157485257412756682202504057278751056")))
+    assert(List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt("2624747550333869278416773953")))
     factorsOkCons(PrattCerts.p256NS44.p, PrattCerts.p256NS44.a, PrattCerts.p256NS44.factors.tail.tail.tail.tail.tail.tail.tail.tail.tail.tail.tail, List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS44.p, PrattCerts.p256NS44.a, PrattCerts.p256NS44.factors.tail.tail.tail.tail.tail.tail.tail.tail.tail.tail.tail, List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m620: BigInt = BigInt("115792089210356248762697446949407573529996955224135760342422259061068512044369")
@@ -78150,6 +79238,8 @@ object PrattTraces {
   def p256NS44F10(): Unit = {
     pw620()
     p256NS44F11()
+    assert(PrattCerts.p256NS44.factors.tail.tail.tail.tail.tail.tail.tail.tail.tail.tail.head == PrattFactor(BigInt("1002328039319"), BigInt(1), BigInt("115523146782392231311324540489179156958562150085032625197564538672")))
+    assert(List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt("1002328039319")))
     factorsOkCons(PrattCerts.p256NS44.p, PrattCerts.p256NS44.a, PrattCerts.p256NS44.factors.tail.tail.tail.tail.tail.tail.tail.tail.tail.tail, List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS44.p, PrattCerts.p256NS44.a, PrattCerts.p256NS44.factors.tail.tail.tail.tail.tail.tail.tail.tail.tail.tail, List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m621: BigInt = BigInt("115792089210356248762697446949407573529996955224135760342422259061068512044369")
@@ -78929,6 +80019,8 @@ object PrattTraces {
   def p256NS44F9(): Unit = {
     pw621()
     p256NS44F10()
+    assert(PrattCerts.p256NS44.factors.tail.tail.tail.tail.tail.tail.tail.tail.tail.head == PrattFactor(BigInt(622491383), BigInt(1), BigInt("186013963201087795238922121672819322432286512830549110335913290965296")))
+    assert(List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(622491383)))
     factorsOkCons(PrattCerts.p256NS44.p, PrattCerts.p256NS44.a, PrattCerts.p256NS44.factors.tail.tail.tail.tail.tail.tail.tail.tail.tail, List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS44.p, PrattCerts.p256NS44.a, PrattCerts.p256NS44.factors.tail.tail.tail.tail.tail.tail.tail.tail.tail, List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m622: BigInt = BigInt("115792089210356248762697446949407573529996955224135760342422259061068512044369")
@@ -79714,6 +80806,8 @@ object PrattTraces {
   def p256NS44F8(): Unit = {
     pw622()
     p256NS44F9()
+    assert(PrattCerts.p256NS44.factors.tail.tail.tail.tail.tail.tail.tail.tail.head == PrattFactor(BigInt(187019741), BigInt(1), BigInt("619143672166438562026975788344223904844339161094954999121842752744848")))
+    assert(List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(187019741)))
     factorsOkCons(PrattCerts.p256NS44.p, PrattCerts.p256NS44.a, PrattCerts.p256NS44.factors.tail.tail.tail.tail.tail.tail.tail.tail, List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS44.p, PrattCerts.p256NS44.a, PrattCerts.p256NS44.factors.tail.tail.tail.tail.tail.tail.tail.tail, List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m623: BigInt = BigInt("115792089210356248762697446949407573529996955224135760342422259061068512044369")
@@ -80535,6 +81629,8 @@ object PrattTraces {
   def p256NS44F7(): Unit = {
     pw623()
     p256NS44F8()
+    assert(PrattCerts.p256NS44.factors.tail.tail.tail.tail.tail.tail.tail.head == PrattFactor(BigInt(38189), BigInt(1), BigInt("3032079635768316760394287542208687672628164005973860544722885099402144912")))
+    assert(List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(38189)))
     factorsOkCons(PrattCerts.p256NS44.p, PrattCerts.p256NS44.a, PrattCerts.p256NS44.factors.tail.tail.tail.tail.tail.tail.tail, List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS44.p, PrattCerts.p256NS44.a, PrattCerts.p256NS44.factors.tail.tail.tail.tail.tail.tail.tail, List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m624: BigInt = BigInt("115792089210356248762697446949407573529996955224135760342422259061068512044369")
@@ -81365,6 +82461,8 @@ object PrattTraces {
   def p256NS44F6(): Unit = {
     pw624()
     p256NS44F7()
+    assert(PrattCerts.p256NS44.factors.tail.tail.tail.tail.tail.tail.head == PrattFactor(BigInt(17449), BigInt(1), BigInt("6636030099739598186870161439016996591781589502214210576103058001092814032")))
+    assert(List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(17449)))
     factorsOkCons(PrattCerts.p256NS44.p, PrattCerts.p256NS44.a, PrattCerts.p256NS44.factors.tail.tail.tail.tail.tail.tail, List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS44.p, PrattCerts.p256NS44.a, PrattCerts.p256NS44.factors.tail.tail.tail.tail.tail.tail, List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m625: BigInt = BigInt("115792089210356248762697446949407573529996955224135760342422259061068512044369")
@@ -82204,6 +83302,8 @@ object PrattTraces {
   def p256NS44F5(): Unit = {
     pw625()
     p256NS44F6()
+    assert(PrattCerts.p256NS44.factors.tail.tail.tail.tail.tail.head == PrattFactor(BigInt(3407), BigInt(1), BigInt("33986524570107498903051789536075014244202217559182788477376653672165691824")))
+    assert(List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3407)))
     factorsOkCons(PrattCerts.p256NS44.p, PrattCerts.p256NS44.a, PrattCerts.p256NS44.factors.tail.tail.tail.tail.tail, List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS44.p, PrattCerts.p256NS44.a, PrattCerts.p256NS44.factors.tail.tail.tail.tail.tail, List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m626: BigInt = BigInt("115792089210356248762697446949407573529996955224135760342422259061068512044369")
@@ -83052,6 +84152,8 @@ object PrattTraces {
   def p256NS44F4(): Unit = {
     pw626()
     p256NS44F5()
+    assert(PrattCerts.p256NS44.factors.tail.tail.tail.tail.head == PrattFactor(BigInt(373), BigInt(1), BigInt("310434555523743294269966345708867489356560201673286220757164233407690380816")))
+    assert(List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(373)))
     factorsOkCons(PrattCerts.p256NS44.p, PrattCerts.p256NS44.a, PrattCerts.p256NS44.factors.tail.tail.tail.tail, List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS44.p, PrattCerts.p256NS44.a, PrattCerts.p256NS44.factors.tail.tail.tail.tail, List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m627: BigInt = BigInt("115792089210356248762697446949407573529996955224135760342422259061068512044369")
@@ -83903,6 +85005,8 @@ object PrattTraces {
   def p256NS44F3(): Unit = {
     pw627()
     p256NS44F4()
+    assert(PrattCerts.p256NS44.factors.tail.tail.tail.head == PrattFactor(BigInt(131), BigInt(1), BigInt("883909077941650753913720969079447126183182864306379849942154649321133679728")))
+    assert(List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(131)))
     factorsOkCons(PrattCerts.p256NS44.p, PrattCerts.p256NS44.a, PrattCerts.p256NS44.factors.tail.tail.tail, List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS44.p, PrattCerts.p256NS44.a, PrattCerts.p256NS44.factors.tail.tail.tail, List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m628: BigInt = BigInt("115792089210356248762697446949407573529996955224135760342422259061068512044369")
@@ -84757,6 +85861,8 @@ object PrattTraces {
   def p256NS44F2(): Unit = {
     pw628()
     p256NS44F3()
+    assert(PrattCerts.p256NS44.factors.tail.tail.head == PrattFactor(BigInt(71), BigInt(1), BigInt("1630874495920510545953485168301515120140802186255433244259468437479838197808")))
+    assert(List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(71)))
     factorsOkCons(PrattCerts.p256NS44.p, PrattCerts.p256NS44.a, PrattCerts.p256NS44.factors.tail.tail, List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS44.p, PrattCerts.p256NS44.a, PrattCerts.p256NS44.factors.tail.tail, List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m629: BigInt = BigInt("115792089210356248762697446949407573529996955224135760342422259061068512044369")
@@ -85626,6 +86732,8 @@ object PrattTraces {
   def p256NS44F1(): Unit = {
     pw629()
     p256NS44F2()
+    assert(PrattCerts.p256NS44.factors.tail.head == PrattFactor(BigInt(3), BigInt(1), BigInt("38597363070118749587565815649802524509998985074711920114140753020356170681456")))
+    assert(List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(3)))
     factorsOkCons(PrattCerts.p256NS44.p, PrattCerts.p256NS44.a, PrattCerts.p256NS44.factors.tail, List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS44.p, PrattCerts.p256NS44.a, PrattCerts.p256NS44.factors.tail, List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   val m630: BigInt = BigInt("115792089210356248762697446949407573529996955224135760342422259061068512044369")
@@ -86495,6 +87603,8 @@ object PrattTraces {
   def p256NS44F0(): Unit = {
     pw630()
     p256NS44F1()
+    assert(PrattCerts.p256NS44.factors.head == PrattFactor(BigInt(2), BigInt(4), BigInt("57896044605178124381348723474703786764998477612067880171211129530534256022184")))
+    assert(List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)).contains(BigInt(2)))
     factorsOkCons(PrattCerts.p256NS44.p, PrattCerts.p256NS44.a, PrattCerts.p256NS44.factors, List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2)))
   }.ensuring(_ => factorsOk(PrattCerts.p256NS44.p, PrattCerts.p256NS44.a, PrattCerts.p256NS44.factors, List(BigInt("2624747550333869278416773953"), BigInt("208150935158385979"), BigInt(191039911), BigInt(155317), BigInt(41), BigInt(3023), BigInt(1511), BigInt(151), BigInt(127), BigInt(16879), BigInt(97), BigInt(1297), BigInt("1002328039319"), BigInt(3969899), BigInt(104471), BigInt(337), BigInt(126241), BigInt(263), BigInt(622491383), BigInt(311245691), BigInt(311), BigInt(29), BigInt(187019741), BigInt(9350987), BigInt(1201), BigInt(229), BigInt(19), BigInt(17), BigInt(38189), BigInt(9547), BigInt(43), BigInt(37), BigInt(17449), BigInt(727), BigInt(11), BigInt(3407), BigInt(373), BigInt(31), BigInt(131), BigInt(13), BigInt(71), BigInt(7), BigInt(5), BigInt(3), BigInt(2))))
   @ghost @opaque

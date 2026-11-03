@@ -105,6 +105,10 @@ def render(certs):
                     lines.append(f"    {name}S{i}F{j + 1}()")
                 else:
                     lines.append(f"    factorsOkNil({st}.p, {st}.a, {known_lit})")
+                q, e, c = factors[j]
+                # Ground facts as separate VCs: the precondition of factorsOkCons alone can time out.
+                lines.append(f"    assert({tail}.head == PrattFactor({lit(q)}, {lit(e)}, {lit(c)}))")
+                lines.append(f"    assert({known_lit}.contains({lit(q)}))")
                 lines.append(f"    factorsOkCons({st}.p, {st}.a, {tail}, {known_lit})")
                 lines.append(f"  }}.ensuring(_ => factorsOk({st}.p, {st}.a, {tail}, {known_lit}))")
             lines.append("  @ghost @opaque")

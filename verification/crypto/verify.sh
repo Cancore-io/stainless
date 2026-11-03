@@ -19,6 +19,8 @@ mapfile -t other_fns < <(grep -hoP '^\s*(?:@\w+\s+)*def \K[^\s(\[:]+' "$ROOT/fro
   $(printf '%s\n' "${srcs[@]}" | grep -v PrattTraces.scala) "${muts[@]}" | sort -u)
 chunks="${CRYPTO_TRACE_CHUNKS:-5}"
 size=$(( (${#trace_fns[@]} + chunks - 1) / chunks ))
+# inv: the class invariants Stainless synthesizes (no `def` in the source).
+other_fns+=(inv)
 groups=("$(IFS=,; echo "${other_fns[*]}")")
 for ((i = 0; i < ${#trace_fns[@]}; i += size)); do groups+=("$(IFS=,; echo "${trace_fns[*]:i:size}")"); done
 : > "$LOG"
