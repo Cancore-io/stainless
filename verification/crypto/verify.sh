@@ -11,10 +11,26 @@ LOG="$(mktemp)"; trap 'rm -f "$LOG"' EXIT
 python3 "$DIR/scripts/pratt_trace_gen.py" --check || { echo "FAIL: PrattTraces.scala is not reproduced by scripts/pratt_trace_gen.py" >&2; exit 1; }
 mapfile -t srcs < <(find "$DIR" -maxdepth 1 -name '*.scala' | sort)
 mapfile -t muts < <(find "$DIR/invalid" -name '*.scala' | sort)
-cmd=("${STAINLESS:-stainless}" --solvers=smt-z3 "--timeout=${CRYPTO_TIMEOUT:-10}" --batched=true --vc-cache=false "$@"
-  "$ROOT/frontends/library/stainless/math/NonLinear.scala" "${srcs[@]}" "${muts[@]}")
-[[ -n "${DAMLAUDIT_LOCK:-}" ]] && cmd=(flock "$DAMLAUDIT_LOCK" "${cmd[@]}")
-"${cmd[@]}" > "$LOG" 2>&1 || true
+# PrattTraces.scala alone is ~60k VCs, more than one JVM heap holds: it is verified in
+# CRYPTO_TRACE_CHUNKS runs of its own (--functions), everything else in a first run.
+TRACES="$DIR/PrattTraces.scala"
+mapfile -t trace_fns < <(grep -oP '^  def \K\w+' "$TRACES")
+mapfile -t other_fns < <(grep -hoP '^\s*(?:@\w+\s+)*def \K[^\s(\[:]+' "$ROOT/frontends/library/stainless/math/NonLinear.scala" \
+  $(printf '%s\n' "${srcs[@]}" | grep -v PrattTraces.scala) "${muts[@]}" | sort -u)
+chunks="${CRYPTO_TRACE_CHUNKS:-5}"
+size=$(( (${#trace_fns[@]} + chunks - 1) / chunks ))
+groups=("$(IFS=,; echo "${other_fns[*]}")")
+for ((i = 0; i < ${#trace_fns[@]}; i += size)); do groups+=("$(IFS=,; echo "${trace_fns[*]:i:size}")"); done
+: > "$LOG"
+for g in "${groups[@]}"; do
+  one="$(mktemp)"
+  cmd=("${STAINLESS:-stainless}" --solvers=smt-z3 "--timeout=${CRYPTO_TIMEOUT:-10}" --batched=true --vc-cache=false "--functions=$g" "$@"
+    "$ROOT/frontends/library/stainless/math/NonLinear.scala" "${srcs[@]}" "${muts[@]}")
+  [[ -n "${DAMLAUDIT_LOCK:-}" ]] && cmd=(flock "$DAMLAUDIT_LOCK" "${cmd[@]}")
+  "${cmd[@]}" > "$one" 2>&1 || true
+  sed 's/\x1b\[[0-9;]*m//g' "$one" | grep -qE 'total:' || { cat "$one"; rm -f "$one"; echo "FAIL: a Stainless run produced no verification table" >&2; exit 1; }
+  cat "$one" >> "$LOG"; rm -f "$one"
+done
 rows="$(sed 's/\x1b\[[0-9;]*m//g' "$LOG" | grep -E '^\[ *Info *\] ║ .*\.scala:[0-9]+:[0-9]+: ' || true)"
 [[ -n "$rows" ]] || { cat "$LOG"; echo "FAIL: no verification table" >&2; exit 1; }
 fail=0
