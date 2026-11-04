@@ -128,4 +128,4 @@ encoded.txt
 .DS_Store
 
 # CI
-temp/
+temp/__pycache__/
