@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 # Verify verification/crypto with Stainless 0.10.2 at the SPEC §7 budget and check the mutants.
 #   * every VC of the modules (and of stainless.math.NonLinear) must be valid: 0 invalid, 0 unknown;
+#   * per run, the Stainless totals (positionless VCs included) and exit code must be explained by the mutants;
 #   * the invalid VCs of invalid/<X>.scala must equal invalid/<X>.check (line:col;function;kind;invalid).
 # Mutant files are invalid/*Mutants.scala. One Stainless run covers both. Env: STAINLESS (launcher),
 # DAMLAUDIT_LOCK (flock file held for the whole run, default ${TMPDIR:-/tmp}/stainless-verify.lock),
@@ -38,11 +39,13 @@ other_fns+=(inv)
 groups=("$(IFS=,; echo "${other_fns[*]}")")
 for ((i = 0; i < ${#trace_fns[@]}; i += size)); do groups+=("$(IFS=,; echo "${trace_fns[*]:i:size}")"); done
 : > "$LOG"
+fail=0
+checks=("${muts[@]/%.scala/.check}")
 for g in "${groups[@]}"; do
   one="$(mktemp)"
   cmd=("${STAINLESS:-stainless}" --solvers=smt-z3 "--timeout=${CRYPTO_TIMEOUT:-10}" --batched=true --vc-cache=false "--functions=$g" "$@"
     "$ROOT/frontends/library/stainless/math/NonLinear.scala" "${srcs[@]}" "${muts[@]}")
-  "${cmd[@]}" > "$one" 2>&1 || true
+  rc=0; "${cmd[@]}" > "$one" 2>&1 || rc=$?
   if ! sed 's/\x1b\[[0-9;]*m//g' "$one" | grep -qE 'total:'; then
     cat "$one"
     traces=("$one"); [[ stainless-stack-trace.txt -nt "$one" ]] && traces+=(stainless-stack-trace.txt)
@@ -50,11 +53,11 @@ for g in "${groups[@]}"; do
     else echo "FAIL: a Stainless run produced no verification table" >&2; fi
     rm -f "$one"; exit 1
   fi
+  totals_ok "$one" "$(expected_invalid "$g" "${checks[@]}")" "$rc" || fail=1
   cat "$one" >> "$LOG"; rm -f "$one"
 done
 rows="$(sed 's/\x1b\[[0-9;]*m//g' "$LOG" | grep -E '^\[ *Info *\] ║ .*\.scala:[0-9]+:[0-9]+: ' || true)"
 [[ -n "$rows" ]] || { cat "$LOG"; echo "FAIL: no verification table" >&2; exit 1; }
-fail=0
 bad="$(grep -E ' (invalid|timeout|unknown|crashed) ' <<<"$rows" | grep -v 'Mutants\.scala:' || true)"
 [[ -z "$bad" ]] || { echo "FAIL: non-valid VCs in the modules:"; echo "$bad"; fail=1; }
 for m in "${muts[@]}"; do
