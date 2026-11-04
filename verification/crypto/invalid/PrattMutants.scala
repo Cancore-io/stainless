@@ -1,6 +1,7 @@
 package crypto
 
 import stainless.lang._
+import stainless.annotation._
 import stainless.lang.StaticChecks._
 import stainless.collection._
 import crypto.NumberTheory._
@@ -74,4 +75,23 @@ object PrattMutants {
       if (k % 2 == 0) d else add(d, pt, c)
     }
   }.ensuring(res => isOnCurve(res, c))
+
+  // A trace with one wrong intermediate value (3^3 mod 7 is 6, not 5) is rejected at that step.
+  @ghost def brokenTrace(): Unit = {
+    traceBase(BigInt(3), BigInt(7), BigInt(3))
+    traceSqMul(BigInt(3), BigInt(1), BigInt(7), BigInt(3), BigInt(5))
+    traceSq(BigInt(3), BigInt(3), BigInt(7), BigInt(5), BigInt(4))
+  }.ensuring(_ => modPow(BigInt(3), BigInt(6), BigInt(7)) == BigInt(4))
+
+  // The same at 256 bits: one squaring of b = 2^200 + 12345 modulo the secp256k1 p, off by one.
+  @ghost def brokenTrace256(): Unit = {
+    traceBase(BigInt("1606938044258990275541962092341162602522202993782792835313721"), BigInt("115792089237316195423570985008687907853269984665640564039457584007908834671663"), BigInt("1606938044258990275541962092341162602522202993782792835313721"))
+    traceSq(BigInt("1606938044258990275541962092341162602522202993782792835313721"), BigInt(1), BigInt("115792089237316195423570985008687907853269984665640564039457584007908834671663"), BigInt("1606938044258990275541962092341162602522202993782792835313721"), BigInt("39675300312850250896222990172515120154750482992850775490222714034"))
+  }
+
+  // Lucas weakened to the Fermat test alone (no order test per factor): 9 with a = 8 passes it.
+  @ghost def lucasFermatOnly(s: PrattStep, known: List[BigInt]): Unit = {
+    require(Lucas.allPrime(known) && noOrderTest(s, known))
+    Lucas.lucasTheorem(s, known)
+  }
 }
