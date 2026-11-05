@@ -1,0 +1,41 @@
+[ Info ] ║ invalid/PrimeFieldMutants.scala:39:7: addNegIsOne postcondition invalid U:smt-z3 0.0 ║
+[ Info ] ║ invalid/PrimeFieldMutants.scala:26:5: addNoReduce class invariant: inv invalid U:smt-z3 0.2 ║
+[ Info ] ║ invalid/CurveMutants.scala:20:5: addOffCurve precond. (call add(AffinePoint(x, y), (InfinityPoint...) invalid U:smt-z3 0.0 ║
+[ Info ] ║ invalid/NumberTheoryMutants.scala:26:5: bezoutOnOperandsIsOne postcondition invalid U:smt-z3 0.0 ║
+[ Info ] ║ invalid/PrattMutants.scala:82:5: brokenTrace body assertion: Inlined precondition of traceSqMul invalid U:smt-z3 0.0 ║
+[ Info ] ║ invalid/PrattMutants.scala:89:5: brokenTrace256 body assertion: Inlined precondition of traceSq invalid U:smt-z3 0.0 ║
+[ Info ] ║ invalid/CurveMutants.scala:39:5: chordCertWrongCofactor postcondition invalid U:smt-z3 0.2 ║
+[ Info ] ║ invalid/CurveMutants.scala:48:5: chordFlippedY postcondition invalid U:smt-z3 0.2 ║
+[ Info ] ║ invalid/PrattMutants.scala:24:7: compositeNine postcondition invalid U:smt-z3 0.1 ║
+[ Info ] ║ invalid/NumberTheoryMutants.scala:82:5: crtResidueOutOfRange postcondition invalid U:smt-z3 0.1 ║
+[ Info ] ║ invalid/NumberTheoryMutants.scala:86:7: crtSwapped postcondition invalid U:smt-z3 0.2 ║
+[ Info ] ║ invalid/PrimeFieldMutants.scala:44:7: distribDropX postcondition invalid U:smt-z3 0.0 ║
+[ Info ] ║ invalid/CurveMutants.scala:68:7: doubleIsInfinity postcondition invalid U:smt-z3 0.1 ║
+[ Info ] ║ invalid/NumberTheoryMutants.scala:18:17: extendedGcdZero postcondition invalid U:smt-z3 0.0 ║
+[ Info ] ║ invalid/NumberTheoryMutants.scala:30:7: greatestNegativeGcd postcondition invalid U:smt-z3 0.0 ║
+[ Info ] ║ invalid/PrimeFieldMutants.scala:20:5: inverseComposite precond. (call inverse(FieldElem(v, p))) invalid U:smt-z3 0.0 ║
+[ Info ] ║ invalid/PrimeFieldMutants.scala:14:5: inverseOfZero precond. (call inverse(FieldElem(BigInt("0"), p))) invalid U:smt-z3 0.0 ║
+[ Info ] ║ invalid/PrattMutants.scala:95:5: lucasFermatOnly precond. (call lucasTheorem(s, known)) invalid U:smt-z3 0.1 ║
+[ Info ] ║ invalid/NumberTheoryMutants.scala:47:10: modInverseM1 postcondition invalid U:smt-z3 0.0 ║
+[ Info ] ║ invalid/NumberTheoryMutants.scala:56:7: modInverseNone postcondition invalid U:smt-z3 0.1 ║
+[ Info ] ║ invalid/NumberTheoryMutants.scala:51:7: modInverseWrongValue postcondition invalid U:smt-z3 0.1 ║
+[ Info ] ║ invalid/NumberTheoryMutants.scala:69:19: modPowM0 modulo by zero invalid U:smt-z3 0.0 ║
+[ Info ] ║ invalid/NumberTheoryMutants.scala:73:7: modPowOddNoMultiply postcondition invalid U:smt-z3 0.0 ║
+[ Info ] ║ invalid/PrimeFieldMutants.scala:52:9: mulInverseAnyModulus precond. (call inverse(x)) invalid U:smt-z3 0.0 ║
+[ Info ] ║ invalid/CurveMutants.scala:62:7: negNoZeroCase postcondition invalid U:smt-z3 0.0 ║
+[ Info ] ║ invalid/PrimeFieldMutants.scala:30:48: negNoZeroCase class invariant: inv invalid U:smt-z3 0.0 ║
+[ Info ] ║ invalid/PrattMutants.scala:54:5: noKnownCheckAgrees postcondition invalid U:smt-z3 0.0 ║
+[ Info ] ║ invalid/PrattMutants.scala:37:5: noOrderTestAgrees postcondition invalid U:smt-z3 0.1 ║
+[ Info ] ║ invalid/PrimeFieldMutants.scala:35:5: ofSignedRem class invariant: inv invalid U:smt-z3 0.0 ║
+[ Info ] ║ invalid/NumberTheoryMutants.scala:61:7: powAddPlus postcondition invalid U:smt-z3 0.0 ║
+[ Info ] ║ primeFactorListed postcondition invalid U:smt-z3 0.1 ║
+[ Info ] ║ invalid/CurveMutants.scala:12:7: rhsSignedRem postcondition invalid U:smt-z3 0.0 ║
+[ Info ] ║ invalid/PrattMutants.scala:74:22: scalarMulNoProgress measure decreases invalid U:smt-z3 0.0 ║
+[ Info ] ║ invalid/PrattMutants.scala:64:30: scalarMulOffCurve precond. (call add(d, pt, c)) invalid U:smt-z3 0.1 ║
+[ Info ] ║ invalid/CurveMutants.scala:26:5: slopeOverZero precond. (call slope(n, BigInt("0"), p)) invalid U:smt-z3 0.0 ║
+[ Info ] ║ invalid/PrimeFieldMutants.scala:57:7: sqrtUnchecked postcondition invalid U:smt-z3 0.0 ║
+[ Info ] ║ invalid/CurveMutants.scala:32:5: tangentAtOrderTwo precond. (call tangent(x, BigInt("0"), c)) invalid U:smt-z3 0.0 ║
+[ Info ] ║ invalid/CurveMutants.scala:57:5: tangentWrongX postcondition invalid U:smt-z3 0.3 ║
+[ Info ] ║ invalid/NumberTheoryMutants.scala:37:7: unitFactorSigned postcondition invalid U:smt-z3 0.0 ║
+[ Info ] ║ invalid/PrattMutants.scala:18:7: wrongPrimitiveRoot postcondition invalid U:smt-z3 0.1 ║
+[ Info ] ║ total: 1725 valid: 1685 (0 from cache, 17 trivial) invalid: 40 unknown: 0 time: 65.62 ║
