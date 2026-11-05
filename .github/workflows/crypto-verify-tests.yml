@@ -3,15 +3,85 @@ on:
   pull_request:
     paths:
       - verification/crypto/**
+      - verification/crypto-oracle/vectors/**
+      - frontends/library/stainless/math/NonLinear.scala
+      - scripts/pratt_gen.py
       - .github/workflows/crypto-verify-tests.yml
   push:
     branches: [damlaudit]
     paths:
       - verification/crypto/**
+      - verification/crypto-oracle/vectors/**
+      - frontends/library/stainless/math/NonLinear.scala
+      - scripts/pratt_gen.py
+      - .github/workflows/crypto-verify-tests.yml
+
+env:
+  STAINLESS_TAG: v0.10.3-cancore.1
+  STAINLESS_ARCHIVE: stainless-dotty-standalone-0.10.3-cancore.1-linux.zip
+  STAINLESS_SHA256: ea16d14f8314f0688cfb5ec1b839082114211e31abcb8864ee6c35ff4935e207
+
 jobs:
   verify-sh:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: bash verification/crypto/tests/verify_lib_test.sh
-      - run: bash verification/crypto/tests/verify_sh_test.sh
+      - name: Run verify.sh unit and harness tests
+        run: |
+          bash verification/crypto/tests/verify_lib_test.sh
+          bash verification/crypto/tests/verify_sh_test.sh
+      - name: Set up Python and sympy
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check PrattCerts.scala and PrattTraces.scala reproducibility
+        run: |
+          python3 -m pip install --quiet sympy
+          python3 verification/crypto/scripts/pratt_gen.py --check
+          python3 verification/crypto/scripts/pratt_trace_gen.py --check
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Install Coursier and Stainless fork release
+        run: |
+          mkdir -p "$RUNNER_TEMP/bin" "$RUNNER_TEMP/stainless"
+          curl -fSL --retry 3 -o "$RUNNER_TEMP/bin/cs" https://github.com/coursier/launchers/raw/master/coursier
+          chmod +x "$RUNNER_TEMP/bin/cs"
+          curl -fSL --retry 3 -o "$RUNNER_TEMP/$STAINLESS_ARCHIVE" \
+            "https://github.com/Cancore-io/stainless/releases/download/$STAINLESS_TAG/$STAINLESS_ARCHIVE"
+          echo "$STAINLESS_SHA256  $RUNNER_TEMP/$STAINLESS_ARCHIVE" | sha256sum -c -
+          unzip -oq "$RUNNER_TEMP/$STAINLESS_ARCHIVE" -d "$RUNNER_TEMP/stainless"
+          chmod +x "$RUNNER_TEMP/stainless/stainless" "$RUNNER_TEMP/stainless/z3/z3"
+          echo "$RUNNER_TEMP/bin" >> "$GITHUB_PATH"
+          echo "$RUNNER_TEMP/stainless" >> "$GITHUB_PATH"
+          echo "$RUNNER_TEMP/stainless/z3" >> "$GITHUB_PATH"
+      - name: Run JVM verification vectors and T6 Pratt certificates (run_jvm.sh)
+        run: bash verification/crypto/run_jvm.sh
+
+  crypto-verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up JDK 21
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - name: Install Stainless fork release
+        run: |
+          mkdir -p "$RUNNER_TEMP/stainless"
+          curl -fSL --retry 3 -o "$RUNNER_TEMP/$STAINLESS_ARCHIVE" \
+            "https://github.com/Cancore-io/stainless/releases/download/$STAINLESS_TAG/$STAINLESS_ARCHIVE"
+          echo "$STAINLESS_SHA256  $RUNNER_TEMP/$STAINLESS_ARCHIVE" | sha256sum -c -
+          unzip -oq "$RUNNER_TEMP/$STAINLESS_ARCHIVE" -d "$RUNNER_TEMP/stainless"
+          chmod +x "$RUNNER_TEMP/stainless/stainless" "$RUNNER_TEMP/stainless/z3/z3"
+          echo "$RUNNER_TEMP/stainless" >> "$GITHUB_PATH"
+          echo "$RUNNER_TEMP/stainless/z3" >> "$GITHUB_PATH"
+      - name: Verify verification/crypto modules and mutants (verify.sh)
+        env:
+          JAVA_OPTS: -Xss512M -Xms1g -Xmx12g
+          VERIFY_SKIP_MEM_CHECK: '1'
+        run: bash verification/crypto/verify.sh
