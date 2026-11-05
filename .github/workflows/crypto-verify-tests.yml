@@ -1,0 +1,17 @@
+name: Crypto verify.sh tests
+on:
+  pull_request:
+    paths:
+      - verification/crypto/**
+      - .github/workflows/crypto-verify-tests.yml
+  push:
+    branches: [damlaudit]
+    paths:
+      - verification/crypto/**
+jobs:
+  verify-sh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: bash verification/crypto/tests/verify_lib_test.sh
+      - run: bash verification/crypto/tests/verify_sh_test.sh
