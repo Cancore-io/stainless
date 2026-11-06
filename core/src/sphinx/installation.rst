@@ -8,10 +8,8 @@ Installing Stainless
 General Requirement
 -------------------
 
-- Java 17 JRE It suffices to have headless OpenJDK JRE 17 (e.g. one that one
-  gets with ``apt install openjdk-17-jre-headless`` on Debian/Ubuntu). Make sure
-  that ``java -version`` reports a version starting with 1.17, such as ``openjdk
-  version "1.17`` or ``java version "1.17``.
+- Java 27+ JRE (Temurin 27; older JDKs are not built or tested). Make sure
+  that ``java -version`` reports a version starting with 27.
 
 Stainless bundles Scala 3 compiler front-end and runs it before it starts
 compilation.
