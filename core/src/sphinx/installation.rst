@@ -8,10 +8,8 @@ Installing Stainless
 General Requirement
 -------------------
 
-- Java 17 JRE It suffices to have headless OpenJDK JRE 17 (e.g. one that one
-  gets with ``apt install openjdk-17-jre-headless`` on Debian/Ubuntu). Make sure
-  that ``java -version`` reports a version starting with 1.17, such as ``openjdk
-  version "1.17`` or ``java version "1.17``.
+- JDK 27 (Temurin); other JDKs are not built or tested. Make sure
+  that ``java -version`` reports a version starting with 27.
 
 Stainless bundles Scala 3 compiler front-end and runs it before it starts
 compilation.
@@ -43,7 +41,8 @@ In a terminal, you can type:
 
   $ sudo snap install stainless --edge
 
-This exposes the ``stainless`` command and comes packaged with JDK 17 and z3,
+This exposes the ``stainless`` command; the snap is the external upstream (EPFL) package
+and bundles its own JDK 17 and z3,
 cvc5, and princess as SMT solvers. The edge build follows the latest commit on
 the ``main`` branch.
 
@@ -430,7 +429,7 @@ Build from Source on Linux & macOS
 
 To build Stainless from source, you need:
 
-1. `Java Development Kit 17 <https://openjdk.org/projects/jdk/17/>`__
+1. `Java Development Kit 27 (Temurin) <https://adoptium.net/temurin/releases/?version=27>`__
 2. `sbt 1.6.0+ <https://www.scala-sbt.org>`__
 3. `git <https://git-scm.com>`__
 
