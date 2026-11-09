@@ -1,13 +1,24 @@
 name: Stainless Lite Bolts
 on:
   workflow_dispatch:
+    inputs:
+      runner:
+        description: 'pool = the CI pool; personal = your own runner (gitops tools/personal-runner)'
+        type: choice
+        options: [pool, personal]
+        default: pool
   pull_request:
   push:
     branches:
       - main
+      - damlaudit
+
+permissions:
+  contents: read
+
 jobs:
   bolts-lite:
-    runs-on: [self-hosted, linux]
+    runs-on: ${{ inputs.runner == 'personal' && fromJSON(format('["self-hosted","personal","{0}"]', github.triggering_actor)) || fromJSON('["self-hosted","linux"]') }}
     env:
       # define Java options for both official sbt and sbt-extras
       JAVA_OPTS: -Dsbt.io.implicit.relative.glob.conversion=allow -Xss512M -Xms1024M -Xmx12G -XX:MaxMetaspaceSize=2G -XX:+UseCodeCacheFlushing -XX:ReservedCodeCacheSize=768M 
@@ -17,6 +28,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
       with:
+        persist-credentials: false
         submodules: recursive
     - name: Setup JDK
       uses: actions/setup-java@v4

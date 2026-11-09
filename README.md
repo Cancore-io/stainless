@@ -81,6 +81,21 @@ To get started with using Stainless, see videos:
 
 There is also a [Stainless EPFL Page](https://stainless.epfl.ch) which hosts a mirror of the GitHub repository.
 
+## Running CI on your personal runner (CAN-2942)
+
+`stainless-CI.yml`, `stainless-lite-bolts.yml`, `stainless-nightly.yml` and `stainless-explicit-fastmachines.yml` can run on your own self-hosted runner instead of the shared pool. Start one with gitops [`tools/personal-runner`](https://github.com/Cancore-io/gitops/blob/dev/tools/personal-runner/README.md), push your branch, then:
+
+```bash
+gh workflow run stainless-CI.yml -R Cancore-io/stainless --ref <branch> -f runner=personal
+```
+
+PR, push and scheduled runs always go to the pool (`[self-hosted, linux]`, `fast-machines` for the explicit workflow); only a manual run with `runner=personal` goes to the runner of whoever dispatched it, and a re-run goes to the runner of whoever re-ran it (`github.triggering_actor`).
+
+Prerequisites:
+
+- an org admin has enrolled this repository in the `personal-runners` runner group. The repository is public, so that happens only after [gitops#413](https://github.com/Cancore-io/gitops/pull/413) (the fork-check hook) is merged and deployed to your runner and fork-run approval is on;
+- memory: sbt runs with `-Xmx12G` (`.jvmopts` and `JAVA_OPTS` in the workflows), plus metaspace, code cache and the solvers. The default personal runner cap (`install-runner`, 4 CPU / 13 GB) is not enough: give the runner at least 16 GB.
+
 ## License
 
 Stainless is released under the Apache 2.0 license. See the [LICENSE](LICENSE) file for more information.
