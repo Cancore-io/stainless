@@ -1,11 +1,19 @@
 name: Stainless Explicit fast-machines
 on:
   workflow_dispatch:
+    inputs:
+      runner:
+        description: 'pool = the CI pool; personal = your own runner (gitops tools/personal-runner)'
+        type: choice
+        options: [pool, personal]
+        default: pool
+
+permissions:
+  contents: read
+
 jobs:
   tests:
-    runs-on:
-      group: fast-machines
-      labels: [self-hosted, linux]
+    runs-on: ${{ inputs.runner == 'personal' && fromJSON(format('["self-hosted","personal","{0}"]', github.triggering_actor)) || fromJSON('{"group":"fast-machines","labels":["self-hosted","linux"]}') }}
     env:
       JAVA_OPTS_TMP_DIR: ./tmp_java
       # define Java options for both official sbt and sbt-extras
@@ -15,6 +23,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4
       with:
+        persist-credentials: false
         submodules: recursive
     - name: Setup JDK
       uses: actions/setup-java@v4
