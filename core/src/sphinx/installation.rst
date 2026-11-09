@@ -429,7 +429,7 @@ Build from Source on Linux & macOS
 
 To build Stainless from source, you need:
 
-1. `Java Development Kit 26 or 27 (Temurin) <https://adoptium.net/temurin/releases/?version=27>`__
+1. `Java Development Kit 27 (Temurin) <https://adoptium.net/temurin/releases/?version=27>`__
 2. `sbt 1.6.0+ <https://www.scala-sbt.org>`__
 3. `git <https://git-scm.com>`__
 
