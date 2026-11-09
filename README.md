@@ -13,7 +13,7 @@ Please note that Stainless does not support Scala 2 frontend anymore, only Scala
 
 ## Quick start
 
-We test mostly on [Ubuntu](https://ubuntu.com/download); on [Windows](https://www.microsoft.com/eb-gb/software-download/windows10), you can get sufficient text-based Ubuntu environment by installing [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/install) (e.g. `wsl --install`, then `wsl --install -d ubuntu`). Ensure you have a [Java](https://adoptium.net/temurin/releases/?version=27) JDK 26 or 27 (Temurin) ready (it can be headless), e.g. `mise install java@temurin-27`; other JDKs are not built or tested.
+We test mostly on [Ubuntu](https://ubuntu.com/download); on [Windows](https://www.microsoft.com/eb-gb/software-download/windows10), you can get sufficient text-based Ubuntu environment by installing [Windows Subsystem for Linux](https://learn.microsoft.com/en-us/windows/wsl/install) (e.g. `wsl --install`, then `wsl --install -d ubuntu`). Ensure you have a [Java](https://adoptium.net/temurin/releases/?version=27) JDK 27 (Temurin) ready (it can be headless), e.g. `mise install java@temurin-27`; other JDKs are not built or tested.
 
 Once ready, [download the latest `stainless-dotty-standalone` release](https://github.com/epfl-lara/stainless/releases) for your platform. Unzip the archive, and run Stainless through the `stainless` script. Stainless expects a list of space-separated Scala files to verify but also has other [Command-line Options](https://epfl-lara.github.io/stainless/options.html).
 
@@ -44,7 +44,7 @@ If all goes well, Stainless should report something along the lines:
 ```
 If you see funny symbols instead of beautiful ASCII art, run Stainless with the `--no-colors` option for clean ASCII output with a standardized error message format.
 
-The release archive of Stainless only requires JDK 26 or 27 (Temurin). In particular, it needs
+The release archive of Stainless only requires JDK 27 (Temurin). In particular, it needs
 neither a Scala compiler nor SBT. It is shipped with Z3 5.0.0+, cvc5 1.3.4+ and
 Princess (branch compiled for Scala 3). If the Z3 native API is not found, use
 the option `--solvers=smt-z3` to rely on the executable instead of API call to

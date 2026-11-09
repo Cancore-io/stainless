@@ -8,8 +8,8 @@ Installing Stainless
 General Requirement
 -------------------
 
-- JDK 26 or 27 (Temurin); other JDKs are not built or tested. Make sure
-  that ``java -version`` reports a version starting with 26 or 27.
+- JDK 27 (Temurin); other JDKs are not built or tested. Make sure
+  that ``java -version`` reports a version starting with 27.
 
 Stainless bundles Scala 3 compiler front-end and runs it before it starts
 compilation.
