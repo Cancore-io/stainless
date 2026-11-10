@@ -59,5 +59,17 @@ jobs:
       run: ./stainless-ci.sh --skip-build --skip-bolts --skip-sbt-plugin 
     - name: Sbt Plugin Tests
       run: ./stainless-ci.sh --skip-build --skip-tests --skip-bolts
+    - name: Collect JUnit reports
+      if: always()
+      run: |
+        mkdir -p rp-reports
+        { echo '<testsuites>'; find . -path '*/target/test-reports/*.xml' -not -path './rp-reports/*' -exec sed '/^<?xml/d' {} +; echo '</testsuites>'; } > rp-reports/stainless-tests.xml
+    - name: Upload reports for ReportPortal
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: rp-reports
+        path: rp-reports/
+        if-no-files-found: ignore
     - name: Clean up
       run: rm -rf $JAVA_OPTS_TMP_DIR

@@ -84,4 +84,14 @@ jobs:
         env:
           JAVA_OPTS: -Xss512M -Xms1g -Xmx12g
           VERIFY_SKIP_MEM_CHECK: '1'
-        run: bash verification/crypto/verify.sh
+        run: |
+          set -o pipefail
+          mkdir -p rp-reports
+          bash verification/crypto/verify.sh 2>&1 | tee rp-reports/stainless-crypto-verify.log
+      - name: Upload reports for ReportPortal
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: rp-reports
+          path: rp-reports/
+          if-no-files-found: ignore
