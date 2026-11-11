@@ -61,15 +61,20 @@ jobs:
       run: ./stainless-ci.sh --skip-build --skip-tests --skip-bolts
     - name: Collect JUnit reports
       if: always()
+      continue-on-error: true
+      timeout-minutes: 5
       run: |
         mkdir -p rp-reports
         { echo '<testsuites>'; find . -path '*/target/test-reports/*.xml' -not -path './rp-reports/*' -exec sed '/^<?xml/d' {} +; echo '</testsuites>'; } > rp-reports/stainless-tests.xml
     - name: Upload reports for ReportPortal
       if: always()
-      uses: actions/upload-artifact@v4
+      continue-on-error: true
+      timeout-minutes: 5
+      uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
       with:
         name: rp-reports
         path: rp-reports/
         if-no-files-found: ignore
+        retention-days: 7
     - name: Clean up
       run: rm -rf $JAVA_OPTS_TMP_DIR

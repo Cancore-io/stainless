@@ -90,8 +90,11 @@ jobs:
           bash verification/crypto/verify.sh 2>&1 | tee rp-reports/stainless-crypto-verify.log
       - name: Upload reports for ReportPortal
         if: always()
-        uses: actions/upload-artifact@v4
+        continue-on-error: true
+        timeout-minutes: 5
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
           name: rp-reports
           path: rp-reports/
           if-no-files-found: ignore
+          retention-days: 7
