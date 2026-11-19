@@ -67,7 +67,8 @@ class MeasureInference(override val s: Trees, override val t: Trees)(using overr
 
       private def size(v: Variable): Expr = {
         require(v.getType.isInstanceOf[ADTType])
-        val ADTType(id, tps) = v.getType: @unchecked
+        // The type arguments keep their refinements, as the size function must accept `v`
+        val ADTType(id, tps) = symbols.unrefined(v.tpe): @unchecked
         FunctionInvocation(sizes.fullSizeId(symbols.sorts(id)), tps, Seq(v)).setPos(v)
       }
     }
@@ -194,7 +195,7 @@ class MeasureInference(override val s: Trees, override val t: Trees)(using overr
   override protected def extractSymbols(context: TransformerContext, symbols: s.Symbols): (t.Symbols, AllSummaries) = {
     // Note: fnsSummaries is just a Seq of Unit as of now, but is still combined with sortSummaries (Seq of () as well)
     // for possible future extension
-    val (results, fnsSummaries): (Seq[(t.FunDef, MutableMap[Identifier,s.Lambda])], Seq[FunctionSummary]) =
+    val (results, fnsSummaries) =
       symbols.functions.values.map(fd =>
         funCache.cached(fd, context)(extractFunction(context,fd))
       ).toSeq.unzip

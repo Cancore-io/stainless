@@ -21,13 +21,14 @@ class StainlessSerializer(override val trees: ast.Trees, serializeProducts: Bool
   /** An extension to the set of registered classes in the `InoxSerializer`.
     * occur within Stainless programs.
     *
-    * The new identifiers in the mapping range from 120 to 174.
+    * The new identifiers in the mapping range from 120 to 177.
     *
-    * NEXT ID: 175
+    * NEXT ID: 178
     */
   override protected def classSerializers: Map[Class[?], Serializer[?]] =
     super.classSerializers ++ Map(
       stainlessClassSerializer[NoTree]             (120),
+      stainlessClassSerializer[Choose]             (16),
       stainlessClassSerializer[Error]              (121),
       stainlessClassSerializer[Require]            (122),
       stainlessClassSerializer[Annotated]          (123),
@@ -51,6 +52,10 @@ class StainlessSerializer(override val trees: ast.Trees, serializeProducts: Bool
       stainlessClassSerializer[Passes]             (158),
 
       stainlessClassSerializer[Max]                (160),
+
+      stainlessClassSerializer[JVMShiftLeft]       (175),
+      stainlessClassSerializer[JVMAShiftRight]     (176),
+      stainlessClassSerializer[JVMLShiftRight]     (177),
 
       // Stainless ast Types
       stainlessClassSerializer[ArrayType]    (138),
@@ -101,9 +106,9 @@ class XLangSerializer(override val trees: extraction.xlang.Trees, serializeProdu
   /** An extension to the set of registered classes in the `StainlessSerializer`.
     * occur within Stainless programs.
     *
-    * The new identifiers in the mapping range from 180 to 262.
+    * The new identifiers in the mapping range from 180 to 273.
     *
-    * NEXT ID: 263
+    * NEXT ID: 274
     */
   override protected def classSerializers: Map[Class[?], Serializer[?]] =
     super.classSerializers ++ Map(
@@ -127,31 +132,34 @@ class XLangSerializer(override val trees: extraction.xlang.Trees, serializeProdu
       stainlessClassSerializer[Inner]      (187),
 
       // Imperative trees
-      stainlessClassSerializer[Block]                  (188),
-      stainlessClassSerializer[LetVar]                 (189),
-      stainlessClassSerializer[Assignment]             (190),
-      stainlessClassSerializer[FieldAssignment]        (191),
-      stainlessClassSerializer[While]                  (192),
-      stainlessClassSerializer[ArrayUpdate]            (193),
-      stainlessClassSerializer[Old]                    (194),
-      stainlessClassSerializer[BoolBitwiseAnd]         (195),
-      stainlessClassSerializer[BoolBitwiseOr]          (196),
-      stainlessClassSerializer[BoolBitwiseXor]         (197),
-      stainlessClassSerializer[IsVar.type]             (198),
-      stainlessClassSerializer[IsMutable.type]         (199),
-      stainlessClassSerializer[IsPure.type]            (230),
-      stainlessClassSerializer[Snapshot]               (239),
-      stainlessClassSerializer[MutableMapType]         (248),
-      stainlessClassSerializer[MutableMapWithDefault]  (249),
-      stainlessClassSerializer[MutableMapApply]        (250),
-      stainlessClassSerializer[MutableMapUpdate]       (251),
-      stainlessClassSerializer[MutableMapUpdated]      (252),
-      stainlessClassSerializer[MutableMapDuplicate]    (253),
-      stainlessClassSerializer[Swap]                   (259),
-      stainlessClassSerializer[CellSwap]               (262),
-      stainlessClassSerializer[FreshCopy]              (260),
-      stainlessClassSerializer[Reads]                  (182),
-      stainlessClassSerializer[Modifies]               (210),
+      stainlessClassSerializer[Block]                       (188),
+      stainlessClassSerializer[LetVar]                      (189),
+      stainlessClassSerializer[Assignment]                  (190),
+      stainlessClassSerializer[FieldAssignment]             (191),
+      stainlessClassSerializer[While]                       (192),
+      stainlessClassSerializer[ArrayUpdate]                 (193),
+      stainlessClassSerializer[Old]                         (194),
+      stainlessClassSerializer[SameAs]                      (263),
+      stainlessClassSerializer[BoolBitwiseAnd]              (195),
+      stainlessClassSerializer[BoolBitwiseOr]               (196),
+      stainlessClassSerializer[BoolBitwiseXor]              (197),
+      stainlessClassSerializer[IsVar.type]                  (198),
+      stainlessClassSerializer[IsMutable.type]              (199),
+      stainlessClassSerializer[IsInternallyMutable.type]    (264),
+      stainlessClassSerializer[IsObservationallyPure.type]  (265),
+      stainlessClassSerializer[IsPure.type]                 (230),
+      stainlessClassSerializer[Snapshot]                    (239),
+      stainlessClassSerializer[MutableMapType]              (248),
+      stainlessClassSerializer[MutableMapWithDefault]       (249),
+      stainlessClassSerializer[MutableMapApply]             (250),
+      stainlessClassSerializer[MutableMapUpdate]            (251),
+      stainlessClassSerializer[MutableMapUpdated]           (252),
+      stainlessClassSerializer[MutableMapDuplicate]         (253),
+      stainlessClassSerializer[Swap]                        (259),
+      stainlessClassSerializer[CellSwap]                    (262),
+      stainlessClassSerializer[FreshCopy]                   (260),
+      stainlessClassSerializer[Reads]                       (182),
+      stainlessClassSerializer[Modifies]                    (210),
 
       // Object-oriented trees
       stainlessClassSerializer[ClassConstructor] (200),
@@ -210,6 +218,14 @@ class XLangSerializer(override val trees: extraction.xlang.Trees, serializeProdu
       stainlessClassSerializer[ModuleDef]       (221),
       stainlessClassSerializer[UnknownType]     (238),
       stainlessClassSerializer[StrictBV.type]   (256),
+      stainlessClassSerializer[PathType]        (266),
+      stainlessClassSerializer[RefEquals]     (267),
+      stainlessClassSerializer[PathClassConstructor](268),
+      stainlessClassSerializer[PathClassPattern](269),
+      stainlessClassSerializer[IsMemberOf]      (270),
+      stainlessClassSerializer[IsObject.type]   (271),
+      stainlessClassSerializer[IsTrait.type]    (272),
+      stainlessClassSerializer[SelfType]        (273),
     )
 }
 

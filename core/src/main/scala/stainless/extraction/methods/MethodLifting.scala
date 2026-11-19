@@ -207,14 +207,16 @@ class MethodLifting(override val s: Trees, override val t: oo.Trees)
       .toSeq
 
     val invariants = invariantOverrides.map {
-      case (o, ((id, Override(_, optFid, _))) :: rest) if o.fid.isEmpty =>
+      case (o, fs @ (((id, Override(_, optFid, _))) :: _)) if o.fid.isEmpty =>
         new FunDef(
           id.freshen,
           Seq.empty,
           Seq.empty,
           BooleanType(),
           BooleanLiteral(true),
-          Seq(IsInvariant, IsMethodOf(cid))
+          // the invariant isn't checked when values are built if none of its overrides are
+          Seq(IsInvariant, IsMethodOf(cid)) ++
+            (if (fs.forall(p => symbols.getFunction(p._1).flags contains DropVCs)) Seq(DropVCs) else Seq())
         ).setPos(optFid match {
           case Some(fid) => symbols.getFunction(fid).getPos
           case None => symbols.getClass(cid).getPos
@@ -282,15 +284,19 @@ class MethodLifting(override val s: Trees, override val t: oo.Trees)
 
         val (tpe, expr) = {
           val ntpMap = descendant.tpSubst ++ (nfd.typeArgs zip fd.typeArgs)
+          // The types of the overriding method may depend on its parameters, which are bound to those of `fd`
+          val paramSubst: Map[s.ValDef, s.Expr] = (nfd.params zip fd.params).map { case (vd2, vd1) => vd2 -> vd1.toVariable }.toMap
+          def overrideType(tpe: s.Type): s.Type =
+            s.typeOps.instantiateType(s.typeOps.replaceFromSymbols(paramSubst, tpe), ntpMap)
           val args = (fd.params zip nfd.params).map { case (vd1, vd2) =>
             wrap(
               transformer.transform(vd1.toVariable),
               s.typeOps.instantiateType(vd1.tpe, tpMap),
-              s.typeOps.instantiateType(vd2.tpe, ntpMap)
+              overrideType(vd2.tpe)
             )
           }
           (
-            s.typeOps.instantiateType(nfd.returnType, ntpMap),
+            overrideType(nfd.returnType),
             t.FunctionInvocation(
               nfd.id,
               descType.tps ++ fd.tparams.map(tdef => transformer.transform(tdef.tp)),

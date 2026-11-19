@@ -16,8 +16,10 @@ val circeVersion = "0.14.1"
 // The number of test suites (e.g. VerificationSuite, UncheckedSuite) run in parallel
 // Note that this does not dictate the parallelism per test case (e.g. verification/valid/AbstractPost.scala,
 // verification/valid/AbstractRefinementMap$.scala) which is instead set with -Dtestcase-parallelism=<...>
+// The property is the one that Inox's build reads: Inox is loaded as part of this build and sets
+// `Global / concurrentRestrictions` too, replacing the definition below, so both must compute the same limit.
 lazy val nTestSuiteParallelism = {
-  val p = System.getProperty("testsuite-parallelism")
+  val p = System.getProperty("test-parallelism")
   if (p ne null) {
     try {
       p.toInt
@@ -69,14 +71,15 @@ lazy val commonSettings: Seq[Setting[_]] = artifactSettings ++ Seq(
     "-unchecked",
     "-feature"
   ),
+  // Stainless runs on Java 21 and later, whatever the JDK it is built with.
+  scalacOptions ++= Seq("-release", "21"),
+  javacOptions ++= Seq("--release", "21"),
 
-  resolvers ++= Resolver.sonatypeOssRepos("releases"),
   resolvers += ("uuverifiersStainless" at "https://eldarica.org/maven"),
 
   libraryDependencies ++= Seq(
     // "ch.epfl.lara"    %% "inox"          % inoxVersion,
     // "ch.epfl.lara"    %% "inox"          % inoxVersion % "test" classifier "tests",
-    "org.scala-lang.modules" %% "scala-parallel-collections" % "1.0.3",
     "io.circe"               %% "circe-core"                 % circeVersion,
     "io.circe"               %% "circe-generic"              % circeVersion,
     "io.circe"               %% "circe-parser"               % circeVersion,
@@ -100,7 +103,7 @@ lazy val commonSettings: Seq[Setting[_]] = artifactSettings ++ Seq(
     ExclusionRule("org.scala-lang", "scala-library"),
   ),
 
-  // disable documentation packaging in universal:stage to speedup development
+  // disable documentation packaging in Universal/stage to speedup development
   Compile / packageDoc / mappings := Seq(),
 
   Compile / sourcesInBase := false,
@@ -108,6 +111,8 @@ lazy val commonSettings: Seq[Setting[_]] = artifactSettings ++ Seq(
   run / Keys.fork := true,
 
   run / javaOptions ++= Seq(
+    // The native Z3 interface loads Z3 through JNI, which Java 22+ warns about otherwise.
+    "--enable-native-access=ALL-UNNAMED",
     "-Xss256M",
     "-Xms1024M",
     "-XX:MaxMetaspaceSize=1G",
@@ -130,7 +135,7 @@ lazy val stainlessLibSettings: Seq[Setting[_]] = artifactSettings ++ Seq(
     "-language:experimental.qualifiedTypes"
   ),
 
-  // disable documentation packaging in universal:stage to speedup development
+  // disable documentation packaging in Universal/stage to speedup development
   Compile / packageDoc / mappings := Seq(),
 
   Compile / sourcesInBase := false,
@@ -138,6 +143,8 @@ lazy val stainlessLibSettings: Seq[Setting[_]] = artifactSettings ++ Seq(
   run / Keys.fork := true,
 
   run / javaOptions ++= Seq(
+    // The native Z3 interface loads Z3 through JNI, which Java 22+ warns about otherwise.
+    "--enable-native-access=ALL-UNNAMED",
     "-Xss256M",
     "-Xms1024M",
     "-XX:+UseCodeCacheFlushing",
@@ -161,6 +168,8 @@ lazy val assemblySettings: Seq[Setting[_]] = {
       // hence the following merge strategy picks the standalone BuildInfo over the usual one.
       case "stainless/BuildInfo.class" => MergeStrategy.last
       case "stainless/BuildInfo$.class" => MergeStrategy.last
+      // The licenses of Z3, bundled with the native Z3 interface (ScalaZ3)
+      case PathList("META-INF", "z3", _*) => MergeStrategy.first
       case PathList("META-INF", xs @ _*) => MergeStrategy.discard
       // Java module descriptors (e.g. from the ASM jars pulled in by the Scala 3 compiler) are irrelevant in a fat jar
       case "module-info.class" => MergeStrategy.discard
@@ -197,7 +206,7 @@ def libraryFiles(baseDir: File): Seq[(String, File)] = {
   libFiles.map(file => (file.getPath drop dropCount, file)) // Drop the prefix of the path (i.e. everything before "library")
 }
 
-lazy val frontendSettings: Seq[Setting[_]] = Defaults.itSettings ++ Seq(
+lazy val frontendSettings: Seq[Setting[_]] = inConfig(IntegrationTest)(Defaults.testSettings) ++ Seq(
 
   // The stainless library is compiled with qualified types enabled, which marks all its
   // definitions @experimental; referencing them requires experimental mode here as well.
@@ -240,7 +249,7 @@ Global / concurrentRestrictions := Seq(
 def ghProject(repo: String, version: String) = RootProject(uri(s"${repo}#${version}"))
 
 lazy val inox = RootProject(file("./inox"))
-lazy val cafebabe = ghProject("https://git:git@github.com/epfl-lara/cafebabe.git", "8656f80ed6612161263612e9c35d14467006e451")
+lazy val cafebabe = ghProject("https://git:git@github.com/epfl-lara/cafebabe.git", "d55cd3fb2e5194a57766d585370a7c7790abff4d")
 
 // Allow integration test to use facilities from regular tests
 lazy val IntegrationTest = config("it") extend(Test)
@@ -295,6 +304,8 @@ lazy val `stainless-dotty` = (project in file("frontends/dotty"))
     # Prepend the default so explicit JVM options can override it.
     java_args=("-XX:+UseCompactObjectHeaders" "${java_args[@]}")
   fi
+  # The native Z3 interface loads Z3 through JNI, which Java 22+ warns about otherwise.
+  java_args=("--enable-native-access=ALL-UNNAMED" "${java_args[@]}")
   residual_args=("$@")
 }
 """,
@@ -304,7 +315,9 @@ lazy val `stainless-dotty` = (project in file("frontends/dotty"))
     assemblyPackageScala / assembleArtifact := true,
     assembly / assemblyExcludedJars := {
       val cp = (assembly / fullClasspath).value
-      // Don't include scalaz3 dependency because it is OS dependent
+      // The native Z3 interface (ScalaZ3, with the native libraries of Z3 for all platforms) would
+      // add 55MB to the compiler plugin, which then falls back to the SMT-LIB solvers (as before,
+      // when ScalaZ3 was platform-dependent). stainless-dotty-standalone includes it.
       cp filter {_.data.getName.startsWith("scalaz3")}
     },
   )
@@ -332,10 +345,9 @@ lazy val `stainless-dotty-standalone` = (project in file("frontends") / "stainle
     assembly / assemblyJarName := (name.value + "-" + version.value + ".jar"),
     Runtime / unmanagedJars := (`stainless-dotty` / Runtime / unmanagedJars).value,
     assemblyPackageScala / assembleArtifact := true,
-    assembly / assemblyExcludedJars := {
-      val cp = (assembly / fullClasspath).value
-      cp filter {_.data.getName.startsWith("scalaz3")}
-    },
+    // The native Z3 interface (ScalaZ3) is platform-independent: it bundles the native libraries of
+    // Z3 for all platforms, so it is part of the standalone jar.
+    assembly / assemblyExcludedJars := Seq(),
   )
   .dependsOn(`stainless-dotty`)
 
@@ -375,15 +387,6 @@ lazy val `sbt-stainless` = (project in file("sbt-plugin"))
       (`stainless-dotty-plugin` / publishLocal).value
     }
   )
-
-lazy val `check-files-util` = (project in file("check-files-utils"))
-  .disablePlugins(AssemblyPlugin)
-  .settings(noPublishSettings)
-  .settings(name := "check-files-utils")
-  .settings(commonSettings)
-// Uncomment if you wish to attach a debugger at 5006. Note that the process will wait for the debugger to attach
-//  .settings(run / javaOptions += "-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5006")
-  .dependsOn(`stainless-core`, `stainless-dotty`)
 
 // Cross-validation of the committed crypto test vectors; test-only, nothing is published.
 lazy val `stainless-crypto-oracle` = (project in file("verification") / "crypto-oracle")

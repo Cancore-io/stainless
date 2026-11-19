@@ -6,13 +6,39 @@ package evaluators
 abstract class RecursiveEvaluator(override val program: Program,
                                   override val context: inox.Context)
                                  (using override protected val semantics: program.Semantics)
-  extends inox.evaluators.RecursiveEvaluator(program, context) {
+  extends inox.evaluators.RecursiveEvaluator(program, context) with ChooseSolving {
   import context.{given, _}
   import program._
   import program.trees._
   import program.symbols.{given, _}
 
+  /** The choose that is the body of the function `id`, which the model gives as an uninterpreted
+    * function of the function's parameters (see [[solvers.InoxEncoder]]). */
+  private def liftedChoose(id: Identifier): Option[Choose] = getFunction(id).fullBody match {
+    case c: Choose => Some(c)
+    case _ => None
+  }
+
   override def e(expr: Expr)(using rctx: RC, gctx: GC): Expr = expr match {
+    case FunctionInvocation(id, tps, args) if liftedChoose(id).isDefined =>
+      val Choose(res, _) = liftedChoose(id).get: @unchecked
+      rctx.interpretations.get(res.id -> tps) match {
+        case Some(l: Lambda) if l.params.size == args.size =>
+          e(l.body)(using rctx.withNewVars(l.paramSubst(args.map(e))), gctx)
+        case _ => super.e(expr)
+      }
+
+    // The model gives a choose as the uninterpreted function of its free variables that encodes it
+    // (see [[solvers.InoxEncoder]]), and the chooses it doesn't give are solved for
+    case c: Choose =>
+      val call = exprOps.chooseCall(c)
+      rctx.interpretations.get(call.id -> call.tps) match {
+        case Some(l: Lambda) if l.params.size == call.args.size =>
+          e(l.body)(using rctx.withNewVars(l.paramSubst(call.args.map(e))), gctx)
+        case _ =>
+          onChooseInvocation(exprOps.replaceFromSymbols(exprOps.variablesOf(c).map(v => v -> e(v)).toMap, c).asInstanceOf[Choose], rctx.interpretations)
+      }
+
     case Require(pred, body) =>
       if (!ignoreContractsOn(expr) && e(pred) != BooleanLiteral(true))
         throw RuntimeError("Requirement did not hold @" + expr.getPos)
@@ -73,6 +99,24 @@ abstract class RecursiveEvaluator(override val program: Program,
     case m: Max =>
       e(maxToIfThenElse(m))
 
+    // In Stainless, `Division` and `Remainder` on integers are the JVM's `BigInt./` and `BigInt.%`, which
+    // round toward zero (Inox's are SMT-LIB's euclidean `div` and `mod`, see InoxEncoder)
+    case Division(l, r) if expr.getType == IntegerType() => (e(l), e(r)) match {
+      case (IntegerLiteral(i1), IntegerLiteral(i2)) =>
+        if (i2 != 0) IntegerLiteral(i1 / i2) else throw RuntimeError("Division by 0.")
+      case (le, re) => throw EvalError("Unexpected operation: (" + le.asString + ") / (" + re.asString + ")")
+    }
+
+    case Remainder(l, r) if expr.getType == IntegerType() => (e(l), e(r)) match {
+      case (IntegerLiteral(i1), IntegerLiteral(i2)) =>
+        if (i2 != 0) IntegerLiteral(i1 % i2) else throw RuntimeError("Remainder of division by 0.")
+      case (le, re) => throw EvalError("Unexpected operation: (" + le.asString + ") % (" + re.asString + ")")
+    }
+
+    // the bit-vector shifts of inox follow SMT-LIB: the amount has to be taken modulo the width first
+    case shift: JVMShift =>
+      e(shift.masked)
+
     case Error(tpe, msg) =>
       throw RuntimeError("Error reached in evaluation: " + msg)
 
@@ -116,7 +160,8 @@ abstract class RecursiveEvaluator(override val program: Program,
         Some(obind(ob, e))
 
       case (ADTPattern(ob, id, tps, subs), ADT(id2, tps2, args)) =>
-        if (id == id2 && tps == tps2) {
+        // Values are erased (models have no refinements), so compare erased type arguments
+        if (id == id2 && tps.map(_.getType) == tps2.map(_.getType)) {
           val res = (subs zip args) map (p => matchesPattern(p._1, p._2))
           if (res.forall(_.isDefined)) {
             Some(obind(ob, expr) ++ res.flatten.flatten)

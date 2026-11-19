@@ -26,6 +26,16 @@ class CompilationUnit(val program: Program, val context: inox.Context)(using val
 
   val loader = new CafebabeClassLoader(classOf[CompilationUnit].getClassLoader)
 
+  /** Registers a generated class with [[loader]], while holding the lock of the loader.
+   *
+   *  A unit is used from several threads when the VCs of a program are checked in parallel.
+   *  The loader looks up the registered classes under its own lock, the one that
+   *  `ClassLoader.loadClass` takes. A class registered under another lock can therefore be added
+   *  during a lookup, which then misses classes that were registered before and fails with a
+   *  `ClassNotFoundException`.
+   */
+  protected def registerClass(cf: ClassFile): Unit = loader.synchronized(loader.register(cf))
+
   class CompiledExpression(cf: ClassFile, expression: Expr, args: Seq[ValDef]) {
     private lazy val cl = loader.loadClass(cf.className)
     private lazy val meth = cl.getMethods()(0)
@@ -62,8 +72,8 @@ class CompilationUnit(val program: Program, val context: inox.Context)(using val
 
   private var runtimeTypeToIdMap = Map[Type, Int]()
   private var runtimeIdToTypeMap = Map[Int, Type]()
-  protected def getType(id: Int): Type = synchronized(runtimeIdToTypeMap(id))
-  protected def registerType(tpe: Type): Int = synchronized(runtimeTypeToIdMap.get(tpe) match {
+  private[stainless] def getType(id: Int): Type = synchronized(runtimeIdToTypeMap(id))
+  private[stainless] def registerType(tpe: Type): Int = synchronized(runtimeTypeToIdMap.get(tpe) match {
     case Some(id) => id
     case None =>
       val id = runtimeCounter.nextGlobal
@@ -73,16 +83,24 @@ class CompilationUnit(val program: Program, val context: inox.Context)(using val
   })
 
   private var runtimeChooseMap = Map[Int, (Seq[ValDef], Seq[TypeParameter], Choose)]()
-  protected def getChoose(id: Int): (Seq[ValDef], Seq[TypeParameter], Choose) = synchronized(runtimeChooseMap(id))
-  protected def registerChoose(c: Choose, params: Seq[ValDef], tps: Seq[TypeParameter]): Int = synchronized {
+  private[stainless] def getChoose(id: Int): (Seq[ValDef], Seq[TypeParameter], Choose) = synchronized(runtimeChooseMap(id))
+  private[stainless] def registerChoose(c: Choose, params: Seq[ValDef], tps: Seq[TypeParameter]): Int = synchronized {
     val id = runtimeCounter.nextGlobal
     runtimeChooseMap += id -> (params, tps, c)
     id
   }
 
+  private var runtimeUninterpretedMap = Map[Int, (Seq[TypeParameter], UninterpretedCall)]()
+  private[stainless] def getUninterpreted(id: Int): (Seq[TypeParameter], UninterpretedCall) = synchronized(runtimeUninterpretedMap(id))
+  private[stainless] def registerUninterpreted(uc: UninterpretedCall, tps: Seq[TypeParameter]): Int = synchronized {
+    val id = runtimeCounter.nextGlobal
+    runtimeUninterpretedMap += id -> (tps, uc)
+    id
+  }
+
   private var runtimeForallMap = Map[Int, (Seq[TypeParameter], Forall)]()
-  protected def getForall(id: Int): (Seq[TypeParameter], Forall) = synchronized(runtimeForallMap(id))
-  protected def registerForall(f: Forall, tps: Seq[TypeParameter]): Int = synchronized {
+  private[stainless] def getForall(id: Int): (Seq[TypeParameter], Forall) = synchronized(runtimeForallMap(id))
+  private[stainless] def registerForall(f: Forall, tps: Seq[TypeParameter]): Int = synchronized {
     val id = runtimeCounter.nextGlobal
     runtimeForallMap += id -> (tps, f)
     id
@@ -91,7 +109,7 @@ class CompilationUnit(val program: Program, val context: inox.Context)(using val
   // Get the Java constructor corresponding to the Case class
   private val adtConstructors: MutableMap[ADTConstructor, Constructor[?]] = MutableMap.empty
 
-  private def adtConstructor(cons: ADTConstructor): Constructor[?] =
+  private def adtConstructor(cons: ADTConstructor): Constructor[?] = synchronized {
     adtConstructors.getOrElse(cons, {
       val cf = getClassCons(cons)
       val klass = loader.loadClass(cf.className)
@@ -102,6 +120,7 @@ class CompilationUnit(val program: Program, val context: inox.Context)(using val
       adtConstructors(cons) = res
       res
     })
+  }
 
   private lazy val tupleConstructor: Constructor[?] = {
     val tc = loader.loadClass("stainless.codegen.runtime.Tuple")
@@ -471,13 +490,13 @@ class CompilationUnit(val program: Program, val context: inox.Context)(using val
 
     ch.freeze
 
-    synchronized(loader.register(cf))
+    registerClass(cf)
 
     new CompiledExpression(cf, e, args)
   }
 
   val classes = compile()
-  for (cf <- classes) loader.register(cf)
+  for (cf <- classes) registerClass(cf)
 
   def writeClassFiles(prefix: String): Unit = {
     for (cf <- classes) {

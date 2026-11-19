@@ -30,8 +30,15 @@ SKIP_TESTS=false
 
 ROOT_DIR=$PWD
 SBT_TEMP=$ROOT_DIR/sbt-temp
-# if TEMP_DIR is not set, set it to the default
-JAVA_OPTS_TMP_DIR=${JAVA_OPTS_TMP_DIR:-$ROOT_DIR/temporary}
+# The directory for temporary files. A caller that sets JAVA_OPTS_TMP_DIR owns the directory: the CI
+# workflows keep the global directory of sbt in it, run this script several times with it, and delete
+# it themselves. Otherwise the script uses a directory of its own, and deletes it at the end.
+if [ -n "$JAVA_OPTS_TMP_DIR" ]; then
+  OWNS_TMP_DIR=false
+else
+  OWNS_TMP_DIR=true
+  JAVA_OPTS_TMP_DIR=$ROOT_DIR/temporary
+fi
 mkdir -p $JAVA_OPTS_TMP_DIR
 chmod 777 $JAVA_OPTS_TMP_DIR
 SBT_DIR=$ROOT_DIR/temp  # make better later
@@ -95,7 +102,7 @@ if [ -n "$SOLVERS_DIR" ]; then
   mkdir -p "$SOLVERS_DIR"
   mkdir -p "$TEMP_DIR"
   # cvc5
-  wget https://github.com/cvc5/cvc5/releases/download/cvc5-1.3.4/cvc5-Linux-x86_64-static.zip -O "$TEMP_DIR/downloaded.zip" -q
+  wget https://github.com/cvc5/cvc5/releases/download/cvc5-1.4.2/cvc5-Linux-x86_64-static.zip -O "$TEMP_DIR/downloaded.zip" -q
   unzip "$TEMP_DIR/downloaded.zip" -d "$TEMP_DIR"
   CVC5_DIR=$(ls "$TEMP_DIR" | grep cvc5)
   mv "$TEMP_DIR/$CVC5_DIR/bin/cvc5" "$SOLVERS_DIR/cvc5"
@@ -108,7 +115,7 @@ if [ -n "$SOLVERS_DIR" ]; then
 
   # z3
   mkdir -p "$TEMP_DIR"
-  wget https://github.com/Z3Prover/z3/releases/download/z3-5.0.0/z3-5.0.0-x64-glibc-2.39.zip -O "$TEMP_DIR/downloaded.zip" -q
+  wget https://github.com/Z3Prover/z3/releases/download/z3-5.4.1/z3-5.4.1-x64-glibc-2.39.zip -O "$TEMP_DIR/downloaded.zip" -q
   unzip "$TEMP_DIR/downloaded.zip" -d "$TEMP_DIR"
   Z3_DIR=$(ls "$TEMP_DIR" | grep z3)
   mv "$TEMP_DIR/$Z3_DIR/bin/z3" "$SOLVERS_DIR/z3"
@@ -131,10 +138,8 @@ else
     tar xfz $SBT_NAME
     
     cd $ROOT_DIR
-    echo Testing $SBT --version
-    $SBT --version
-    echo *******     $SBT universal:stage ********
-    $SBT universal:stage
+    echo "*******     $SBT sbtVersion Universal/stage ********"
+    $SBT sbtVersion Universal/stage
   if [ $? -ne 0 ]; then
     echo "************** Failed to build the universal package **************"
     exit 1
@@ -149,14 +154,18 @@ if [ "$SKIP_TESTS" = true ]; then
   echo "************** Skipping tests **************"
 else
   # Run the tests
-  $SBT -batch -Dtestsuite-parallelism=5 test
+  $SBT -batch -Dtest-parallelism=4 test
   if [ $? -ne 0 ]; then
     echo "************** Unit tests failed **************"
     exit 1
   fi
 
-  # Run the integration tests
-  $SBT -batch -Dtestsuite-parallelism=6 -Dtestcase-parallelism=5 it:test
+  # Run the integration tests: 4 suites at a time, 5 test cases at a time in each suite, and the VCs
+  # of all of them on one pool of 20 threads. The pool is shared by the whole JVM, so it needs at
+  # least as many threads as there are test cases running at once (4 * 5), or it slows the tests down.
+  # The numbers are moderate on purpose: several CI jobs run at once on one machine, which has to
+  # stay usable.
+  $SBT -batch -Dtest-parallelism=4 -Dtestcase-parallelism=5 -Dparallel=20 IntegrationTest/test
   if [ $? -ne 0 ]; then
     echo "************** Integration tests failed **************"
     exit 1
@@ -214,5 +223,7 @@ echo ""
 echo "********************************* CI PASSED! *********************************"
 
 # Too bad we have all those `exit` commands all over place, so they do not see this cleanup!
-rm -rf $JAVA_OPTS_TMP_DIR
+if [ "$OWNS_TMP_DIR" = true ]; then
+  rm -rf $JAVA_OPTS_TMP_DIR
+fi
 echo "Total time: $DURATION seconds"

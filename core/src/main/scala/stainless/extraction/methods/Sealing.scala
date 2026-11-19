@@ -181,6 +181,12 @@ class Sealing(override val s: Trees)(override val t: s.type)
         }
       }
 
+      // The dummy subclass assumes the postconditions of `cd`, which may be unsatisfiable, so its
+      // invariant `inhabited[T]()` lets the solver make it empty
+      val hasContracts = methods.exists { id =>
+        deconstructSpecs(symbols.getFunction(id).fullBody)._1.exists(_.isInstanceOf[Postcondition])
+      }
+
       // Create a dummy subclass for the current class
       val dummyClass: ClassDef = {
         val varFlag = if (context.isMutable(cd)) Seq(IsVar) else Seq()
@@ -254,7 +260,31 @@ class Sealing(override val s: Trees)(override val t: s.type)
         )
       }
 
-      ((newCd, Some(dummyClass), dummyFunOverrides ++ newAccessors, dummyTypeDefOverrides), ())
+      val inhabitation = if (!hasContracts) Seq() else {
+        val inhabitedTps = freshenTypeParams(cd.typeArgs)
+        val inhabited = new FunDef(
+          FreshIdentifier(cd.id.name + "Inhabited"),
+          inhabitedTps.map(tp => TypeParameterDef(tp).copiedFrom(tp)),
+          Seq(),
+          BooleanType().setPos(cd),
+          NoTree(BooleanType()).setPos(cd),
+          Seq(Extern, Synthetic)
+        ).setPos(cd)
+
+        val inv = new FunDef(
+          ast.SymbolIdentifier("inv"),
+          Seq(),
+          Seq(),
+          BooleanType().setPos(cd),
+          FunctionInvocation(inhabited.id, typeArgs, Seq()).setPos(cd),
+          // the dummy subclass is never built, so its invariant is never checked
+          Seq(IsInvariant, Synthetic, DropVCs, IsMethodOf(dummyClass.id))
+        ).setPos(cd)
+
+        Seq(inhabited, context.addPurityAnnotations(inv))
+      }
+
+      ((newCd, Some(dummyClass), dummyFunOverrides ++ newAccessors ++ inhabitation, dummyTypeDefOverrides), ())
     }
     else ((cd, None, Seq.empty, Seq.empty), ())
   }

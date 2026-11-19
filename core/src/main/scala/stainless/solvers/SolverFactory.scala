@@ -12,17 +12,22 @@ import evaluators._
 object SolverFactory {
 
   def getFromName(name: String)
-                 (p: Program, ctx: inox.Context)
+                 (p: Program, ctx: inox.Context, model: Option[p.Model] = None)
                  (enc: ProgramTransformer {
                     val sourceProgram: p.type
                     val targetProgram: StainlessProgram
                   })(using sem: p.Semantics): SolverFactory { val program: p.type; type S <: TimeoutSolver { val program: p.type } } = {
     if (inox.solvers.SolverFactory.supportedSolver(name)) {
-      val newCtx: inox.Context =
+      val checkedCtx: inox.Context =
         if (ctx.options.findOption(optAssumeChecked).isDefined) ctx
         else ctx.withOpts(optAssumeChecked(true))
+      // Scala strings are sequences of UTF-16 code units, which are the characters of Inox's strings
+      // in the BMP
+      val newCtx: inox.Context =
+        if (ctx.options.findOption(optStringsBMP).isDefined) checkedCtx
+        else checkedCtx.withOpts(optStringsBMP(true))
 
-      inox.solvers.SolverFactory.getFromName(name)(p, newCtx)(
+      inox.solvers.SolverFactory.getFromName(name)(p, newCtx, model)(
         enc `andThen` InoxEncoder(enc.targetProgram, ctx)
       )
     } else {
@@ -33,27 +38,27 @@ object SolverFactory {
   // Note that in case of a portfolio solver, we will share the evaluator and encoder
   // between all underlying solvers. We count on immutability to ensure sanity here.
   def getFromNames(names: Seq[String])
-                  (p: Program, ctx: inox.Context)
+                  (p: Program, ctx: inox.Context, model: Option[p.Model] = None)
                   (enc: ProgramTransformer {
                      val sourceProgram: p.type
                      val targetProgram: StainlessProgram
                    })(using sem: p.Semantics): SolverFactory { val program: p.type; type S <: TimeoutSolver { val program: p.type } } = {
     names match {
       case Seq() => throw new inox.FatalError("No selected solver")
-      case Seq(single) => getFromName(single)(p, ctx)(enc)
+      case Seq(single) => getFromName(single)(p, ctx, model)(enc)
       case multiple => PortfolioSolverFactory(p) {
-        multiple.map(name => getFromName(name)(p, ctx)(enc))
+        multiple.map(name => getFromName(name)(p, ctx, model)(enc))
       }
     }
   }
 
-  def getFromSettings(p: Program, ctx: inox.Context)
+  def getFromSettings(p: Program, ctx: inox.Context, model: Option[p.Model] = None)
                      (enc: ProgramTransformer {
                         val sourceProgram: p.type
                         val targetProgram: StainlessProgram
                       })(using sem: p.Semantics): SolverFactory { val program: p.type; type S <: TimeoutSolver { val program: p.type } } = {
     val names = ctx.options.findOptionOrDefault(inox.optSelectedSolvers).toSeq
-    getFromNames(names)(p, ctx)(enc)
+    getFromNames(names)(p, ctx, model)(enc)
   }
 
   def apply(name: String, p: StainlessProgram, ctx: inox.Context): SolverFactory {

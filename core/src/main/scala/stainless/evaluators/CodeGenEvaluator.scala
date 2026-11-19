@@ -22,17 +22,28 @@ import scala.util.Try
 import scala.jdk.CollectionConverters._
 import scala.collection.mutable.{Map => MutableMap}
 
+/** Evaluates expressions by compiling them to bytecode, along with the program, which `unit`
+  * compiles. The evaluators of a program share its unit (see [[CodeGenEvaluator.apply]]), whatever
+  * their context: model validation creates an evaluator for each solver, and compiling the program
+  * again for each of them took most of codegen's time. */
 class CodeGenEvaluator(override val program: Program,
                        override val context: inox.Context)
+                      (compilationUnit: CompilationUnit)
                       (using override val semantics: program.Semantics)
-  extends CompilationUnit(program, context)
-     with inox.evaluators.DeterministicEvaluator
-     with inox.evaluators.SolvingEvaluator { self =>
+  extends inox.evaluators.DeterministicEvaluator
+     with ChooseSolving { self =>
+
+  val unit: CompilationUnit { val program: self.program.type } = {
+    require(compilationUnit.program eq program, "The unit compiles another program")
+    compilationUnit.asInstanceOf[CompilationUnit { val program: self.program.type }]
+  }
 
   import context.{given, _}
   import program._
   import program.trees._
   import program.symbols.{given, _}
+  import unit.{CompiledExpression, maxSteps, getType, registerType, getChoose, getUninterpreted, getForall,
+    jvmToValue, valueToJVM, compileExpression}
 
   class Monitor(model: program.Model) extends runtime.Monitor {
     private var calls = 0
@@ -83,12 +94,14 @@ class CodeGenEvaluator(override val program: Program,
         case (vd, ref) => vd.toVariable -> jvmToValue(ref, vd.getType)
       }.toMap
 
-      val res = model.chooses.get(choose.res.id -> newTypes) match {
-        case Some(value) =>
-          val vars = inputsMap map { case (k, v) => k.toVal -> v }
-          val subModel = inox.Model(model.program)(vars, model.chooses)
+      // The chooses are lifted into functions of their scope (see `inlining.ChooseEncoder`), which
+      // the model gives as uninterpreted functions of their parameters (see `InoxEncoder`)
+      val res = model.interpretations.get(choose.res.id -> newTypes) match {
+        case Some(Lambda(lparams, body)) if lparams.size == realParams.size =>
+          val vars = (lparams zip realParams).map { case (lvd, vd) => lvd -> inputsMap(vd.toVariable) }.toMap
+          val subModel = inox.Model(model.program)(vars, model.interpretations)
 
-          eval(value, subModel) match {
+          eval(body, subModel) match {
             case EvaluationResults.Successful(result) =>
               result
             case EvaluationResults.RuntimeError(msg) =>
@@ -100,13 +113,45 @@ class CodeGenEvaluator(override val program: Program,
         case None =>
           val groundChoose = exprOps.replaceFromSymbols(inputsMap, tpChoose)
           try {
-            self.onChooseInvocation(groundChoose.asInstanceOf[Choose])
+            self.onChooseInvocation(groundChoose.asInstanceOf[Choose], model.interpretations)
           } catch {
             case e: java.lang.RuntimeException =>
               throw new runtime.CodeGenRuntimeException(e.getMessage)
           }
       }
 
+
+      valueToJVM(res)(using this)
+    }
+
+    def onUninterpretedInvocation(id: Int, tps: Array[Int], inputs: Array[AnyRef]): AnyRef = {
+      val (tparams, uc) = getUninterpreted(id)
+
+      val newTypes = tps.toSeq.map(getType)
+      val tpMap = (tparams zip newTypes).toMap
+      val tpCall = typeOps.instantiateType(uc, tpMap).asInstanceOf[UninterpretedCall]
+
+      val args = (tpCall.args zip inputs.toSeq).map {
+        case (arg, ref) => jvmToValue(ref, arg.getType)
+      }
+
+      val res = model.interpretations.get(tpCall.id -> tpCall.tps) match {
+        case Some(Lambda(params, body)) if params.size == args.size =>
+          val subModel = inox.Model(model.program)((params zip args).toMap, model.interpretations)
+
+          eval(body, subModel) match {
+            case EvaluationResults.Successful(result) =>
+              result
+            case EvaluationResults.RuntimeError(msg) =>
+              throw new runtime.CodeGenRuntimeException(msg)
+            case EvaluationResults.EvaluatorError(msg) =>
+              throw new runtime.CodeGenRuntimeException(msg)
+          }
+
+        case _ =>
+          throw new runtime.CodeGenRuntimeException(
+            s"Cannot call uninterpreted function ${tpCall.id.asString} that the model doesn't define")
+      }
 
       valueToJVM(res)(using this)
     }
@@ -127,7 +172,7 @@ class CodeGenEvaluator(override val program: Program,
       val groundForall = exprOps.replaceFromSymbols(inputsMap, tpForall)
 
       val BooleanLiteral(res) = (try {
-        self.onForallInvocation(groundForall.asInstanceOf[Forall])
+        self.onForallInvocation(groundForall.asInstanceOf[Forall], model.interpretations)
       } catch {
         case e: java.lang.RuntimeException =>
           throw new runtime.CodeGenRuntimeException(e.getMessage)
@@ -173,6 +218,12 @@ class CodeGenEvaluator(override val program: Program,
 
         case e: java.lang.OutOfMemoryError =>
           EvaluationResults.RuntimeError("Out of memory")
+
+        // The JVM rejects, when it loads them, the classes that have a method with more than 64 KB
+        // of code. The expression to evaluate is compiled to a single method, whatever its size:
+        // `FunctionSplitting` only splits the bodies of the functions.
+        case e: java.lang.ClassFormatError =>
+          EvaluationResults.EvaluatorError(s"The JVM rejected a generated class: ${e.getMessage}")
       }
     }).recover {
       case t: Throwable =>
@@ -182,11 +233,35 @@ class CodeGenEvaluator(override val program: Program,
 }
 
 object CodeGenEvaluator {
+  /** The program, split into functions that fit in JVM methods, and its bytecode. */
+  private[evaluators] final class Compiled(val source: StainlessProgram, ctx: inox.Context) {
+    val split = FunctionSplitting(source, size = 5000, slots = 100)
+    val unit: CompilationUnit { val program: split.targetProgram.type } =
+      new CompilationUnit(split.targetProgram, ctx)(using split.targetProgram.getSemantics)
+        .asInstanceOf[CompilationUnit { val program: split.targetProgram.type }]
+  }
+
   def apply(p: StainlessProgram, ctx: inox.Context): DeterministicEvaluator { val program: p.type } = {
-    val split = FunctionSplitting(p, size = 5000, slots = 100)
+    // The evaluators of contexts with the same options share the compiled program. The solvers of a
+    // factory have the same options, and only differ in their interrupt managers.
+    val compiled = (p.getSemantics match {
+      case cache: CodeGenCache => cache.compiled(ctx.options)(new Compiled(p, ctx))
+      case _ => new Compiled(p, ctx)
+    }).asInstanceOf[Compiled { val source: p.type }]
+    import compiled.split
+
     class Impl(override val program: split.targetProgram.type)
-      extends CodeGenEvaluator(program, ctx)(using split.targetProgram.getSemantics)
+      extends CodeGenEvaluator(program, ctx)(compiled.unit)(using split.targetProgram.getSemantics)
 
     EncodingEvaluator(p)(split)(new Impl(split.targetProgram))
   }
+}
+
+/** Semantics that keep the programs that [[CodeGenEvaluator]] compiled for their program, by the
+  * options of the context, so that its evaluators share them. */
+trait CodeGenCache { self: inox.Semantics =>
+  private val compiledPrograms = scala.collection.mutable.Map[inox.Options, CodeGenEvaluator.Compiled]()
+
+  private[evaluators] def compiled(options: inox.Options)(compile: => CodeGenEvaluator.Compiled): CodeGenEvaluator.Compiled =
+    synchronized(compiledPrograms.getOrElseUpdate(options, compile))
 }

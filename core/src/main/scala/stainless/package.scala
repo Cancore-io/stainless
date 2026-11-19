@@ -1,8 +1,7 @@
 /* Copyright 2009-2021 EPFL, Lausanne */
 
-import scala.collection.parallel.ForkJoinTasks
 import scala.concurrent.ExecutionContext
-import java.util.concurrent.Executors
+import java.util.concurrent.{Executors, ForkJoinPool}
 import java.io.PrintWriter
 import java.io.StringWriter
 import inox.transformers._
@@ -67,7 +66,7 @@ package object stainless {
     new inox.SemanticsProvider {
       val trees: stainless.trees.type = stainless.trees
 
-      def getSemantics(p: inox.Program { val trees: stainless.trees.type }): p.Semantics = new inox.Semantics { self =>
+      def getSemantics(p: inox.Program { val trees: stainless.trees.type }): p.Semantics = new inox.Semantics with evaluators.CodeGenCache { self =>
         val trees: p.trees.type = p.trees
         val symbols: p.symbols.type = p.symbols
         val program: Program { val trees: p.trees.type; val symbols: p.symbols.type } =
@@ -77,6 +76,12 @@ package object stainless {
           val program: self.program.type
           type S <: inox.solvers.combinators.TimeoutSolver { val program: self.program.type }
         } = solvers.SolverFactory(self.program, ctx)
+
+        override protected def createSolver(ctx: inox.Context, model: self.program.Model): inox.solvers.SolverFactory {
+          val program: self.program.type
+          type S <: inox.solvers.combinators.TimeoutSolver { val program: self.program.type }
+        } = solvers.SolverFactory.getFromSettings(self.program, ctx, Some(model))(
+          inox.transformers.ProgramEncoder.empty(self.program))(using self.asInstanceOf[self.program.Semantics])
 
         protected def createEvaluator(ctx: inox.Context): inox.evaluators.DeterministicEvaluator {
           val program: self.program.type
@@ -112,6 +117,11 @@ package object stainless {
           val program: self.program.type
           type S <: inox.solvers.combinators.TimeoutSolver { val program: self.program.type }
         } = solvers.SolverFactory.getFromSettings(self.program, ctx)(encoder)(using self.asInstanceOf[self.program.Semantics])
+
+        override protected def createSolver(ctx: inox.Context, model: self.program.Model): inox.solvers.SolverFactory {
+          val program: self.program.type
+          type S <: inox.solvers.combinators.TimeoutSolver { val program: self.program.type }
+        } = solvers.SolverFactory.getFromSettings(self.program, ctx, Some(model))(encoder)(using self.asInstanceOf[self.program.Semantics])
 
         protected def createEvaluator(ctx: inox.Context): inox.evaluators.DeterministicEvaluator {
           val program: self.program.type
@@ -167,13 +177,18 @@ package object stainless {
     ExecutionContext.fromExecutor(Executors.newFixedThreadPool(1))
 
   private lazy val multiThreadedExecutor: java.util.concurrent.ExecutorService =
-    nParallel.map(Executors.newFixedThreadPool(_)).getOrElse(ForkJoinTasks.defaultForkJoinPool)
+    nParallel.map(Executors.newFixedThreadPool(_)).getOrElse(ForkJoinPool.commonPool())
   lazy val multiThreadedExecutionContext: ExecutionContext =
     ExecutionContext.fromExecutor(multiThreadedExecutor)
 
-  implicit def executionContext(using ctx: inox.Context): ExecutionContext =
-    if (useParallelism && ctx.reporter.debugSections.isEmpty) multiThreadedExecutionContext
+  /** A single thread is used when a debug section is enabled, so that the debug output of concurrent tasks
+    * is not interleaved. The `stack` section does not count: it only prints the stack trace of a crash.
+    */
+  implicit def executionContext(using ctx: inox.Context): ExecutionContext = {
+    val interleavingSections = ctx.reporter.debugSections - frontend.DebugSectionStack
+    if (useParallelism && interleavingSections.isEmpty) multiThreadedExecutionContext
     else singleThreadExecutionContext
+  }
 
   def shutdown(): Unit = if (useParallelism) multiThreadedExecutor.shutdown()
 }

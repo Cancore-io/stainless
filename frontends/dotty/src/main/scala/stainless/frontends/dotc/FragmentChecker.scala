@@ -15,6 +15,7 @@ import Denotations._
 import StdNames._
 import Names._
 import util.SourcePosition
+import transform.TypeTestsCasts
 
 import scala.collection.mutable
 
@@ -364,11 +365,11 @@ class FragmentChecker(inoxCtx: inox.Context)(using override val dottyCtx: DottyC
     }
 
 
-  def isIgnoredSymbol(sym: Symbol, additionalCases: Boolean = false): Boolean = {
-    val ExternAnnotation = getClassIfDefinedOrNone("stainless.annotation.extern")
-    val IgnoreAnnotation = getClassIfDefinedOrNone("stainless.annotation.ignore")
-    val ScalaEnsuringMethod = requiredMethod("scala.Predef.Ensuring")
+  private val ExternAnnotation = getClassIfDefinedOrNone("stainless.annotation.extern")
+  private val IgnoreAnnotation = getClassIfDefinedOrNone("stainless.annotation.ignore")
+  private val ScalaEnsuringMethod = requiredMethod("scala.Predef.Ensuring")
 
+  def isIgnoredSymbol(sym: Symbol, additionalCases: Boolean = false): Boolean = {
     val isExtern = ExternAnnotation.exists(sym.hasAnnotation)
     val isIgnore = IgnoreAnnotation.exists(sym.hasAnnotation)
     // * If it's a synthetic symbol, we will still visit if it is either:
@@ -376,17 +377,14 @@ class FragmentChecker(inoxCtx: inox.Context)(using override val dottyCtx: DottyC
     //    -an anonymous function
     //    -an anonymous class
     // * We furthermore ignore ClassTag[T].apply() that appear for Array operations, which we can still extract.
-    isExtern || isIgnore || ((sym `is` Synthetic) && (sym ne ScalaEnsuringMethod) && !sym.isAnonymousFunction && !sym.isAnonymousFunction) ||
+    isExtern || isIgnore || ((sym `is` Synthetic) && (sym ne ScalaEnsuringMethod) && !sym.isAnonymousFunction && !sym.isAnonymousClass) ||
       (sym.owner eq defn.ClassTagModule_apply)
       || additionalCases
   }
 
   class Checker extends tpd.TreeTraverser {
-    private val ScalaEnsuringMethod = requiredMethod("scala.Predef.Ensuring")
-
     private val StainlessLangPackage = getClassIfDefinedOrNone("stainless.lang.package$")
-    private val ExternAnnotation = getClassIfDefinedOrNone("stainless.annotation.extern")
-    private val IgnoreAnnotation = getClassIfDefinedOrNone("stainless.annotation.ignore")
+    private val InternallyMutableAnnotation = getClassIfDefinedOrNone("stainless.annotation.internallyMutable")
     private val StainlessOld = StainlessLangPackage.map(_.info.decl(Names.termName("old")).symbol)
 
     private val BigInt_ApplyMethods =
@@ -595,6 +593,14 @@ class FragmentChecker(inoxCtx: inox.Context)(using override val dottyCtx: DottyC
         }
       }
 
+      // `@internallyMutable` may only annotate constructor fields of a class (whether they are private is
+      // checked during extraction). Constructor parameters themselves are not traversed here.
+      tree match {
+        case md: tpd.MemberDef if sym.exists && InternallyMutableAnnotation.exists(sym.hasAnnotation) && !(sym `is` ParamAccessor) =>
+          reportError(tree.sourcePos, "@internallyMutable can only annotate constructor fields of a class")
+        case _ => ()
+      }
+
       tree match {
         case cd @ ExClassDef() =>
           val isSupported =
@@ -607,14 +613,19 @@ class FragmentChecker(inoxCtx: inox.Context)(using override val dottyCtx: DottyC
           }
 
           val template = cd.rhs.asInstanceOf[tpd.Template]
-          val parents = template.parents.map(_.tpe).filterNot(isIgnored)
-          if (parents.length > 1) {
-            reportError(tree.sourcePos, s"Stainless supports only simple type hierarchies: Classes can only inherit from a single class/trait")
-          }
           traverse(template.constr)
           template.body.foreach {
-            case nested @ ExClassDef() =>
-              reportError(nested.sourcePos, "Classes can only be defined at the top-level, within objects, or within methods")
+            case nested @ ExClassDef() if sym `is` ModuleClass =>
+              reportError(nested.sourcePos, "Classes cannot be defined within case objects")
+            case nested @ ExClassDef() if !sym.owner.isClass =>
+              reportError(nested.sourcePos, "Classes cannot be defined within local classes")
+            case nested @ ExClassDef() if sym `is` Case =>
+              // Case classes compare structurally, while outer instances are compared by reference
+              reportError(nested.sourcePos, "Classes cannot be defined within case classes")
+            case nested @ ExClassDef() if nested.symbol `is` ModuleClass =>
+              reportError(nested.sourcePos, "Objects cannot be defined within classes or traits")
+            case nested @ ExObjectDef() if !(nested.symbol `is` Synthetic) =>
+              reportError(nested.sourcePos, "Objects cannot be defined within classes or traits")
             case tr => traverse(tr)
           }
 
@@ -629,6 +640,8 @@ class FragmentChecker(inoxCtx: inox.Context)(using override val dottyCtx: DottyC
           traverse(dd.rhs)
 
         case dd @ DefDef(_, _, _, _) =>
+          for (param <- dd.termParamss.flatten if InternallyMutableAnnotation.exists(param.symbol.hasAnnotation))
+            reportError(param.sourcePos, "@internallyMutable can only annotate constructor fields of a class")
           // recur only inside `dd.rhs`, as parameter/type parameters have been checked already in `checkType`
           traverse(dd.rhs)
 
@@ -644,12 +657,17 @@ class FragmentChecker(inoxCtx: inox.Context)(using override val dottyCtx: DottyC
           }
           traverseChildren(tree)
 
+        // A type test that the JVM cannot do, on a type parameter or on the type arguments of a class, is erased:
+        // its result at runtime is not the one Stainless reasons about. These are the tests scalac warns about.
+        case TypeApply(Select(expr, _), List(tpt)) if sym == defn.Any_isInstanceOf =>
+          val why = TypeTestsCasts.whyUncheckable(expr.tpe, tpt.tpe, tree.span, trustTypeApplication = false)
+          if (why.nonEmpty)
+            reportError(tree.sourcePos, s"The type test for ${tpt.tpe.show} cannot be checked at runtime because $why.")
+          traverseChildren(tree)
+
         case Apply(fun, args) if BigInt_ApplyMethods(sym) =>
           // `BigInt(_)` accepts a literal, or an `Int`/`Long` (a bitvector-to-integer conversion).
-          def okArg(a: tpd.Tree): Boolean =
-            a.isInstanceOf[tpd.Literal] ||
-            a.tpe.widenDealias.typeSymbol == defn.IntClass ||
-            a.tpe.widenDealias.typeSymbol == defn.LongClass
+          def okArg(a: tpd.Tree): Boolean = a.isInstanceOf[tpd.Literal] || hasIntOrLongType(a)
           if (args.size != 1 || !okArg(args.head))
             reportError(args.head.sourcePos, "Only literal, Int or Long arguments are allowed for BigInt.")
           traverseChildren(tree)

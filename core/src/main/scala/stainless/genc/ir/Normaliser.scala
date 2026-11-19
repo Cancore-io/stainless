@@ -35,7 +35,7 @@ final class Normaliser(val ctx: inox.Context) extends Transformer(CIR, NIR) with
   private def recCT(typ: ClassType)(using Env) = rec(typ).asInstanceOf[to.ClassType]
 
   override def recImpl(e: Expr)(using env: Env): (to.Expr, Env) = e match {
-    case _: Binding | _: FunVal | _: FunRef | _: Lit | _: Block | _: Deref | _: IntegralCast => super.recImpl(e)
+    case _: Binding | _: FunVal | _: FunRef | _: Lit | _: Block | _: Deref => super.recImpl(e)
 
     case Decl(vd0, Some(ArrayInit(alloc0))) =>
       val vd = rec(vd0)
@@ -187,6 +187,12 @@ final class Normaliser(val ctx: inox.Context) extends Transformer(CIR, NIR) with
 
       combine(pre :+ unop) -> env
 
+    case IntegralCast(expr0, newType) =>
+      val (pre, expr) = flatten(expr0, allowTopLevelApp = true, allowArray = false)
+      val cast = to.IntegralCast(expr, newType)
+
+      combine(pre :+ cast) -> env
+
     case If(cond0, thenn0) =>
       val (preCond, cond) = flatten(cond0, allowTopLevelApp = true, allowArray = false)
       val thenn = rec(thenn0)
@@ -275,19 +281,10 @@ final class Normaliser(val ctx: inox.Context) extends Transformer(CIR, NIR) with
     allowArray: Boolean,
     destination: Option[to.Binding] = None
   )(using Env): (Seq[to.Expr], to.Expr) = {
-    def innerLoop(e2: to.Expr): (Seq[to.Expr], to.Expr) = e2 match {
-      case to.Block(init :+ last) =>
-        (init, last)
-      case to.IntegralCast(e3, tpe) =>
-        val (i, l) = innerLoop(e3)
-        (i, to.IntegralCast(l, tpe))
-      case to.AsA(e3, tpe) =>
-        val (i, l) = innerLoop(e3)
-        (i, to.AsA(l, tpe))
-      case e =>
-        (Seq.empty, e)
+    val (init, last) = rec(e) match {
+      case to.Block(init :+ last) => (init, last)
+      case e => (Seq.empty, e)
     }
-    val (init, last) = innerLoop(rec(e))
     normalise(init, last, allowTopLevelApp, allowArray, destination)
   }
 
@@ -346,6 +343,9 @@ final class Normaliser(val ctx: inox.Context) extends Transformer(CIR, NIR) with
       case to.App(to.FunVal(fd), extra, args) if allowTopLevelApp => fd.isPure && extra.forall(rec) && args.forall(rec)
       case to.ArrayInit(to.ArrayAllocStatic(_, _, Left(_))) if allowArray => true
       case to.ArrayInit(to.ArrayAllocStatic(_, _, Right(elems))) if allowArray => elems.forall(rec)
+      // Class values can be the elements of an array given to a field of a fixed length, which has to remain
+      // in the struct literal that initialises the field
+      case to.Construct(_, args) => args.forall(rec)
       case _ => false
     }
     rec(e)
