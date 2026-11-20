@@ -17,14 +17,8 @@ trait GhostChecker { self: EffectsAnalyzer =>
           val field = adt.getField(selector).get
           (field.flags contains Ghost) || rec(field.getType, rest)
 
-        case (ct: ClassType, ClassFieldAccessor(selector) +: rest) =>
-          getClassField(ct, selector) match {
-            case Some(field) =>
-              (field.flags contains Ghost) || rec(field.getType, rest)
-            case None =>
-              throw ImperativeEliminationException(fd,
-                s"Could not find field $selector of class/trait ${ct.id}")
-          }
+        case (ct: ClassType, ClassFieldAccessor(field) +: rest) =>
+          (field.flags.contains(Ghost)) || rec(field.getType, rest)
 
         case (ArrayType(base), ArrayAccessor(index) +: rest) =>
           rec(base, rest)
@@ -115,6 +109,14 @@ trait GhostChecker { self: EffectsAnalyzer =>
         case _ => false
       }
 
+      /** Whether `obj.id = ...` writes ghost state, because the field `id` is ghost or `obj` is
+        * a ghost expression. The receiver and the right-hand side of such an assignment are ghost
+        * code: the backends erase them, so they must not affect non-ghost state.
+        */
+      private def isGhostFieldAssignment(obj: Expr, id: Identifier): Boolean =
+        (isADT(obj) && isGhostExpression(ADTSelector(obj, id))) ||
+        (isObject(obj) && isGhostExpression(ClassSelector(obj, id)))
+
       override def traverse(expr: Expr): Unit = expr match {
         case Let(vd, e, b) if vd.flags contains Ghost =>
           effects(e).find(!isGhostEffect(_)) match {
@@ -172,18 +174,13 @@ trait GhostChecker { self: EffectsAnalyzer =>
           throw ImperativeEliminationException(expr,
             "Snapshots can only be used in ghost contexts")
 
-        case FieldAssignment(obj, id, e) if isADT(obj) && isGhostExpression(ADTSelector(obj, id)) =>
-          effects(e).find(!isGhostEffect(_)) match {
+        case FieldAssignment(obj, id, e) if isGhostFieldAssignment(obj, id) =>
+          effects(obj).find(!isGhostEffect(_)) match {
             case Some(eff) =>
               throw ImperativeEliminationException(expr,
-                s"Right-hand side of ghost field assignment must only have effects on ghost fields (${eff.targetString} is not ghost)")
-            case None =>
-              traverse(obj)
-              traverse(id)
-              new Checker(true).traverse(e)
+                s"Receiver of ghost field assignment must only have effects on ghost fields (${eff.targetString} is not ghost)")
+            case None => ()
           }
-
-        case FieldAssignment(obj, id, e) if isObject(obj) && isGhostExpression(ClassSelector(obj, id)) =>
           effects(e).find(!isGhostEffect(_)) match {
             case Some(eff) =>
               throw ImperativeEliminationException(expr,

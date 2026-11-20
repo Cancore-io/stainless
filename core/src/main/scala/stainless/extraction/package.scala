@@ -26,9 +26,16 @@ package object extraction {
   val phases: Seq[(String, String)] = Seq(
     "UserFiltering"             -> "Remove all the library functions not used by the user",
     "Preprocessing"             -> "A preprocessing phase before the pipeline",
+    "Mixins"                    -> "Resolve mixin composition and super calls within traits",
+    "SelfTypes"                 -> "Cast this to the self type of its class",
+    "MemberClasses"             -> "Encode the path-dependent types of member classes as refinements",
+    "OuterIdentities"           -> "Assign identities to instances of classes with member classes",
+    "ConstructsUsage"           -> "Collect uses of `choose`, `@extern` and `???` for the summary report",
     "PartialFunctions"          -> "Lift partial function preconditions",
     "XlangLowering"             -> "Lowering phase at the end of xlang phases",
     "InnerClasses"              -> "Lift inner classes",
+    "InternallyMutableFields"   -> "Check that @internallyMutable fields are only accessed by allowed methods, and not compared by equality",
+    "ObservationallyPureCalls"  -> "Replace calls to observationally pure methods by their pure reference function",
     "Laws"                      -> "Rewrite laws as abstract functions with contracts",
     "SuperInvariants"           -> "Ensure super class invariant cannot be weakened in subclasses",
     "SuperCalls"                -> "Resolve super-function calls",
@@ -36,8 +43,10 @@ package object extraction {
     "MethodLifting"             -> "Lift methods into dispatching functions",
     "MergeInvariants"           -> "Merge all class invariants into a single method",
     "ValueClasses"              -> "Erase value classes",
+    "MethodsLowering"           -> "Lowering phase at the end of methods phases",
     "ExceptionLifting"          -> "Removes all throw statements, and replaces them with an assertion with false condition",
     "FieldAccessors"            -> "Inline field accessors of concrete classes",
+    "SameAsLowering"            -> "Lower `sameAs` postconditions of observationally pure functions to equalities",
     "EffectElaboration"         -> "Transform all side-effectful operations into mutable map updates",
     "AntiAliasing"              -> "Rewrite field and array mutations",
     "ReturnElimination"         -> "Eliminate `return` expressions",
@@ -61,14 +70,15 @@ package object extraction {
     "PartialEvaluation"         -> "Partially evaluate marked function calls",
     "AssertionInjector"         -> "Insert assertions which verify array accesses, casts, division by zero, etc.",
 
-    "ComputeDependencies"       -> "(GenC) Compute the dependencies of a given definition",
     "ComputeFunCtx"             -> "(GenC) Compute the context of each given function definition",
     "GhostElimination"          -> "(GenC) Remove ghost code",
+    "TrimSymbols"               -> "(GenC) Keep only the definitions that exported functions depend on",
     "Scala2IR"                  -> "(GenC) Convert the Stainless AST into GenC's IR",
     "StructInlining"            -> "(GenC) Inline structs which have just one member",
     "Normalisation"             -> "(GenC) Normalise IR to match the C execution model",
     "Lifting"                   -> "(GenC) Lift class types to their hierarchy top class",
     "Referencing"               -> "(GenC) Add 'referencing' to the input LIR program to produce a RIR program",
+    "TailRecElim"               -> "(GenC) Rewrite tail-recursive functions into loops",
     "IR2C"                      -> "(GenC) From IR to C",
   )
 
@@ -208,6 +218,11 @@ package object extraction {
           val program: self.program.type
           type S <: inox.solvers.combinators.TimeoutSolver { val program: self.program.type }
         } = solvers.SolverFactory.getFromSettings(self.program, ctx)(encoder)(using self.asInstanceOf[self.program.Semantics])
+
+        override protected def createSolver(ctx: inox.Context, model: self.program.Model): inox.solvers.SolverFactory {
+          val program: self.program.type
+          type S <: inox.solvers.combinators.TimeoutSolver { val program: self.program.type }
+        } = solvers.SolverFactory.getFromSettings(self.program, ctx, Some(model))(encoder)(using self.asInstanceOf[self.program.Semantics])
 
         protected def createEvaluator(ctx: inox.Context): inox.evaluators.DeterministicEvaluator {
           val program: self.program.type

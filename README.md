@@ -45,10 +45,11 @@ If all goes well, Stainless should report something along the lines:
 If you see funny symbols instead of beautiful ASCII art, run Stainless with the `--no-colors` option for clean ASCII output with a standardized error message format.
 
 The release archive of Stainless only requires JDK 27 (Temurin). In particular, it needs
-neither a Scala compiler nor SBT. It is shipped with Z3 5.0.0+, cvc5 1.3.4+ and
-Princess (branch compiled for Scala 3). If the Z3 native API is not found, use
-the option `--solvers=smt-z3` to rely on the executable instead of API call to
-z3.
+neither a Scala compiler nor SBT. It is shipped with Z3 5.4.1+, cvc5 1.4.2+ and
+Princess (branch compiled for Scala 3). It includes the Z3 native API for Linux
+(x64 and ARM64, glibc 2.39 or later), macOS (ARM64) and Windows (x64). Elsewhere,
+Stainless falls back to the Z3 executable; use the option `--solvers=smt-z3` to
+rely on the executable explicitly.
 
 ## Build and Installation Instructions
 
@@ -83,13 +84,13 @@ There is also a [Stainless EPFL Page](https://stainless.epfl.ch) which hosts a m
 
 ## Running CI on your personal runner (CAN-2942)
 
-`stainless-CI.yml`, `stainless-lite-bolts.yml`, `stainless-nightly.yml` and `stainless-explicit-fastmachines.yml` can run on your own self-hosted runner instead of the shared pool. Start one with gitops [`tools/personal-runner`](https://github.com/Cancore-io/gitops/blob/dev/tools/personal-runner/README.md), push your branch, then:
+`stainless-CI.yml`, `stainless-lite-bolts.yml` and `stainless-nightly.yml` can run on your own self-hosted runner instead of the shared pool. Start one with gitops [`tools/personal-runner`](https://github.com/Cancore-io/gitops/blob/dev/tools/personal-runner/README.md), push your branch, then:
 
 ```bash
 gh workflow run stainless-CI.yml -R Cancore-io/stainless --ref <branch> -f runner=personal
 ```
 
-PR, push and scheduled runs always go to the pool (`[self-hosted, linux]`, `fast-machines` for the explicit workflow); only a manual run with `runner=personal` goes to the runner of whoever dispatched it, and a re-run goes to the runner of whoever re-ran it (`github.triggering_actor`).
+PR, push and scheduled runs always go to the pool (`[self-hosted, linux]`); only a manual run with `runner=personal` goes to the runner of whoever dispatched it, and a re-run goes to the runner of whoever re-ran it (`github.triggering_actor`).
 
 Prerequisites:
 

@@ -292,6 +292,12 @@ trait ASTExtractors {
 
   def hasBigIntType(t: tpd.Tree) = isBigIntSym(t.tpe.typeSymbol)
 
+  /** Whether `t` is an `Int` or a `Long`, including a union of their literal types, such as the type of
+    * `if c then 1 else 0`.
+    */
+  def hasIntOrLongType(t: tpd.Tree): Boolean =
+    (t.tpe frozen_<:< defn.IntType) || (t.tpe frozen_<:< defn.LongType)
+
   def hasStringType(t: tpd.Tree) = isStringSym(t.tpe.typeSymbol)
 
   private lazy val bvtypes = Set(defn.ByteType, defn.ShortType, defn.IntType, defn.LongType)
@@ -1338,7 +1344,7 @@ trait ASTExtractors {
             Literal(Constant(()))
           )
         ) =>
-          args match {
+          args.map(stripInlineMarkers) match {
             case List(Literal(cnst: Constant)) => Some((body, Some(cnst.stringValue), false))
             case _ => Some((body, None, false))
           }
@@ -1349,11 +1355,12 @@ trait ASTExtractors {
           Nil,
           Apply(ExSymbol("scala", "runtime", "Scala3RunTime$", "assertFailed"), args)
         ) =>
-          args match {
+          args.map(stripInlineMarkers) match {
             case List(Literal(cnst: Constant)) => Some((tpd.Literal(Constant(false)), Some(cnst.stringValue), false))
             case _ => Some((tpd.Literal(Constant(false)), None, false))
           }
 
+        // Scala 3 does not inline the calls to Scala's assert in the body of an inline method.
         case Apply(ExSymbol("scala", "Predef$", "assert"), Seq(body)) =>
           Some((body, None, false))
 
@@ -1512,6 +1519,14 @@ trait ASTExtractors {
       }
     }
 
+    object ExSameAsExpression {
+      def unapply(tree: tpd.Apply): Option[tpd.Tree] = tree match {
+        case Apply(TypeApply(ExSymbol("stainless", "lang", "package$", "sameAs"), Seq(_)), Seq(arg)) => Some(arg)
+        case _ => None
+      }
+    }
+
+
     object ExSnapshotExpression {
       def unapply(tree: tpd.Apply): Option[tpd.Tree] = tree match {
         case Apply(TypeApply(ExSymbol("stainless", "lang", "package$", "snapshot"), Seq(_)), Seq(arg)) => Some(arg)
@@ -1528,10 +1543,10 @@ trait ASTExtractors {
       }
     }
 
-    /** Matches the construct int2bigInt(a) and returns a */
+    /** Matches the implicit conversions `int2bigInt(a)` and `long2bigInt(a)`, and returns `a`. */
     object ExIntToBigInt {
       def unapply(tree: tpd.Tree): Option[tpd.Tree] = tree match {
-        case Apply(ExSymbol("scala", "math", "BigInt$", "int2bigInt"), List(t)) => Some(t)
+        case Apply(ExSymbol("scala", "math", "BigInt$", "int2bigInt" | "long2bigInt"), List(t)) => Some(t)
         case _ => None
       }
     }

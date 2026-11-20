@@ -1,5 +1,6 @@
 package crypto
 
+import stainless.annotation._
 import stainless.lang._
 import stainless.lang.StaticChecks._
 import crypto.NumberTheory._
@@ -67,6 +68,14 @@ object SqrtMod {
     else leastOrderExp(t, i + 1, m, p)
   }.ensuring(res => i <= res && res <= m)
 
+  /** Product reduced modulo p. Kept opaque so callers see only the range [0, p),
+   *  avoiding nested nonlinear modulo terms in Z3 5.4.1's batched solver context. */
+  @opaque
+  def mulMod(a: BigInt, b: BigInt, p: BigInt): BigInt = {
+    require(p > 0)
+    (a * b).mod(p)
+  }.ensuring(res => 0 <= res && res < p)
+
   def tsLoop(m: BigInt, c: BigInt, t: BigInt, r: BigInt, p: BigInt): BigInt = {
     require(m >= 1 && 0 <= c && c < p && 0 <= t && t < p && 0 <= r && r < p && p > 2)
     decreases(m)
@@ -76,8 +85,8 @@ object SqrtMod {
       if (i == m) r // n is not a residue: the certificate check in sqrtMod rejects r
       else {
         val b = squareTimes(c, m - i - 1, p)
-        val b2 = (b * b).mod(p)
-        tsLoop(i, b2, (t * b2).mod(p), (r * b).mod(p), p)
+        val b2 = mulMod(b, b, p)
+        tsLoop(i, b2, mulMod(t, b2, p), mulMod(r, b, p), p)
       }
     }
   }.ensuring(res => 0 <= res && res < p)

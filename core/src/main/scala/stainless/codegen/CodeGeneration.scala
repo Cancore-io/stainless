@@ -358,7 +358,7 @@ trait CodeGeneration { self: CompilationUnit =>
 
   private val lambdaClasses = new Bijection[Lambda, String]
 
-  protected def jvmClassNameToLambda(className: String): Option[Lambda] = lambdaClasses.getA(className)
+  protected def jvmClassNameToLambda(className: String): Option[Lambda] = synchronized(lambdaClasses.getA(className))
 
   private val typeParams: ListBuffer[TypeParameter] = new ListBuffer[TypeParameter]
 
@@ -409,7 +409,6 @@ trait CodeGeneration { self: CompilationUnit =>
       case None =>
         val afId = FreshIdentifier("Stainless$CodeGen$Lambda$")
         val afName = afId.uniqueName
-        lambdaClasses += lambda -> afName
 
         val cf = new ClassFile(afName, Some(LambdaClass))
 
@@ -554,7 +553,11 @@ trait CodeGeneration { self: CompilationUnit =>
           hch.freeze
         }
 
-        loader.register(cf)
+        registerClass(cf)
+        // The lambda is only mapped to its class once the class is registered: compiling its body
+        // can fail, and the expressions compiled later would otherwise refer to a class that the
+        // loader doesn't have, and fail with a `NoClassDefFoundError` when they are loaded.
+        lambdaClasses += lambda -> afName
 
         afName
     }
@@ -1027,6 +1030,10 @@ trait CodeGeneration { self: CompilationUnit =>
     case BVShiftLeft(l, r)   => mkBVShift(l, r, ch, ISHL,  LSHL,  "shiftLeft")
     case BVLShiftRight(l, r) => mkBVShift(l, r, ch, IUSHR, LUSHR, "lShiftRight")
     case BVAShiftRight(l, r) => mkBVShift(l, r, ch, ISHR,  LSHR,  "aShiftRight")
+    // these are `Int` or `Long` shifts, whose JVM instructions take the amount modulo the width
+    case JVMShiftLeft(l, r)   => mkBVShift(l, r, ch, ISHL,  LSHL,  "shiftLeft")
+    case JVMLShiftRight(l, r) => mkBVShift(l, r, ch, IUSHR, LUSHR, "lShiftRight")
+    case JVMAShiftRight(l, r) => mkBVShift(l, r, ch, ISHR,  LSHR,  "aShiftRight")
 
     case BVUnsignedToSigned(e) =>
       e.getType match
@@ -1313,6 +1320,33 @@ trait CodeGeneration { self: CompilationUnit =>
       ch << InvokeVirtual(MonitorClass, "onChooseInvocation", s"(I[I[L$ObjectClass;)L$ObjectClass;")
 
       mkUnbox(choose.getType, ch)
+
+    // The model gives uninterpreted functions, which the monitor applies to the arguments
+    case uc: UninterpretedCall =>
+      val id = registerUninterpreted(uc, locals.tparams)
+
+      loadImpl(monitorID, ch)
+      ch << Ldc(id)
+      if (locals.tparams.nonEmpty) {
+        loadImpl(tpsID, ch)
+      } else {
+        ch << Ldc(0) << NewArray.primitive("T_INT")
+      }
+
+      ch << Ldc(uc.args.size)
+      ch << NewArray(ObjectClass)
+
+      for ((arg, i) <- uc.args.zipWithIndex) {
+        ch << DUP
+        ch << Ldc(i)
+        mkExpr(arg, ch)
+        mkBox(arg.getType, ch)
+        ch << AASTORE
+      }
+
+      ch << InvokeVirtual(MonitorClass, "onUninterpretedInvocation", s"(I[I[L$ObjectClass;)L$ObjectClass;")
+
+      mkUnbox(uc.getType, ch)
 
     case gv @ GenericValue(tp, int) =>
       val id = runtime.GenericValues.register(gv)

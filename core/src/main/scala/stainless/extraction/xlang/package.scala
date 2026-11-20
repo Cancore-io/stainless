@@ -10,7 +10,7 @@ package object xlang {
       functions: Map[Identifier, FunDef], sorts: Map[Identifier, ADTSort],
       classes: Map[Identifier, ClassDef],
       typeDefs: Map[Identifier, TypeDef],
-    ) extends ClassSymbols with InnerClassesAbstractSymbols {
+    ) extends ClassSymbols with InnerClassesAbstractSymbols with xlang.SymbolOps with xlang.DependencyGraph {
       override val symbols: this.type = this
     }
 
@@ -40,7 +40,11 @@ package object xlang {
       override protected type TransformerContext = identity.type
       override protected def getContext(symbols: s.Symbols) = identity
 
-      private def keepFlag(flag: s.Flag): Boolean = flag != s.Ignore && flag != s.StrictBV
+      private def keepFlag(flag: s.Flag): Boolean = flag match {
+        case s.Ignore | s.StrictBV | s.IsObject | s.IsMemberOf(_) | s.IsTrait | s.SelfType(_) => false
+        case s.Annotation("outerAccessor", Seq()) => false
+        case _ => true
+      }
 
       protected val identity = new Identity(self.s, self.t)
 
@@ -68,6 +72,10 @@ package object xlang {
     }
 
     val lowering = new Lowering(trees, innerclasses.trees)
+    utils.NamedPipeline("Mixins", Mixins(trees)) `andThen`
+    utils.NamedPipeline("SelfTypes", SelfTypes(trees)) `andThen`
+    utils.NamedPipeline("MemberClasses", MemberClasses(trees)) `andThen`
+    utils.NamedPipeline("OuterIdentities", OuterIdentities(trees)) `andThen`
     utils.NamedPipeline("ConstructsUsage", ConstructsUsage(trees)) `andThen`
     utils.NamedPipeline("PartialFunctions", PartialFunctions(trees)) `andThen`
     utils.NamedPipeline("XlangLowering", lowering)

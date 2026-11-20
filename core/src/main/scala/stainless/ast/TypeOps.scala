@@ -8,13 +8,31 @@ trait TypeOps extends inox.ast.TypeOps {
   import trees._
   import symbols.{given, _}
 
+  /** The type `tpe` without its top-level refinements and annotations. The refinements of its
+    * components (e.g. of its type arguments) are kept.
+    *
+    * Unlike `stripToplevelRefinement`, which keeps annotations as the frontends rely on them (e.g. the
+    * types of unsigned integers are annotated bit-vector types). */
+  def unrefined(tpe: Type): Type = tpe match {
+    case RefinementType(vd, _) => unrefined(vd.tpe)
+    case AnnotatedType(tpe, _) => unrefined(tpe)
+    case _ => tpe
+  }
+
+  /** The result type of the accessor `id` (`isEmpty` or `get`) of an `unapply` function whose result has type
+    * `inType`.
+    *
+    * The top-level refinements of both types are dropped: they can be postconditions, such as the size bounds that
+    * measure inference adds to the result type of `unapply`, `isEmpty` and `get`, and patterns only need the
+    * underlying types.
+    */
   def unapplyAccessorResultType(id: Identifier, inType: Type): Option[Type] =
     lookupFunction(id)
       .filter(_.params.size == 1)
       .flatMap { fd =>
-        instantiation(fd.params.head.tpe, inType)
+        instantiation(fd.params.head.tpe, inType.stripToplevelRefinement)
           .filter(tpMap => fd.typeArgs forall (tpMap contains _))
-          .map(typeOps.instantiateType(fd.returnType, _))
+          .map(typeOps.instantiateType(fd.returnType, _).stripToplevelRefinement)
       }
 
   def patternIsTyped(in: Type, pat: Pattern): Boolean = {

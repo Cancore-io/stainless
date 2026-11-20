@@ -27,10 +27,10 @@ Merged PR branches:
 
 | Component | Version | Source |
 | :--- | :--- | :--- |
-| Stainless | 0.10.2 (host release) | `stainless` on PATH, or `STAINLESS=...` |
-| Z3 | 5.0.0 | shipped with the 0.10.2 release (`bin/package-standalone.sh`) |
-| cvc5 | 1.3.4 | shipped with the 0.10.2 release |
-| Princess | 2025-04-01 | inox submodule `37db9545` |
+| Stainless | 0.10.4+ (`2862c0fc`) | `stainless` on PATH, or `STAINLESS=...` |
+| Z3 | 5.4.1 | shipped with `bin/package-standalone.sh` & bundled `scalaz3` 5.4.1 |
+| cvc5 | 1.4.2 | shipped with `bin/package-standalone.sh` |
+| Princess | 2025-04-01 | inox submodule `49a32243` |
 | bolts | `a02ca7fd` (2026-08-28) | submodule `damlaudit/bolts` |
 | algebra | in tree | `frontends/algebra` (upstream PR #645, merged 2019) |
 

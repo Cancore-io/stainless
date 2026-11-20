@@ -1,0 +1,12 @@
+[ Error  ] MemberClassesUnsupported.scala:4:5: Objects cannot be defined within classes or traits
+               object Inner
+               ^^^^^^^^^^^^
+[ Error  ] MemberClassesUnsupported.scala:8:5: Classes cannot be defined within case objects
+               case class InCaseObject()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^
+[ Error  ] MemberClassesUnsupported.scala:13:5: Classes cannot be defined within case classes
+               case class CaseInner()
+               ^^^^^^^^^^^^^^^^^^^^^^
+[ Error  ] MemberClassesUnsupported.scala:18:7: Classes cannot be defined within local classes
+                 case class InLocal()
+                 ^^^^^^^^^^^^^^^^^^^^

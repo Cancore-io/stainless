@@ -7,6 +7,7 @@ import inox.Options
 import inox.solvers.*
 import stainless.transformers.LatticesSimplifier
 
+import java.util.concurrent.ExecutionException
 import java.util.concurrent.atomic.{AtomicBoolean, AtomicInteger}
 import scala.util.{Failure, Success}
 import scala.concurrent.Future
@@ -179,11 +180,26 @@ trait VerificationChecker { self =>
       // Note that `successful(e)` is eager and gets immediately evaluated whereas Future(e) is a scheduled task.
       // If parallelism is not explicitly enabled, we fallback to eager evaluation
       // (even on a thread pool of a single thread, it seems that the VCs won't necessarily be sequentially processed).
-      if (nParallel.exists(_ > 1)) Future(processVC(vc))
-      else Future.successful(processVC(vc))
+      if (nParallel.exists(_ > 1)) Future(boxingFatalErrors(processVC(vc)))
+      else Future.successful(boxingFatalErrors(processVC(vc)))
     }.map(_.flatten)
 
     results.map(initMap ++ _)
+  }
+
+  /** Evaluates `body`, rethrowing the errors that `scala.util.control.NonFatal` considers fatal,
+   *  such as a `StackOverflowError` or a `LinkageError`, wrapped in an `ExecutionException`.
+   *
+   *  A `Future` is never completed when the code that computes it throws such an error: the
+   *  error only terminates the thread that ran this code. Whoever waits for the results of the
+   *  VCs would then wait forever.
+   */
+  private def boxingFatalErrors[T](body: => T): T = {
+    try body
+    catch {
+      case e: (VirtualMachineError | LinkageError) =>
+        throw new ExecutionException("Fatal error while checking a verification condition", e)
+    }
   }
 
   /** Check whether the model for the ADT invariant specified by the given (invalid) VC is
@@ -206,14 +222,18 @@ trait VerificationChecker { self =>
   protected def checkAdtInvariantModel(vc: VC, invId: Identifier, model: Model): VCStatus = {
     import inox.evaluators.EvaluationResults._
 
-    val Seq((inv, adt, path)) = collectWithPC(vc.condition) {
-      case (inv @ FunctionInvocation(`invId`, _, Seq(adt: ADT)), path) => (inv, adt, path)
-    }
-
     def success: VCStatus = {
       reporter.debug("- Model validated.")
       VCStatus.Invalid(VCStatus.CounterExample(model))
     }
+
+    val invocations = collectWithPC(vc.condition) {
+      case (inv @ FunctionInvocation(`invId`, _, Seq(adt: ADT)), path) => (inv, adt, path)
+    }
+
+    // An inlined invariant isn't invoked in the VC, so its model is reported as is
+    if (invocations.isEmpty) return success
+    val Seq((inv, adt, path)) = invocations
 
     def failure(reason: String): VCStatus = {
       reporter.warning(reason)
@@ -243,7 +263,7 @@ trait VerificationChecker { self =>
       val newAdt = ADT(adt.id, adt.tps, newArgs)
       val adtVar = Variable(FreshIdentifier("adt"), adt.getType(using symbols), Seq())
       val newInv = FunctionInvocation(invId, inv.tps, Seq(adtVar))
-      val newModel = inox.Model(program)(model.vars + (adtVar.toVal -> newAdt), model.chooses)
+      val newModel = inox.Model(program)(model.vars + (adtVar.toVal -> newAdt), model.interpretations)
       val newCondition = exprOps.replace(Map(inv -> newInv), vc.condition)
 
       evaluator.eval(newCondition, newModel) match {
@@ -312,6 +332,8 @@ trait VerificationChecker { self =>
         case Success(res) => res match {
           case Unknown =>
             VCResult(s match {
+              case _ if s.resourceLimitReached => VCStatus.ResourceLimit
+              case _ if s.unrollBoundReached => VCStatus.UnrollBound
               case ts: inox.solvers.combinators.TimeoutSolver => ts.optTimeout match {
                 case Some(t) if t < time => VCStatus.Timeout
                 case _ => VCStatus.Unknown
