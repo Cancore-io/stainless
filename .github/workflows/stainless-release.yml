@@ -26,10 +26,11 @@ permissions:
 
 jobs:
   release:
-    runs-on:
-      labels: [self-hosted, linux]
+    # The org pool is the ARC scale set `cancore-runners` (as in canton-contracts); no runner carries
+    # `self-hosted, linux`, so jobs asking for it sat queued until GitHub cancelled them (CAN-3781).
+    runs-on: cancore-runners
     env:
-      JAVA_OPTS: -Dsbt.io.implicit.relative.glob.conversion=allow -Xss512M -Xms1024M -Xmx12G -XX:MaxMetaspaceSize=2G -XX:+UseCodeCacheFlushing -XX:ReservedCodeCacheSize=768M
+      JAVA_OPTS: -Dsbt.io.implicit.relative.glob.conversion=allow -Xss512M -Xms1024M -XX:MaxRAMPercentage=70 -XX:MaxMetaspaceSize=2G -XX:+UseCodeCacheFlushing -XX:ReservedCodeCacheSize=768M
       JAVA_OPTS_TMP_DIR: /tmp/tmp_${{ github.run_id }}_${{ github.run_attempt }}
       GH_TOKEN: ${{ github.token }}
       VERSION: ${{ github.event.inputs.version }}
@@ -42,6 +43,13 @@ jobs:
         fetch-depth: 0
         fetch-tags: true
         submodules: recursive
+    - name: Packaging tools
+      # package-standalone.sh needs wget, unzip and zip; checked before the tag is pushed, so a
+      # missing tool cannot leave a tag without a release behind.
+      run: |
+        missing=()
+        for t in wget unzip zip; do command -v "$t" >/dev/null || missing+=("$t"); done
+        [ "${#missing[@]}" -eq 0 ] || { sudo apt-get update -qq && sudo apt-get install -y -qq "${missing[@]}"; }
     - name: Validate version
       run: |
         # vX.Y.Z, or vX.Y.Z-cancore.N for a Cancore fork build (CAN-3282).
