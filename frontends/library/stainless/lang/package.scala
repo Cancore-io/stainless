@@ -39,12 +39,15 @@ package object lang {
     }
   }
 
+  /** The root of Stainless exceptions, which `java.lang.Throwable` and `java.lang.Exception` are extracted as.
+    * Its subclasses for the standard Java exceptions are in `JavaExceptions.scala`. */
   @library
-  abstract class Exception extends Throwable
+  class Exception(msg: String = "") extends Throwable {
+    override def getMessage: String = msg
+  }
 
   @library
-  @extern
-  def Exception(msg: String): Exception = new Exception{}
+  def Exception(msg: String): Exception = new Exception(msg)
 
   @library
   sealed abstract class Try[T]{
@@ -62,13 +65,16 @@ package object lang {
   @library case class Failure[T](exc: Exception) extends Try[T]
 
   /** `body.throwing(pred)` states that `body` may throw the exceptions that satisfy `pred`.
-    * The exceptions of a function without a `throwing` clause may not escape it. */
+    * The exceptions of a function without a `throwing` clause may not escape it.
+    *
+    * `pred` takes a `Throwable`, so that it can match on Java exceptions as well, but Stainless extracts
+    * `Throwable` as `Exception` (see `JavaExceptions.scala`). */
   @ignore
   implicit class Throwing[T](underlying: => T) {
-    def throwing(pred: Exception => Boolean): T = try {
+    def throwing(pred: Throwable => Boolean): T = try {
       underlying
     } catch {
-      case e: Exception =>
+      case e: Throwable =>
         assert(pred(e))
         throw e
     }

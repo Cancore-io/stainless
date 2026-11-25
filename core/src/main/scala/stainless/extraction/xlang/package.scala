@@ -72,6 +72,7 @@ package object xlang {
     }
 
     val lowering = new Lowering(trees, innerclasses.trees)
+    utils.NamedPipeline("ConcreteParents", ConcreteParents(trees)) `andThen`
     utils.NamedPipeline("Mixins", Mixins(trees)) `andThen`
     utils.NamedPipeline("SelfTypes", SelfTypes(trees)) `andThen`
     utils.NamedPipeline("MemberClasses", MemberClasses(trees)) `andThen`
