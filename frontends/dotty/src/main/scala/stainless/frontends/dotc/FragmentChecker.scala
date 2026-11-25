@@ -74,6 +74,16 @@ class FragmentChecker(inoxCtx: inox.Context)(using override val dottyCtx: DottyC
     clsInfo.decls.iterator.filter(s => !(s `is` Method) && ((s `is` ParamAccessor) || (s `is` CaseAccessor))).toList
   }
 
+  /** Whether the values of `tpe` are Stainless exceptions: instances of `stainless.lang.Exception`, possibly
+    * through one of the Java exceptions extracted as Stainless classes, but through no other Java class.
+    */
+  private def isStainlessException(tpe: Type): Boolean = (tpe <:< exceptionSym.typeRef) || {
+    val cls = tpe.widen.classSymbol
+    cls.isClass && cls.asClass.baseClasses
+      .find(base => base == exceptionSym || base.is(JavaDefined))
+      .exists(base => base == exceptionSym || javaExceptions.contains(base))
+  }
+
   // Note: we wrap Symbols into an Option to emphasize the fact that the symbol may not exist
   // and that care must be taken in case it does not.
   private def getClassIfDefinedOrNone(cls: String)(using DottyContext): Option[ClassSymbol] = {
@@ -677,22 +687,25 @@ class FragmentChecker(inoxCtx: inox.Context)(using override val dottyCtx: DottyC
             reportError(tree.sourcePos, "Cannot issue a super call to an abstract method.")
           traverseChildren(tree)
 
-//        case Apply(ex, Seq(arg)) if ex.symbol == defn.throwMethod =>
-//          reportError(tree.sourcePos, "throw expressions are unsupported in Stainless")
-//          traverseChildren(tree)
+        case Apply(ex, Seq(arg)) if ex.symbol == defn.throwMethod =>
+          if (!isStainlessException(arg.tpe))
+            reportError(arg.sourcePos, "Only subclasses of stainless.lang.Exception, or of the Java exceptions that Stainless supports, can be thrown in Stainless")
+          traverseChildren(tree)
+
+        case Try(_, cases, _) =>
+          for (cd <- cases) cd.pat match {
+            case Ident(nme.WILDCARD) => ()
+            case pat if !isStainlessException(pat.tpe) =>
+              reportError(pat.sourcePos, "Only subclasses of stainless.lang.Exception, or of the Java exceptions that Stainless supports, can be caught in Stainless")
+            case _ => ()
+          }
+          traverseChildren(tree)
 
         case Apply(fun, args) =>
           if (stainlessReplacement.contains(sym))
             reportError(tree.sourcePos, s"Scala API ($sym) no longer extracted, please use ${stainlessReplacement(sym)}")
           if (defn.ObjectMethods.contains(sym))
             reportError(tree.sourcePos, s"Method ${sym.name} on Object is not supported")
-          traverseChildren(tree)
-
-        case Try(_, cases, finalizer) =>
-          if (cases.isEmpty && finalizer.isEmpty) reportError(tree.sourcePos, "try expressions are not supported in Stainless")
-          else if (cases.isEmpty && !finalizer.isEmpty) reportError(tree.sourcePos, "try-finally expressions are not supported in Stainless")
-          else if (finalizer.isEmpty) reportError(tree.sourcePos, "try-catch expressions are not supported in Stainless")
-          else reportError(tree.sourcePos, "try-catch-finally expressions are not supported in Stainless")
           traverseChildren(tree)
 
         case tpl @ Template(_, _, _, _) =>

@@ -51,6 +51,11 @@ class VerificationSuite extends VerificationComponentTestSuite {
 
   private val ignorePrincess = ignoreCommon ++
     Set(
+      // Arrays
+      "verification/valid/Exceptions4",
+      // Strings
+      "verification/valid/ExceptionMessages",
+      "verification/valid/JavaExceptionMessages",
       // valid/MicroTests
       "verification/valid/ADTWithArray1",
       "verification/valid/ADTWithArray2",
@@ -104,8 +109,10 @@ class VerificationSuite extends VerificationComponentTestSuite {
       "verification/valid/FoolProofAdder",
       "verification/valid/FunctionMaps",
       "verification/valid/FunctionMapsObj",
+      "verification/valid/GenericInstanceTests", // Princess times out
       "verification/valid/GenericOuters", // Princess times out
       "verification/valid/GenericOutersInherited", // Princess times out
+      "verification/valid/GenericSortInvariants",
       "verification/valid/GodelNumbering",
       "verification/valid/Heaps",
       "verification/valid/HOInvocations2",
@@ -181,6 +188,7 @@ class VerificationSuite extends VerificationComponentTestSuite {
       "verification/invalid/Float8",
       "verification/invalid/ForallAssoc",
       "verification/invalid/GenericOuters", // Princess overflows its stack
+      "verification/invalid/GenericSortInvariants",
       "verification/invalid/Generics2",
       "verification/invalid/HiddenOverride",
       "verification/invalid/HOInvocations",
@@ -189,6 +197,7 @@ class VerificationSuite extends VerificationComponentTestSuite {
       "verification/invalid/i665",
       "verification/invalid/i1295",
       "verification/invalid/i1379c",
+      "verification/invalid/i1506",
       "verification/invalid/InductTacticTest",
       "verification/invalid/InsertionSort",
       "verification/invalid/IntSet",
