@@ -3,7 +3,7 @@ package stainless
 package extraction
 package methods
 
-import inox.utils.Position
+import inox.utils.{NoPosition, Position}
 
 class MethodLifting(override val s: Trees, override val t: oo.Trees)
                    (using override val context: inox.Context)
@@ -306,23 +306,34 @@ class MethodLifting(override val s: Trees, override val t: oo.Trees)
         }
 
         val expectedType = s.typeOps.instantiateType(fd.returnType, tpMap)
-        (t.IsInstanceOf(arg.toVariable, descType).copiedFrom(arg), wrap(expr, tpe, expectedType))
+        val res = wrap(expr, tpe, expectedType)
+        // The library is assumed verified, and has no positions, so the VCs of dispatching from it are
+        // reported only for user overrides, at the override
+        if (fd.isLibrary && (nfd.isLibrary || descendant.cd.isLibrary)) {
+          (t.IsInstanceOf(arg.toVariable, descType).copiedFrom(arg), unchecked(res))
+        } else {
+          if (fd.getPos == NoPosition) t.exprOps.preTraversal(e => if (e.getPos == NoPosition) e.setPos(nfd.getPos))(res)
+          (t.IsInstanceOf(arg.toVariable, descType).copiedFrom(arg), res)
+        }
       }
     }).flatten
 
     val returnType = transformer.transform(fd.returnType)
 
-    val notFullyOverriden: Boolean = !(cd.flags contains IsSealed) || {
-      def rec(fo: Override): Boolean = fo match {
-        case Override(_, Some(_), _) => true
-        case Override(_, _, children) => children.forall(rec)
-      }
-
+    // The body of `fd` is unreachable only if every instance of `cd` is an instance of a class that
+    // overrides it. Each class without an override must then be abstract and sealed, with all its
+    // children fully overriding it (a child without an override inherits the body of `fd`).
+    def fullyOverridden(cd: ClassDef, cos: Seq[Override]): Boolean = {
       val coMap = cos.map(co => co.cid -> co).toMap
-      cd.children(using symbols).exists {
-        ccd => !(coMap contains ccd.id) || !rec(coMap(ccd.id))
+      cd.isAbstract && cd.isSealed && cd.children(using symbols).forall { ccd =>
+        coMap.get(ccd.id).exists {
+          case Override(_, Some(_), _) => true
+          case Override(_, None, children) => fullyOverridden(ccd, children)
+        }
       }
     }
+
+    val notFullyOverriden: Boolean = !fullyOverridden(cd, cos)
 
     val (specs, body) = exprOps.deconstructSpecs(fd.fullBody)
 

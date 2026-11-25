@@ -265,7 +265,7 @@ trait Definitions extends innerfuns.Trees { self: Trees =>
         throw NotWellFormedException(cd, Some(s"the parent ${pcd.id} of class ${cd.id} is not well typed."))
       }
 
-      cd.parents.find(!_.tcd.cd.flags.contains(IsAbstract)).foreach { pcd =>
+      cd.parents.find(p => !p.tcd.cd.flags.exists(f => f == IsAbstract || f == IsExtensible)).foreach { pcd =>
         throw NotWellFormedException(cd,
           Some(s"a concrete class (${pcd.id}) cannot be extended (by ${cd.id}).")
         )
@@ -320,6 +320,8 @@ trait Definitions extends innerfuns.Trees { self: Trees =>
 
   case object IsInvariant extends Flag("invariant", Seq.empty)
   case object IsAbstract extends Flag("abstract", Seq.empty)
+  /** A concrete class that may be extended (see [[xlang.ConcreteParents]]). */
+  case object IsExtensible extends Flag("extensible", Seq.empty)
   case object IsSealed extends Flag("sealed", Seq.empty)
   case object IsCaseObject extends Flag("caseObject", Seq.empty)
   case class Bounds(lo: Type, hi: Type) extends Flag("bounds", Seq(lo, hi))

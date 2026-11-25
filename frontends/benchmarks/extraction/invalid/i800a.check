@@ -1,3 +1,0 @@
-[ Error  ] i800a.scala:13:5: try-catch expressions are not supported in Stainless
-               try mystery() catch {
-               ^^^^^^^^^^^^^^^^^^^^^...
