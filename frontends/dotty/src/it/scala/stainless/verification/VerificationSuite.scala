@@ -104,8 +104,10 @@ class VerificationSuite extends VerificationComponentTestSuite {
       "verification/valid/FoolProofAdder",
       "verification/valid/FunctionMaps",
       "verification/valid/FunctionMapsObj",
+      "verification/valid/GenericInstanceTests", // Princess times out
       "verification/valid/GenericOuters", // Princess times out
       "verification/valid/GenericOutersInherited", // Princess times out
+      "verification/valid/GenericSortInvariants",
       "verification/valid/GodelNumbering",
       "verification/valid/Heaps",
       "verification/valid/HOInvocations2",
@@ -181,6 +183,7 @@ class VerificationSuite extends VerificationComponentTestSuite {
       "verification/invalid/Float8",
       "verification/invalid/ForallAssoc",
       "verification/invalid/GenericOuters", // Princess overflows its stack
+      "verification/invalid/GenericSortInvariants",
       "verification/invalid/Generics2",
       "verification/invalid/HiddenOverride",
       "verification/invalid/HOInvocations",
@@ -224,6 +227,9 @@ class VerificationSuite extends VerificationComponentTestSuite {
     "verification/valid/FloatingPointFunctionProperties",
     "verification/valid/FloatsToBits",
     "verification/invalid/FloatingPointFunctionsContradiction",
+    // the evaluator takes the paradoxical sorts to be empty, so it finds an empty counterexample
+    "verification/false-valid/ParadoxInvariant",
+    "verification/false-valid/ParadoxMutualInvariant",
   )
 
   private val ignoreCheckFiles = Map(

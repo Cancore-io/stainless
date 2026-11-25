@@ -65,6 +65,18 @@ class TypeEncoding(override val s: Trees, override val t: Trees)
   private val adt: Identifier => Identifier = new CachedID[Identifier](_.freshen)
   private val adtValue: Identifier => Identifier = new CachedID[Identifier](_ => FreshIdentifier("value"))
 
+  // Boxing of the values of type parameters that are not encoded, see `wrap` and `unwrap`
+  private val boxID = FreshIdentifier("box")
+  private val unboxID = FreshIdentifier("unbox")
+
+  // First-order type codes, see `typeCode`
+  private val codeID = FreshIdentifier("Type")
+  private val isOfID = FreshIdentifier("isOf")
+  private def code = T(codeID)()
+  private val canonTypeParam: Int => s.TypeParameter =
+    new utils.ConcurrentCached[Int, s.TypeParameter](i => s.TypeParameter(FreshIdentifier("T" + i), Seq()))
+  private val canonVar: Int => Identifier = new CachedID[Int](i => FreshIdentifier("v" + i))
+
 
   /* ====================================
    *          OBJECT TESTING
@@ -110,9 +122,12 @@ class TypeEncoding(override val s: Trees, override val t: Trees)
     case _ => None
   } (tpe)
 
-  private def wrap(e: t.Expr, tpe: s.Type)(using Scope): t.Expr = (tpe match {
+  private def wrap(e: t.Expr, tpe: s.Type)(using scope: Scope): t.Expr = (tpe match {
     case s.AnyType() => e
     case s.ClassType(id, tps) => e
+    // Values of the type parameters of sort invariants are boxed into uninterpreted objects, see `Scope.empty`
+    case tp: s.TypeParameter if scope.boxed(tp) && !scope.tparams.contains(tp) =>
+      t.FunctionInvocation(boxID, Seq(scope.transform(tp)), Seq(e))
     case tp: s.TypeParameter => e
     case s.ADTType(id, tps) => C(adt(id))(convert(e, tpe, erased(tpe)))
     case s.RefinementType(vd, pred) => wrap(e, vd.tpe)
@@ -133,9 +148,176 @@ class TypeEncoding(override val s: Trees, override val t: Trees)
     case s.UnitType() => let(("u" :: t.UnitType()).copiedFrom(e), e) { _ => t.ADT(unit, Seq(), Seq()).copiedFrom(e) }
   }).copiedFrom(e)
 
-  private def unwrap(e: t.Expr, tpe: s.Type)(using Scope): t.Expr = (tpe match {
+  /* ====================================
+   *            TYPE CODES
+   * ==================================== */
+
+  /* Type parameters that are encoded (see `Scope.empty`) are passed as first-order type codes: values of
+   * the synthetic sort `Type`, whose meaning is given by `isOf(x: Object, c: Type): Boolean`. This is a
+   * defunctionalization of the type predicates `Object => Boolean`: each type that is passed as a type
+   * argument gets a constructor of `Type`, whose fields are the codes of the type parameters and the values
+   * of the variables that occur in it, and `isOf` interprets it with `instanceOf`.
+   *
+   * Type codes are not functions, so Inox has no lambdas to unroll against them.
+   */
+
+  /** A type up to the renaming of its type parameters and variables, to `T0`, `T1`, ... and `v0`, `v1`, ...
+   *  in the order in which they occur.
+   */
+  private case class CodeKey(tpe: s.Type, typeParams: Int, vars: Seq[s.Variable])
+
+  // The constructors of `Type`, which are the same across runs since cached functions refer to them
+  private val codeCons: CodeKey => Identifier = new CachedID[CodeKey]({ key =>
+    val name = key.tpe match {
+      case s.ClassType(id, _) => id.name
+      case s.ADTType(id, _) => id.name
+      case _ => key.tpe.getClass.getSimpleName.stripSuffix("Type")
+    }
+    FreshIdentifier(name + "Type")
+  })
+  private val codeKeys = new java.util.concurrent.ConcurrentHashMap[Identifier, CodeKey]
+  private val codeField: ((Identifier, Int)) => Identifier = new CachedID[(Identifier, Int)]({ case (_, i) =>
+    FreshIdentifier("arg" + i)
+  })
+
+  /** The types `tpes` up to the renaming of their type parameters and free variables (see `CodeKey`): the
+   *  renamed types, the type parameters and free variables in the order in which they occur, and their renamings.
+   */
+  private def canonical(tpes: Seq[s.Type]): (Seq[s.Type], Seq[s.TypeParameter], Seq[s.Variable], Seq[s.Variable]) = {
+    val tps = scala.collection.mutable.ListBuffer.empty[s.TypeParameter]
+    val vars = scala.collection.mutable.ListBuffer.empty[s.Variable]
+    object collector extends s.ConcreteOOSelfTreeTraverser {
+      override def traverse(tpe: s.Type): Unit = tpe match {
+        case tp: s.TypeParameter => if (!tps.contains(tp)) tps += tp
+        case _ => super.traverse(tpe)
+      }
+      override def traverse(e: s.Expr): Unit = e match {
+        case v: s.Variable => if (!vars.contains(v)) vars += v; super.traverse(e)
+        case _ => super.traverse(e)
+      }
+    }
+    tpes.foreach(collector.traverse)
+    val free = tpes.flatMap(s.typeOps.variablesOf).toSet
+    val fvs = vars.filter(free).toSeq
+
+    val tpSubst: Map[s.TypeParameter, s.Type] = tps.zipWithIndex.map { case (tp, i) => tp -> canonTypeParam(i) }.toMap
+    val varSubst: Map[s.Variable, s.Variable] = fvs.zipWithIndex.map { case (v, i) =>
+      v -> s.Variable(canonVar(i), s.typeOps.instantiateType(v.tpe, tpSubst), Seq())
+    }.toMap
+    (tpes.map(tpe => s.typeOps.replaceFromSymbols(varSubst, s.typeOps.instantiateType(tpe, tpSubst))),
+      tps.toSeq, fvs, fvs.map(varSubst))
+  }
+
+  /** The code of type `tpe`, whose free type parameters are tested by codes in `scope`. */
+  private def typeCode(tpe: s.Type)(using scope: Scope): t.Expr = tpe match {
+    case tp: s.TypeParameter if scope.testers.contains(tp) => scope.testers(tp)
+    // Type parameters that aren't encoded aren't tested (see `typeArgCode`)
+    case tp: s.TypeParameter => anyCode
+    case _ =>
+      val (Seq(canon), tps, fvs, vars) = canonical(Seq(tpe)): @unchecked
+      val key = CodeKey(canon, tps.size, vars)
+      val id = codeCons(key)
+      codeKeys.putIfAbsent(id, key)
+
+      t.ADT(id, Seq(), tps.map(tp => typeCode(tp)) ++ fvs.map(v => scope.transform(v))).copiedFrom(tpe)
+  }
+
+  /** The code of `Any`, which any object satisfies. */
+  private def anyCode(using scope: Scope): t.Expr = typeCode(s.AnyType())
+
+  private def stripRefinements(tpe: t.Type): t.Type = t.typeOps.preMap {
+    case t.RefinementType(vd, _) => Some(stripRefinements(vd.tpe))
+    case _ => None
+  } (tpe)
+
+  // The parameters of `isOf`
+  private val isOfX = FreshIdentifier("x")
+  private val isOfC = FreshIdentifier("c")
+
+  /** The constructor of the code `id`, and the case of `isOf` that interprets it. */
+  private def codeDefinition(id: Identifier)(using context: TransformerContext): (t.ADTConstructor, t.MatchCase) = {
+    val CodeKey(tpe, nTps, vars) = codeKeys.get(id)
+    val tpVds = (0 until nTps).map(i => t.ValDef(FreshIdentifier("T" + i), code))
+    val scope = context.emptyScope.testing((0 until nTps).map(canonTypeParam) zip tpVds.map(_.toVariable))
+    // The variables keep their identifiers, so that the test refers to the binders of the case
+    val varVds = vars.map(v => t.ValDef(v.id, stripRefinements(scope.transform(v.tpe))))
+    val varMap = varVds.map(vd => vd.id -> vd.toVariable).toMap
+    val test = t.exprOps.postMap {
+      case v: t.Variable if varMap.contains(v.id) => Some(varMap(v.id))
+      case _ => None
+    } (instanceOf(t.Variable(isOfX, ref, Seq()), s.AnyType(), tpe)(using scope))
+
+    val vds = tpVds ++ varVds
+    val cons = new t.ADTConstructor(id, codeID, vds.zipWithIndex.map { case (vd, i) => t.ValDef(codeField(id -> i), vd.tpe) })
+    val cse = t.MatchCase(t.ADTPattern(None, id, Seq(), vds.map(vd => t.WildcardPattern(Some(vd)))), None, test)
+    (cons, cse)
+  }
+
+  /** The sort of the codes that `funs` and `sorts` use, and `isOf`. */
+  private def codeDefinitions(funs: Iterable[t.FunDef], sorts: Iterable[t.ADTSort])
+                             (using context: TransformerContext): (t.ADTSort, t.FunDef) = {
+    def codesIn(traverse: t.ConcreteStainlessSelfTreeTraverser => Unit): Set[Identifier] = {
+      var res = Set.empty[Identifier]
+      val traverser = new t.ConcreteStainlessSelfTreeTraverser {
+        override def traverse(e: t.Expr): Unit = e match {
+          case t.ADT(id, _, _) if codeKeys.containsKey(id) => res += id; super.traverse(e)
+          case _ => super.traverse(e)
+        }
+      }
+      traverse(traverser)
+      res
+    }
+
+    // `Any` always has a code, so that `Type` has a constructor
+    val anyID = anyCode(using context.emptyScope) match { case t.ADT(id, _, _) => id case _ => sys.error("unreachable") }
+    var todo = Set(anyID) ++ funs.flatMap(fd => codesIn(_.traverse(fd))) ++ sorts.flatMap(sort => codesIn(_.traverse(sort)))
+    var definitions = Map.empty[Identifier, (t.ADTConstructor, t.MatchCase)]
+    while (todo.nonEmpty) {
+      val id = todo.head
+      val definition = codeDefinition(id)
+      definitions += id -> definition
+      todo = todo.tail ++ (codesIn(_.traverse(definition._2.rhs)) -- definitions.keySet)
+    }
+
+    val sorted = definitions.toSeq.sortBy(_._1.globalId).map(_._2)
+    val sort = new t.ADTSort(codeID, Seq(), sorted.map(_._1), Seq(t.Synthetic))
+    val c = t.ValDef(isOfC, code)
+    val isOf = new t.FunDef(isOfID, Seq(), Seq(t.ValDef(isOfX, ref), c), t.BooleanType(),
+      t.MatchExpr(c.toVariable, sorted.map(_._2)), Seq(t.Synthetic, t.DropVCs))
+    (sort, isOf)
+  }
+
+  /** Whether `e` is an instance of the encoded type parameter `tp`, whose code is `c`. */
+  private def isOfCode(e: t.Expr, tp: s.Type, c: t.Expr)(using scope: Scope): t.Expr = {
+    val test = t.FunctionInvocation(isOfID, Seq(), Seq(e, c)).copiedFrom(e)
+    tp match {
+      case tp: s.TypeParameter =>
+        val s.TypeBounds(lo, hi, _) = tp.bounds: @unchecked
+        val selfBounded = (s.typeOps.typeParamsOf(lo) ++ s.typeOps.typeParamsOf(hi)).contains(tp)
+        if (selfBounded) test else {
+          val upper = if (hi == s.AnyType()) test else t.and(test, instanceOf(e, s.AnyType(), hi)).copiedFrom(e)
+          if (lo == s.NothingType()) upper else t.or(instanceOf(e, s.AnyType(), lo), upper).copiedFrom(e)
+        }
+      case _ => test
+    }
+  }
+
+  /** The code passed for the type argument `tp` of a function whose type parameter is encoded.
+   *
+   *  The type parameters of sort invariants are not encoded (see `Scope.empty`): their values are boxed
+   *  (see `wrap`), and any object may be such a box.
+   */
+  private def typeArgCode(tp: s.Type)(using scope: Scope): t.Expr = tp match {
+    case tp: s.TypeParameter if scope.boxed(tp) && !scope.tparams.contains(tp) && !scope.testers.contains(tp) =>
+      anyCode
+    case _ => typeCode(tp)
+  }
+
+  private def unwrap(e: t.Expr, tpe: s.Type)(using scope: Scope): t.Expr = (tpe match {
     case s.AnyType() => e
     case s.ClassType(id, tps) => e
+    case tp: s.TypeParameter if scope.boxed(tp) && !scope.tparams.contains(tp) =>
+      t.FunctionInvocation(unboxID, Seq(scope.transform(tp)), Seq(e))
     case tp: s.TypeParameter => e
     case s.ADTType(id, tps) => convert(getRefField(e, adtValue(id)), erased(tpe), tpe)
     case s.RefinementType(vd, pred) => unwrap(e, vd.tpe)
@@ -194,6 +376,9 @@ class TypeEncoding(override val s: Trees, override val t: Trees)
 
       case (_, s.RefinementType(vd, pred), t2) =>
         convert(e, vd.tpe, t2)
+
+      case (_, s.ADTType(id1, tps1), s.ADTType(id2, tps2)) if id1 == id2 && scope.converters.isEmpty && scope.context.isRegular(id1) =>
+        sortConversion(e, id1, tps1, tps2)
 
       case (_, s.ADTType(id1, tps1), s.ADTType(id2, tps2)) if id1 == id2 =>
         t.FunctionInvocation(convertID(id1), (tps1 ++ tps2).map(tp => scope.transform(tp)),
@@ -344,7 +529,7 @@ class TypeEncoding(override val s: Trees, override val t: Trees)
         t.Application(scope.testers(tp1 -> tp2), Seq(e))
 
       case (tp1, tp2) if scope.testers `contains` tp2 =>
-        t.Application(scope.testers(tp2), Seq(wrap(e, tp1)))
+        isOfCode(wrap(e, tp1), tp2, scope.testers(tp2))
 
       case (_, s.AnyType()) => t.BooleanLiteral(true)
       case (_, s.NothingType()) => t.BooleanLiteral(false)
@@ -367,10 +552,11 @@ class TypeEncoding(override val s: Trees, override val t: Trees)
       case (_, s.ClassType(id, tps)) if isObject(in) =>
         t.FunctionInvocation(
           instanceID(id), Seq(),
-          e +: tps.map(tp => simplify(\(("x" :: ref).copiedFrom(tp)) { x =>
-            instanceOf(x, s.AnyType().copiedFrom(tp), tp)
-          }.copiedFrom(tp)))
+          e +: tps.map(tp => typeCode(tp))
         )
+
+      case (s.ADTType(id1, tps1), s.ADTType(id2, tps2)) if id1 == id2 && !scope.testers.hasPairs && scope.context.isRegular(id1) =>
+        sortInstanceTest(e, id1, tps1, tps2)
 
       case (s.ADTType(id1, tps1), s.ADTType(id2, tps2)) if id1 == id2 =>
         t.FunctionInvocation(
@@ -543,7 +729,7 @@ class TypeEncoding(override val s: Trees, override val t: Trees)
     val cd = symbols.getClass(id)
     classInstanceCache.cached(cd, context) {
       mkFunDef(instanceID(id), t.DropVCs, t.Synthetic)() { _ =>
-        (("x" :: ref) +: cd.typeArgs.map(_.id.name :: (ref =>: BooleanType())), BooleanType(), {
+        (("x" :: ref) +: cd.typeArgs.map(_.id.name :: code), BooleanType(), {
           case x +: tps =>
             given scope: Scope = context.emptyScope.testing(cd.typeArgs zip tps)
             if (cd.children.nonEmpty) {
@@ -703,6 +889,143 @@ class TypeEncoding(override val s: Trees, override val t: Trees)
   }
 
 
+  /* ====================================
+   *    FIRST-ORDER SORT FUNCTIONS
+   * ==================================== */
+
+  /* A conversion between two instances of a sort, or a test of whether an instance of a sort is an instance
+   * of another, is a call to a function that is specialized to these instances, up to the renaming of their
+   * type parameters and variables. The conversions and tests of the type arguments are then inlined in its
+   * body, instead of being passed as functions (see `sortConvert` and `sortInstance`), as type codes do for
+   * the tests of encoded type parameters (see `typeCode`).
+   *
+   * In particular, the conversions of boxed type parameters (see `wrap`) are calls to `box` and `unbox`,
+   * which would otherwise be passed as the lambdas `x => box(x)` and `x => unbox(x)`. Such lambdas are
+   * equal to the uninterpreted functions of `box` and `unbox`, so a model could give them as their
+   * interpretations, which would then be circular.
+   *
+   * There are finitely many such instances for regular sorts only, whose (transitive) fields only refer
+   * to instances of sorts whose type arguments are type parameters of the sort (see `isRegular`). The
+   * conversions and tests of instances of other sorts keep passing functions to `sortConvert` and
+   * `sortInstance`, whose bodies then use these functions.
+   */
+
+  /** The conversion from `sort[from]` to `sort[to]` (or the test of whether a `sort[from]` is a `sort[to]`),
+   *  whose type parameters are `T0`, `T1`, ... (of which `encoded` are encoded and `boxed` are boxed, see
+   *  `Scope`, and `tested` are tested by type codes) and whose variables are `vars`.
+   */
+  private case class SortFunKey(test: Boolean, sort: Identifier, from: Seq[s.Type], to: Seq[s.Type], typeParams: Int,
+                                encoded: Set[Int], boxed: Set[Int], tested: Seq[Int], vars: Seq[s.Variable])
+
+  // The specialized functions, which are the same across runs since cached functions refer to them
+  private val sortFun: SortFunKey => Identifier = new CachedID[SortFunKey](key =>
+    FreshIdentifier((if (key.test) "is" else "as") + key.sort.name))
+  private val sortFunKeys = new java.util.concurrent.ConcurrentHashMap[Identifier, SortFunKey]
+
+  /** The conversion of `e` from `sort[tps1]` to `sort[tps2]`. */
+  private def sortConversion(e: t.Expr, sort: Identifier, tps1: Seq[s.Type], tps2: Seq[s.Type])
+                            (using scope: Scope): t.Expr = sortFunCall(false, e, sort, tps1, tps2)
+
+  /** Whether `e` of type `sort[tps1]` is an instance of `sort[tps2]`. */
+  private def sortInstanceTest(e: t.Expr, sort: Identifier, tps1: Seq[s.Type], tps2: Seq[s.Type])
+                              (using scope: Scope): t.Expr = sortFunCall(true, e, sort, tps1, tps2)
+
+  private def sortFunCall(test: Boolean, e: t.Expr, sort: Identifier, tps1: Seq[s.Type], tps2: Seq[s.Type])
+                         (using scope: Scope): t.Expr = {
+    val (canon, tps, fvs, vars) = canonical(tps1 ++ tps2)
+    val (from, to) = canon.splitAt(tps1.size)
+    val encoded = tps.indices.filter(i => scope.tparams(tps(i))).toSet
+    val boxed = tps.indices.filter(i => scope.boxed(tps(i)) && !scope.tparams(tps(i))).toSet
+    val tested = if (test) tps.indices.filter(i => scope.testers.contains(tps(i))) else Seq()
+    val key = SortFunKey(test, sort, from, to, tps.size, encoded, boxed, tested, vars)
+    val id = sortFun(key)
+    sortFunKeys.putIfAbsent(id, key)
+
+    // Encoded type parameters are objects, so the function doesn't depend on them but on their codes
+    t.FunctionInvocation(id,
+      tps.zipWithIndex.collect { case (tp, i) if !encoded(i) => scope.transform(tp) },
+      (e +: tested.map(i => scope.testers(tps(i)))) ++ fvs.map(v => scope.transform(v))
+    ).copiedFrom(e)
+  }
+
+  /** The specialized function `id`. */
+  private def sortFunDefinition(id: Identifier)(using context: TransformerContext): t.FunDef = {
+    import context.symbols
+    import symbols.given
+    val SortFunKey(test, sortID, from, to, nTps, encoded, boxed, tested, vars) = sortFunKeys.get(id)
+    val tps = (0 until nTps).map(canonTypeParam)
+    val codeVds = tested.map(i => t.ValDef(FreshIdentifier("T" + i), code))
+    // The type parameters and parameter of the function are those of the call, whose tested type parameters
+    // are instantiated with their types in the scope of the call
+    val carrier = new Scope(context.emptyScope.functions, encoded.map(tps), ExprMapping.empty, ExprMapping.empty, boxed.map(tps))
+    given scope: Scope = carrier.testing(tested.map(tps) zip codeVds.map(_.toVariable))
+
+    // The variables keep their identifiers, so that the body refers to the parameters
+    val varVds = vars.map(v => t.ValDef(v.id, stripRefinements(scope.transform(v.tpe))))
+    val varMap = varVds.map(vd => vd.id -> vd.toVariable).toMap
+    def withParams(e: t.Expr): t.Expr = t.exprOps.postMap {
+      case v: t.Variable if varMap.contains(v.id) => Some(varMap(v.id))
+      case _ => None
+    } (e)
+
+    val sort = symbols.getSort(sortID)
+    val x = ("x" :: carrier.transform(s.ADTType(sortID, from))).toVariable
+    val constructors = sort.typed(from).constructors zip sort.typed(to).constructors
+
+    val (returnType, fullBody) = if (test) {
+      (t.BooleanType(), t.orJoin(constructors map { case (ci, co) =>
+        (x `is` ci.id) && t.andJoin(ci.fields zip co.fields map { case (vi, vo) =>
+          instanceOf(x.getField(vi.id), vi.tpe, vo.tpe)
+        })
+      }))
+    } else {
+      val conversions = constructors map { case (ci, co) =>
+        (x `is` ci.id, C(ci.id)(to.map(scope.transform)*)(ci.fields zip co.fields map { case (vi, vo) =>
+          convert(x.getField(vi.id), vi.tpe, vo.tpe)
+        }*))
+      }
+      (scope.transform(s.ADTType(sortID, to)), conversions.init.foldRight(conversions.last._2: t.Expr) {
+        case ((cond, thenn), elze) => t.IfExpr(cond, thenn, elze)
+      })
+    }
+
+    new t.FunDef(
+      id,
+      tps.zipWithIndex.collect { case (tp, i) if !encoded(i) => t.TypeParameterDef(carrier.transform(tp).asInstanceOf[t.TypeParameter]) },
+      (x.toVal +: codeVds) ++ varVds,
+      returnType,
+      withParams(fullBody),
+      Seq(t.DropVCs, t.Synthetic)
+    ).setPos(sort)
+  }
+
+  /** The specialized functions that `funs` call, transitively, apart from `known` ones. */
+  private def sortFunDefinitions(funs: Iterable[t.FunDef], known: Set[Identifier])
+                                (using context: TransformerContext): Seq[t.FunDef] = {
+    def callsIn(fd: t.FunDef): Set[Identifier] = {
+      var res = Set.empty[Identifier]
+      val traverser = new t.ConcreteStainlessSelfTreeTraverser {
+        override def traverse(e: t.Expr): Unit = e match {
+          case t.FunctionInvocation(id, _, _) if sortFunKeys.containsKey(id) => res += id; super.traverse(e)
+          case _ => super.traverse(e)
+        }
+      }
+      traverser.traverse(fd)
+      res
+    }
+
+    var todo = funs.flatMap(callsIn).toSet -- known
+    var definitions = Map.empty[Identifier, t.FunDef]
+    while (todo.nonEmpty) {
+      val id = todo.head
+      val fd = sortFunDefinition(id)
+      definitions += id -> fd
+      todo = todo.tail ++ (callsIn(fd) -- definitions.keySet -- known)
+    }
+    definitions.values.toSeq.sortBy(_.id.globalId)
+  }
+
+
   /* =====================================
    *    TRANSFORMATION/ENCODING CONTEXT
    * ===================================== */
@@ -711,13 +1034,16 @@ class TypeEncoding(override val s: Trees, override val t: Trees)
    *
    * @param fun - function abstraction (FunDef or LocalFunDef)
    * @param outer - the scope in which the local function definition occurred
-   * @param tparams - the type parameters that should be encoded to predicates
+   * @param tparams - the type parameters that should be encoded to type codes
    */
   protected case class FunInfo(fun: s.FunAbstraction, tparams: Set[Int])
 
   protected class ExprMapping private(underlying: Map[(s.Type, Option[s.Type]), t.Expr]) {
     def contains(p: (s.Type, s.Type)): Boolean = underlying contains (p._1 -> Some(p._2))
     def contains(tpe: s.Type): Boolean = underlying contains (tpe -> None)
+    def isEmpty: Boolean = underlying.isEmpty
+    /** Whether some pairs of types are mapped, which only the generic sort functions do. */
+    def hasPairs: Boolean = underlying.keys.exists(_._2.isDefined)
 
     def apply(p: (s.Type, s.Type)): t.Expr = underlying apply (p._1 -> Some(p._2))
     def apply(tpe: s.Type): t.Expr = underlying apply (tpe -> None)
@@ -741,26 +1067,32 @@ class TypeEncoding(override val s: Trees, override val t: Trees)
     val tparams: Set[s.TypeParameter],
     val testers: ExprMapping,
     val converters: ExprMapping,
+    val boxed: Set[s.TypeParameter],
   )(using val context: TransformerContext, override val symbols: context.symbols.type) extends TransformerWithType {
 
     def this(functions: Map[Identifier, FunInfo],
              tparams: Set[self.s.TypeParameter],
              testers: ExprMapping,
-             converters: ExprMapping)(using context: TransformerContext) =
-      this(self.s, self.t, functions, tparams, testers, converters)(using context, context.symbols)
+             converters: ExprMapping,
+             boxed: Set[self.s.TypeParameter])(using context: TransformerContext) =
+      this(self.s, self.t, functions, tparams, testers, converters, boxed)(using context, context.symbols)
 
     protected given givenScope: this.type = this
     import symbols.{let => _, forall => _, _}
 
     def converting(ps: Iterable[((s.Type, s.Type), t.Expr)]): Scope =
-      new Scope(functions, tparams, testers, converters ++ ps)
+      new Scope(functions, tparams, testers, converters ++ ps, boxed)
 
     def testing(ps: Iterable[((s.Type, s.Type), t.Expr)]): Scope =
-      new Scope(functions, tparams, testers ++ ps, converters)
+      new Scope(functions, tparams, testers ++ ps, converters, boxed)
     def testing(ps: Iterable[(s.Type, t.Expr)])(using DummyImplicit): Scope =
-      new Scope(functions, tparams, testers ++ ps, converters)
+      new Scope(functions, tparams, testers ++ ps, converters, boxed)
     def testing(p: (s.Type, t.Expr)): Scope =
-      new Scope(functions, tparams, testers ++ Seq(p), converters)
+      new Scope(functions, tparams, testers ++ Seq(p), converters, boxed)
+
+    /** Box the values of type parameters `tps` when they reach encoded functions, see `wrap`. */
+    def boxing(tps: Iterable[s.TypeParameter]): Scope =
+      new Scope(functions, tparams, testers, converters, boxed ++ tps)
 
     override def transform(tp: s.Type): t.Type = tp match {
       case s.AnyType() => ref.copiedFrom(tp)
@@ -807,7 +1139,7 @@ class TypeEncoding(override val s: Trees, override val t: Trees)
       val extraTParams = functions.get(id).map { case FunInfo(fun, tparams) =>
         fun.tparams.map(_.tp).zipWithIndex.collect { case (tp, i) if tparams(i) => tp }
       }.getOrElse(classes(id).typeArgs)
-      new Scope(functions, tparams ++ extraTParams, testers, converters)
+      new Scope(functions, tparams ++ extraTParams, testers, converters, boxed)
     }
 
     override def transform(e: s.Expr, inType: s.Type): t.Expr = e match {
@@ -845,7 +1177,7 @@ class TypeEncoding(override val s: Trees, override val t: Trees)
         convert(t.FunctionInvocation(id,
           tps.zipWithIndex.collect { case (tp, i) if !tparams(i) => transform(tp) },
           tps.zipWithIndex.collect { case (tp, i) if tparams(i) =>
-            simplify(\(("x" :: ref).copiedFrom(tp))(x => instanceOf(x, s.AnyType().copiedFrom(tp), tp)).copiedFrom(tp))
+            typeArgCode(tp)
           } ++ (fun.params zip args).map { case (vd, arg) =>
             convert(transform(arg), arg.getType, s.typeOps.instantiateType(vd.tpe, tpSubst))(using funScope)
           }).copiedFrom(e), s.typeOps.instantiateType(fun.returnType.getType, tpSubst), inType)(using funScope)
@@ -857,9 +1189,7 @@ class TypeEncoding(override val s: Trees, override val t: Trees)
           case ((tp, tpe), i) => tp -> (if (ctparams(i)) tp else tpe)
         }.toMap
 
-        val nparams = tparams.zipWithIndex.collect { case (tp, i) if ctparams(i) =>
-          (ref =>: t.BooleanType().copiedFrom(tp)).copiedFrom(tp)
-        }
+        val nparams = tparams.zipWithIndex.collect { case (tp, i) if ctparams(i) => code.copiedFrom(tp) }
 
         convert(t.ApplyLetRec(
           id,
@@ -867,7 +1197,7 @@ class TypeEncoding(override val s: Trees, override val t: Trees)
           t.FunctionType(nparams ++ tpe.from.map(funScope.transform), funScope.transform(tpe.to)).copiedFrom(tpe),
           tps.zipWithIndex.collect { case (tp, i) if !ctparams(i) => transform(tp) },
           tps.zipWithIndex.collect {  case (tp, i) if ctparams(i) =>
-            simplify(\(("x" :: ref).copiedFrom(tp))(x => instanceOf(x, s.AnyType().copiedFrom(tp), tp)).copiedFrom(tp))
+            typeArgCode(tp)
           } ++ (fun.params zip args).map { case (vd, arg) =>
             convert(transform(arg), arg.getType, s.typeOps.instantiateType(vd.tpe, tpSubst))(using funScope)
           }).copiedFrom(app), s.typeOps.instantiateType(fun.returnType.getType, tpSubst), inType)(using funScope)
@@ -892,6 +1222,13 @@ class TypeEncoding(override val s: Trees, override val t: Trees)
             ).copiedFrom(cse)
           }
         ).copiedFrom(e)
+
+      // `TransformerWithType` compares values at the widened upper bound of their types, which is `Any` for type
+      // parameters, but values of a boxed type parameter can be compared without boxing them
+      case s.Equals(lhs, rhs) if (lhs.getType, rhs.getType) match {
+        case (tp: s.TypeParameter, tp2) => tp == tp2 && boxed(tp) && !tparams(tp)
+        case _ => false
+      } => t.Equals(transform(lhs, lhs.getType), transform(rhs, rhs.getType)).copiedFrom(e)
 
       // push conversions down into branches/leaves
       case (_: s.IfExpr | _: s.MatchExpr | _: s.Let) => super.transform(e, inType)
@@ -1013,9 +1350,7 @@ class TypeEncoding(override val s: Trees, override val t: Trees)
           ob map transform,
           tps.zipWithIndex.flatMap { case (tp, i) =>
             if (tparams(i)) Seq(
-              simplify(\(("x" :: ref).copiedFrom(tp)) { x =>
-                instanceOf(x, s.AnyType().copiedFrom(tp), tp)
-              }.copiedFrom(tp)),
+              typeArgCode(tp),
               \(("x" :: ref).copiedFrom(tp))(x => unwrap(x, tp)).copiedFrom(tp)
             ) else Seq.empty[t.Expr]
           } ++ (recs zip fun.params.init).map {
@@ -1037,24 +1372,13 @@ class TypeEncoding(override val s: Trees, override val t: Trees)
 
       val (scope, tparamParams) = fd.tparams.map(_.tp).zipWithIndex
         .collect { case (tp, i) if tparams(i) => tp }
-        .foldLeft((this `in` fd.id, Seq[t.ValDef]())) {
+        .foldLeft((
+          // Sort invariants keep the type parameters of their sort (see `Scope.empty`), and box their values
+          if (fd.flags contains s.IsInvariant) (this `in` fd.id).boxing(fd.tparams.map(_.tp)) else (this `in` fd.id),
+          Seq[t.ValDef]())) {
           case ((scope, vds), tp) =>
-            val s.TypeBounds(lowerBound, upperBound, _) = tp.bounds
-
-            val tpe = if (lowerBound == s.NothingType() && upperBound == s.AnyType()) {
-              (ref.copiedFrom(tp) =>: t.BooleanType().copiedFrom(tp)).copiedFrom(tp)
-            } else {
-              pi(("x" :: ref.copiedFrom(tp)).copiedFrom(tp)) { x =>
-                refinement(("b" :: t.BooleanType().copiedFrom(tp)).copiedFrom(tp)) { b =>
-                  t.Annotated(t.and(
-                    t.implies(instanceOf(x, tp, lowerBound)(using scope), b).copiedFrom(lowerBound),
-                    t.implies(b, instanceOf(x, tp, upperBound)(using scope)).copiedFrom(upperBound)
-                  ).copiedFrom(tp), Seq(t.DropConjunct)).copiedFrom(tp)
-                }.copiedFrom(tp)
-              }.copiedFrom(tp)
-            }
-
-            val vd = t.ValDef(tp.id.freshen, tpe).copiedFrom(tp)
+            // The bounds of `tp` are part of its test, see `isOfCode`
+            val vd = t.ValDef(tp.id.freshen, code.copiedFrom(tp)).copiedFrom(tp)
             (scope.testing(tp -> vd.toVariable), vds :+ vd)
         }
 
@@ -1194,6 +1518,10 @@ class TypeEncoding(override val s: Trees, override val t: Trees)
         traverser.transform(fun.fullBody, fun.returnType.getType)
         fun.flags map (traverser.transform(_))
 
+        // Sort invariants must keep the type parameters of their sort. When they call functions whose type
+        // parameters are encoded, the values of their type parameters are boxed (see `wrap`).
+        if (fun.flags contains s.IsInvariant) simple = tparams.toSet
+
         val nonSimpleParamsIndices = tparams.zipWithIndex.collect {
           case (tp, i) if !simple(tp) => i
         }.toSet
@@ -1214,7 +1542,7 @@ class TypeEncoding(override val s: Trees, override val t: Trees)
         infos.map { case (id, info) => id -> computeInfo(info.fun)(infos) }
       } (functions.map(fun => fun.id -> FunInfo(fun, Set.empty)).toMap)
 
-      new Scope(infos, Set.empty, ExprMapping.empty, ExprMapping.empty)
+      new Scope(infos, Set.empty, ExprMapping.empty, ExprMapping.empty, Set.empty)
     }
   }
 
@@ -1223,6 +1551,26 @@ class TypeEncoding(override val s: Trees, override val t: Trees)
   protected class TransformerContext(val symbols: s.Symbols) {
     import symbols.{given, _}
     given emptyScope: Scope = Scope.empty(using this)
+
+    private val regularSorts = scala.collection.concurrent.TrieMap.empty[Identifier, Boolean]
+
+    /** Whether the instances of sort `id` that its values contain are finitely many (see `sortFunCall`). */
+    def isRegular(id: Identifier): Boolean = regularSorts.getOrElseUpdate(id, {
+      var seen = Set.empty[s.ADTType]
+      var todo = List(s.ADTType(id, symbols.getSort(id).typeArgs))
+      while (todo.nonEmpty && seen.size <= 100) {
+        val tpe = todo.head
+        todo = todo.tail
+        if (!seen(tpe)) {
+          seen += tpe
+          todo ++= tpe.getSort.constructors.flatMap(_.fields).flatMap(vd => s.typeOps.collect[s.ADTType] {
+            case at: s.ADTType => Set(at)
+            case _ => Set.empty
+          } (vd.tpe))
+        }
+      }
+      todo.isEmpty
+    })
 
     private val (tplSizes, funSizes, bvSizes, fpSizes) = {
       var tplSizes: Set[Int] = Set.empty
@@ -1300,7 +1648,20 @@ class TypeEncoding(override val s: Trees, override val t: Trees)
     def functions: Seq[t.FunDef] =
       symbols.classes.keys.toSeq.flatMap(id => Seq(classInstance(id)(using this), classUnapply(id)(using this))) ++
       symbols.sorts.keys.flatMap(id => Seq(sortInstance(id)(using this), sortConvert(id)(using this))) ++
-      OptionSort.functions :+ unapplyAny(using this)
+      OptionSort.functions ++ Seq(unapplyAny(using this), box, unbox)
+
+    private def box: t.FunDef = {
+      val tp = t.TypeParameter.fresh("T")
+      // An uninterpreted function of `x` (see `InoxEncoder`)
+      new t.FunDef(boxID, Seq(t.TypeParameterDef(tp)), Seq("x" :: tp), ref,
+        t.Choose("res" :: ref, t.BooleanLiteral(true)), Seq(t.Synthetic, t.DropVCs))
+    }
+
+    private def unbox: t.FunDef = {
+      val tp = t.TypeParameter.fresh("T")
+      new t.FunDef(unboxID, Seq(t.TypeParameterDef(tp)), Seq("x" :: ref), tp,
+        t.Choose("res" :: tp, t.BooleanLiteral(true)), Seq(t.Synthetic, t.DropVCs))
+    }
 
     def sorts: Seq[t.ADTSort] =
       OptionSort.sorts :+ refSort
@@ -1376,9 +1737,22 @@ class TypeEncoding(override val s: Trees, override val t: Trees)
 
   override protected def extractSymbols(context: TransformerContext, symbols: s.Symbols): (t.Symbols, OOAllSummaries) = {
     val (exSyms, summary) = super.extractSymbols(context, symbols)
+    val synthetic = context.functions
+    // The definitions of conversions and codes may use more conversions and codes
+    val sorts = exSyms.sorts.values ++ context.sorts
+    var convs = sortFunDefinitions(exSyms.functions.values ++ synthetic, Set.empty)(using context)
+    var (codeSort, isOf) = codeDefinitions(exSyms.functions.values ++ synthetic ++ convs, sorts)(using context)
+    var more = sortFunDefinitions(Seq(isOf), convs.map(_.id).toSet)(using context)
+    while (more.nonEmpty) {
+      convs ++= more
+      val (newSort, newIsOf) = codeDefinitions(exSyms.functions.values ++ synthetic ++ convs, sorts)(using context)
+      codeSort = newSort
+      isOf = newIsOf
+      more = sortFunDefinitions(Seq(isOf), convs.map(_.id).toSet)(using context)
+    }
     val newSymbols = exSyms
-      .withFunctions(context.functions)
-      .withSorts(context.sorts)
+      .withFunctions(synthetic ++ convs :+ isOf)
+      .withSorts(context.sorts :+ codeSort)
 
     // newSymbols.ensureWellFormed
 
